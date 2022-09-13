@@ -1,0 +1,40 @@
+{
+  "name": "ma-web-component",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ma-web-component.umd.js",
+  "module": "./dist/ma-web-component.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/ma-web-component.es.js",
+      "require": "./dist/ma-web-component.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vuelidate/core": "2.0.0-alpha.44",
+    "@vuelidate/validators": "2.0.0-alpha.31",
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.6",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "element-plus": "^2.2.16",
+    "sass": "^1.54.4",
+    "typescript": "^4.6.4",
+    "unplugin-auto-import": "^0.11.2",
+    "unplugin-element-plus": "^0.4.1",
+    "unplugin-vue-components": "^0.22.4",
+    "vite": "^3.0.7",
+    "vue-i18n": "9",
+    "vue-tsc": "^0.39.5"
+  }
+}

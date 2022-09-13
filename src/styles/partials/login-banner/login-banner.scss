@@ -1,0 +1,56 @@
+@use '@/styles/utils/functions';
+@use '@/styles/utils/colors';
+
+.ma-banner-login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: functions.toRem(16) functions.toRem(24);
+  background: colors.$primary-1;
+  border-radius: functions.toRem(8);
+  color: #fef058;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  &__button {
+    padding: functions.toRem(6) functions.toRem(8);
+    border-radius: functions.toRem(5);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #fdd835;
+    background: linear-gradient(180deg, #4771ff 0%, #4b62dd 100%);
+    display: inline-block;
+    white-space: nowrap;
+    border: 1px solid;
+    border-image-source: linear-gradient(180deg, #2c3b7a 0%, #5c6bc0 100%);
+    text-align: center;
+    transition: 0.3s all ease;
+
+    &:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    &:active {
+      transform: scale(0.9);
+      cursor: pointer;
+    }
+  }
+}
+.ma-banner-login__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  svg {
+    margin-right: 0.875rem;
+  }
+  .ma-banner-login__content-description {
+    color: #fef058;
+    b {
+      font-weight: 700;
+    }
+  }
+}

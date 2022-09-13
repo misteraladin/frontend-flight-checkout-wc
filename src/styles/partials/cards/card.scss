@@ -1,0 +1,51 @@
+@use '@/styles/utils/functions';
+@use '@/styles/utils/colors';
+
+.card {
+  border: 1px solid colors.$normal-7;
+  border-radius: functions.toRem(8);
+  padding: functions.toRem(24);
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: functions.toRem(24);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: functions.toRem(3);
+      height: functions.toRem(18);
+      background-color: colors.$primary-1;
+      left: functions.toRem(-25);
+      top: functions.toRem(3.5);
+    }
+
+    > span {
+      font-style: normal;
+      font-weight: 600;
+      font-size: functions.toRem(16);
+      line-height: functions.toRem(24);
+      color: colors.$primary-1;
+    }
+
+    .card-alternate & {
+      margin-bottom: 0;
+
+      &::before {
+        content: none;
+      }
+
+      span {
+        font-style: normal;
+        font-weight: 600;
+        font-size: functions.toRem(16);
+        line-height: functions.toRem(24);
+        color: colors.$normal-2;
+      }
+    }
+  }
+}
