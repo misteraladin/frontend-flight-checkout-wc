@@ -1,5 +1,5 @@
 import { defineComponent as a, provide as i, renderSlot as r, defineCustomElement as s } from "vue";
-import { c, I as l } from "./vue-i18n.esm-bundler.ea1ea4e9.js";
+import { c, I as l } from "./vue-i18n.esm-bundler.9ad5361b.mjs";
 const f = /* @__PURE__ */ a({
   __name: "index.ce",
   props: {

@@ -1,6 +1,6 @@
 import { defineComponent as o, openBlock as r, createElementBlock as t, createVNode as i, unref as a, withCtx as l, createElementVNode as e, defineCustomElement as n } from "vue";
-import { E as s } from "./index.003b5c7a.js";
-import { _ as c } from "./_plugin-vue_export-helper.9d74fd37.js";
+import { E as s } from "./index.1f708269.mjs";
+import { _ as c } from "./_plugin-vue_export-helper.e9cbb45e.mjs";
 const d = { class: "newsletter" }, p = /* @__PURE__ */ e("span", null, " Yuk, langganan newsletter kami untuk menjadi yang pertama mengetahui promo terbaru Mister Aladin! ", -1), b = /* @__PURE__ */ e("svg", {
   width: "20",
   height: "16",
