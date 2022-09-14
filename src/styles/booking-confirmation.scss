@@ -3,6 +3,7 @@
 @use 'element-plus/dist/index.css';
 
 @use 'partials/button/button';
+@use 'partials/inputs/input';
 
 @use 'partials/cards/card';
 @use 'partials/cards/flight-card';
@@ -237,6 +238,23 @@
       flex-shrink: 0;
     }
   }
+
+  &__coupon-input {
+    display: flex;
+    flex-direction: row;
+    gap: functions.toRem(16);
+  }
+
+  &__coupon-input-form {
+    --el-color-primary: #323c9f;
+  }
+
+  &__agreement {
+    font-style: italic;
+    font-weight: 500;
+    font-size: functions.toRem(16);
+    line-height: functions.toRem(21);
+  }
 }
 
 .color-red {
@@ -251,10 +269,35 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  color: colors.$primary-1;
+  font-weight: 500;
+  font-size: functions.toRem(14);
+  line-height: functions.toRem(24);
+  background-image: url('/coupon.svg');
+  position: relative;
+  padding: functions.toRem(16);
+
+  &__add {
+    text-transform: uppercase;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  > svg {
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    left: functions.toRem(0);
+  }
 
   > div {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: functions.toRem(10);
   }
 }

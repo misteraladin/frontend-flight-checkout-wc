@@ -19,6 +19,10 @@ export default {
     RETURN: 'Return',
     PROMO_CODE: 'Promo Code',
     PAY_NOW: 'Pay Now',
+    PTL: 'Payment Time Limit',
+    ADD_COUPON: 'Add',
+    AGREEMENT:
+      'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -40,5 +44,9 @@ export default {
     RETURN: 'Kepulangan',
     PROMO_CODE: 'Kode Promo',
     PAY_NOW: 'Bayar Sekarang',
+    PTL: 'Batas Waktu Pembayaran',
+    ADD_COUPON: 'Tambah',
+    AGREEMENT:
+      'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',
   },
 };
