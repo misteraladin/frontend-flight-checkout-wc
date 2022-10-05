@@ -1,0 +1,117 @@
+@use '@/styles/utils/functions';
+@use '@/styles/utils/colors';
+
+.flight-card-item {
+  display: flex;
+  flex-direction: column;
+  gap: functions.toRem(16);
+
+  &__transit {
+    font-weight: 500;
+    font-size: functions.toRem(10);
+    line-height: functions.toRem(16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: functions.toRem(8) 0;
+    background-color: colors.$bg-1;
+    border-radius: functions.toRem(8);
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr;
+    column-gap: functions.toRem(16);
+
+    img {
+      grid-row-start: 1;
+      grid-row-end: 3;
+      width: functions.toRem(36);
+    }
+  }
+
+  &__airline-name {
+    font-weight: 600;
+    font-size: functions.toRem(14);
+    line-height: functions.toRem(24);
+    color: colors.$normal-2;
+  }
+
+  &__airline-class {
+    font-weight: 500;
+    font-size: functions.toRem(12);
+    line-height: functions.toRem(16);
+    color: colors.$normal-5;
+  }
+}
+
+.airline-timeline {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  column-gap: functions.toRem(24);
+  row-gap: functions.toRem(11);
+  margin-left: functions.toRem(18);
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    height: functions.toRem(64);
+    width: functions.toRem(2);
+    background-color: colors.$normal-7;
+    left: functions.toRem(-16);
+    top: functions.toRem(6);
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+  }
+
+  &__time,
+  &__city {
+    font-weight: 500;
+    font-size: functions.toRem(10);
+    line-height: functions.toRem(16);
+  }
+
+  &__time {
+    position: relative;
+    &::before {
+      position: absolute;
+      content: '';
+      width: functions.toRem(6);
+      height: functions.toRem(6);
+      background-color: colors.$white;
+      border: functions.toRem(1) solid colors.$normal-7;
+      top: functions.toRem(5);
+      left: functions.toRem(-18);
+      border-radius: 50%;
+    }
+
+    &--end {
+      &::before {
+        background-color: colors.$primary-1;
+        border-color: colors.$primary-1;
+      }
+    }
+  }
+
+  &__date,
+  &__airport {
+    font-weight: 500;
+    font-size: functions.toRem(10);
+    line-height: functions.toRem(16);
+    color: colors.$normal-5;
+  }
+
+  &__flight-time {
+    font-weight: 500;
+    font-size: functions.toRem(10);
+    line-height: 100%;
+    color: colors.$normal-5;
+    grid-column: 1 / span 2;
+  }
+}

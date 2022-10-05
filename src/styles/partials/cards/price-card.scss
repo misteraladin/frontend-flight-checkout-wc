@@ -1,0 +1,38 @@
+@use '@/styles/utils/functions';
+@use '@/styles/utils/colors';
+
+.price-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-weight: 500;
+  font-size: functions.toRem(12);
+  line-height: functions.toRem(16);
+  row-gap: functions.toRem(12);
+
+  span {
+    &:not(.price-card__heading) {
+      color: colors.$normal-5;
+      &:nth-of-type(odd) {
+        text-align: end;
+      }
+    }
+  }
+
+  &__heading {
+    font-weight: 600;
+    font-size: functions.toRem(16);
+    line-height: functions.toRem(24);
+    grid-column: 1 / span 2;
+    margin-bottom: functions.toRem(8);
+  }
+
+  &::before {
+    content: '';
+    width: calc(100% + functions.toRem(32));
+    height: functions.toRem(1);
+    background-color: colors.$normal-7;
+    grid-column: 1 / span 2;
+    margin-left: functions.toRem(-16);
+    margin-bottom: functions.toRem(4);
+  }
+}

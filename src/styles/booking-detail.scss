@@ -1,0 +1,142 @@
+@use 'global';
+@use 'typographies';
+@use 'element-plus/dist/index.css';
+
+@use 'partials/button/button';
+@use 'partials/login-banner/login-banner';
+
+@use 'partials/inputs/input';
+@use 'partials/inputs/input-group';
+@use 'partials/inputs//dropdown';
+@use 'partials/inputs/switcher';
+@use 'partials/inputs/calendar';
+
+@use 'partials/cards/card';
+@use 'partials/cards/flight-card';
+@use 'partials/cards/flight-card-item';
+@use 'partials/cards/price-card';
+
+@use 'utils/functions';
+@use 'utils/colors';
+
+.booking {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  max-width: functions.toRem(1200);
+  margin: functions.toRem(48) auto;
+  gap: functions.toRem(24);
+
+  &__passenger-header {
+    font-weight: 600;
+    font-size: functions.toRem(16);
+    line-height: functions.toRem(24);
+  }
+
+  &__passenger {
+    & ~ & {
+      &::before {
+        content: '';
+        width: calc(100% + functions.toRem(48));
+        margin-left: functions.toRem(-24);
+        height: functions.toRem(1);
+        background-color: colors.$normal-7;
+        margin-top: functions.toRem(24);
+      }
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: functions.toRem(24);
+    line-height: functions.toRem(32);
+    grid-column-start: 1;
+    grid-column-end: 3;
+    color: colors.$normal-2;
+  }
+
+  &__subtitle {
+    font-weight: 600;
+    font-size: functions.toRem(20);
+    line-height: functions.toRem(32);
+    color: colors.$normal-2;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: functions.toRem(24);
+  }
+
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: functions.toRem(24);
+  }
+
+  &__main-column-4 {
+    display: grid;
+    grid-template-columns: min-content repeat(3, 1fr);
+    gap: functions.toRem(24);
+  }
+
+  &__main-column-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: functions.toRem(24);
+  }
+
+  &__main-column-2-left {
+    display: grid;
+    grid-template-columns: 1fr functions.toRem(200);
+    gap: functions.toRem(24);
+  }
+
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: functions.toRem(16);
+    padding: functions.toRem(20) functions.toRem(16) !important;
+  }
+
+  &__total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: functions.toRem(24);
+    flex-wrap: wrap;
+
+    &::before {
+      content: '';
+      width: calc(100% + functions.toRem(32));
+      height: functions.toRem(1);
+      background-color: colors.$normal-7;
+      flex-shrink: 0;
+      margin-left: functions.toRem(-16);
+      margin-bottom: functions.toRem(16);
+    }
+
+    & > span {
+      &:last-of-type {
+        color: colors.$secondary-2;
+      }
+    }
+  }
+
+  &__information {
+    display: flex;
+    flex-direction: column;
+    gap: functions.toRem(8);
+
+    > li {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 500;
+      font-size: functions.toRem(12);
+      line-height: functions.toRem(16);
+      color: colors.$normal-4;
+      margin-left: functions.toRem(16);
+    }
+  }
+}

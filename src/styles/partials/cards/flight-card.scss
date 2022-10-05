@@ -1,0 +1,36 @@
+@use '@/styles/utils/functions';
+@use '@/styles/utils/colors';
+
+.flight-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__heading {
+    font-weight: 600;
+    font-size: functions.toRem(16);
+    line-height: functions.toRem(24);
+  }
+
+  &__time {
+    font-weight: 500;
+    font-size: functions.toRem(12);
+    line-height: functions.toRem(16);
+  }
+
+  & ~ & {
+    padding-top: functions.toRem(16);
+
+    &::before {
+      content: '';
+      width: calc(100% + functions.toRem(32));
+      height: functions.toRem(1);
+      background-color: colors.$normal-7;
+      flex-shrink: 0;
+      margin-left: functions.toRem(-16);
+      margin-bottom: functions.toRem(16);
+    }
+  }
+}
