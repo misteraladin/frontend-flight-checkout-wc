@@ -1,7 +1,0 @@
-name: 'Github Page'
-author: 'Mister Aladin'
-description: 'Try github page'
-
-runs:
-  using: 'node14'
-  main: 'dist/index.js'
