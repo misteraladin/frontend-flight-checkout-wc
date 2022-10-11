@@ -73,10 +73,6 @@ $cloud: #fafcfe;
 $bg-1: #eef5ff;
 $white: #fff;
 
-:root {
-  --el-color-primary: $primary-1;
-}
-
 /* ----------- Based On Design System ----------- */
 $blue-100: #F5F7FF;
 $blue-500: #2F4095;
@@ -93,6 +89,13 @@ $neutral-500: #C5CAD3; //
 $neutral-700: #657085; // darker
 $neutral-900: #3D4151; // darkest
 
+$success-100: #EAF2EB;
+$success-500: #2E7D32;
+$warning-100: #FFFBEB;
+$warning-500: #FDD835;
+$failed-100: #F9EAEA;
+$failed-500: #C62828;
+
 /* ----------- Main ----------- */
 $primary: $blue-500;
 $primary-lightest: $blue-100;
@@ -101,3 +104,8 @@ $primary-darkest: $blue-700;
 $secondary: $red-500;
 $secondary-lightest: $red-100;
 $secondary-darkest: $red-700;
+
+:root {
+  --el-color-primary: $primary-1;
+  color: $neutral-900;
+}
