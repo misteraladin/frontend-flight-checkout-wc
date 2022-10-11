@@ -98,6 +98,6 @@ const isExternal = computed(() => {
 </script>
 
 <style lang="scss">
-  @use '../../../styles/atoms/link';
+@use '@/styles/atoms/link';
 </style>
 
