@@ -1,0 +1,107 @@
+@use '@/styles/utils/colors';
+
+.ma-card-section {
+  width: 100%;
+
+  &__banner {
+    img {
+      width: 14.5rem;
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__product-wrapper {
+    position: absolute;
+    z-index: 5;
+    padding-left: 16rem;
+    width: 100%;
+    overflow: auto;
+  }
+
+  &__product {
+    display: grid;
+    grid-gap: 1rem;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(282px,1fr);
+    gap: 1rem;
+    z-index: 10;
+  }
+}
+
+.ma-card-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ma-card-section__header-link {
+  display: flex;
+  align-items: center;
+
+  a {
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+    color: colors.$primary;
+    text-decoration: none;
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: colors.$primary;
+  }
+}
+
+.ma-card-section__header-flashsale {
+  display: flex;
+  align-items: center;
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .flashsale {
+    padding-right: 1rem;
+
+    &__countdown {
+      display: flex;
+      align-items: center;
+    }
+
+    &__countdown-icon {
+      font-size: 1rem;
+      color: colors.$neutral-900;
+      margin-right: .5rem;
+    }
+
+    &__countdown-text {
+      font-weight: 400;
+      margin-right: .5rem;
+    }
+
+    &__countdown-time {
+      padding: .25rem .5rem;
+      background-color: colors.$warning-500;
+      border-radius: 50px;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+}
+
+.ma-card-section__header-default {
+  .default {
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: colors.$neutral-900;
+  }
+}
+
+.ma-card-section__body {
+  display: flex;
+  padding: 1.5rem;
+  border-radius: 24px;
+  z-index: 1;
+}

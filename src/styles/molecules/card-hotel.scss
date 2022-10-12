@@ -51,7 +51,11 @@
 
 // hotel card main layout
 .ma-card-hotel {
-  max-width: 18rem;
+  max-width: 19rem;
+  max-height: 27.5rem;
+  min-height: 27.5rem;
+
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -112,6 +116,7 @@
   display: grid;
   align-items: center;
   justify-content: center;
+  height: 16.25rem;
   width: 100%;
   overflow: hidden;
   line-height: 1;
@@ -182,13 +187,6 @@
 // hotel card star rating
 .ma-star-sprite {
   position: absolute;
-}
-
-.ma-star-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 0.25rem;
 }
 
 .ma-star {

@@ -56,21 +56,21 @@
         <div class="ma-card-hotel__title">
           <div class="ma-card-hotel__text">
             {{ data.name }}
-          </div>
 
-          <!-- star rating -->
-          <div v-if="data.star_rating" class="ma-star-wrapper">
-            <span
-              v-for="i in Math.floor(data.star_rating)"
-              :key="i"
-              class="ma-star"
-            >
-              <svg width="16" height="16">
-                <use xlink:href="#star"></use>
-              </svg>
+            <span v-if="data.star_rating" class="ma-star-wrapper">
+              <span
+                v-for="i in Math.floor(data.star_rating)"
+                :key="i"
+                class="ma-star"
+              >
+                <svg width="16" height="16">
+                  <use xlink:href="#star"></use>
+                </svg>
+              </span>
             </span>
           </div>
 
+          <!-- star rating -->
           <svg
             class="ma-star-sprite"
             width="0"
@@ -148,7 +148,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, PropType } from "vue";
+import { reactive, computed } from "vue";
 import {
   RootObject as IRootObject,
   Badge as IBadge,
@@ -228,5 +228,5 @@ const hotelUrl = computed<string>(() => {
 </script>
 
 <style lang="scss" scoped>
-@use "@/styles/molecules/card-hotel/card-hotel";
+@use "@/styles/molecules/card-hotel";
 </style>
