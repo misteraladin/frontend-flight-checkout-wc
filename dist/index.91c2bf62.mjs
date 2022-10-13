@@ -1,4 +1,4 @@
-import { defineComponent as f, reactive as p, ref as C, onMounted as $, openBlock as r, createElementBlock as c, unref as a, toDisplayString as _, createCommentVNode as u, createElementVNode as e, computed as w, createBlock as b, resolveDynamicComponent as B, normalizeStyle as S, renderSlot as D, createStaticVNode as z, defineCustomElement as L } from "vue";
+import { defineComponent as p, reactive as f, ref as C, onMounted as $, openBlock as r, createElementBlock as c, unref as a, toDisplayString as _, createCommentVNode as u, createElementVNode as e, computed as w, createBlock as b, resolveDynamicComponent as B, normalizeStyle as S, renderSlot as D, createStaticVNode as z, defineCustomElement as L } from "vue";
 import { u as M } from "./vue-i18n.esm-bundler.9ad5361b.mjs";
 import { _ as j } from "./_plugin-vue_export-helper.e9cbb45e.mjs";
 const E = { class: "ma-card-section__header-flashsale" }, q = /* @__PURE__ */ e("div", { class: "flashsale flashsale__icon" }, [
@@ -41,7 +41,7 @@ const E = { class: "ma-card-section__header-flashsale" }, q = /* @__PURE__ */ e(
       "stroke-linejoin": "round"
     })
   ])
-], -1), V = { class: "flashsale__countdown-text" }, Z = { class: "flashsale__countdown-time" }, I = /* @__PURE__ */ f({
+], -1), V = { class: "flashsale__countdown-text" }, Z = { class: "flashsale__countdown-time" }, I = /* @__PURE__ */ p({
   __name: "card-section-header-flahsale",
   props: {
     data: {
@@ -54,10 +54,10 @@ const E = { class: "ma-card-section__header-flashsale" }, q = /* @__PURE__ */ e(
     }
   },
   setup(d) {
-    const s = d, { data: t, t: o } = p(s), i = C(), l = (n) => n < 10 ? `0${n}` : `${n}`, h = () => {
+    const s = d, { data: t, t: o } = f(s), i = C(), l = (n) => n < 10 ? `0${n}` : `${n}`, h = () => {
       const n = setInterval(() => {
-        const g = new Date(t.countdown).getTime(), v = new Date().getTime(), m = g - v, y = Math.floor(m / (1e3 * 60 * 60)), x = Math.floor(m % (1e3 * 60 * 60) / (1e3 * 60)), k = Math.floor(m % (1e3 * 60) / 1e3);
-        i.value = `${l(y)} : ${l(x)} : ${l(k)}`, m < 0 && clearInterval(n);
+        const g = new Date(t.countdown).getTime(), v = new Date().getTime(), m = g - v, x = Math.floor(m / (1e3 * 60 * 60)), y = Math.floor(m % (1e3 * 60 * 60) / (1e3 * 60)), k = Math.floor(m % (1e3 * 60) / 1e3);
+        i.value = `${l(x)} : ${l(y)} : ${l(k)}`, m < 0 && clearInterval(n);
       }, 1e3);
     };
     return $(() => {
@@ -77,7 +77,7 @@ const E = { class: "ma-card-section__header-flashsale" }, q = /* @__PURE__ */ e(
 }), T = { class: "ma-card-section__header-default" }, F = {
   key: 0,
   class: "default"
-}, P = /* @__PURE__ */ f({
+}, P = /* @__PURE__ */ p({
   __name: "card-section-header-default",
   props: {
     data: {
@@ -86,7 +86,7 @@ const E = { class: "ma-card-section__header-flashsale" }, q = /* @__PURE__ */ e(
     }
   },
   setup(d) {
-    const s = d, { data: t } = p(s);
+    const s = d, { data: t } = f(s);
     return (o, i) => (r(), c("div", T, [
       a(t).name ? (r(), c("h1", F, _(a(t).name), 1)) : u("", !0)
     ]));
@@ -100,7 +100,7 @@ const E = { class: "ma-card-section__header-flashsale" }, q = /* @__PURE__ */ e(
     ends_in: "Berakhir dalam",
     see_all: "Lihat Semua"
   }
-}, J = { class: "ma-card-section" }, G = { class: "ma-card-section__header" }, K = { class: "ma-card-section__header-title" }, Q = { class: "ma-card-section__header-link" }, R = ["href"], U = /* @__PURE__ */ z('<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_6457_84485)"><path d="M8.92102 5.58782C8.59638 5.26318 8.07003 5.26318 7.74538 5.58782C7.42099 5.91221 7.4207 6.43807 7.74474 6.76282L10.9749 10L7.74474 13.2372C7.4207 13.5619 7.42099 14.0878 7.74538 14.4122C8.07003 14.7368 8.59638 14.7368 8.92102 14.4122L12.6261 10.7071C13.0166 10.3166 13.0166 9.68342 12.6261 9.29289L8.92102 5.58782Z"></path></g><defs><clipPath id="clip0_6457_84485"><rect width="20" height="20" fill="white"></rect></clipPath></defs></svg>', 1), W = { class: "ma-card-section__banner" }, X = ["src", "alt"], Y = { class: "ma-card-section__product-wrapper" }, ee = { class: "ma-card-section__product" }, te = /* @__PURE__ */ f({
+}, J = { class: "ma-card-section" }, G = { class: "ma-card-section__header" }, K = { class: "ma-card-section__header-title" }, Q = { class: "ma-card-section__header-link" }, R = ["href"], U = /* @__PURE__ */ z('<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_6457_84485)"><path d="M8.92102 5.58782C8.59638 5.26318 8.07003 5.26318 7.74538 5.58782C7.42099 5.91221 7.4207 6.43807 7.74474 6.76282L10.9749 10L7.74474 13.2372C7.4207 13.5619 7.42099 14.0878 7.74538 14.4122C8.07003 14.7368 8.59638 14.7368 8.92102 14.4122L12.6261 10.7071C13.0166 10.3166 13.0166 9.68342 12.6261 9.29289L8.92102 5.58782Z"></path></g><defs><clipPath id="clip0_6457_84485"><rect width="20" height="20" fill="white"></rect></clipPath></defs></svg>', 1), W = { class: "ma-card-section__banner" }, X = ["src", "alt"], Y = { class: "ma-card-section__product-wrapper" }, ee = { class: "ma-card-section__product" }, te = /* @__PURE__ */ e("div", { class: "ma-card-section__product-dummy" }, null, -1), ae = /* @__PURE__ */ p({
   __name: "card-section.ce",
   props: {
     data: {
@@ -123,7 +123,7 @@ const E = { class: "ma-card-section__header-flashsale" }, q = /* @__PURE__ */ e(
   setup(d) {
     const s = d, { t } = M({
       messages: A
-    }), o = p(s.data ? JSON.parse(s.data) : null), i = w(() => ({
+    }), o = f(s.data ? JSON.parse(s.data) : null), i = w(() => ({
       background: s.colorBackground,
       width: s.fullBackground ? "auto" : "23.75rem"
     })), l = w(() => ({
@@ -157,17 +157,18 @@ const E = { class: "ma-card-section__header-flashsale" }, q = /* @__PURE__ */ e(
         ]),
         e("div", Y, [
           e("div", ee, [
+            te,
             D(h.$slots, "default")
           ])
         ])
       ], 4)
     ]));
   }
-}), ae = `:root{--el-color-primary: $primary-1;color:#3d4151}.ma-card-section{width:100%}.ma-card-section__banner img{width:14.5rem;margin-right:1.5rem}.ma-card-section__product-wrapper{position:absolute;z-index:5;padding-left:16rem;width:100%;overflow:auto}.ma-card-section__product{display:grid;grid-gap:1rem;grid-auto-flow:column;grid-auto-columns:minmax(282px,1fr);gap:1rem;z-index:10}.ma-card-section__header{display:flex;justify-content:space-between;align-items:center}.ma-card-section__header-link{display:flex;align-items:center}.ma-card-section__header-link a{font-weight:700;font-size:.875rem;text-transform:capitalize;color:#2f4095;text-decoration:none}.ma-card-section__header-link svg{width:1.5rem;height:1.5rem;fill:#2f4095}.ma-card-section__header-flashsale{display:flex;align-items:center}.ma-card-section__header-flashsale h1{font-size:24px}.ma-card-section__header-flashsale .flashsale{padding-right:1rem}.ma-card-section__header-flashsale .flashsale__countdown{display:flex;align-items:center}.ma-card-section__header-flashsale .flashsale__countdown-icon{font-size:1rem;color:#3d4151;margin-right:.5rem}.ma-card-section__header-flashsale .flashsale__countdown-text{font-weight:400;margin-right:.5rem}.ma-card-section__header-flashsale .flashsale__countdown-time{padding:.25rem .5rem;background-color:#fdd835;border-radius:50px;font-weight:700;text-align:center}.ma-card-section__header-default .default{font-weight:700;font-size:1rem;text-transform:capitalize;color:#3d4151}.ma-card-section__body{display:flex;padding:1.5rem;border-radius:24px;z-index:1}
-`, se = /* @__PURE__ */ j(te, [["styles", [ae]]]), oe = L(se);
-function de() {
-  customElements.define("ma-card-section", oe);
+}), se = `:root{--el-color-primary: $primary-1;color:#3d4151}.ma-card-section{width:100%}.ma-card-section__banner img{width:14.5rem;margin-right:1.5rem}.ma-card-section__product-wrapper{position:absolute;z-index:5;width:1140px;overflow:auto}.ma-card-section__product-dummy{max-width:15.5rem;max-height:27.5rem}.ma-card-section__product{display:grid;grid-gap:1rem;grid-auto-flow:column;grid-auto-columns:minmax(282px,1fr);gap:1rem;z-index:10}.ma-card-section__header{display:flex;justify-content:space-between;align-items:center}.ma-card-section__header-link{display:flex;align-items:center}.ma-card-section__header-link a{font-weight:700;font-size:.875rem;text-transform:capitalize;color:#2f4095;text-decoration:none}.ma-card-section__header-link svg{width:1.5rem;height:1.5rem;fill:#2f4095}.ma-card-section__header-flashsale{display:flex;align-items:center}.ma-card-section__header-flashsale h1{font-size:24px}.ma-card-section__header-flashsale .flashsale{padding-right:1rem}.ma-card-section__header-flashsale .flashsale__countdown{display:flex;align-items:center}.ma-card-section__header-flashsale .flashsale__countdown-icon{font-size:1rem;color:#3d4151;margin-right:.5rem}.ma-card-section__header-flashsale .flashsale__countdown-text{font-weight:400;margin-right:.5rem}.ma-card-section__header-flashsale .flashsale__countdown-time{padding:.25rem .5rem;background-color:#fdd835;border-radius:50px;font-weight:700;text-align:center}.ma-card-section__header-default .default{font-weight:700;font-size:1rem;text-transform:capitalize;color:#3d4151}.ma-card-section__body{display:flex;padding:1.5rem;border-radius:24px;z-index:1}
+`, oe = /* @__PURE__ */ j(ae, [["styles", [se]]]), ne = L(oe);
+function ie() {
+  customElements.define("ma-card-section", ne);
 }
 export {
-  de as register
+  ie as register
 };
