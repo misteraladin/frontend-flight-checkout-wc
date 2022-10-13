@@ -1,0 +1,98 @@
+@use '../utils/colors';
+
+.ma-link {
+  display: inline-block;
+  cursor: pointer;
+
+  button,
+  a {
+    padding: 4px 8px;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    color: colors.$primary;
+  }
+
+  button {
+    background-color: transparent;
+    border-color: transparent;
+    font-weight: inherit;
+    cursor: inherit;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  svg {
+    height: 0.625rem;
+    margin-left: 5px;
+    fill: colors.$primary;
+  }
+
+  &:active,
+  &:hover {
+    a,
+    button {
+      color: colors.$primary-darkest;
+    }
+
+    svg {
+      fill: colors.$primary-darkest;
+    }
+  }
+
+  &.ma-link__badge {
+    button,
+    a {
+      background-color: colors.$primary-lightest;
+      border: 1px solid colors.$primary-lightest;
+      border-radius: 0.5rem;
+
+      &:active,
+      &:hover {
+        background-color: colors.$primary-lightest;
+        border: 1px solid colors.$primary-lightest;
+      }
+
+      &:hover {
+        box-shadow: colors.$primary-darkest;
+      }
+    }
+  }
+
+  &.ma-link__default {
+    a,
+    button {
+      color: colors.$secondary-darkest;
+    }
+
+    svg {
+      fill: colors.$secondary-darkest;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+
+    a,
+    button {
+      cursor: not-allowed;
+      color: colors.$secondary-darkest;
+    }
+
+    svg {
+      cursor: not-allowed;
+      fill: colors.$secondary-darkest;
+    }
+
+    &.ma-link__badge button,
+    &.ma-link__badge a {
+      background-color: colors.$secondary-lightest;
+      border: 1px solid colors.$secondary-lightest;
+    }
+  }
+
+  &.expanded {
+    min-width: 100%;
+  }
+}

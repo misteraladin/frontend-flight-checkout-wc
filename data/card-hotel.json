@@ -1,0 +1,780 @@
+[
+  {
+    "id": 493,
+    "name": "ASTON Tropicana Hotel Bandung",
+    "email": "tropicanainfo@astonhotelsinternational.com",
+    "address": "Jl. Cihampelas No.125 - 129, Cihampelas, Bandung, Jawa Barat, Indonesia, 40131",
+    "star_rating": 4.5,
+    "latitude": "-6.896433",
+    "longitude": "107.603597",
+    "check_in": null,
+    "check_out": null,
+    "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000001000/0000000493/aston-tropicana-hotel-bandung-photo9.400x225.png",
+    "original_image_url_resized": "https://s.misteraladin.com/cdn-cgi/image/w=250,q=75,f=auto/images/hotel/0000001000/0000000493/aston-tropicana-hotel-bandung-photo9.png",
+    "slug": "aston-tropicana-hotel-bandung",
+    "review": {
+      "score": 0,
+      "count": 0,
+      "description": "",
+      "highlights": null
+    },
+    "cheapest_room": "",
+    "gift_box": null,
+    "distance": null,
+    "share_link": "https://www.misteraladin.com/493",
+    "share_text": "Penasaran gak sih kok bisa harganya segitu? Coba cek di sini dulu deh. Ada caranya.",
+    "review_apps": {
+      "score": 0,
+      "count": 0,
+      "description": ""
+    },
+    "additional_values": [],
+    "area": {
+      "id": 80,
+      "name": "Cihampelas",
+      "slug": "cihampelas",
+      "latitude": -6.947939,
+      "longitude": 107.497265,
+      "zipcode": 40562,
+      "category": "place",
+      "city": {
+        "id": 17,
+        "name": "Bandung",
+        "slug": "bandung",
+        "description": null,
+        "images": null,
+        "state": {
+          "id": 13,
+          "name": "Jawa Barat",
+          "slug": "jawa-barat",
+          "timezone": "7.0",
+          "country": {
+            "id": 1,
+            "name": "Indonesia",
+            "slug": "indonesia",
+            "code": "ID",
+            "currency": "IDR",
+            "calling_code": "+62",
+            "description": null,
+            "image_url": null
+          }
+        }
+      }
+    },
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      },
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000219/dynamic-badge-go-archipelago-badge2.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "kamu bisa nginep di hotel-hotel keren Archipelago Group dengan harga termurah",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000219/dynamic-badge-go-archipelago-badge2.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000220/top-hover-go-archipelago-badge.png",
+        "image": null,
+        "title": "Cashback",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "kamu bisa nginep di hotel-hotel keren Archipelago Group dengan harga termurah",
+        "value": "Discount up to IDR0"
+      },
+      {
+        "name": "promo_rate_plan_member",
+        "icon": null,
+        "image": null,
+        "title": null,
+        "background_color": null,
+        "text_color": null,
+        "description": null,
+        "value": "Discount  Member up to 20%"
+      }
+    ]
+  },
+  {
+    "id": 155954,
+    "name": "Fox Harris Hotel City Center Bandung",
+    "email": "RESERVATION-FOXHARRIS-BANDUNGCC@TAUZIA.COM",
+    "address": "Jalan Jawa,3",
+    "star_rating": 4,
+    "latitude": "-6.914558",
+    "longitude": "107.612755",
+    "check_in": null,
+    "check_out": null,
+    "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000156000/0000155954/fox-harris-hotel-city-center-bandung-photo22.400x225.jpg",
+    "original_image_url_resized": "https://s.misteraladin.com/cdn-cgi/image/w=250,q=75,f=auto/images/hotel/0000156000/0000155954/fox-harris-hotel-city-center-bandung-photo22.jpg",
+    "slug": "fox-harris-hotel-city-center-bandung",
+    "review": {
+      "score": 8.4,
+      "count": 5,
+      "description": "Istimewa",
+      "highlights": null
+    },
+    "cheapest_room": {
+      "id": {
+        "source": "AD",
+        "key": "44fa156a-db14-5df5-4313-2cd5dddd1318",
+        "id": "17432494",
+        "search_id": "",
+        "rate_category_id": "1197490"
+      },
+      "name": "Kamar Twin - Boleh Merokok",
+      "mapping_name": null,
+      "max_occupancy": "2",
+      "minimum_stay": 1,
+      "cancellation_policy": "Apabila Anda tidak datang atau membatalkan pesanan, refund tidak akan diberikan. Tidak datang pada tanggal check-in dianggap sebagai 'No Show' dan akan dikenai biaya sebesar 100% dari nominal pesanan (kebijakan hotel).",
+      "breakfast": 0,
+      "thumbnail_url": "https://i.misteraladin.com/ad-hotel-photos/hotel/0000156000/0000155954/d408bbeeaf22fcda54aeae8a4c5cdfc7.150x80.jpg",
+      "info": {
+        "member_deals_rate_structure": null
+      },
+      "value_added": [],
+      "rate": {
+        "check_in": "2022-10-20T00:00:00+0700",
+        "check_out": "2022-10-21T00:00:00+0700",
+        "total": 406000,
+        "average": 406000,
+        "average_room_night": 406000,
+        "gimmick": 568400,
+        "gimmick_room_night": 568400,
+        "currency": "IDR",
+        "allotment": 12,
+        "badges": []
+      }
+    },
+    "gift_box": null,
+    "distance": null,
+    "share_link": "https://www.misteraladin.com/155954",
+    "share_text": "Penasaran gak sih kok bisa harganya segitu? Coba cek di sini dulu deh. Ada caranya.",
+    "review_apps": {
+      "score": 8.4,
+      "count": 5,
+      "description": "Istimewa"
+    },
+    "additional_values": [],
+    "area": {
+      "id": 2661,
+      "name": "Sumur Bandung",
+      "slug": "sumur-bandung",
+      "latitude": -6.915235,
+      "longitude": 107.612654,
+      "zipcode": null,
+      "category": "place",
+      "city": {
+        "id": 17,
+        "name": "Bandung",
+        "slug": "bandung",
+        "description": null,
+        "images": null,
+        "state": {
+          "id": 13,
+          "name": "Jawa Barat",
+          "slug": "jawa-barat",
+          "timezone": "7.0",
+          "country": {
+            "id": 1,
+            "name": "Indonesia",
+            "slug": "indonesia",
+            "code": "ID",
+            "currency": "IDR",
+            "calling_code": "+62",
+            "description": null,
+            "image_url": null
+          }
+        }
+      }
+    },
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000204/dynamic-badge-si-paling-cuan-badge.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Mewah Meriah Gak Pake Mahal\r\nsi paling cuan",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000204/dynamic-badge-si-paling-cuan-badge.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000194/promo-mewah-badge.png",
+        "image": null,
+        "title": "Mewah Murah",
+        "background_color": "#47AFD6",
+        "text_color": "#FFFFFF",
+        "description": "Biar liburan kamu makin mantap, nginep di hotel bintang 4 & 5 yuk! Mulai Rp200 ribuan",
+        "value": "Discount up to IDR0"
+      }
+    ]
+  },
+  {
+    "id": 497,
+    "name": "favehotel Premier Cihampelas",
+    "email": "cihampelasinfo@favehotels.com",
+    "address": "Jl. Cihampelas No. 129, Cihampelas, Bandung, Indonesia",
+    "star_rating": 3.5,
+    "latitude": "-6.896168",
+    "longitude": "107.603445",
+    "check_in": null,
+    "check_out": null,
+    "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000001000/0000000497/favehotel-premier-cihampelas-photo2.400x225.jpg",
+    "original_image_url_resized": "https://s.misteraladin.com/cdn-cgi/image/w=250,q=75,f=auto/images/hotel/0000001000/0000000497/favehotel-premier-cihampelas-photo2.jpg",
+    "slug": "favehotel-premier-cihampelas",
+    "review": {
+      "score": 7.5,
+      "count": 2,
+      "description": "Bagus",
+      "highlights": null
+    },
+    "cheapest_room": {
+      "id": {
+        "source": "AA",
+        "key": "15180",
+        "breakfast": "0",
+        "id": "15180"
+      },
+      "name": "faveroom",
+      "mapping_name": null,
+      "max_occupancy": 2,
+      "minimum_stay": 1,
+      "cancellation_policy": null,
+      "breakfast": 0,
+      "thumbnail_url": "https://s.misteraladin.com/images/room/0000016000/0000015180/favehotel-premier-cihampelas-photo.150x80.jpg",
+      "info": null,
+      "value_added": [],
+      "rate": {
+        "check_in": "2022-10-20T00:00:00+0700",
+        "check_out": "2022-10-21T00:00:00+0700",
+        "total": 494000,
+        "average": 494000,
+        "average_room_night": 494000,
+        "gimmick": 691600,
+        "gimmick_room_night": 691600,
+        "currency": "IDR",
+        "allotment": 92,
+        "badges": []
+      }
+    },
+    "gift_box": null,
+    "distance": null,
+    "share_link": "https://www.misteraladin.com/497",
+    "share_text": "Penasaran gak sih kok bisa harganya segitu? Coba cek di sini dulu deh. Ada caranya.",
+    "review_apps": {
+      "score": 7.5,
+      "count": 2,
+      "description": "Bagus"
+    },
+    "additional_values": [],
+    "area": {
+      "id": 80,
+      "name": "Cihampelas",
+      "slug": "cihampelas",
+      "latitude": -6.947939,
+      "longitude": 107.497265,
+      "zipcode": 40562,
+      "category": "place",
+      "city": {
+        "id": 17,
+        "name": "Bandung",
+        "slug": "bandung",
+        "description": null,
+        "images": null,
+        "state": {
+          "id": 13,
+          "name": "Jawa Barat",
+          "slug": "jawa-barat",
+          "timezone": "7.0",
+          "country": {
+            "id": 1,
+            "name": "Indonesia",
+            "slug": "indonesia",
+            "code": "ID",
+            "currency": "IDR",
+            "calling_code": "+62",
+            "description": null,
+            "image_url": null
+          }
+        }
+      }
+    },
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000219/dynamic-badge-go-archipelago-badge2.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "kamu bisa nginep di hotel-hotel keren Archipelago Group dengan harga termurah",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000219/dynamic-badge-go-archipelago-badge2.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000220/top-hover-go-archipelago-badge.png",
+        "image": null,
+        "title": "Cashback",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "kamu bisa nginep di hotel-hotel keren Archipelago Group dengan harga termurah",
+        "value": "Discount up to IDR0"
+      }
+    ]
+  },
+  {
+    "id": 596,
+    "name": "Sheraton Bandung Hotel & Towers",
+    "email": "reservationsbandung@sheraton.com",
+    "address": "Jl. Ir. H. Juanda No.390, Dago, Bandung, Indonesia 40135",
+    "star_rating": 5,
+    "latitude": "-6.874282",
+    "longitude": "107.619129",
+    "check_in": null,
+    "check_out": null,
+    "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000001000/0000000596/sheraton-bandung-hotel-towers-photo2.400x225.jpeg",
+    "original_image_url_resized": "https://s.misteraladin.com/cdn-cgi/image/w=250,q=75,f=auto/images/hotel/0000001000/0000000596/sheraton-bandung-hotel-towers-photo2.jpeg",
+    "slug": "sheraton-bandung-hotel-towers",
+    "review": {
+      "score": 8.3,
+      "count": 10,
+      "description": "Istimewa",
+      "highlights": null
+    },
+    "cheapest_room": {
+      "id": {
+        "source": "AE",
+        "key": "66D41274-FF32-4AAE-A0E4-4E3AC7624723",
+        "room_type_code": "Double room King bed - De Luxe - Balcony|RO|NRF|0",
+        "rate_code": "42ff3d13-7415-40b6-97dd-3d0161cebe7f"
+      },
+      "name": "Double room King bed - De Luxe - Balcony",
+      "mapping_name": null,
+      "max_occupancy": 2,
+      "minimum_stay": 1,
+      "cancellation_policy": "Pembatalan setelah tanggal 09/10/2022 sesuai dengan zona waktu tujuan, akan dikenakan biaya pembatalan sebesar: IDR 1728242.",
+      "breakfast": 0,
+      "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000001000/0000000596/sheraton-bandung-hotel-towers-photo2.150x80.jpeg",
+      "info": null,
+      "value_added": [],
+      "rate": {
+        "check_in": "2022-10-20T00:00:00+0700",
+        "check_out": "2022-10-21T00:00:00+0700",
+        "total": 1728242,
+        "average": 1728242,
+        "average_room_night": 1728242,
+        "gimmick": 2678775,
+        "gimmick_room_night": 2678775,
+        "currency": "IDR",
+        "allotment": 5,
+        "badges": []
+      }
+    },
+    "gift_box": null,
+    "distance": null,
+    "share_link": "https://www.misteraladin.com/596",
+    "share_text": "Penasaran gak sih kok bisa harganya segitu? Coba cek di sini dulu deh. Ada caranya.",
+    "review_apps": {
+      "score": 8.3,
+      "count": 10,
+      "description": "Istimewa"
+    },
+    "additional_values": [],
+    "area": {
+      "id": 77,
+      "name": "Dago",
+      "slug": "dago",
+      "latitude": -6.877258,
+      "longitude": 107.617412,
+      "zipcode": 40135,
+      "category": "place",
+      "city": {
+        "id": 17,
+        "name": "Bandung",
+        "slug": "bandung",
+        "description": null,
+        "images": null,
+        "state": {
+          "id": 13,
+          "name": "Jawa Barat",
+          "slug": "jawa-barat",
+          "timezone": "7.0",
+          "country": {
+            "id": 1,
+            "name": "Indonesia",
+            "slug": "indonesia",
+            "code": "ID",
+            "currency": "IDR",
+            "calling_code": "+62",
+            "description": null,
+            "image_url": null
+          }
+        }
+      }
+    },
+    "badges": []
+  },
+  {
+    "id": 38955,
+    "name": "InterContinental Bandung Dago Pakar",
+    "email": "icbandung.reservation@ihg.com",
+    "address": "Jl. Resor Dago Pakar Raya 2B, Resor Dago Pakar, Mekarsaluyu, Cimenyan, Bandung, Jawa Barat 40198",
+    "star_rating": 5,
+    "latitude": "-6.866366",
+    "longitude": "107.642288",
+    "check_in": null,
+    "check_out": null,
+    "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000039000/0000038955/intercontinental-bandung-dago-pakar-photo1.400x225.jpg",
+    "original_image_url_resized": "https://s.misteraladin.com/cdn-cgi/image/w=250,q=75,f=auto/images/hotel/0000039000/0000038955/intercontinental-bandung-dago-pakar-photo1.jpg",
+    "slug": "intercontinental-bandung-dago-pakar",
+    "review": {
+      "score": 8.5,
+      "count": 7,
+      "description": "Istimewa",
+      "highlights": null
+    },
+    "cheapest_room": {
+      "id": {
+        "source": "AE",
+        "key": "66D41274-FF32-4AAE-A0E4-4E3AC7624723",
+        "room_type_code": "Twin/Double room - Classic|RO|Flexi|0",
+        "rate_code": "0c706ab7-0ba1-4a7d-b452-13328855d754"
+      },
+      "name": "Twin/Double room - Classic",
+      "mapping_name": null,
+      "max_occupancy": 2,
+      "minimum_stay": 1,
+      "cancellation_policy": "Pembatalan setelah tanggal 11/10/2022 sesuai dengan zona waktu tujuan, akan dikenakan biaya pembatalan sebesar: IDR 2052288.",
+      "breakfast": 0,
+      "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000039000/0000038955/intercontinental-bandung-dago-pakar-photo.150x80.jpg",
+      "info": null,
+      "value_added": [],
+      "rate": {
+        "check_in": "2022-10-20T00:00:00+0700",
+        "check_out": "2022-10-21T00:00:00+0700",
+        "total": 2052288,
+        "average": 2052288,
+        "average_room_night": 2052288,
+        "gimmick": 3181046,
+        "gimmick_room_night": 3181046,
+        "currency": "IDR",
+        "allotment": 5,
+        "badges": []
+      }
+    },
+    "gift_box": null,
+    "distance": null,
+    "share_link": "https://www.misteraladin.com/38955",
+    "share_text": "Penasaran gak sih kok bisa harganya segitu? Coba cek di sini dulu deh. Ada caranya.",
+    "review_apps": {
+      "score": 8.5,
+      "count": 7,
+      "description": "Istimewa"
+    },
+    "additional_values": [],
+    "area": {
+      "id": 77,
+      "name": "Dago",
+      "slug": "dago",
+      "latitude": -6.877258,
+      "longitude": 107.617412,
+      "zipcode": 40135,
+      "category": "place",
+      "city": {
+        "id": 17,
+        "name": "Bandung",
+        "slug": "bandung",
+        "description": null,
+        "images": null,
+        "state": {
+          "id": 13,
+          "name": "Jawa Barat",
+          "slug": "jawa-barat",
+          "timezone": "7.0",
+          "country": {
+            "id": 1,
+            "name": "Indonesia",
+            "slug": "indonesia",
+            "code": "ID",
+            "currency": "IDR",
+            "calling_code": "+62",
+            "description": null,
+            "image_url": null
+          }
+        }
+      }
+    },
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      }
+    ]
+  },
+  {
+    "id": 289984,
+    "name": "RedDoorz near Kampung Gajah 2",
+    "email": "bookings-indonesia@reddoorz.com",
+    "address": "Jl. Sersan Bajuri No.108, Cihideung, Parongpong, Kabupaten Bandung Barat, Jawa Barat 40561",
+    "star_rating": 2,
+    "latitude": "-6.836795147",
+    "longitude": "107.5951264",
+    "check_in": null,
+    "check_out": null,
+    "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000290000/0000289984/reddoorz-near-kampung-gajah-2-photo5.400x225.jpg",
+    "original_image_url_resized": "https://s.misteraladin.com/cdn-cgi/image/w=250,q=75,f=auto/images/hotel/0000290000/0000289984/reddoorz-near-kampung-gajah-2-photo5.jpg",
+    "slug": "reddoorz-near-kampung-gajah-2",
+    "review": {
+      "score": 7.5,
+      "count": 2,
+      "description": "Bagus",
+      "highlights": null
+    },
+    "cheapest_room": {
+      "id": {
+        "source": "AA",
+        "key": "24605",
+        "breakfast": "0",
+        "id": "24605"
+      },
+      "name": "RedDoorz Room",
+      "mapping_name": null,
+      "max_occupancy": 2,
+      "minimum_stay": 1,
+      "cancellation_policy": null,
+      "breakfast": 0,
+      "thumbnail_url": "https://s.misteraladin.com/images/room/0000025000/0000024605/reddoorz-near-kampung-gajah-2-photo.150x80.jpg",
+      "info": {
+        "member_deals_rate_structure": "Discount Member up to 5%"
+      },
+      "value_added": [],
+      "rate": {
+        "check_in": "2022-10-20T00:00:00+0700",
+        "check_out": "2022-10-21T00:00:00+0700",
+        "total": 197753,
+        "average": 197753,
+        "average_room_night": 197753,
+        "gimmick": 235000,
+        "gimmick_room_night": 235000,
+        "currency": "IDR",
+        "allotment": 2,
+        "badges": [
+          {
+            "name": "promo_supplier",
+            "value": "Discount up to 15%"
+          },
+          {
+            "name": "promo_marketing",
+            "value": "MA disc up to 1 %"
+          }
+        ]
+      }
+    },
+    "gift_box": null,
+    "distance": null,
+    "share_link": "https://www.misteraladin.com/289984",
+    "share_text": "Penasaran gak sih kok bisa harganya segitu? Coba cek di sini dulu deh. Ada caranya.",
+    "review_apps": {
+      "score": 7.5,
+      "count": 2,
+      "description": "Bagus"
+    },
+    "additional_values": [],
+    "area": {
+      "id": 84,
+      "name": "Lembang",
+      "slug": "lembang",
+      "latitude": -6.813262,
+      "longitude": 107.622796,
+      "zipcode": 40391,
+      "category": "place",
+      "city": {
+        "id": 17,
+        "name": "Bandung",
+        "slug": "bandung",
+        "description": null,
+        "images": null,
+        "state": {
+          "id": 13,
+          "name": "Jawa Barat",
+          "slug": "jawa-barat",
+          "timezone": "7.0",
+          "country": {
+            "id": 1,
+            "name": "Indonesia",
+            "slug": "indonesia",
+            "code": "ID",
+            "currency": "IDR",
+            "calling_code": "+62",
+            "description": null,
+            "image_url": null
+          }
+        }
+      }
+    },
+    "badges": [
+      {
+        "name": "promo_supplier",
+        "icon": null,
+        "image": null,
+        "title": null,
+        "background_color": null,
+        "text_color": null,
+        "description": null,
+        "value": "Discount up to 15%"
+      },
+      {
+        "name": "promo_marketing",
+        "icon": null,
+        "image": null,
+        "title": null,
+        "background_color": null,
+        "text_color": null,
+        "description": null,
+        "value": "MA disc up to 1 %"
+      }
+    ]
+  },
+  {
+    "id": 638,
+    "name": "Prama Grand Preanger Bandung",
+    "email": "ghp.reservation@aerowisatahotels.com",
+    "address": "Asia Afrika Street No 81, Bandung City Center, Bandung, Indonesia 40111",
+    "star_rating": 5,
+    "latitude": "-6.920534",
+    "longitude": "107.61214",
+    "check_in": null,
+    "check_out": null,
+    "thumbnail_url": "https://s.misteraladin.com/images/hotel/0000001000/0000000638/prama-grand-preanger-bandung-photo5.400x225.jpg",
+    "original_image_url_resized": "https://s.misteraladin.com/cdn-cgi/image/w=250,q=75,f=auto/images/hotel/0000001000/0000000638/prama-grand-preanger-bandung-photo5.jpg",
+    "slug": "prama-grand-preanger-bandung",
+    "review": {
+      "score": 8.1,
+      "count": 10,
+      "description": "Istimewa",
+      "highlights": null
+    },
+    "cheapest_room": null,
+    "gift_box": null,
+    "distance": null,
+    "share_link": "https://www.misteraladin.com/638",
+    "share_text": "Penasaran gak sih kok bisa harganya segitu? Coba cek di sini dulu deh. Ada caranya.",
+    "review_apps": {
+      "score": 8.1,
+      "count": 10,
+      "description": "Istimewa"
+    },
+    "additional_values": [],
+    "area": {
+      "id": 2658,
+      "name": "Asia Afrika",
+      "slug": "asia-afrika",
+      "latitude": null,
+      "longitude": null,
+      "zipcode": null,
+      "category": "place",
+      "city": {
+        "id": 17,
+        "name": "Bandung",
+        "slug": "bandung",
+        "description": null,
+        "images": null,
+        "state": {
+          "id": 13,
+          "name": "Jawa Barat",
+          "slug": "jawa-barat",
+          "timezone": "7.0",
+          "country": {
+            "id": 1,
+            "name": "Indonesia",
+            "slug": "indonesia",
+            "code": "ID",
+            "currency": "IDR",
+            "calling_code": "+62",
+            "description": null,
+            "image_url": null
+          }
+        }
+      }
+    },
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000204/dynamic-badge-si-paling-cuan-badge.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Mewah Meriah Gak Pake Mahal\r\nsi paling cuan",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000204/dynamic-badge-si-paling-cuan-badge.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000194/promo-mewah-badge.png",
+        "image": null,
+        "title": "Mewah Murah",
+        "background_color": "#47AFD6",
+        "text_color": "#FFFFFF",
+        "description": "Biar liburan kamu makin mantap, nginep di hotel bintang 4 & 5 yuk! Mulai Rp200 ribuan",
+        "value": "Discount up to IDR0"
+      },
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000214/dynamic-badge-promo-blissful-domestic-badge2.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Hotel Staycation",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000214/dynamic-badge-promo-blissful-domestic-badge2.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000216/hover-blissful-domestic-badge.png",
+        "image": null,
+        "title": "Staycation",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Juara Staycation Hemat mulai Rp150.000 nih!",
+        "value": "Discount up to IDR0"
+      }
+    ]
+  }
+]
