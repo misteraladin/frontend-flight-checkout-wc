@@ -42,6 +42,7 @@
 
       <div class="ma-card-section__product-wrapper">
         <div class="ma-card-section__product">
+          <div class="ma-card-section__product-dummy"></div>
           <slot></slot>
         </div>
       </div>
