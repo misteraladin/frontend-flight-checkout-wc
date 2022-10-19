@@ -10,9 +10,9 @@
       </div>
 
       <div class="ma-card-section__header-link">
-        <a :href="data.url">
+        <ma-link :to="data.url">
           {{ t('see_all') }}
-        </a>
+        </ma-link>
 
         <svg
           width="20"
