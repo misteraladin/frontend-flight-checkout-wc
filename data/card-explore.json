@@ -1,0 +1,471 @@
+[
+  {
+    "id": 2246,
+    "name": "Open Trip 3D2N Sailing Komodo By Komodo Voyage - Superior Phinisi (Lamborajo I)",
+    "name_en": "Open Trip 3D2N Sailing Komodo By Komodo Voyage - Superior Phinisi (Lamborajo I)",
+    "slug": "open-trip-3h2m-komodo-by-komodo-voyage-superior-phinisi-lamborajo-i",
+    "source": "EM",
+    "type": "domestic",
+    "stock": 0,
+    "is_open_trip": 0,
+    "is_publish": 1,
+    "booking_date": "[{\"from\":\"2022-06-13\",\"to\":\"2022-12-15\"}]",
+    "image_url": "https://i.misteraladin.com/activity/20220613172438-NMxseQKkiSYIUllG.jpg",
+    "image_apps_url": "https://i.misteraladin.com/activity/20220613172438-NMxseQKkiSYIUllG.jpg",
+    "lowest_price": 2500000,
+    "highest_price": 3250000,
+    "lowest_gimmick_price": 0,
+    "highest_gimmick_price": 0,
+    "status": "published",
+    "categories": [
+      {
+        "id": 62,
+        "name": "Open Trip",
+        "slug": "open-trip",
+        "image_url": "",
+        "products": null
+      }
+    ],
+    "badges": [],
+    "destinations": [
+      {
+        "id": 77,
+        "name": "Labuan Bajo",
+        "name_en": "Labuan Bajo",
+        "name_id": "Labuan Bajo",
+        "region_type": "city",
+        "slug": "labuan-bajo",
+        "parent_id": 179,
+        "image_url": "https://i.misteraladin.com/activity/20210316104347-KKrAJlvtFtckgFoQ.jpg"
+      },
+      {
+        "id": 179,
+        "name": "Nusa Tenggara Timur",
+        "name_en": "Nusa Tenggara Timur",
+        "name_id": "Nusa Tenggara Timur",
+        "region_type": "province",
+        "slug": "nusa-tenggara-timur",
+        "parent_id": 135,
+        "image_url": "https://i.misteraladin.com/activity/20220928162957-FoZXDwOMlqcAVkmK.jpg"
+      },
+      {
+        "id": 135,
+        "name": "Indonesia",
+        "name_en": "Indonesia",
+        "name_id": "Indonesia",
+        "region_type": "country",
+        "slug": "indonesia",
+        "parent_id": 2,
+        "image_url": "https://i.misteraladin.com/activity/20220923115527-zyQmkNbBmjiytrPY.jpg"
+      }
+    ]
+  },
+  {
+    "id": 1958,
+    "name": "Open Trip: Hiking Mount Slamet by Eppala Adventure Indonesia",
+    "name_en": "Open Trip: Hiking Mount Slamet by Eppala Adventure Indonesia",
+    "slug": "open-trip-pendakian-gunung-slamet-by-eppala-adventure-indonesia",
+    "source": "EM",
+    "type": "domestic",
+    "stock": 0,
+    "is_open_trip": 0,
+    "is_publish": 1,
+    "booking_date": "[{\"from\":\"2022-04-04\",\"to\":\"2022-12-22\"}]",
+    "image_url": "https://i.misteraladin.com/activity/20220407160620-tbcNGIOZqGHnPvGh.jpg",
+    "image_apps_url": "https://i.misteraladin.com/activity/20220407160620-tbcNGIOZqGHnPvGh.jpg",
+    "lowest_price": 700000,
+    "highest_price": 700000,
+    "lowest_gimmick_price": 0,
+    "highest_gimmick_price": 0,
+    "status": "published",
+    "categories": [
+      {
+        "id": 64,
+        "name": "Hiking Trips",
+        "slug": "hiking-trips",
+        "image_url": "",
+        "products": null
+      }
+    ],
+    "badges": [],
+    "destinations": [
+      {
+        "id": 210,
+        "name": "purbalingga",
+        "name_en": "purbalingga",
+        "name_id": "purbalingga",
+        "region_type": "city",
+        "slug": "purbalingga",
+        "parent_id": 142,
+        "image_url": "https://i.misteraladin.com/activity/20221006152242-PILEjrrycJdFoJiG.jpg"
+      },
+      {
+        "id": 142,
+        "name": "Jawa Tengah",
+        "name_en": "Jawa Tengah",
+        "name_id": "Jawa Tengah",
+        "region_type": "province",
+        "slug": "jawa-tengah",
+        "parent_id": 135,
+        "image_url": "https://i.misteraladin.com/activity/20220908111719-WrtgpBcHUIfPEDAc.jpg"
+      },
+      {
+        "id": 135,
+        "name": "Indonesia",
+        "name_en": "Indonesia",
+        "name_id": "Indonesia",
+        "region_type": "country",
+        "slug": "indonesia",
+        "parent_id": 2,
+        "image_url": "https://i.misteraladin.com/activity/20220923115527-zyQmkNbBmjiytrPY.jpg"
+      }
+    ]
+  },
+  {
+    "id": 2486,
+    "name": "2D1N Chillin By The Lake - Mengger  by Nuvantara - 1 VW Combi Min 2 Person",
+    "name_en": "2D1N Chillin By The Lake - Mengger  by Nuvantara - 1 VW Combi Min 2 Person",
+    "slug": "2h1m-chillin-by-the-lake-mengger-by-nuvantara-1-vw-combi-min-2-orang",
+    "source": "EM",
+    "type": "domestic",
+    "stock": 0,
+    "is_open_trip": 0,
+    "is_publish": 1,
+    "booking_date": "[{\"from\":\"2022-08-01\",\"to\":\"2022-12-14\"}]",
+    "image_url": "https://i.misteraladin.com/activity/20220809160130-nawUDMatTdXfmpZU.jpeg",
+    "image_apps_url": "https://i.misteraladin.com/activity/20220809160130-nawUDMatTdXfmpZU.jpeg",
+    "lowest_price": 1900000,
+    "highest_price": 1900000,
+    "lowest_gimmick_price": 0,
+    "highest_gimmick_price": 0,
+    "status": "published",
+    "categories": [
+      {
+        "id": 62,
+        "name": "Open Trip",
+        "slug": "open-trip",
+        "image_url": "",
+        "products": null
+      },
+      {
+        "id": 99,
+        "name": "Oktoberlibur",
+        "slug": "oktoberlibur",
+        "image_url": "",
+        "products": null
+      },
+      {
+        "id": 100,
+        "name": "Jangan Nunda Liburan",
+        "slug": "jangan-nunda-liburan",
+        "image_url": "",
+        "products": null
+      }
+    ],
+    "badges": [],
+    "destinations": [
+      {
+        "id": 14,
+        "name": "Yogyakarta",
+        "name_en": "Yogyakarta",
+        "name_id": "Yogyakarta",
+        "region_type": "city",
+        "slug": "yogyakarta",
+        "parent_id": 177,
+        "image_url": "https://i.misteraladin.com/activity/20190301103002-mDLQukBYtaKHCcTB.jpg"
+      },
+      {
+        "id": 177,
+        "name": "Daerah Istimewa Yogyakarta",
+        "name_en": "Daerah Istimewa Yogyakarta",
+        "name_id": "Daerah Istimewa Yogyakarta",
+        "region_type": "province",
+        "slug": "daerah-istimewa-yogyakarta",
+        "parent_id": 135,
+        "image_url": "https://i.misteraladin.com/activity/20220928162539-igofUHhSuqisuhic.jpg"
+      },
+      {
+        "id": 135,
+        "name": "Indonesia",
+        "name_en": "Indonesia",
+        "name_id": "Indonesia",
+        "region_type": "country",
+        "slug": "indonesia",
+        "parent_id": 2,
+        "image_url": "https://i.misteraladin.com/activity/20220923115527-zyQmkNbBmjiytrPY.jpg"
+      }
+    ]
+  },
+  {
+    "id": 1133,
+    "name": "Open Trip: Exploring Natural Heritage of Ciletuh Geopark, Sukabumi by Travel Buddies",
+    "name_en": "Open Trip: Exploring Natural Heritage of Ciletuh Geopark, Sukabumi by Travel Buddies",
+    "slug": "open-trip-eksplorasi-warisan-alam-geopark-ciletuh-sukabumi-by-travel-buddies",
+    "source": "EM",
+    "type": "domestic",
+    "stock": 0,
+    "is_open_trip": 0,
+    "is_publish": 1,
+    "booking_date": "[{\"from\":\"2021-12-29\",\"to\":\"2022-12-22\"}]",
+    "image_url": "https://i.misteraladin.com/activity/20210910105043-lmmeQgSocTpvRVah.jpg",
+    "image_apps_url": "https://i.misteraladin.com/activity/20210910105043-lmmeQgSocTpvRVah.jpg",
+    "lowest_price": 280000,
+    "highest_price": 280000,
+    "lowest_gimmick_price": 0,
+    "highest_gimmick_price": 0,
+    "status": "published",
+    "categories": [
+      {
+        "id": 62,
+        "name": "Open Trip",
+        "slug": "open-trip",
+        "image_url": "",
+        "products": null
+      },
+      {
+        "id": 19,
+        "name": "Experience",
+        "slug": "experience",
+        "image_url": "",
+        "products": null
+      }
+    ],
+    "badges": [],
+    "destinations": [
+      {
+        "id": 83,
+        "name": "Sukabumi",
+        "name_en": "Sukabumi",
+        "name_id": "Sukabumi",
+        "region_type": "city",
+        "slug": "sukabumi",
+        "parent_id": 141,
+        "image_url": "https://i.misteraladin.com/activity/20210317105431-XxuxtRZRtqXgJNTA.jpg"
+      },
+      {
+        "id": 141,
+        "name": "Jawa Barat",
+        "name_en": "Jawa Barat",
+        "name_id": "Jawa Barat",
+        "region_type": "province",
+        "slug": "jawa-barat",
+        "parent_id": 135,
+        "image_url": "https://i.misteraladin.com/activity/20220831141853-JxdxPbDGnYVYXEqj.jpg"
+      },
+      {
+        "id": 135,
+        "name": "Indonesia",
+        "name_en": "Indonesia",
+        "name_id": "Indonesia",
+        "region_type": "country",
+        "slug": "indonesia",
+        "parent_id": 2,
+        "image_url": "https://i.misteraladin.com/activity/20220923115527-zyQmkNbBmjiytrPY.jpg"
+      }
+    ]
+  },
+  {
+    "id": 1433,
+    "name": "2D1N The Best Side of Banyuwangi (Ijen Crater – Blue Fire – Savanna – Mangrove Trail)",
+    "name_en": "2D1N The Best Side of Banyuwangi (Ijen Crater – Blue Fire – Savanna – Mangrove Trail)",
+    "slug": "2h1m-tempat-terpopuler-di-banyuwangi-kawah-ijen-api-biru-padang-savana-mangrove-trail",
+    "source": "EM",
+    "type": "domestic",
+    "stock": 0,
+    "is_open_trip": 0,
+    "is_publish": 1,
+    "booking_date": "[{\"from\":\"2021-10-20\",\"to\":\"2022-12-30\"}]",
+    "image_url": "https://i.misteraladin.com/activity/20211027112419-bVoLBAThrVmIlGiz.jpg",
+    "image_apps_url": "https://i.misteraladin.com/activity/20211027112419-bVoLBAThrVmIlGiz.jpg",
+    "lowest_price": 425000,
+    "highest_price": 425000,
+    "lowest_gimmick_price": 0,
+    "highest_gimmick_price": 0,
+    "status": "published",
+    "categories": [
+      {
+        "id": 27,
+        "name": "Liburan Aman",
+        "slug": "liburan-aman",
+        "image_url": "",
+        "products": null
+      }
+    ],
+    "badges": [],
+    "destinations": [
+      {
+        "id": 78,
+        "name": "Banyuwangi",
+        "name_en": "Banyuwangi",
+        "name_id": "Banyuwangi",
+        "region_type": "city",
+        "slug": "banyuwangi",
+        "parent_id": 143,
+        "image_url": "https://i.misteraladin.com/activity/20210312100717-ApTLxoJDgCqKKEOM.jpg"
+      },
+      {
+        "id": 143,
+        "name": "Jawa Timur",
+        "name_en": "Jawa Timur",
+        "name_id": "Jawa Timur",
+        "region_type": "province",
+        "slug": "jawa-timur",
+        "parent_id": 135,
+        "image_url": "https://i.misteraladin.com/activity/20220923111231-yllUQYqErdVtsLWA.jpg"
+      },
+      {
+        "id": 135,
+        "name": "Indonesia",
+        "name_en": "Indonesia",
+        "name_id": "Indonesia",
+        "region_type": "country",
+        "slug": "indonesia",
+        "parent_id": 2,
+        "image_url": "https://i.misteraladin.com/activity/20220923115527-zyQmkNbBmjiytrPY.jpg"
+      }
+    ]
+  },
+  {
+    "id": 1772,
+    "name": "Mt. Merbabu Hiking Trip By Eppala Adventure Indonesia",
+    "name_en": "Mt. Merbabu Hiking Trip By Eppala Adventure Indonesia",
+    "slug": "trip-pendakian-gunung-merbabu-by-eppala-adventure-indonesia",
+    "source": "EM",
+    "type": "domestic",
+    "stock": 0,
+    "is_open_trip": 0,
+    "is_publish": 1,
+    "booking_date": "[{\"from\":\"2022-02-14\",\"to\":\"2022-12-22\"}]",
+    "image_url": "https://i.misteraladin.com/activity/20220308132656-jqmsKAmdLPbzzBXu.jpg",
+    "image_apps_url": "https://i.misteraladin.com/activity/20220308132656-jqmsKAmdLPbzzBXu.jpg",
+    "lowest_price": 700000,
+    "highest_price": 700000,
+    "lowest_gimmick_price": 0,
+    "highest_gimmick_price": 0,
+    "status": "published",
+    "categories": [
+      {
+        "id": 62,
+        "name": "Open Trip",
+        "slug": "open-trip",
+        "image_url": "",
+        "products": null
+      },
+      {
+        "id": 41,
+        "name": "Best of Java",
+        "slug": "jelajah-jawa",
+        "image_url": "",
+        "products": null
+      },
+      {
+        "id": 88,
+        "name": "Hiking & Diving",
+        "slug": "hiking-and-diving",
+        "image_url": "",
+        "products": null
+      },
+      {
+        "id": 89,
+        "name": "Open Trip Favorit",
+        "slug": "open-trip-favorit",
+        "image_url": "",
+        "products": null
+      }
+    ],
+    "badges": [],
+    "destinations": [
+      {
+        "id": 192,
+        "name": "Magelang",
+        "name_en": "Magelang",
+        "name_id": "Magelang",
+        "region_type": "city",
+        "slug": "magelang",
+        "parent_id": 142,
+        "image_url": "https://i.misteraladin.com/activity/20220929101821-oHMTfJqdrXlzIqgT.jpg"
+      },
+      {
+        "id": 142,
+        "name": "Jawa Tengah",
+        "name_en": "Jawa Tengah",
+        "name_id": "Jawa Tengah",
+        "region_type": "province",
+        "slug": "jawa-tengah",
+        "parent_id": 135,
+        "image_url": "https://i.misteraladin.com/activity/20220908111719-WrtgpBcHUIfPEDAc.jpg"
+      },
+      {
+        "id": 135,
+        "name": "Indonesia",
+        "name_en": "Indonesia",
+        "name_id": "Indonesia",
+        "region_type": "country",
+        "slug": "indonesia",
+        "parent_id": 2,
+        "image_url": "https://i.misteraladin.com/activity/20220923115527-zyQmkNbBmjiytrPY.jpg"
+      }
+    ]
+  },
+  {
+    "id": 1946,
+    "name": "Sunset Afternoon Tea Hot Air Balloon Experience at Tanah Gajah Ubud",
+    "name_en": "Sunset Afternoon Tea Hot Air Balloon Experience at Tanah Gajah Ubud",
+    "slug": "sunset-afternoon-tea-and-hot-air-balloon-experience-di-tanah-gajah-ubud",
+    "source": "EM",
+    "type": "domestic",
+    "stock": 0,
+    "is_open_trip": 0,
+    "is_publish": 1,
+    "booking_date": "[{\"from\":\"2022-04-03\",\"to\":\"2022-10-30\"}]",
+    "image_url": "https://i.misteraladin.com/activity/20220403122040-ELITJwMIiislpECG.jpg",
+    "image_apps_url": "https://i.misteraladin.com/activity/20220403122040-ELITJwMIiislpECG.jpg",
+    "lowest_price": 2200000,
+    "highest_price": 2200000,
+    "lowest_gimmick_price": 2860000,
+    "highest_gimmick_price": 2860000,
+    "status": "published",
+    "categories": [
+      {
+        "id": 19,
+        "name": "Experience",
+        "slug": "experience",
+        "image_url": "",
+        "products": null
+      }
+    ],
+    "badges": [],
+    "destinations": [
+      {
+        "id": 136,
+        "name": "Denpasar",
+        "name_en": "Denpasar",
+        "name_id": "Denpasar",
+        "region_type": "city",
+        "slug": "denpasar",
+        "parent_id": 12,
+        "image_url": "https://i.misteraladin.com/activity/20220914153207-ofvwZOdPzkbDmQmo.jpg"
+      },
+      {
+        "id": 12,
+        "name": "Bali",
+        "name_en": "Bali",
+        "name_id": "Bali",
+        "region_type": "province",
+        "slug": "bali",
+        "parent_id": 135,
+        "image_url": "https://i.misteraladin.com/activity/20190226174926-nnxQfNgBdDFizVPo.jpg"
+      },
+      {
+        "id": 135,
+        "name": "Indonesia",
+        "name_en": "Indonesia",
+        "name_id": "Indonesia",
+        "region_type": "country",
+        "slug": "indonesia",
+        "parent_id": 2,
+        "image_url": "https://i.misteraladin.com/activity/20220923115527-zyQmkNbBmjiytrPY.jpg"
+      }
+    ]
+  }
+]

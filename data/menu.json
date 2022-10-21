@@ -1,0 +1,90 @@
+[
+  {
+      "id": "8",
+      "type": "mall",
+      "caption": "AladinMall",
+      "caption_en": "AladinMall",
+      "url": "https://aladinmall.misteraladin.com",
+      "icon_svg": "https://i.misteraladin.com/homepage-menu/new/svg/icon-aladin-mall-active.svg",
+      "icon_png": "https://i.misteraladin.com/homepage-menu/new/png/icon-aladin-mall-active.png",
+      "status": "active",
+      "mode": 1
+  },
+  {
+      "id": "9",
+      "type": "activity",
+      "caption": "AladinXplore",
+      "caption_en": "AladinXplore",
+      "url": "https://www.misteraladin.com/aladintravel/aladinxplore",
+      "icon_svg": "https://i.misteraladin.com/homepage-menu/explore-20220328-3-20x20px.svg",
+      "icon_png": "https://i.misteraladin.com/homepage-menu/explore-20220328-3-20x20px.png",
+      "status": "active",
+      "mode": 1
+  },
+  {
+      "id": "10",
+      "type": "hotel",
+      "caption": "Hotel",
+      "caption_en": "Hotels",
+      "url": "https://www.misteraladin.com/hotel",
+      "icon_svg": "https://i.misteraladin.com/homepage-menu/new/svg/icon-hotel-active.svg",
+      "icon_png": "https://i.misteraladin.com/homepage-menu/new/png/icon-hotel-active.png",
+      "status": "active",
+      "mode": 1
+  },
+  {
+      "id": "11",
+      "type": "flight",
+      "caption": "Pesawat Dom.",
+      "caption_en": "Dom. Flights",
+      "url": "https://www.misteraladin.com/flight-domestic",
+      "icon_svg": "https://i.misteraladin.com/homepage-menu/new/svg/icon-dom-flight-active.svg",
+      "icon_png": "https://i.misteraladin.com/homepage-menu/new/png/icon-dom-flight-active.png",
+      "status": "active",
+      "mode": 3
+  },
+  {
+      "id": "12",
+      "type": "flight-international",
+      "caption": "Pesawat Intl.",
+      "caption_en": "Intl. Flights",
+      "url": "https://www.misteraladin.com/flight-international",
+      "icon_svg": "https://i.misteraladin.com/homepage-menu/new/svg/icon-intl-flight-active.svg",
+      "icon_png": "https://i.misteraladin.com/homepage-menu/new/png/icon-intl-flight-active.png",
+      "status": "active",
+      "mode": 3
+  },
+  {
+      "id": "13",
+      "type": "train",
+      "caption": "Kereta Api",
+      "caption_en": "Trains",
+      "url": "https://www.misteraladin.com/train",
+      "icon_svg": "https://i.misteraladin.com/homepage-menu/new/svg/icon-train-active.svg",
+      "icon_png": "https://i.misteraladin.com/homepage-menu/new/png/icon-train-active.png",
+      "status": "active",
+      "mode": 1
+  },
+  {
+      "id": "24",
+      "type": "campaign",
+      "caption": "Desa Wisata",
+      "caption_en": "Desa Wisata",
+      "url": "https://www.misteraladin.com/aladintravel/aladinxplore/section/category/desa-wisata",
+      "icon_svg": "https://i.misteraladin.com/homepage-menu/new/svg/icon-campaign-travel-village-active.svg",
+      "icon_png": "https://i.misteraladin.com/homepage-menu/new/png/icon-campaign-travel-village-active.png",
+      "status": "active",
+      "mode": 1
+  },
+  {
+      "id": "15",
+      "type": "bundle",
+      "caption": "Coming Soon",
+      "caption_en": "Coming Soon",
+      "url": "https://www.misteraladin.com/bundle",
+      "icon_svg": "https://i.misteraladin.com/homepage-menu/new/svg/icon-coming-soon-disabled.svg",
+      "icon_png": "https://i.misteraladin.com/homepage-menu/new/png/icon-coming-soon-disabled.png",
+      "status": "inactive",
+      "mode": 1
+  }
+]
