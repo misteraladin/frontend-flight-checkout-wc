@@ -8,95 +8,132 @@
           "type": "travel",
           "brands": [
             {
-                "id": 84,
-                "sequence": 1,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-60d2a33b9db4c.png",
-                "name": "Archipelago",
-                "url": "https://www.misteraladin.com/hotel/group/archipelago-hotels-resorts/182"
+              "id": 84,
+              "sequence": 1,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-60d2a33b9db4c.png",
+              "name": "Archipelago",
+              "url": "https://www.misteraladin.com/hotel/group/archipelago-hotels-resorts/182"
             },
             {
-                "id": 81,
-                "sequence": 2,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-60d00a5b11a1e.png",
-                "name": "Tauzia Hotel Management",
-                "url": "https://www.misteraladin.com/hotel/group/tauzia-hotel-management/2211"
+              "id": 81,
+              "sequence": 2,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-60d00a5b11a1e.png",
+              "name": "Tauzia Hotel Management",
+              "url": "https://www.misteraladin.com/hotel/group/tauzia-hotel-management/2211"
             },
             {
-                "id": 75,
-                "sequence": 3,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-5fa3c4e57827a.png",
-                "name": "MPHG",
-                "url": "https://www.misteraladin.com/hotel/group/milestone-pacific-hotel-group/2467"
+              "id": 75,
+              "sequence": 3,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-5fa3c4e57827a.png",
+              "name": "MPHG",
+              "url": "https://www.misteraladin.com/hotel/group/milestone-pacific-hotel-group/2467"
             },
             {
-                "id": 42,
-                "sequence": 4,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-5adef7e491500.png",
-                "name": "Ibis Hotel",
-                "url": "https://www.misteraladin.com/hotel/group/accor-hotels/29"
+              "id": 42,
+              "sequence": 4,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-5adef7e491500.png",
+              "name": "Ibis Hotel",
+              "url": "https://www.misteraladin.com/hotel/group/accor-hotels/29"
             },
             {
-                "id": 37,
-                "sequence": 5,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-5adeed9ce5866.png",
-                "name": "The Aryaduta Hotel & Resort",
-                "url": "https://www.misteraladin.com/hotel/group/the-aryaduta-hotel-resort/191"
+              "id": 37,
+              "sequence": 5,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-5adeed9ce5866.png",
+              "name": "The Aryaduta Hotel & Resort",
+              "url": "https://www.misteraladin.com/hotel/group/the-aryaduta-hotel-resort/191"
             },
             {
-                "id": 31,
-                "sequence": 6,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-5acda844285bd.png",
-                "name": "Surya Internusa Hotels Batiqa",
-                "url": "https://www.misteraladin.com/hotel/group/surya-internusa-hotels-batiqa/2565"
+              "id": 31,
+              "sequence": 6,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-5acda844285bd.png",
+              "name": "Surya Internusa Hotels Batiqa",
+              "url": "https://www.misteraladin.com/hotel/group/surya-internusa-hotels-batiqa/2565"
             },
             {
-                "id": 67,
-                "sequence": 7,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-5e3a992a2b875.jpg",
-                "name": "RedDoorz",
-                "url": "https://www.misteraladin.com/hotel/group/red-doorz/2504"
+              "id": 67,
+              "sequence": 7,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-5e3a992a2b875.jpg",
+              "name": "RedDoorz",
+              "url": "https://www.misteraladin.com/hotel/group/red-doorz/2504"
             },
             {
-                "id": 29,
-                "sequence": 8,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-5acda79c314ef.png",
-                "name": "Inti Whiz",
-                "url": "https://www.misteraladin.com/hotel/group/inti-whiz/1157"
+              "id": 29,
+              "sequence": 8,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-5acda79c314ef.png",
+              "name": "Inti Whiz",
+              "url": "https://www.misteraladin.com/hotel/group/inti-whiz/1157"
             },
             {
-                "id": 86,
-                "sequence": 9,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-62b524e447eed.png",
-                "name": "Santika Indonesia Hotels & Resorts",
-                "url": "https://www.misteraladin.com/hotel/group/santika-indonesia-hotels-resorts/1983"
+              "id": 86,
+              "sequence": 9,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-62b524e447eed.png",
+              "name": "Santika Indonesia Hotels & Resorts",
+              "url": "https://www.misteraladin.com/hotel/group/santika-indonesia-hotels-resorts/1983"
             },
             {
-                "id": 83,
-                "sequence": 10,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-60d014242eed3.jpeg",
-                "name": "Dafam Hotels",
-                "url": "https://www.misteraladin.com/hotel/group/dafam-hotels/2476"
+              "id": 83,
+              "sequence": 10,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-60d014242eed3.jpeg",
+              "name": "Dafam Hotels",
+              "url": "https://www.misteraladin.com/hotel/group/dafam-hotels/2476"
             },
             {
-                "id": 36,
-                "sequence": 11,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-5adeec0631782.png",
-                "name": "PHM Hospitality",
-                "url": "https://www.misteraladin.com/hotel/group/phm-hospitality/2586"
+              "id": 36,
+              "sequence": 11,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-5adeec0631782.png",
+              "name": "PHM Hospitality",
+              "url": "https://www.misteraladin.com/hotel/group/phm-hospitality/2586"
             },
             {
-                "id": 70,
-                "sequence": 12,
-                "logo": "https://i.misteraladin.com/hotel-partners/hp-5efd50ffad53b.jpg",
-                "name": "Quest Aston",
-                "url": "https://www.misteraladin.com/hotel/group/archipelago-hotels-resorts/182"
+              "id": 70,
+              "sequence": 12,
+              "logo": "https://i.misteraladin.com/hotel-partners/hp-5efd50ffad53b.jpg",
+              "name": "Quest Aston",
+              "url": "https://www.misteraladin.com/hotel/group/archipelago-hotels-resorts/182"
             }
           ]
         },
         {
           "title": "Brand Terpopuler Di Aladin Mall",
           "type": "mall",
-          "brands": [{}, {}, {}]
+          "brands": [
+            {
+              "banner_link": "/store/detail/nutrimart-4651",
+              "banner_title": "Nutrimart",
+              "base_url_cdn": "https://amcdn.misteraladin.com/media/",
+              "desktop_image": "weltpixel/owlcarouselslider/images/1/_/1_popular-banner-17-okt_nutrimart.png"
+            },
+            {
+              "banner_link": "/store/detail/khong-guan-mart-5078",
+              "banner_title": "Khong Guan",
+              "base_url_cdn": "https://amcdn.misteraladin.com/media/",
+              "desktop_image": "weltpixel/owlcarouselslider/images/2/_/2_popular-banner-17-okt_khong-guan.png"
+            },
+            {
+              "banner_link": "/store/detail/arbit-official-store-4798?page=1",
+              "banner_title": "Arbit",
+              "base_url_cdn": "https://amcdn.misteraladin.com/media/",
+              "desktop_image": "weltpixel/owlcarouselslider/images/3/_/3_popular-banner-17-okt_arbit.png"
+            },
+            {
+              "banner_link": "/store/detail/jabra-indonesia-5153?page=1",
+              "banner_title": "Jabra",
+              "base_url_cdn": "https://amcdn.misteraladin.com/media/",
+              "desktop_image": "weltpixel/owlcarouselslider/images/5/_/5_popular-banner-17-okt_jabra.png"
+            },
+            {
+              "banner_link": "/store/detail/bayer-health-official-partner-5150",
+              "banner_title": "Bayer Health Official Partner",
+              "base_url_cdn": "https://amcdn.misteraladin.com/media/",
+              "desktop_image": "weltpixel/owlcarouselslider/images/6/_/6_popular-banner-17-okt_bayer.png"
+            },
+            {
+              "banner_link": "https://aladinmall.misteraladin.com/category/4749",
+              "banner_title": "House of Cuff",
+              "base_url_cdn": "https://amcdn.misteraladin.com/media/",
+              "desktop_image": "weltpixel/owlcarouselslider/images/7/_/7_popular-banner-17-okt_house-of-cuff.png"
+            }
+          ]
         }
       ]
     }
