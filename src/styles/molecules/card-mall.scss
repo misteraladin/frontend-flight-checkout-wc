@@ -1,0 +1,259 @@
+@use '@/styles/utils/colors';
+
+// popover
+.ma-popover {
+  position: relative;
+  cursor: help;
+  z-index: 2;
+
+  &:hover {
+    .ma-popover__content {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.ma-popover__content {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  display: inline-block;
+  min-width: 13rem;
+  max-width: 90%;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: colors.$neutral-0;
+  box-shadow: 0 0.125rem 0.75rem -0.125rem rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  transform: translateX(-50%);
+  color: colors.$neutral-900;
+  font-size: 12px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    width: 0;
+    height: 0;
+    z-index: 9;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-bottom: 0.5rem solid colors.$neutral-0;
+    transition: opacity 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+
+// mall card main layout
+.ma-card-mall {
+  max-width: 11.25rem;
+  max-height: 22.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  background-color: colors.$neutral-0;
+  border-radius: 0.75rem;
+  box-shadow: 0.25rem 0 0.875rem rgba(66, 66, 66, 0.1);
+}
+
+.ma-card-mall__header {
+  position: relative;
+}
+
+.ma-card-mall__body {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+
+  .ma-card-mall__body-bottom {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.ma-card-mall__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ma-card-mall__thumbnail {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 10.75rem;
+  width: 100%;
+  overflow: hidden;
+  line-height: 1;
+  background-color: colors.$neutral-300;
+  border-radius: 0.5rem;
+  aspect-ratio: 8 / 7;
+}
+
+// label sold out
+.ma-card-mall__label-sold-out {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 16px;
+  gap: 10px;
+  position: absolute;
+
+  background: rgba(61, 65, 81, 0.5);
+  border-radius: 8px;
+
+  width: 5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  span {
+    font-size: 12px;
+    font-weight: 400;
+    color: colors.$neutral-0;
+  }
+}
+
+// Safari & iOS fallback
+@supports not (aspect-ratio: 8 / 7) {
+  .ma-card-mall__thumbnail {
+    &::before {
+      float: left;
+      padding-top: 100%;
+      content: '';
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
+}
+
+// mall card image
+.ma-card-mall__image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// mall card title
+.ma-card-mall__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 6px 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: colors.$neutral-900;
+}
+
+// mall card price
+.ma-card-mall__price-original {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  height: 1.25rem;
+}
+
+.ma-card-mall__price-normal {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: colors.$neutral-700;
+  text-decoration-line: line-through;
+  line-height: 1rem;
+}
+
+.ma-card-mall__discount-percent {
+  padding: 3px;
+  background: colors.$secondary-lightest;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: colors.$failed-500;
+  line-height: 1rem;
+}
+
+.ma-card-mall__price-special {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  color: colors.$neutral-900;
+}
+
+.ma-card-mall__room-alert {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: colors.$failed-500;
+}
+
+// mall official store
+.ma-card-mall__official-store {
+  display: flex;
+  margin-top: 0.6rem;
+  
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: cover;
+  }
+
+  .ma-card-mall__official-store-name {
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding-top: 0.32rem;
+  }
+}
+
+// sale amount
+.ma-card-mall__sale-amount {
+  .progress {
+    display: flex;
+    overflow: hidden;
+    flex: 0 0 139px;
+    height: 8px;
+    line-height: 0;
+    font-size: .75rem;
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+    margin: 0.5rem 0;
+
+    .progress-bar {
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      background-color: colors.$red-500;
+      transition: width .6s ease;
+    }
+  }
+
+  .ma-card-mall__sale-amount-value {
+    color: colors.$neutral-900;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}

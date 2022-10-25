@@ -2,7 +2,8 @@
   {
     "product_id": 201885,
     "name": "INEZ COSMETICS Oilfree Facial Foam-75 g",
-    "available_stock": 10,
+    "available_stock": 90,
+    "only_x_left_in_stock": 12, 
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/o/i/oilfree_facial_foam.jpg",
       "label": "INEZ COSMETICS Oilfree Facial Foam-75 g",
@@ -61,6 +62,7 @@
     "product_id": 201884,
     "name": "INEZ COSMETICS Deep Cleansing Clay Mask-75 g",
     "available_stock": 10,
+    "only_x_left_in_stock": 2,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/d/e/deep_cleansing_clay_mask.jpg",
       "label": "INEZ COSMETICS Deep Cleansing Clay Mask-75 g",
@@ -119,6 +121,7 @@
     "product_id": 199377,
     "name": "[SOME BY MI] Super Matcha Pore Tightening Serum 50ml",
     "available_stock": 49,
+    "only_x_left_in_stock": 0,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/p/r/proyek_baru_57_.jpg",
       "label": "[SOME BY MI] Super Matcha Pore Tightening Serum 50ml",
@@ -177,6 +180,7 @@
     "product_id": 199374,
     "name": "[SOME BY MI] Snail Truecica Miracle Repair Low pH Cleanser 100ml",
     "available_stock": 20,
+    "only_x_left_in_stock": 18,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/p/r/proyek_baru_59_.jpg",
       "label": "[SOME BY MI] Snail Truecica Miracle Repair Low pH Cleanser 100ml",
@@ -235,6 +239,7 @@
     "product_id": 199370,
     "name": "[SOME BY MI] AHA/BHA/PHA 30 Days Miracle Cream 60g",
     "available_stock": 19,
+    "only_x_left_in_stock": 8,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/p/r/proyek_baru_53_.jpg",
       "label": "[SOME BY MI] AHA/BHA/PHA 30 Days Miracle Cream 60g",
@@ -293,6 +298,7 @@
     "product_id": 199369,
     "name": "[SOME BY MI] H7 Hydro Max Cream 50ml",
     "available_stock": 20,
+    "only_x_left_in_stock": 12,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/p/r/proyek_baru_62_.jpg",
       "label": "[SOME BY MI] H7 Hydro Max Cream 50ml",
@@ -351,6 +357,7 @@
     "product_id": 199363,
     "name": "[SOME BY MI] Miracle Repair Treatment 180g",
     "available_stock": 33,
+    "only_x_left_in_stock": 22,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/p/r/proyek_baru_67_.jpg",
       "label": "[SOME BY MI] Miracle Repair Treatment 180g",
@@ -409,6 +416,7 @@
     "product_id": 199358,
     "name": "[SOME BY MI] AHA/BHA/PHA 30 Days Miracle Acne Clear Foam 100ml",
     "available_stock": 46,
+    "only_x_left_in_stock": 21,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/p/r/proyek_baru_73_.jpg",
       "label": "[SOME BY MI] AHA/BHA/PHA 30 Days Miracle Acne Clear Foam 100ml",
@@ -467,6 +475,7 @@
     "product_id": 199357,
     "name": "[SOME BY MI]  Yuja Niacin Brightening Sleeping Mask (minisize) 15g",
     "available_stock": 203,
+    "only_x_left_in_stock": 102,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/p/r/proyek_baru_9_.jpg",
       "label": "[SOME BY MI]  Yuja Niacin Brightening Sleeping Mask (minisize) 15g",
@@ -525,6 +534,7 @@
     "product_id": 199355,
     "name": "[SOME BY MI] AHA/BHA/PHA 30 Days Miracle Serum Light 50ml",
     "available_stock": 69,
+    "only_x_left_in_stock": 22,
     "image": {
       "url": "https://amcdn.misteraladin.com/media/catalog/product/cache/faf0366533c769bc5758e033068c716a/p/r/proyek_baru_75_.jpg",
       "label": "[SOME BY MI] AHA/BHA/PHA 30 Days Miracle Serum Light 50ml",
