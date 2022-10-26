@@ -1,0 +1,55 @@
+@use "../utils/colors";
+
+.ma-tab,
+.ma-tab-sm {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  padding: 8px 24px;
+  gap: 8px;
+  
+  &.grouped {
+    background-color: colors.$blue-100;
+    border-radius: 32px;
+
+    .ma-tab-items {
+      flex-grow: 1;
+    }
+  }
+
+  &.justify-content-between {
+    justify-content: space-between !important;
+  }
+
+  .ma-tab-items {
+    text-align: center;
+    color: colors.$blue-500;
+    background-color: colors.$blue-100;
+    font-weight: 700;
+    border-radius: 32px;
+    cursor: pointer;
+
+    &.active {
+      color: colors.$neutral-0;
+      background-color: colors.$blue-500;
+    }
+  }
+}
+
+.ma-tab {
+  .ma-tab-items {
+    padding: 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.ma-tab-sm {
+  .ma-tab-items {
+    padding: 8px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+}

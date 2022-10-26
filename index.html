@@ -54,6 +54,26 @@
 
     <div style="width: 1000px">
       <ma-i18n-host languange="id">
+        <ma-button-group
+          :data="JSON.stringify(store.data.buttonGroupHomepage)"
+          :transparent="true"
+          :active="''"
+        >
+        </ma-button-group>
+
+        <ma-button-group
+          :data="JSON.stringify(store.data.buttonGroupHomepage)"
+          :active="'ALADINTRAVEL'"
+        >
+        </ma-button-group>
+
+        <ma-button-group
+          :data="JSON.stringify(store.data.buttonGroupHomepage)"
+          :small="true"
+          :active="'ALADINMALL'"
+        >
+        </ma-button-group>
+
         <ma-card-section
           :data="JSON.stringify(store.data.sectionHotelFlashsale)"
           type="flashsale"
