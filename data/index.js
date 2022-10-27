@@ -4,7 +4,6 @@ import sectionHotelFlashsale from "./section-hotel-flashsale.json";
 import sectionMallFlashsale from "./section-mall-flashsale.json";
 import sectionHotelSelected from "./section-hotel-selected.json";
 import sectionMallSelected from "./section-mall-selected.json";
-import tabSample from "./tab-sample.json";
 
 export default {
   buttonGroupHomepage,
@@ -13,5 +12,4 @@ export default {
   sectionMallFlashsale,
   sectionHotelSelected,
   sectionMallSelected,
-  tabSample,
 };
