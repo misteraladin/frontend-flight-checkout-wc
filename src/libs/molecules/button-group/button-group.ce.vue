@@ -28,9 +28,6 @@ interface Props {
 const props = defineProps<Props>();
 const parsedData = JSON.parse(props.data);
 
-console.log(props);
-
-
 const activeButton = ref(props.active);
 const classes = computed(() => {
   return [
