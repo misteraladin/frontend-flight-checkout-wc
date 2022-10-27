@@ -1847,8 +1847,14 @@
       }).mount();
     </script>
     <div id="app"></div>
-    <ma-header></ma-header>
-    <ma-booking-detail :data="JSON.stringify(store.data)"></ma-booking-detail>
+
+    <!-- <ma-header></ma-header> -->
+    <!-- <ma-booking-detail :data="JSON.stringify(store.data)"></ma-booking-detail> -->
+
+    <ma-i18n-host language="en">
+      <ma-booking-detail-mobile></ma-booking-detail-mobile>
+    </ma-i18n-host>
+
     <script type="module" src="/src/main.ts"></script>
     <script type="module" crossorigin src="./dist/assets/index.2b9dbb45.js"></script>
 
