@@ -54,6 +54,12 @@
 
     <div style="width: 1000px">
       <ma-i18n-host languange="id">
+        <ma-carousel
+          :data="JSON.stringify(store.data.promos.data)"
+          :arrow="'never'"
+          :interval="3000"
+        >
+        </ma-carousel>
         <ma-button-group
           :data="JSON.stringify(store.data.buttonGroupHomepage)"
           :active="''"
