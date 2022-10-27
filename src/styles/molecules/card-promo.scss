@@ -1,0 +1,37 @@
+@use '@/styles/utils/colors';
+
+.ma-card-promo {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #DFE2E7;
+  border-radius: 16px;
+  margin-bottom: 24px;
+
+  .ma-card-promo__text-wrapper {
+    padding: 16px;
+
+    @media screen and (max-width: 480px) {
+      padding: 8px 16px;
+    }
+
+    label {
+      position: relative;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: 0em;
+      text-align: left;
+
+      @media screen and (max-width: 480px) {
+        font-size: 14px;
+        line-height: 150%;
+      }
+    }
+  }
+
+
+  img {
+    width: 100%;
+  }
+}
