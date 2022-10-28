@@ -25,8 +25,13 @@ interface Props {
   small: Boolean;
 }
 
+interface IOption {
+  name: string,
+  value: string,
+}
+
 const props = defineProps<Props>();
-const parsedData = JSON.parse(props.data);
+const parsedData: IOption = JSON.parse(props.data);
 
 const activeButton = ref(props.active);
 const classes = computed(() => {
