@@ -103,8 +103,9 @@
   }
 }
 
-
-
+.m-0 {
+  margin: 0;
+}
 // general
 section {
   padding: 1rem;
@@ -114,6 +115,7 @@ section {
     margin: 0 0 1rem;
     font-size: 1rem;
     font-weight: 600;
+    line-height: 24px;
   }
 
   .btn-link {
@@ -123,7 +125,7 @@ section {
   }
 }
 
-.flight-item {
+.booking-detail__flight-item {
   .flight-item__title {
     display: flex;
     justify-content: space-between;
@@ -184,5 +186,28 @@ section {
   }
 }
 
+.booking-detail__passenger {
+  padding: 1rem 0;
 
+  .booking-detail__passenger-empty {
+    display: flex;
+    align-items: center;
+    color: colors.$primary-1;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 24px;
 
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.booking-detail__info {
+  p {
+    color: colors.$secondary-1;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+  }
+}

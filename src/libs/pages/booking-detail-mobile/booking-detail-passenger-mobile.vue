@@ -1,0 +1,39 @@
+<template>
+  <div class="booking-detail__passenger">
+    <div class="booking-detail__passenger-empty">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13.8 4.66667C14.0667 4.4 14.0667 4 13.8 3.73333L12.2667 2.2C12.1333 2.06667 11.9333 2 11.8 2C11.6667 2 11.4 2.06667 11.3333 2.2L10.1333 3.4L12.6 5.93333L13.8 4.66667Z"
+          fill="#323C9F"
+        />
+        <path
+          d="M2 11.4667V14H4.53333L11.8667 6.6L9.4 4.13333L2 11.4667Z"
+          fill="#323C9F"
+        />
+      </svg>
+
+      {{ props.placeholder }}
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { reactive } from "vue";
+
+const props = defineProps({
+  placeholder: {
+    type: String,
+    required: true,
+  },
+})
+
+const {
+  placeholder: string
+} = reactive(props);
+</script>

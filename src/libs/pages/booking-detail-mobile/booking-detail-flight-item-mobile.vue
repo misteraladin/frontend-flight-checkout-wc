@@ -1,5 +1,5 @@
 <template>
-  <section class="flight-item">
+  <section class="booking-detail__flight-item">
     <div class="flight-item__title">
       <h2>Keberangkatan</h2>
 
