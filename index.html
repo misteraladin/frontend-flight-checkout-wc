@@ -23,6 +23,19 @@
           'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
           'Noto Color Emoji';
       }
+
+      .row-promo {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        grid-auto-rows: 1fr;
+      }
+      
+      @media screen and (max-width: 480px) {
+        .row-promo {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
@@ -112,15 +125,17 @@
         >
         </ma-card-section>
 
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[0])"></ma-card-promo>
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[1])"></ma-card-promo>
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[2])"></ma-card-promo>
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[3])"></ma-card-promo>
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[4])"></ma-card-promo>
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[5])"></ma-card-promo>
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[6])"></ma-card-promo>
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[7])"></ma-card-promo>
-        <ma-card-promo :data="JSON.stringify(store.data.promos.data[8])"></ma-card-promo>
+        <div class="row-promo">
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[0])"></ma-card-promo>
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[1])"></ma-card-promo>
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[2])"></ma-card-promo>
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[3])"></ma-card-promo>
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[4])"></ma-card-promo>
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[5])"></ma-card-promo>
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[6])"></ma-card-promo>
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[7])"></ma-card-promo>
+          <ma-card-promo :data="JSON.stringify(store.data.promos.data[8])"></ma-card-promo>
+        </div>
       </ma-i18n-host>
     </div>
 
