@@ -5,6 +5,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 24px;
+    height: 400px;
   }
 
   .el-carousel__item {
@@ -25,6 +26,7 @@
     transform: none;
 
     .el-carousel__indicator {
+      padding: 4px;
       &.is-active {
         button {
           width: 30px;
