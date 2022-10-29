@@ -12,3 +12,9 @@ export const toDate = (string: string, locale: 'id-ID' | 'en-GB') =>
     month: 'long',
     year: 'numeric',
   });
+
+export const toDateMonth = (value: string) =>
+  new Date(value).toLocaleDateString('id-ID', {
+    day: '2-digit',
+    month: 'short',
+  });

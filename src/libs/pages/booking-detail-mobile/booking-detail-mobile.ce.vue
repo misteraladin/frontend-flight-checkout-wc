@@ -4,13 +4,25 @@
       {{ t("booking_details") }}
     </Header>
 
-    <FlightItem />
+    <FlightItem
+      :title="t('departure')"
+      :segment="departureSegment"
+      :t="t"
+    />
+
+    <FlightItem
+      :title="t('return')"
+      :segment="returnSegment"
+      :t="t"
+    />
+
     <BannerLogin :t="t" />
 
     <section class="booking-detail__contact">
-      <h2 class="m-0">{{ t('booking_details') }}</h2>
+      <h2>{{ t('booking_details') }}</h2>
       <Passenger
         :placeholder="t('enter_details')"
+        class="m-0 p-0"
       />
     </section>
 
@@ -25,6 +37,48 @@
     <Footer>
       {{ t("next") }}
     </Footer>
+
+    <!-- <ModalBase>
+      <template v-slot:image>
+        <img src="/booking-mobile/got_message.svg" alt="Got Message" />
+      </template>
+      <template v-slot:title>
+        {{ t("order_confirmation_text") }}
+      </template>
+
+      <template v-slot:footer>
+        <button class="btn btn-primary">
+          {{ t('continue') }}
+        </button>
+
+        <button class="btn btn-primary-outline">
+          {{ t('check_again') }}
+        </button>
+      </template>
+    </ModalBase> -->
+
+    <!-- <ModalBase>
+      <template v-slot:image>
+        <img src="/booking-mobile/loader-mnc.svg" alt="Loading" />
+      </template>
+      <template v-slot:title>
+        {{ t("order_process_title") }}
+      </template>
+
+      {{ t("order_process_text") }}
+    </ModalBase> -->
+
+    <!-- <ModalBase>
+      <template v-slot:image>
+        <img src="/booking-mobile/failed.svg" alt="failed" />
+      </template>
+      {{ t('failed_to_order') }}
+      <template v-slot:footer>
+        <button class="btn btn-primary">
+          {{ t('let_continue') }}
+        </button>
+      </template>
+    </ModalBase> -->
   </div>
 </template>
 
@@ -34,6 +88,7 @@ import FlightItem from "./booking-detail-flight-item-mobile.vue";
 import Passenger from "./booking-detail-passenger-mobile.vue"
 import BannerLogin from "./mobile-banner-login.vue";
 import Footer from "./mobile-footer.vue";
+import ModalBase from "../common-mobile/ModalBase.vue";
 
 import {
   RootObject as IRootObject,
@@ -41,7 +96,7 @@ import {
 } from "./type-booking-detail-mobile";
 import { reactive } from "vue";
 import { useI18n } from "vue-i18n"; // import i18n plugin
-import messages from "./lang-booking-detail-mobile"; // import dictionary
+import messages from "./lang"; // import dictionary
 
 // create i18n instance
 const { t } = useI18n({

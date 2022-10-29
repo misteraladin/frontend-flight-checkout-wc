@@ -1,30 +1,39 @@
 <template>
   <section class="booking-detail__flight-item">
     <div class="flight-item__title">
-      <h2>Keberangkatan</h2>
+      <h2>{{ title }}</h2>
 
-      <a class="btn-link" @click="$emit('showDetail')"> Lihat Detail </a>
+      <a class="btn-link" @click="$emit('showDetail')">
+        {{ t('see_detail') }}
+      </a>
     </div>
 
     <div class="flight-item__info">
       <div class="flight-item__info-image">
         <img
-          src="https://s3-ap-southeast-1.amazonaws.com/i.misteraladin.com/flight-gateway/airlines/GA/logo.png"
-          alt="Garuda Indonesia"
-          height="24px"
+          :src="segmentOrigin.AirlineImageUrl"
+          :alt="segmentOrigin.AirlineName"
         />
       </div>
 
       <div class="flight-item__info-description">
-        <div class="flight-item__info--title">Garuda Indonesia</div>
+        <div class="flight-item__info--title">
+          {{ segmentOrigin.AirlineName }}
+        </div>
 
-        <div class="flight-item__info--subtitle">Ekonomi (Subclass V)</div>
+        <div class="flight-item__info--subtitle">
+          {{ segmentOrigin.ClassCategory }}
+          (Subclass {{ segmentOrigin.ClassCode }})
+        </div>
       </div>
     </div>
 
     <div class="flight-item__route">
       <div class="flight-item__route-name">
-        <div class="flight-item__route--airport">Jakarta (CGK)</div>
+        <div class="flight-item__route--airport">
+          {{ segmentOrigin.OriginCityName }}
+          ({{ segmentOrigin.Origin }})
+        </div>
 
         <div class="flight-item__route--arrow">
           <svg
@@ -41,15 +50,58 @@
           </svg>
         </div>
 
-        <div class="flight-item__route--airport">Surabaya (SUB)</div>
+        <div class="flight-item__route--airport">
+          {{ segmentDepart.DestinationCityName }}
+          ({{ segmentDepart.Destination }})
+        </div>
       </div>
 
       <div class="flight-item__route-time">
-        <span>05 Jul 2022</span>
-        <span>16:00 - 17:30</span>
-        <span>1j 00m</span>
-        <span>Langsung</span>
+        <span>{{ toDateMonth(segmentOrigin.DepartDate) }}</span>
+        <span>{{ segmentOrigin.DepartTime }} - {{ segmentDepart.ArriveTime }}</span>
+        <span>{{ segment.Segments.TravelTimeDepart }}</span>
+        <span>{{ transitInfo }}</span>
       </div>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import {
+  Segment as ISegment,
+  Departure as IDeparture,
+} from "./type-booking-detail-mobile";
+import { toDateMonth } from '../../../utils';
+import { computed, reactive } from "vue";
+
+const props = defineProps({
+  title: {
+    type: String,
+    default: '',
+  },
+
+  segment: {
+    type: Object,
+    required: true,
+  },
+
+  t: {
+    type: Object,
+    required: true,
+  },
+});
+
+const segment = reactive<ISegment | any>(props.segment);
+const t: any = reactive(props.t);
+
+const segmentOrigin = computed<IDeparture>(() => segment.Segments.Departure[0]);
+const segmentDepart = computed<IDeparture>(() => segment.Segments.Departure[segment.Segments.Departure.length - 1]);
+
+const transitInfo = computed<string>(() => {
+  const total: number = segment.Segments.TotalTransitDepart;
+
+  if (total === 0) return t("direct");
+  return t('transit', { total })
+});
+
+</script>
