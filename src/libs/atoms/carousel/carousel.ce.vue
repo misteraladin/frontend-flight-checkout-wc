@@ -1,7 +1,7 @@
 <template>
   <div class="ma-carousel">
-    <ElCarousel trigger="click" :arrow="arrow || 'always'" :interval="interval">
-      <ElCarouselItem v-for="(each, index) in data" :key="index" @click="handleClick">
+    <ElCarousel trigger="click" :arrow="arrow || 'hover'" :interval="interval">
+      <ElCarouselItem v-for="(each, index) in carousel" :key="index" @click="handleClick">
         <img :src="each.image_url" :alt="each.description" />
       </ElCarouselItem>
     </ElCarousel>
@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { ElCarousel, ElCarouselItem } from "element-plus";
-import { RootObject as IRootObject } from "./types";
+import { RootObject as IRootObject } from "./types-carousel";
 
 const props = defineProps({
   data: {
@@ -34,7 +34,7 @@ const props = defineProps({
   },
 });
 
-const data: Array<IRootObject> = props.data ? JSON.parse(props.data) : null;
+const carousel: Array<IRootObject> = props.data ? JSON.parse(props.data) : null;
 
 const emit = defineEmits(["click"]);
 const handleClick = (event: MouseEvent) => {

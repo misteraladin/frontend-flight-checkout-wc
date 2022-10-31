@@ -1,68 +1,95 @@
 <template>
   <div class="ma-card-section">
     <div class="ma-card-section__header">
-      <div class="ma-card-section__header-title">
-        <component
-          :is="componentType"
-          :data="data"
-          :t="t"
-        />
+      <div 
+        class="ma-card-section__header-title" 
+        :class="{ 'ma-card-section__header-flashsale': countdown }"
+      >
+        <!-- flashsale -->
+        <div v-if="props.countdown" class="flashsale flashsale__icon">
+          <img src="/icons/bolt.svg" />
+        </div>
+
+        <h1 v-if="props.title" :class="{ big: props.countdown, flashsale: props.countdown }">
+          {{ props.title }}
+        </h1>
+
+        <div v-if="timeleft" class="flashsale flashsale__countdown">
+          <div class="flashsale__countdown-icon">
+            <img src="/icons/time.svg" />
+          </div>
+
+          <div class="flashsale__countdown-text">
+            {{ t("ends_in") }}
+          </div>
+
+          <div class="flashsale__countdown-time">
+            <span>{{ timeleft }}</span>
+          </div>
+        </div>
       </div>
 
-      <div class="ma-card-section__header-link">
-        <ma-link :to="data.url">
+      <div 
+        v-if="props.url"
+        class="ma-card-section__header-link"
+      >
+        <ma-link :to="props.url" arrow>
           {{ t('see_all') }}
         </ma-link>
-
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clip-path="url(#clip0_6457_84485)">
-            <path
-              d="M8.92102 5.58782C8.59638 5.26318 8.07003 5.26318 7.74538 5.58782C7.42099 5.91221 7.4207 6.43807 7.74474 6.76282L10.9749 10L7.74474 13.2372C7.4207 13.5619 7.42099 14.0878 7.74538 14.4122C8.07003 14.7368 8.59638 14.7368 8.92102 14.4122L12.6261 10.7071C13.0166 10.3166 13.0166 9.68342 12.6261 9.29289L8.92102 5.58782Z"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_6457_84485">
-              <rect width="20" height="20" fill="white" />
-            </clipPath>
-          </defs>
-        </svg>
       </div>
     </div>
 
     <div class="ma-card-section__body" :style="styles">
-      <div class="ma-card-section__banner">
-        <img :src="data.image" :alt="data.name" />
+      <div 
+        v-if="props.image" 
+        class="ma-card-section__banner"
+        :class="{ 'd-none': isBannerHide }"
+      >
+        <img :src="props.image" :alt="props.title" />
       </div>
 
-      <div class="ma-card-section__product-wrapper">
-        <div class="ma-card-section__product">
-          <div class="ma-card-section__product-dummy"></div>
-          <slot></slot>
-        </div>
+      <div class="ma-card-section__product">
+        <slot></slot>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from "vue";
-import CardSectionHeaderFlashsale from "./card-section-header-flahsale.vue";
-import CardSectionHeaderDefault from "./card-section-header-default.vue";
+import { ref, reactive, computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
-import messages from "./lang-card-section";
 
 const { t } = useI18n({
-  messages,
+  messages: {
+    en: {
+      ends_in: 'Ends in',
+      see_all: 'See All',
+    },
+    id: {
+      ends_in: 'Berakhir dalam',
+      see_all: 'Lihat Semua',
+    },
+  }
 });
 
 const props = defineProps({
-  data: {
+  title: {
+    type: String,
+    required: true,
+  },
+  
+  // activate flashsale
+  countdown: {
+    type: String,
+    default: '',
+  },
+
+  image: {
+    type: String,
+    required: true,
+  },
+
+  url: {
     type: String,
     required: true,
   },
@@ -72,33 +99,72 @@ const props = defineProps({
     default: 'default',
   },
 
+  backgroundColor: {
+    type: String,
+    default: '',
+  },
+
   fullBackground: {
     type: Boolean,
     default: false,
   },
 
-  colorBackground: {
-    type: String,
-    default: 'linear-gradient(245.81deg, #2F4295 -0.35%, #1B2D76 90.63%)',
-  },
+  noimage: {
+    type: Boolean,
+    default: false,
+  }
 });
-
-const data = reactive(props.data ? JSON.parse(props.data) : null);
 
 const styles = computed<any>(() => {
   return {
-    background: props.colorBackground,
+    background: props.backgroundColor,
     width: props.fullBackground ? 'auto' : '23.75rem',
   };
 });
 
-const componentType = computed(() => {
-  const components: any = {
-    default: CardSectionHeaderDefault,
-    flashsale: CardSectionHeaderFlashsale,
-  };
 
-  return components[props.type];
+// show hide banner
+const emit = defineEmits(['onBannerToggle']);
+
+const isBannerHide = ref(false);
+
+emit('onBannerToggle', () => isBannerHide.value = !isBannerHide.value);
+
+// countdown
+const timeleft = ref();
+
+const addZeroString = ((time: number): string => time < 10 ? `0${time}`: `${time}`);
+
+const doCountdown = () => {
+  if (!props.countdown) return;
+
+  const x = setInterval(() => {
+    // Set the date we're counting down to
+    const countDownDate = new Date(props.countdown).getTime();
+
+    // Get today's date and time
+    const now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    const distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    const hours = Math.floor(distance / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    timeleft.value = `${addZeroString(hours)} : ${addZeroString(minutes)} : ${addZeroString(seconds)}`;
+
+    // If the count down is over, write some text
+    if (distance < 0) {
+      clearInterval(x);
+    }
+  }, 1000);
+};
+
+onMounted(() => {
+  doCountdown();
 });
 </script>
 

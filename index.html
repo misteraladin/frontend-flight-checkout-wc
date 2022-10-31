@@ -63,39 +63,41 @@
 
     <ma-header></ma-header>
 
-    <ma-link variant="badge" arrow expanded class="mb-2">Mister Aladin</ma-link>
+    <!-- <ma-link variant="badge" arrow expanded class="mb-2">Mister Aladin</ma-link> -->
 
-    <div style="width: 1000px">
+    <div style="width: 1110px; margin: 0 auto;">
       <ma-i18n-host languange="id">
         <ma-carousel
           :data="JSON.stringify(store.data.promos.data)"
-          :arrow="'never'"
           :interval="3000"
+          arrow="always"
         >
         </ma-carousel>
-        <ma-button-group
+
+        <!-- <ma-button-group
           :data="JSON.stringify(store.data.buttonGroupHomepage)"
           :active="''"
           transparent
         >
         </ma-button-group>
-
         <ma-button-group
           :data="JSON.stringify(store.data.buttonGroupHomepage)"
           :active="'ALADINTRAVEL'"
         >
         </ma-button-group>
-
         <ma-button-group
           :data="JSON.stringify(store.data.buttonGroupHomepage)"
           :active="'ALADINMALL'"
           :small="true"
         >
-        </ma-button-group>
+        </ma-button-group> -->
 
         <ma-card-section
-          :data="JSON.stringify(store.data.sectionHotelFlashsale)"
-          type="flashsale"
+          title="Rebut Promo Liburan merdeka 7.7 Sale"
+          countdown="2022-11-03 21:29:59"
+          image="https://static.misteraladin.com/images/template-landing-page/630000000000000000000000/6304aca757122e3c133e7629/homepage-hotel-flash-sale-1665558484-mobile.png"
+          url="https://staging.misteralad.in/promotions/homepage-hotel-flash-sale"
+          background-color="linear-gradient(245.81deg, #2F4295 -0.35%, #1B2D76 90.63%)"
           full-background
         >
           <ma-card-hotel :data="JSON.stringify(store.data.cardHotel[0])"></ma-card-hotel>
@@ -108,9 +110,11 @@
         </ma-card-section>
 
         <ma-card-section
-          :data="JSON.stringify(store.data.sectionMallFlashsale)"
-          type="flashsale"
-          color-background="linear-gradient(245.81deg, #E64325 -0.35%, #A3301A 90.63%)"
+          title="Rebut Belanja SUPER HEMAT!"
+          countdown="2022-11-03 21:29:59"
+          image="https://static.misteraladin.com/images/template-landing-page/630000000000000000000000/6304aca757122e3c133e7629/homepage-hotel-flash-sale-1665558484-mobile.png"
+          url="https://aladinmall.misteralad.in/flash-sale"
+          background-color="linear-gradient(245.81deg, #E64325 -0.35%, #A3301A 90.63%)"
           full-background
         >
           <ma-card-mall :data="JSON.stringify(store.data.cardMall[0])" flashsale></ma-card-mall>
@@ -123,8 +127,10 @@
         </ma-card-section>
 
         <ma-card-section
-          :data="JSON.stringify(store.data.sectionMallSelected)"
-          color-background="#43A648"
+          title="Liburan di hotel Terbaik"
+          image="https://static.misteraladin.com/images/template-landing-page/630000000000000000000000/6304aca757122e3c133e7629/homepage-hotel-flash-sale-1665558484-mobile.png"
+          url="https://staging.misteralad.in/promotions/homepage-hotel-flash-sale"
+          background-color="#43A648"
         >
           <ma-card-hotel :data="JSON.stringify(store.data.cardHotel[3])"></ma-card-hotel>
           <ma-card-hotel :data="JSON.stringify(store.data.cardHotel[4])"></ma-card-hotel>
@@ -133,8 +139,10 @@
         </ma-card-section>
 
         <ma-card-section
-          :data="JSON.stringify(store.data.sectionMallSelected)"
-          color-background="#FFD56A"
+          title="Belanja produk pilihan terbaik"
+          image="https://static.misteraladin.com/images/template-landing-page/630000000000000000000000/6304aca757122e3c133e7629/homepage-hotel-flash-sale-1665558484-mobile.png"
+          url="https://staging.misteralad.in/promotions/homepage-hotel-flash-sale"
+          background-color="#FFD56A"
         >
           <ma-card-mall :data="JSON.stringify(store.data.cardMall[0])"></ma-card-mall>
           <ma-card-mall :data="JSON.stringify(store.data.cardMall[1])"></ma-card-mall>
@@ -145,34 +153,17 @@
           <ma-card-mall :data="JSON.stringify(store.data.cardMall[6])"></ma-card-mall>
         </ma-card-section>
 
-        <ma-card-section
-          :data="JSON.stringify(store.data.tabCategoryTravelSection)"
-          noimage
+        <ma-card-section 
+          title="Saatnya bertualang"
+          url="https://staging.misteralad.in/aladintravel/aladinxplore"
         >
-          <ma-tab-category :data="JSON.stringify(store.data.tabCategoryTravel)" travel>
-            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[0])"></ma-card-explore>
-            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[1])"></ma-card-explore>
-            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[2])"></ma-card-explore>
-            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[3])"></ma-card-explore>
-            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[4])"></ma-card-explore>
-            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[5])"></ma-card-explore>
-            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[6])"></ma-card-explore>
-          </ma-tab-category>
-        </ma-card-section>
-
-        <ma-card-section
-          :data="JSON.stringify(store.data.tabCategoryMallSection)"
-          noimage
-        >
-          <ma-tab-category :data="JSON.stringify(store.data.tabCategoryMall)" mall>
-            <ma-card-mall :data="JSON.stringify(store.data.cardMall[0])"></ma-card-mall>
-            <ma-card-mall :data="JSON.stringify(store.data.cardMall[1])"></ma-card-mall>
-            <ma-card-mall :data="JSON.stringify(store.data.cardMall[2])"></ma-card-mall>
-            <ma-card-mall :data="JSON.stringify(store.data.cardMall[3])"></ma-card-mall>
-            <ma-card-mall :data="JSON.stringify(store.data.cardMall[4])"></ma-card-mall>
-            <ma-card-mall :data="JSON.stringify(store.data.cardMall[5])"></ma-card-mall>
-            <ma-card-mall :data="JSON.stringify(store.data.cardMall[6])"></ma-card-mall>
-          </ma-tab-category>
+          <ma-card-explore :data="JSON.stringify(store.data.cardExplore[0])"></ma-card-explore>
+          <ma-card-explore :data="JSON.stringify(store.data.cardExplore[1])"></ma-card-explore>
+          <ma-card-explore :data="JSON.stringify(store.data.cardExplore[2])"></ma-card-explore>
+          <ma-card-explore :data="JSON.stringify(store.data.cardExplore[3])"></ma-card-explore>
+          <ma-card-explore :data="JSON.stringify(store.data.cardExplore[4])"></ma-card-explore>
+          <ma-card-explore :data="JSON.stringify(store.data.cardExplore[5])"></ma-card-explore>
+          <ma-card-explore :data="JSON.stringify(store.data.cardExplore[6])"></ma-card-explore>
         </ma-card-section>
 
         <div class="row-promo">
