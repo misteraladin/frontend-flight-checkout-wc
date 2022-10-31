@@ -1,0 +1,63 @@
+@use '@/styles/utils/colors';
+
+// mall tab category main layout
+.ma-tab-category {
+  .ma-tab-category__wrapper {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 1rem;
+    align-items: center;
+    overflow-x: scroll;
+  }
+
+  .ma-tab-category__body {
+    padding: 8px 24px;
+    gap: 4px;
+    border-radius: 3.1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &-travel {
+      background-color: #F5F7FF;
+      color: #2F4095;
+      border: 1px solid #F5F7FF;
+    }
+
+    &-mall {
+      background-color: colors.$secondary-lightest;
+      color: colors.$secondary;
+      border: 1px solid colors.$secondary-lightest;
+    }
+
+    &-travel-active {
+      background-color: #2F4095;
+      color: #FFFFFF;
+      border: 1px solid #2F4095;
+    }
+
+    &-mall-active {
+      background-color: #E64325;
+      color: #FFFFFF;
+      border: 1px solid #E64325;
+    }
+  }
+
+  .ma-tab-category__title {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+  }
+
+  .ma-tab-content {
+    margin-top: 1rem;
+    
+    .ma-tab-pane {
+      display: none;
+    }
+
+    .active {
+      display: flex;
+      grid-gap: 1rem;
+    }
+  }
+}

@@ -35,13 +35,13 @@
       </div>
     </div>
 
-    <div class="ma-card-section__body" :style="styles">
-      <div class="ma-card-section__banner">
+    <div class="ma-card-section__body" :style="!noimage && styles">
+      <div v-if="!noimage" class="ma-card-section__banner">
         <img :src="data.image" :alt="data.name" />
       </div>
 
-      <div class="ma-card-section__product-wrapper">
-        <div class="ma-card-section__product">
+      <div class="ma-card-section__product-wrapper" :style="noimage && position">
+        <div :class="!noimage ? 'ma-card-section__product' : 'ma-card-section__category'">
           <div class="ma-card-section__product-dummy"></div>
           <slot></slot>
         </div>
@@ -81,6 +81,11 @@ const props = defineProps({
     type: String,
     default: 'linear-gradient(245.81deg, #2F4295 -0.35%, #1B2D76 90.63%)',
   },
+
+  noimage: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const data = reactive(props.data ? JSON.parse(props.data) : null);
@@ -89,6 +94,12 @@ const styles = computed<any>(() => {
   return {
     background: props.colorBackground,
     width: props.fullBackground ? 'auto' : '23.75rem',
+  };
+});
+
+const position = computed<any>(() => {
+  return {
+    position: 'relative',
   };
 });
 
