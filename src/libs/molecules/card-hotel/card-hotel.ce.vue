@@ -13,6 +13,14 @@
         />
       </div>
 
+      <div class="ma-card-hotel-favorite" @click="handleFavorite">♥️</div>
+
+      <div v-if="data?.review?.score > 0" class="ma-card-hotel-rating">
+        <span class="ma-card-hotel-rating-icon" :class="getRatingClasses(data?.review?.score)" />
+        <span class="ma-card-hotel-rating-rate">{{ data?.review?.score }}</span>
+        <span class="ma-card-hotel-rating-label">{{ data?.review?.description }}</span> 
+      </div>
+
       <div class="ma-card-hotel__thumbnail">
         <img
           :src="data.original_image_url_resized"
@@ -56,18 +64,6 @@
         <div class="ma-card-hotel__title">
           <div class="ma-card-hotel__text">
             {{ data.name }}
-
-            <span v-if="data.star_rating" class="ma-star-wrapper">
-              <span
-                v-for="i in Math.floor(data.star_rating)"
-                :key="i"
-                class="ma-star"
-              >
-                <svg width="16" height="16">
-                  <use xlink:href="#star"></use>
-                </svg>
-              </span>
-            </span>
           </div>
 
           <!-- star rating -->
@@ -86,31 +82,24 @@
           </svg>
         </div>
 
+        <div class="ma-card-hotel-star-location">
+          <span v-if="data.star_rating" class="ma-star-wrapper">
+          <span
+            v-for="i in Math.floor(data.star_rating)"
+            :key="i"
+            class="ma-star"
+          >
+            <svg width="16" height="16">
+              <use xlink:href="#star"></use>
+            </svg>
+          </span>
+        </span>
+
         <!-- location -->
         <div class="ma-card-hotel__location">
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M6.07786 9.90368C8.02595 7.487 9 5.77552 9 4.76923C9 3.23983 7.65685 2 6 2C4.34315 2 3 3.23983 3 4.76923C3 5.77552 3.97405 7.487 5.92214 9.90368L5.92214 9.90368C5.9568 9.94668 6.01976 9.95344 6.06276 9.91878C6.06832 9.9143 6.07338 9.90924 6.07786 9.90368Z"
-              stroke="#1C1C1C"
-              stroke-width="0.7"
-            />
-            <path
-              d="M5.96875 6C6.52103 6 6.96875 5.55228 6.96875 5C6.96875 4.44772 6.52103 4 5.96875 4C5.41646 4 4.96875 4.44772 4.96875 5C4.96875 5.55228 5.41646 6 5.96875 6Z"
-              stroke="#1C1C1C"
-              stroke-width="0.7"
-            />
-          </svg>
-
           {{ data.area.name }},
           {{ data.area.city.name }}
+        </div>
         </div>
       </div>
 
@@ -175,6 +164,8 @@ const { t } = useI18n({
 
 const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
 
+console.log('DATA', props.data);
+
 // dynamic badges
 const dynamicBadges = computed(() =>
   data.badges.filter(({ name }: IBadge) => name === "dynamic_badge")
@@ -203,7 +194,7 @@ const discount = computed<number>(() => {
 const digitGrouping = (num: number): String => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
 // allotment
-const allotmentRemain = computed<string>(() => (price.allotment < 4
+const allotmentRemain = computed<string>(() => (price.allotment < 6
   ? t('room_remain', { total: price.allotment })
   : ''))
 
@@ -225,6 +216,19 @@ const hotelUrl = computed<string>(() => {
 
   return `/hotel/${countryName}/${cityName}/${areaName}/${slug}/${id}${query}`;
 });
+
+const getRatingClasses = (rate: number): String => {
+  const rateInt = parseFloat(rate.toString());
+  if (rateInt < 2.99) return 'rate-1';
+  if (rateInt < 5.99) return 'rate-2';
+  if (rateInt < 7.99) return 'rate-3';
+  if (rateInt < 8.99) return 'rate-4';
+  return 'rate-5';
+};
+
+const handleFavorite = () => {
+  console.log('Favorite clicked!');
+};
 </script>
 
 <style lang="scss" scoped>

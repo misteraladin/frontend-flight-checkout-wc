@@ -51,7 +51,7 @@
 
 // hotel card main layout
 .ma-card-hotel {
-  max-width: 19rem;
+  max-width: 16rem;
   max-height: 27.5rem;
   min-height: 27.5rem;
   position: relative;
@@ -106,6 +106,98 @@
     height: 3rem;
     width: 3rem;
     object-fit: contain;
+  }
+}
+
+.ma-card-hotel-favorite {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ccc;
+
+  &:hover {
+    background-color: colors.$primary;
+    color: white;
+  }
+}
+
+.ma-card-hotel-rating {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 1rem;
+  background-color: white;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  font-size: 10px;
+  z-index: 2;
+
+  &:hover {
+    .ma-card-hotel-rating-label {
+      max-width: 10rem;
+      opacity: 1;
+    }
+  }
+
+  .ma-card-hotel-rating-icon {
+    display: inline-block;
+    margin: 0.25rem;
+    height: 1rem;
+    width: 1rem;
+    object-fit: contain;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &.rate-1 {
+      background-image: url('/rating/icon-1.png');
+    }
+
+    &.rate-2 {
+      background-image: url('/rating/icon-2.png');
+    }
+
+    &.rate-3 {
+      background-image: url('/rating/icon-3.png');
+    }
+
+    &.rate-4 {
+      background-image: url('/rating/icon-4.png');
+    }
+
+    &.rate-5 {
+      background-image: url('/rating/icon-5.png');
+    }
+  }
+
+  .ma-card-hotel-rating-rate {
+    margin-inline: 0.25rem;
+    font-weight: bold;
+    font-size: 14px;
+    color: colors.$primary;
+  }
+
+  .ma-card-hotel-rating-label {
+    display: inline-block;
+    max-width: 0;
+    margin-right: 0.5rem;
+    opacity: 0;
+    color: colors.$primary;
+    transition: all 0.3s ease;
   }
 }
 
@@ -173,8 +265,9 @@
 // hotel card title
 .ma-card-hotel__title {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
+  min-height: 2.875rem;
   margin: 6px 0;
   font-weight: 700;
   font-size: 16px;
@@ -189,16 +282,23 @@
 
 .ma-star {
   display: inline-block;
-  width: 1rem;
-  height: 1rem;
+  width: 0.875rem;
+  height: 0.875rem;
   margin-left: 2px;
   overflow: hidden;
 
   svg {
-    height: 1rem;
-    width: 1rem;
+    height: 0.875rem;
+    width: 0.875rem;
     object-fit: contain;
   }
+}
+
+.ma-card-hotel-star-location {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
 // hotel card location
@@ -207,7 +307,6 @@
   align-items: center;
   justify-content: flex-start;
   gap: 0.25rem;
-  margin: 0 0 0.25rem 0;
   font-size: 0.75rem;
   line-height: 1rem;
   font-size: 12px;
@@ -246,7 +345,8 @@
   font-size: 1rem;
   font-weight: bold;
   line-height: 1.5rem;
-  color: colors.$primary;
+  color: colors.$secondary;
+  text-align: right;
 }
 
 .ma-card-hotel__room-alert {
