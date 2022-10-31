@@ -8,9 +8,6 @@
     <div class="ma-card-promo__text-wrapper">
       <label>
         {{ data.title }}
-        {{ data.title }}
-        {{ data.title }}
-        {{ data.title }}
       </label>
     </div>
   </div>
