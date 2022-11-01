@@ -26,7 +26,28 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      }
+    ],
     "destinations": [
       {
         "id": 77,
@@ -87,7 +108,28 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      }
+    ],
     "destinations": [
       {
         "id": 210,
@@ -162,7 +204,28 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      }
+    ],
     "destinations": [
       {
         "id": 14,
@@ -230,7 +293,28 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      }
+    ],
     "destinations": [
       {
         "id": 83,
@@ -291,7 +375,28 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      }
+    ],
     "destinations": [
       {
         "id": 78,
@@ -373,7 +478,28 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      }
+    ],
     "destinations": [
       {
         "id": 192,
@@ -434,7 +560,28 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "name": "dynamic_badge",
+        "icon": null,
+        "image": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png",
+        "title": "",
+        "background_color": null,
+        "text_color": null,
+        "description": "Most Booked - Nginep Sini Aja",
+        "value": "//s.misteraladin.com/images/badge/0000001000/0000000205/dynamic-badge-most-booked-badge3.png"
+      },
+      {
+        "name": "dynamic_badge_hover_top",
+        "icon": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "image": null,
+        "title": "Paling Laris",
+        "background_color": "#E83232",
+        "text_color": "#FFFFFF",
+        "description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "value": "Discount up to IDR0"
+      }
+    ],
     "destinations": [
       {
         "id": 136,

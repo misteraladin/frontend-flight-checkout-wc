@@ -145,6 +145,36 @@
           <ma-card-mall :data="JSON.stringify(store.data.cardMall[6])"></ma-card-mall>
         </ma-card-section>
 
+        <ma-card-section
+          :data="JSON.stringify(store.data.tabCategoryTravelSection)"
+          noimage
+        >
+          <ma-tab-category :data="JSON.stringify(store.data.tabCategoryTravel)" travel>
+            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[0])"></ma-card-explore>
+            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[1])"></ma-card-explore>
+            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[2])"></ma-card-explore>
+            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[3])"></ma-card-explore>
+            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[4])"></ma-card-explore>
+            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[5])"></ma-card-explore>
+            <ma-card-explore :data="JSON.stringify(store.data.cardExplore[6])"></ma-card-explore>
+          </ma-tab-category>
+        </ma-card-section>
+
+        <ma-card-section
+          :data="JSON.stringify(store.data.tabCategoryMallSection)"
+          noimage
+        >
+          <ma-tab-category :data="JSON.stringify(store.data.tabCategoryMall)" mall>
+            <ma-card-mall :data="JSON.stringify(store.data.cardMall[0])"></ma-card-mall>
+            <ma-card-mall :data="JSON.stringify(store.data.cardMall[1])"></ma-card-mall>
+            <ma-card-mall :data="JSON.stringify(store.data.cardMall[2])"></ma-card-mall>
+            <ma-card-mall :data="JSON.stringify(store.data.cardMall[3])"></ma-card-mall>
+            <ma-card-mall :data="JSON.stringify(store.data.cardMall[4])"></ma-card-mall>
+            <ma-card-mall :data="JSON.stringify(store.data.cardMall[5])"></ma-card-mall>
+            <ma-card-mall :data="JSON.stringify(store.data.cardMall[6])"></ma-card-mall>
+          </ma-tab-category>
+        </ma-card-section>
+
         <div class="row-promo">
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[0])"></ma-card-promo>
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[1])"></ma-card-promo>
