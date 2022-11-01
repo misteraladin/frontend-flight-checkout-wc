@@ -1,5 +1,6 @@
 import cardHotel from "./card-hotel.json";
 import cardMall from "./card-mall.json";
+import cardExplore from "./card-explore.json";
 import tabCategoryTravel from "./tab-category-travel.json";
 import tabCategoryMall from "./tab-category-mall.json";
 import tabCategoryTravelSection from "./tab-category-travel-section.json";
@@ -12,6 +13,7 @@ import sectionMallSelected from "./section-mall-selected.json";
 export default {
   cardHotel,
   cardMall,
+  cardExplore,
   tabCategoryTravel,
   tabCategoryMall,
   tabCategoryTravelSection,
