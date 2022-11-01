@@ -164,8 +164,6 @@ const { t } = useI18n({
 
 const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
 
-console.log('DATA', props.data);
-
 // dynamic badges
 const dynamicBadges = computed(() =>
   data.badges.filter(({ name }: IBadge) => name === "dynamic_badge")
