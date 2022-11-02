@@ -1,121 +1,63 @@
 <template>
   <div class="booking">
     <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
+
     <div class="booking__main">
       <h3 class="booking__subtitle">{{ t('CONTACT_DETAILS') }}</h3>
       <LoginBanner login-url="https://misteraladin.com"></LoginBanner>
-      <Card>
-        <template v-slot:header>
-          <span>{{ t('CONTACT_DETAILS') }}</span>
-        </template>
-        <div class="booking__main">
-          <div class="booking__main-column-4">
-            <InputGroup :label="t('FORM.TITLE')">
-              <Dropdown
-                :options="
-                  JSON.stringify([
-                    { code: 'Tuan', label: 'Tuan' },
-                    { code: 'Nyonya', label: 'Nyonya' },
-                    { code: 'Nona', label: 'Nona' },
-                  ])
-                "
-                code="code"
-                label="label"
-              />
-            </InputGroup>
-            <InputGroup :label="t('FORM.FIRST')">
-              <Input
-                type="text"
-                class="hello-there hello-all"
-                name="first-name"
-                v-model="bookPerson.firstName"
-              ></Input>
-            </InputGroup>
-            <InputGroup :label="t('FORM.MIDDLE')">
-              <Input
-                type="text"
-                class="hello-there hello-all"
-                name="first-name"
-                v-model="bookPerson.midddleName"
-              ></Input>
-            </InputGroup>
-            <InputGroup :label="t('FORM.LAST')">
-              <Input
-                type="text"
-                class="hello-there hello-all"
-                name="first-name"
-                v-model="bookPerson.lastName"
-              ></Input>
-            </InputGroup>
-          </div>
-
-          <ul class="booking__information" v-html="t('FORM.INFORMATION')"></ul>
-
-          <InputGroup :label="t('FORM.TELP')">
-            <Input
-              type="text"
-              class="hello-there hello-all"
-              name="first-name"
-              placeholder="81234567890"
-            ></Input>
-            <template v-slot:prepend>
-              <!-- <Dropdown
-                :options="JSON.stringify(data.country.Data)"
-                code="CodeTelp"
-                label="CodeTelp"
-                as-icon="Image"
-              /> -->
-            </template>
-          </InputGroup>
-
-          <InputGroup :label="t('FORM.EMAIL')">
-            <Input
-              type="text"
-              class="hello-there hello-all"
-              name="first-name"
-              placeholder="email@domain.com"
-            ></Input>
-          </InputGroup>
-        </div>
-      </Card>
-
-      <Card>
-        <template v-slot:header>
-          <span>{{ t('PASSENGER_DETAILS') }}</span>
-          <div>
-            <Switcher>{{ t('SAME_AS_CONTACT') }}</Switcher>
-          </div>
-        </template>
-
-        <!-- adult mapping -->
-        <PassengerDetail
-          v-for="(_, i) in +parsedData.adult"
-          :key="i"
-          :i="i + 1"
-          type="adult"
+      <ElForm
+        ref="formRef"
+        label-position="top"
+        class="booking__main"
+        :hide-required-asterisk="true"
+      >
+        <ContactDetail
           :t="t"
+          :countries="parsedCountries"
+          :model="bookingDetail.contact"
         />
 
-        <!-- children mapping -->
+        <Card>
+          <template v-slot:header>
+            <span>{{ t('PASSENGER_DETAILS') }}</span>
+            <div>
+              <Switcher>{{ t('SAME_AS_CONTACT') }}</Switcher>
+            </div>
+          </template>
 
-        <PassengerDetail
-          v-for="(_, i) in +parsedData.child"
-          :key="i"
-          :i="i + +parsedData.adult + 1"
-          type="child"
-          :t="t"
-        />
+          <!-- adult mapping -->
+          <PassengerDetail
+            v-for="(_, i) in +parsedData.adult"
+            :key="i"
+            :i="i + 1"
+            type="adult"
+            :t="t"
+            :countries="parsedCountries"
+          />
 
-        <!-- infant mapping -->
+          <!-- children mapping -->
 
-        <PassengerDetail
-          v-for="(_, i) in +parsedData.infant"
-          :key="i"
-          :i="i + +parsedData.adult + +parsedData.child + 1"
-          type="infant"
-          :t="t"
-        />
-      </Card>
+          <PassengerDetail
+            v-for="(_, i) in +parsedData.child"
+            :key="i"
+            :i="i + +parsedData.adult + 1"
+            type="child"
+            :t="t"
+            :countries="parsedCountries"
+          />
+
+          <!-- infant mapping -->
+
+          <PassengerDetail
+            v-for="(_, i) in +parsedData.infant"
+            :key="i"
+            :i="i + +parsedData.adult + +parsedData.child + 1"
+            type="infant"
+            :t="t"
+            :countries="parsedCountries"
+          />
+        </Card>
+      </ElForm>
       <div class="booking__main-column-2-left">
         <p style="color: #dd2c00; font-size: 16px; font-weight: 500">
           Perhatian: nama penumpang harus sama dengan paspor (penerbangan
@@ -158,8 +100,13 @@
 </template>
 
 <script setup lang="ts">
+import type { CountryCode } from './types';
+
 import Button from '../../atoms/button/button.vue';
 import LoginBanner from '../../components/login-banner/login-banner.vue';
+
+import { ElForm, ElInput, ElOption } from 'element-plus';
+import type { FormInstance } from 'element-plus';
 
 import Input from '../../atoms/inputs/input.vue';
 import Dropdown from '../../atoms/inputs/dropdown.vue';
@@ -171,12 +118,13 @@ import PriceCard from '../../atoms/cards/price-card.vue';
 import Card from '../../atoms/cards/card.vue';
 
 import PassengerDetail from './passenger-detail.vue';
+import ContactDetail from './contact-detail.vue';
 
-import { computed, HTMLAttributes, reactive } from 'vue';
+import { computed, HTMLAttributes, onMounted, reactive, ref } from 'vue';
 import { toIDR } from '../../../utils';
 
 import useVuelidate from '@vuelidate/core';
-import { required } from '@vuelidate/validators';
+import { helpers, required, minLength, maxLength } from '@vuelidate/validators';
 
 import { useI18n } from 'vue-i18n';
 import messages from './lang';
@@ -184,6 +132,7 @@ import messages from './lang';
 interface Props extends HTMLAttributes {
   data: string;
   languange?: 'en' | 'id';
+  countries: string;
 }
 
 const props = defineProps<Props>();
@@ -198,6 +147,8 @@ const departureFLights = reactive(JSON.parse(parsedData.segment1));
 
 const returnFlights = reactive(JSON.parse(parsedData.segment2));
 
+const parsedCountries = reactive(JSON.parse(props.countries));
+
 const total = computed(() => {
   if (!returnFlights) return departureFLights.FareDetail.Total;
   return departureFLights.FareDetail.Total + returnFlights.FareDetail.Total;
@@ -205,27 +156,58 @@ const total = computed(() => {
 
 // console.log('departure', departureFLights);
 // console.log('return', returnFlights);
-console.log('data', departureFLights);
+console.log('data', parsedCountries);
 // console.log(props.languange);
 
-const bookPerson = reactive({
-  firstName: '',
-  midddleName: '',
-  lastName: '',
+//form Object
+const formRef = ref<FormInstance>();
+// const showValidation = ref(false);
+const bookingDetail = reactive<any>({
+  contact: {
+    title: 'Tuan',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    phoneCode: '62',
+    phoneNumber: '',
+    email: '',
+  },
+  passengers: [],
 });
 
-const rules = computed(() => ({
-  firstName: {
-    required,
-  },
-}));
+onMounted(() => {
+  for (
+    let i = 0;
+    i < +parsedData.adult + +parsedData.child + +parsedData.infant;
+    i++
+  ) {
+    bookingDetail.passengers.push({
+      title: 'Mr',
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      nationality: '',
+      dob: '',
+      idType: 'NIK',
+      idNo: '',
+      idExpiry: '',
+      idOrigin: '',
+    });
+  }
+});
 
-const v = useVuelidate(rules, bookPerson);
+const v = useVuelidate();
 
 const onConfirmBooking = async () => {
-  console.log(bookPerson);
+  // console.log(t('VALIDATION.NAME'));
+  // console.log(bookingDetail);
   console.log(await v.value.$validate());
-  console.log(v);
+  console.log(v.value);
+  console.log(bookingDetail);
+  // showValidation.value = true;
+  // await formRef.value!.validate((valid) => {
+  //   console.log(valid);
+  // });
 };
 </script>
 

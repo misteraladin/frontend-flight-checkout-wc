@@ -14,7 +14,17 @@ export default {
       EMAIL: 'Email',
       TELP: 'Phone Number',
     },
+    PASSENGER: {
+      MR: 'Mr.',
+      MRS: 'Mrs.',
+      MS: 'Ms.',
+    },
     SAME_AS_CONTACT: 'Same as contact',
+    VALIDATION: {
+      REQUIRED: 'Field is required.',
+      NAME: 'Must be between 1 - 50 characters.',
+      MIDDLENAME: 'Must not exceed 50 characters.',
+    },
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -32,5 +42,10 @@ export default {
       TELP: 'Nomor Telepon',
     },
     SAME_AS_CONTACT: 'Sama seperti pemesan',
+    VALIDATION: {
+      REQUIRED: 'Wajib diisi.',
+      NAME: 'Minimal 1 - 50 karakter.',
+      MIDDLENAME: 'Maksimal 50 karakter.',
+    },
   },
 };

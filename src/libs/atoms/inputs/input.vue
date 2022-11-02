@@ -1,8 +1,18 @@
 <template>
-  <input :class="['ma-input']" :value="props.modelValue" @input="onInput" />
+  <!-- <input :class="['ma-input']" :value="props.modelValue" @input="onInput" /> -->
+  <ElInput
+    :modelValue="props.modelValue"
+    @input="onInput"
+    :class="['ma-input']"
+    style="--el-color-primary: #323c9f"
+  >
+    <slot></slot>
+  </ElInput>
 </template>
 
 <script setup lang="ts">
+import { ElInput } from 'element-plus';
+
 interface Props {
   modelValue?: string;
 }
@@ -10,7 +20,7 @@ interface Props {
 const props = defineProps<Props>();
 const emit = defineEmits(['update:modelValue']);
 
-const onInput = (event: Event) => {
-  emit('update:modelValue', (event as any).target.value);
+const onInput = (value: string) => {
+  emit('update:modelValue', value);
 };
 </script>

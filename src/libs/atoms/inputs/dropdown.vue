@@ -1,131 +1,67 @@
 <template>
-  <div
-    :class="['ma-dropdown', { 'ma-dropdown--open': isOpen }]"
-    v-away="closeOptions"
-    :style="{ minWidth: `calc(${elementWidth} + 1ch + 48px)` }"
-    :data-tes="elementWidth"
+  <ElSelect
+    :model-value="modelValue"
+    @change="(t:string) => $emit('update:modelValue', t)"
+    placeholder="Select"
+    class="ma-dropdown"
+    :style="{
+      minWidth: `calc(${elementWidth} + 1ch + 48px)`,
+      '--el-color-primary': '#323c9f',
+      width: '100%',
+    }"
+    filterable
   >
-    <img
-      :src="selected ? selected[asIcon] : ''"
-      :alt="selected[label]"
-      v-if="asIcon && selected"
-      height="16"
-      width="20"
-    />
-    <input
-      type="text"
-      class="ma-dropdown__input"
-      :value="selectedText"
-      @click="isOpen = !isOpen"
-      @input="
-        (e) => {
-          inputSearch = (e.target! as any).value;
-        }
-      "
-    />
-    <Transition>
-      <ul
-        :class="[
-          'ma-dropdown__list-wrapper',
-          { 'ma-dropdown__list-wrapper--open': isOpen },
-        ]"
-        v-if="isOpen"
-      >
-        <li
-          class="ma-dropdown__list-item"
-          v-for="(opt, i) in optionProxy"
-          :key="i"
-          @click="selectOption(opt)"
-        >
-          <img
-            :src="opt[asIcon]"
-            :alt="opt[label]"
-            v-if="asIcon"
-            height="16"
-            width="20"
-          />
-          {{ opt[label] }}
-        </li>
-      </ul>
-    </Transition>
-  </div>
+    <template v-slot:prefix>
+      <slot name="prefix" />
+    </template>
+    <slot name="options" v-if="useOptionSlot" />
+    <ElOption
+      v-else
+      v-for="opt in parsedOptions"
+      :key="opt[value]"
+      :label="opt[label]"
+      :value="opt[value]"
+    ></ElOption>
+  </ElSelect>
 </template>
 
-<script setup lang="ts">
-import { computed, ref } from 'vue';
+<script lang="ts" setup>
+import { ElSelect, ElOption } from 'element-plus';
+import { computed, reactive } from 'vue';
 
-const { options, code, label, asIcon }: any = defineProps([
-  'options',
-  'code',
-  'label',
-  'asIcon',
-]);
-//parse options in case value is a string
-const parsedOptions = JSON.parse(options);
+interface Props {
+  options: any;
+  value: string;
+  label: string;
+  modelValue?: string;
+  useOptionSlot?: boolean;
+}
+const { options, modelValue, label, value, useOptionSlot } =
+  defineProps<Props>();
+const emit = defineEmits(['update:modelValue']);
+const parsedOptions = reactive(JSON.parse(options));
 
-//reactive value to bind dropdown list
-const isOpen = ref(false);
-
-//reactive value to bind selected value
-const selected = ref();
-
-const selectedText = computed({
+const computedValue = computed({
   get() {
-    if (!selected.value) return '';
-    return selected.value[code];
+    console.log(modelValue);
+    return modelValue;
   },
-  set(val: any) {
-    selected.value = val || null;
+  set(val) {
+    emit('update:modelValue', val);
   },
 });
-
-const selectOption = (opt: string) => {
-  selectedText.value = opt;
-  isOpen.value = false;
-};
-
-const inputSearch = ref('');
-
-//proxy for option so it can be filtered
-const optionProxy = computed(() => {
-  if (!inputSearch.value) return parsedOptions;
-  return parsedOptions.filter((opt: any) =>
-    opt[label].toLowerCase().includes(inputSearch.value.toLowerCase())
-  );
-});
-
-/**
- * create a custom directive to listen
- * if the user clicks outside of the component
- * while the dropdown is open, close the dropdown
- */
-const vAway = {
-  mounted(el: any, binding: any) {
-    el.clickOutsideEvent = (event: any) => {
-      if (!event.composedPath().includes(el)) {
-        binding.value();
-      }
-    };
-    document.body.addEventListener('click', el.clickOutsideEvent);
-  },
-  beforeUnmount(el: any) {
-    document.body.removeEventListener('click', el.clickOutsideEvent);
-  },
-};
-//binding function for v-away directive
-const closeOptions = () => {
-  isOpen.value = false;
-};
+// const computedValue = ref('');
 
 /**
  * compute width of dropdown
  * based on the length of the longest option
  */
 const elementWidth = computed(() => {
+  if (!parsedOptions.length) return '40px';
   const longest = parsedOptions.reduce((acc: string, curr: any) => {
     return curr[label].length > acc.length ? curr[label] : acc;
   }, '').length;
-  if (asIcon) return longest + 1.5 + 'ch';
+  // if (asIcon) return longest + 1.5 + 'ch';
   return longest + 'ch';
 });
 </script>

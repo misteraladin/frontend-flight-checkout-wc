@@ -1,23 +1,21 @@
 <template>
-  <div class="ma-input-group">
-    <!-- <div class="ma-input-group__prepend"> -->
-    <label :for="label" v-if="label">{{ label }}</label>
-    <div class="group">
-      <div class="group__prepend" v-if="$slots.prepend">
-        <slot name="prepend" />
-      </div>
-      <slot />
-      <slot name="append" />
-    </div>
-  </div>
+  <ElFormItem :label="label" class="ma-input-group" :prop="prop" :error="error">
+    <slot />
+  </ElFormItem>
 </template>
 
-<script setup lang="ts">
-import { HTMLAttributes } from 'vue';
+<script lang="ts" setup>
+import { ElFormItem } from 'element-plus';
+import { reactive } from 'vue';
 
-interface Props extends HTMLAttributes {
-  label?: string;
+interface Props {
+  label: string;
+  prop?: string;
+  rules?: string;
+  error?: string;
 }
+const { label, prop, rules, error } = defineProps<Props>();
 
-const { label } = defineProps<Props>();
+console.log('prop', prop);
+const parsedRules = reactive(JSON.parse(rules ? rules : '{}'));
 </script>

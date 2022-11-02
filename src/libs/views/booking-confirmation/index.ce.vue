@@ -121,7 +121,7 @@
               class="booking__coupon-input-form"
               v-model="coupon"
             ></ElInput>
-            <Button>GUNAKAN</Button>
+            <Button @click="onUseCoupon">GUNAKAN</Button>
           </div>
           <Coupon :t="t" v-else @add-coupon="onCoupon = true" />
           <Button type="button" variant="warning">{{ t('PAY_NOW') }}</Button>
@@ -192,6 +192,9 @@ const toDateTime = (string: string) =>
 
 const onCoupon = ref(false);
 const coupon = ref('');
+const onUseCoupon = () => {
+  console.log(coupon.value);
+};
 
 console.log(countries);
 </script>
