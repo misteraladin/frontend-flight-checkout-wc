@@ -1,0 +1,192 @@
+@use '@/styles/utils/colors';
+
+// mall card main layout
+.ma-card-mall {
+  max-width: 11.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.ma-card-mall__body {
+  max-height: 343px;
+  min-height: 343px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background-color: colors.$neutral-0;
+  border-radius: 0.75rem;
+  box-shadow: 0.25rem 0 0.875rem rgba(66, 66, 66, 0.1);
+
+  .ma-card-mall__body-bottom {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.ma-card-mall__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ma-card-mall__thumbnail {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 10.75rem;
+  width: 100%;
+  overflow: hidden;
+  line-height: 1;
+  border-radius: 0.5rem;
+  aspect-ratio: 8 / 7;
+}
+
+// label sold out
+.ma-card-mall__label-sold-out {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 16px;
+  gap: 10px;
+  position: absolute;
+
+  background: rgba(61, 65, 81, 0.5);
+  border-radius: 8px;
+
+  width: 5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  span {
+    font-size: 12px;
+    font-weight: 400;
+    color: colors.$neutral-0;
+  }
+}
+
+// Safari & iOS fallback
+@supports not (aspect-ratio: 8 / 7) {
+  .ma-card-mall__thumbnail {
+    &::before {
+      float: left;
+      padding-top: 100%;
+      content: '';
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
+}
+
+// mall card image
+.ma-card-mall__image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// mall card title
+.ma-card-mall__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 6px 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: colors.$neutral-900;
+}
+
+// mall card price
+.ma-card-mall__price-original {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  height: 1.25rem;
+}
+
+.ma-card-mall__price-normal {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: colors.$neutral-700;
+  text-decoration-line: line-through;
+  line-height: 1rem;
+}
+
+.ma-card-mall__discount-percent {
+  padding: 3px;
+  background: colors.$secondary-lightest;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: colors.$failed-500;
+  line-height: 1rem;
+}
+
+.ma-card-mall__price-special {
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  color: colors.$neutral-900;
+}
+
+.ma-card-mall__room-alert {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: colors.$failed-500;
+}
+
+// mall official store
+.ma-card-mall__official-store {
+  display: flex;
+  margin-top: 0.6rem;
+  
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: cover;
+  }
+
+  .ma-card-mall__official-store-name {
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding-top: 0.32rem;
+  }
+}
+
+// sale amount
+.ma-card-mall__footer {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0;
+  background-color: colors.$neutral-0;
+  border-radius: 0.75rem;
+  box-shadow: 0.25rem 0 0.875rem rgba(66, 66, 66, 0.1);
+  text-align: center;
+
+  .ma-card-mall__sale-amount-value {
+    color: colors.$neutral-900;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
