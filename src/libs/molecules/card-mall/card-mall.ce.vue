@@ -1,6 +1,6 @@
 <template>
-  <div class="ma-card-mall" :class="{ 'is-small': isSmall }" :style="styleCard">
-    <div class="ma-card-mall__header">
+  <div class="ma-card-mall" :class="{ 'is-small': isSmall }">
+    <div class="ma-card-mall__body">
       <div class="ma-card-mall__thumbnail">
         <img
           :src="data.image.url"
@@ -8,13 +8,11 @@
           class="ma-card-mall__image"
           loading="lazy"
         />
-        <div v-if="!data.only_x_left_in_stock" class="ma-card-mall__label-sold-out">
+        <div v-if="!data.available_stock" class="ma-card-mall__label-sold-out">
           <span>{{ t('sold_out') }}</span>
         </div>
       </div>
-    </div>
 
-    <div class="ma-card-mall__body">
       <div class="ma-card-mall__body-top">
 
         <!-- title and star -->
@@ -28,15 +26,15 @@
 
       <div class="ma-card-mall__body-bottom" :style="styleBodyBottom">
         <div class="ma-card-mall__price">
-          <div v-if="price.final_price" class="ma-card-mall__price-special">
-            Rp{{ digitGrouping(price.final_price.value) }}
+          <div v-if="totalPrice" class="ma-card-mall__price-special">
+            {{ totalPrice }}
           </div>
-          <div v-if="price.discount" class="ma-card-mall__price-original">
+          <div v-if="minPrice.discount" class="ma-card-mall__price-original">
             <div class="ma-card-mall__discount-percent">
-              {{ discount }}%
+              {{ percentOff }}%
             </div>
             <div class="ma-card-mall__price-normal">
-              Rp{{ digitGrouping(price.discount.amount_off) }}
+              Rp{{ digitGrouping(minPrice.discount.amount_off) }}
             </div>
           </div>
         </div>
@@ -44,32 +42,29 @@
 
       <!-- official store -->
       <div class="ma-card-mall__official-store">
-        <img src="/icons/official-store.svg" alt="logo-official-store" />
+        <img 
+          v-if="+store.is_premium"
+          src="/icons/official-store.svg" 
+          alt="logo-official-store"
+        />
         <div class="ma-card-mall__official-store-name">
-          Zeus
+          {{ store.store_name }}
         </div>
       </div>
+    </div>
 
-      <!-- sale amount -->
-      <div v-if="flashsale" class="ma-card-mall__sale-amount">
-        <div class="progress">
-          <div class="progress-bar"
-            :style="{ width: `${calcStock(data.available_stock, data.only_x_left_in_stock)}%` }"
-            role="progressbar"
-            :aria-valuenow="calcStock(data.available_stock, data.only_x_left_in_stock)"
-            aria-valuemin="0"
-            aria-valuemax="100" />
-        </div>
-
-        <div v-if="!data.only_x_left_in_stock" class="ma-card-mall__room-alert">
-          {{ t('out_of_stock') }}
-        </div>
-        <div v-else class="ma-card-mall__sale-amount-value">{{ fixedStock(data.only_x_left_in_stock) }} {{ t('left') }}</div>
+    <!-- sale amount -->
+    <div v-if="flashsale" class="ma-card-mall__footer">
+      <div v-if="!data.available_stock" class="ma-card-mall__room-alert">
+        {{ t('out_of_stock') }}
+      </div>
+      <div v-else class="ma-card-mall__sale-amount-value">
+        {{ fixedStock(data.available_stock) }} {{ t('left') }}
       </div>
     </div>
 
     <a
-      :href="mallUrl"
+      :href="data.url_key"
       :title="data.name"
       class="ma-card-mall__link"
     />
@@ -80,7 +75,8 @@
 import { reactive, computed } from "vue";
 import {
   RootObject as IRootObject,
-  IPrice as IPrice
+  IPrice as IPrice,
+  StoreInfo as IStoreInfo,
 } from "./type-card-mall";
 import { useI18n } from 'vue-i18n';
 import messages from './lang-card-mall';
@@ -108,54 +104,32 @@ const { t } = useI18n({
 
 const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
 
+const store: IStoreInfo = reactive(data.store_info);
+
 // price
 const styleBodyBottom = computed<any>(() => ({
   justifyContent: data.price_range ? 'space-between' : 'flex-end'
 }))
 
-const styleCard = computed<any>(() => ({
-  minHeight: props.flashsale && '22.5rem'
-}))
+const minPrice: IPrice = reactive(data.price_range.minimum_price);
 
-const price: IPrice = reactive(data.price_range.minimum_price);
+const percentOff = computed<number>(() => Math.round(minPrice.discount.percent_off));
 
-const discount = computed<number>(() => {
-  const { discount } = price;
-  if (discount) {
-    return Math.round(discount.percent_off);
-  }
-  return 0;
+const totalPrice = computed(() => {
+  const { minimum_price: minimumPrice, maximum_price: maximumPrice } = data.price_range;
+  const min = minimumPrice?.final_price?.value;
+  const max = maximumPrice?.final_price?.value;
+
+  return min < max 
+    ? `Rp${digitGrouping(min)} - Rp${digitGrouping(max)}`
+    : `Rp${digitGrouping(min)}`;
 });
 
 const digitGrouping = (num: number): String => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
-const calcStock = (availableStock: number, leftInStock: number) => {
-  const total = (leftInStock/availableStock) * 100;
-  return Math.round(total);
-}
-
 const fixedStock = (leftInStock: number) => {
   return Number.isInteger(leftInStock) ? leftInStock : leftInStock.toFixed(1);
 }
-
-// mall redirect url
-const getQueryParams = () => {
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-  return new URLSearchParams(params).toString();
-}
-
-const mallUrl = computed<string>(() => {
-  const { id, slug, area } = data;
-  if (!area) return '';
-
-  const countryName = area.city.state.country.slug;
-  const cityName = area.city.slug;
-  const areaName = area.slug;
-  const query = getQueryParams() ? `?${getQueryParams()}` : '';
-
-  return `/mall/${countryName}/${cityName}/${areaName}/${slug}/${id}${query}`;
-});
 </script>
 
 <style lang="scss" scoped>
