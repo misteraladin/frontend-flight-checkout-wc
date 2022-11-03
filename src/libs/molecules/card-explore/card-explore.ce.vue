@@ -1,0 +1,192 @@
+<template>
+  <div class="ma-card-explore" :class="{ 'is-small': isSmall }">
+    <div class="ma-card-explore__header">
+      <div v-if="dynamicBadges.length" class="ma-card-explore-badge">
+        <div
+          v-for="(badge, index) in dynamicBadges"
+          :key="`${badge.badge_type}-${index}`"
+        >
+          <img
+            :src="badge.badge_image"
+            :alt="badge.badge_description"
+            :title="badge.badge_title"
+            loading="lazy"
+            class="ma-card-explore-badge__img"
+          />
+          <div class="ma-card-explore-badge--placeholder" />
+        </div>
+      </div>
+
+      <div class="ma-card-explore__thumbnail">
+        <img
+          :src="data.image_url"
+          :alt="data.name"
+          class="ma-card-explore__image"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="ma-card-explore__body">
+      <div class="ma-card-explore__body-top">
+        <!-- top badge -->
+        <div v-if="topBadges.length" class="ma-card-explore__top-badge-container">
+          <div class="ma-popover"
+            v-for="(badge, index) in topBadges"
+            :key="`${badge.badge_type}-${index}`"
+          >
+            <div
+              class="ma-card-explore__top-badge"
+              :style="{
+                color: badge.badge_preset_color.text_color,
+                backgroundColor: badge.badge_preset_color.background_color
+              }"
+            >
+              <img
+                :src="badge.badge_image"
+                :alt="badge.badge_title"
+                class="ma-card-explore__top-badge-icon"
+              >
+              <div class="ma-card-explore__top-badge-text">{{ badge.badge_title }}</div>
+            </div>
+
+            <div class="ma-popover__content">
+              {{ badge.badge_description }}
+            </div>
+          </div>
+        </div>
+
+        <!-- title and star -->
+        <div class="ma-card-explore__title">
+          <div class="ma-card-explore__text">
+            {{ data.name }}
+          </div>
+        </div>
+
+        <!-- location -->
+        <div class="ma-card-explore__location">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M6.07786 9.90368C8.02595 7.487 9 5.77552 9 4.76923C9 3.23983 7.65685 2 6 2C4.34315 2 3 3.23983 3 4.76923C3 5.77552 3.97405 7.487 5.92214 9.90368L5.92214 9.90368C5.9568 9.94668 6.01976 9.95344 6.06276 9.91878C6.06832 9.9143 6.07338 9.90924 6.07786 9.90368Z"
+              stroke="#1C1C1C"
+              stroke-width="0.7"
+            />
+            <path
+              d="M5.96875 6C6.52103 6 6.96875 5.55228 6.96875 5C6.96875 4.44772 6.52103 4 5.96875 4C5.41646 4 4.96875 4.44772 4.96875 5C4.96875 5.55228 5.41646 6 5.96875 6Z"
+              stroke="#1C1C1C"
+              stroke-width="0.7"
+            />
+          </svg>
+
+          {{ location }}
+        </div>
+
+        <div class="ma-card-explore__category">
+          <span
+            v-for="category in data.categories.slice(0, 2)"
+            :key="category.id"
+          >
+            {{ category.name }}
+          </span>
+        </div>
+      </div>
+
+      <div class="ma-card-explore__body-bottom" :style="styleBodyBottom">
+        <div v-if="data.highest_price" class="ma-card-explore__room-alert"></div>
+
+        <div class="ma-card-explore__price">
+          <div v-if="data.highest_gimmick_price" class="ma-card-explore__price-original">
+            <div class="ma-card-explore__price-normal">
+              Rp{{ digitGrouping(data.highest_gimmick_price) }}
+            </div>
+            <div class="ma-card-explore__discount-percent">
+              {{ discount }}%
+            </div>
+          </div>
+          <div v-if="data.highest_price" class="ma-card-explore__price-special">
+            Rp{{ digitGrouping(data.highest_price) }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <a
+      :title="data.name"
+      class="ma-card-explore__link"
+      @click="handleRedirect"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { reactive, computed } from "vue";
+import {
+  RootObject as IRootObject,
+  Badge as IBadge,
+  Destination as IDestination,
+} from "./type-card-explore";
+
+const props = defineProps({
+  data: {
+    type: String,
+    required: true,
+  },
+
+  isSmall: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
+
+// dynamic badges
+const dynamicBadges = computed(() =>
+  data.badges.filter(({ badge_type }: IBadge) => badge_type === "default_badge")
+);
+
+// top badges
+const topBadges = computed(() =>
+  data.badges.filter(({ badge_type }: IBadge) => badge_type === "top_badge")
+);
+
+// price
+const styleBodyBottom = computed<any>(() => ({
+  justifyContent: data.highest_price ? 'space-between' : 'flex-end'
+}))
+
+// location
+const location = computed<string>(() => {
+  const destination: any[] = [];
+  data.destinations.map(({ name }: IDestination) => {
+    destination.push(name);
+  });
+  return destination && destination.join(', ') || '';
+});
+
+const discount = computed<number>(() => {
+  const { highest_gimmick_price, highest_price } = data;
+  if (highest_gimmick_price && highest_price) {
+    return Math.round(((highest_price - highest_gimmick_price) / highest_price) * 100);
+  }
+  return 0;
+});
+
+const digitGrouping = (num: number): String => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+const emit = defineEmits(['to']);
+const handleRedirect = () => (emit('to'));
+</script>
+
+<style lang="scss" scoped>
+@use "@/styles/molecules/card-explore";
+</style>

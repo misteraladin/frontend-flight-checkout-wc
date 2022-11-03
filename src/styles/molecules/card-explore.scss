@@ -1,0 +1,280 @@
+@use '@/styles/utils/colors';
+
+// popover
+.ma-popover {
+  position: relative;
+  cursor: help;
+  z-index: 2;
+
+  &:hover {
+    .ma-popover__content {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.ma-popover__content {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  display: inline-block;
+  min-width: 13rem;
+  max-width: 90%;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: colors.$neutral-0;
+  box-shadow: 0 0.125rem 0.75rem -0.125rem rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  transform: translateX(-50%);
+  color: colors.$neutral-900;
+  font-size: 12px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    width: 0;
+    height: 0;
+    z-index: 9;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-bottom: 0.5rem solid colors.$neutral-0;
+    transition: opacity 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+}
+
+// explore card main layout
+.ma-card-explore {
+  max-width: 19rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  background-color: colors.$neutral-0;
+  border-radius: 0.75rem;
+  box-shadow: 0.25rem 0 0.875rem rgba(66, 66, 66, 0.1);
+}
+
+.ma-card-explore__header {
+  position: relative;
+}
+
+.ma-card-explore__body {
+  min-height: 11.5rem;
+  max-height: 11.5rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+
+  .ma-card-explore__body-bottom {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 1rem;
+  }
+}
+
+.ma-card-explore__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+// explore card dynamic badge
+.ma-card-explore-badge {
+  padding: 0.5rem;
+  background: colors.$primary-lightest;
+  box-shadow: 0px 4px 10px rgb(66 66 66 / 20%);
+  border-radius: 8px 0px;
+  position: absolute;
+  top: 0;
+  left: -0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  z-index: 2;
+
+  &__img {
+    height: 1.5rem;
+    object-fit: contain;
+  }
+
+  .ma-card-explore-badge--placeholder {
+    position: absolute;
+    bottom: -11px;
+    left: 0px;
+    width: 11px;
+    height: 11px;
+    background-color: #A2B1F1;
+    border-bottom-left-radius: 100px;
+    box-sizing: border-box;
+  }
+}
+
+.ma-card-explore__thumbnail {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 16.25rem;
+  width: 100%;
+  overflow: hidden;
+  line-height: 1;
+  background-color: colors.$neutral-300;
+  border-radius: 0.5rem;
+  aspect-ratio: 8 / 7;
+}
+
+// Safari & iOS fallback
+@supports not (aspect-ratio: 8 / 7) {
+  .ma-card-explore__thumbnail {
+    &::before {
+      float: left;
+      padding-top: 100%;
+      content: '';
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
+}
+
+// explore card image
+.ma-card-explore__image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// explore card top badge
+.ma-card-explore__top-badge-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.ma-card-explore__top-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 6px;
+  padding: 6px;
+  border-radius: 4px;
+  font-size: 12px;
+
+  .ma-card-explore__top-badge-text {
+    margin-left: 3px;
+  }
+}
+
+// explore card title
+.ma-card-explore__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 6px 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: colors.$neutral-900;
+}
+
+// explore card star rating
+.ma-star-sprite {
+  position: absolute;
+}
+
+// explore card location
+.ma-card-explore__location {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  margin: 0 0 0.25rem 0;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-size: 12px;
+  font-weight: 400;
+  color: colors.$neutral-700;
+}
+
+.ma-card-explore__category {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: colors.$success-500;
+
+  span {
+    padding: 0 0.5rem;
+    border-radius: 0.5px;
+    border-right: 1px solid colors.$neutral-300;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+// explore card price
+.ma-card-explore__price-original {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  height: 1.25rem;
+}
+
+.ma-card-explore__price-normal {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: colors.$neutral-700;
+  text-decoration-line: line-through;
+  line-height: 1rem;
+}
+
+.ma-card-explore__discount-percent {
+  padding: 3px;
+  background: colors.$secondary-lightest;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: colors.$failed-500;
+  line-height: 1rem;
+}
+
+.ma-card-explore__price-special {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  color: colors.$red-500;
+}
+
+.ma-card-explore__room-alert {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: colors.$failed-500;
+}

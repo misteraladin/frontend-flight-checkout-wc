@@ -26,7 +26,64 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "badge_description": "",
+        "badge_image": "https://staging-i.misteraladin.com/activity/20220216150413-FEpBmgihpcmsCIBL.png",
+        "badge_media": "desktop,apps",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "",
+          "id": 0,
+          "name": "",
+          "text_color": ""
+        },
+        "badge_title": "",
+        "badge_type": "default_badge"
+      },
+      {
+        "badge_description": "",
+        "badge_image": "https://staging-i.misteraladin.com/activity/20210916152614-scOZyaCiiEFbSXXp.jpg",
+        "badge_media": "desktop,apps",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "",
+          "id": 0,
+          "name": "",
+          "text_color": ""
+        },
+        "badge_title": "",
+        "badge_type": "default_badge"
+      },
+      {
+        "badge_description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#E83232",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Paling Laris",
+        "badge_type": "top_badge"
+      },
+      {
+        "badge_description": "Biar liburan kamu makin mantap, nginep di hotel bintang 4 & 5 yuk! Mulai Rp200 ribuan",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000220/top-hover-go-archipelago-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#47AFD6",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Cashback",
+        "badge_type": "top_badge"
+      }
+    ],
     "destinations": [
       {
         "id": 77,
@@ -87,7 +144,22 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "badge_description": "",
+        "badge_image": "https://staging-i.misteraladin.com/activity/20210916152614-scOZyaCiiEFbSXXp.jpg",
+        "badge_media": "desktop,apps",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "",
+          "id": 0,
+          "name": "",
+          "text_color": ""
+        },
+        "badge_title": "",
+        "badge_type": "default_badge"
+      }
+    ],
     "destinations": [
       {
         "id": 210,
@@ -162,7 +234,50 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "badge_description": "",
+        "badge_image": "https://staging-i.misteraladin.com/activity/20210916152614-scOZyaCiiEFbSXXp.jpg",
+        "badge_media": "desktop,apps",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "",
+          "id": 0,
+          "name": "",
+          "text_color": ""
+        },
+        "badge_title": "",
+        "badge_type": "default_badge"
+      },
+      {
+        "badge_description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#E83232",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Paling Laris",
+        "badge_type": "top_badge"
+      },
+      {
+        "badge_description": "Biar liburan kamu makin mantap, nginep di hotel bintang 4 & 5 yuk! Mulai Rp200 ribuan",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000220/top-hover-go-archipelago-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#47AFD6",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Cashback",
+        "badge_type": "top_badge"
+      }
+    ],
     "destinations": [
       {
         "id": 14,
@@ -230,7 +345,36 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "badge_description": "",
+        "badge_image": "https://staging-i.misteraladin.com/activity/20220216150413-FEpBmgihpcmsCIBL.png",
+        "badge_media": "desktop,apps",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "",
+          "id": 0,
+          "name": "",
+          "text_color": ""
+        },
+        "badge_title": "",
+        "badge_type": "default_badge"
+      },
+      {
+        "badge_description": "Biar liburan kamu makin mantap, nginep di hotel bintang 4 & 5 yuk! Mulai Rp200 ribuan",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000220/top-hover-go-archipelago-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#47AFD6",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Cashback",
+        "badge_type": "top_badge"
+      }
+    ],
     "destinations": [
       {
         "id": 83,
@@ -291,7 +435,22 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "badge_description": "Biar liburan kamu makin mantap, nginep di hotel bintang 4 & 5 yuk! Mulai Rp200 ribuan",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000220/top-hover-go-archipelago-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#47AFD6",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Cashback",
+        "badge_type": "top_badge"
+      }
+    ],
     "destinations": [
       {
         "id": 78,
@@ -373,7 +532,36 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "badge_description": "",
+        "badge_image": "https://staging-i.misteraladin.com/activity/20220216150413-FEpBmgihpcmsCIBL.png",
+        "badge_media": "desktop,apps",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "",
+          "id": 0,
+          "name": "",
+          "text_color": ""
+        },
+        "badge_title": "",
+        "badge_type": "default_badge"
+      },
+      {
+        "badge_description": "Biar liburan kamu makin mantap, nginep di hotel bintang 4 & 5 yuk! Mulai Rp200 ribuan",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000220/top-hover-go-archipelago-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#47AFD6",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Cashback",
+        "badge_type": "top_badge"
+      }
+    ],
     "destinations": [
       {
         "id": 192,
@@ -434,7 +622,50 @@
         "products": null
       }
     ],
-    "badges": [],
+    "badges": [
+      {
+        "badge_description": "",
+        "badge_image": "https://staging-i.misteraladin.com/activity/20210916152614-scOZyaCiiEFbSXXp.jpg",
+        "badge_media": "desktop,apps",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "",
+          "id": 0,
+          "name": "",
+          "text_color": ""
+        },
+        "badge_title": "",
+        "badge_type": "default_badge"
+      },
+      {
+        "badge_description": "Mister punya list hotel terlaris dan ada harga spesialnya lho!",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000196/most-booked-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#E83232",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Paling Laris",
+        "badge_type": "top_badge"
+      },
+      {
+        "badge_description": "Biar liburan kamu makin mantap, nginep di hotel bintang 4 & 5 yuk! Mulai Rp200 ribuan",
+        "badge_image": "//s.misteraladin.com/images/badge/0000001000/0000000220/top-hover-go-archipelago-badge.png",
+        "badge_media": "apps,desktop",
+        "badge_position": "right",
+        "badge_preset_color": {
+          "background_color": "#47AFD6",
+          "id": 0,
+          "name": "",
+          "text_color": "#FFFFFF"
+        },
+        "badge_title": "Cashback",
+        "badge_type": "top_badge"
+      }
+    ],
     "destinations": [
       {
         "id": 136,
