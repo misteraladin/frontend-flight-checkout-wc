@@ -17,15 +17,20 @@ export interface Destination {
     image_url: string
 }
 
-export interface Badge {
-    name: string;
-    icon: string;
-    image: string;
-    title: string;
+export interface BadgePresetColor {
     background_color: string;
+    id: number;
+    name: string;
     text_color: string;
-    description: string;
-    value: string;
+}
+export interface Badge {
+    badge_description: string;
+    badge_image: string;
+    badge_media: string;
+    badge_position: string;
+    badge_preset_color: BadgePresetColor;
+    badge_title: string;
+    badge_type: string;
 }
 
 export interface RootObject {

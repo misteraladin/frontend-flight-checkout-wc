@@ -52,8 +52,6 @@
 // explore card main layout
 .ma-card-explore {
   max-width: 19rem;
-  max-height: 27.5rem;
-  min-height: 27.5rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -68,7 +66,8 @@
 }
 
 .ma-card-explore__body {
-  min-height: 9.875rem;
+  min-height: 11.5rem;
+  max-height: 11.5rem;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
@@ -93,9 +92,13 @@
 
 // explore card dynamic badge
 .ma-card-explore-badge {
+  padding: 0.5rem;
+  background: colors.$primary-lightest;
+  box-shadow: 0px 4px 10px rgb(66 66 66 / 20%);
+  border-radius: 8px 0px;
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
+  top: 0;
+  left: -0.7rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -103,9 +106,19 @@
   z-index: 2;
 
   &__img {
-    height: 3rem;
-    width: 3rem;
+    height: 1.5rem;
     object-fit: contain;
+  }
+
+  .ma-card-explore-badge--placeholder {
+    position: absolute;
+    bottom: -11px;
+    left: 0px;
+    width: 11px;
+    height: 11px;
+    background-color: #A2B1F1;
+    border-bottom-left-radius: 100px;
+    box-sizing: border-box;
   }
 }
 
@@ -203,6 +216,27 @@
   font-size: 12px;
   font-weight: 400;
   color: colors.$neutral-700;
+}
+
+.ma-card-explore__category {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: colors.$success-500;
+
+  span {
+    padding: 0 0.5rem;
+    border-radius: 0.5px;
+    border-right: 1px solid colors.$neutral-300;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
 }
 
 // explore card price

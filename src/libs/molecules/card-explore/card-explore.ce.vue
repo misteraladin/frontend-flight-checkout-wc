@@ -2,15 +2,19 @@
   <div class="ma-card-explore" :class="{ 'is-small': isSmall }">
     <div class="ma-card-explore__header">
       <div v-if="dynamicBadges.length" class="ma-card-explore-badge">
-        <img
+        <div
           v-for="(badge, index) in dynamicBadges"
-          :key="`${index}-${badge.name}`"
-          :src="badge.image"
-          :alt="badge.description"
-          :title="badge.description"
-          loading="lazy"
-          class="ma-card-explore-badge__img"
-        />
+          :key="`${badge.badge_type}-${index}`"
+        >
+          <img
+            :src="badge.badge_image"
+            :alt="badge.badge_description"
+            :title="badge.badge_title"
+            loading="lazy"
+            class="ma-card-explore-badge__img"
+          />
+          <div class="ma-card-explore-badge--placeholder" />
+        </div>
       </div>
 
       <div class="ma-card-explore__thumbnail">
@@ -29,25 +33,25 @@
         <div v-if="topBadges.length" class="ma-card-explore__top-badge-container">
           <div class="ma-popover"
             v-for="(badge, index) in topBadges"
-            :key="`${index}-${badge.name}`"
+            :key="`${badge.badge_type}-${index}`"
           >
             <div
               class="ma-card-explore__top-badge"
               :style="{
-                color: badge.text_color,
-                backgroundColor: badge.background_color
+                color: badge.badge_preset_color.text_color,
+                backgroundColor: badge.badge_preset_color.background_color
               }"
             >
               <img
-                :src="badge.icon"
-                :alt="badge.name"
+                :src="badge.badge_image"
+                :alt="badge.badge_title"
                 class="ma-card-explore__top-badge-icon"
               >
-              <div class="ma-card-explore__top-badge-text">{{ badge.title }}</div>
+              <div class="ma-card-explore__top-badge-text">{{ badge.badge_title }}</div>
             </div>
 
             <div class="ma-popover__content">
-              {{ badge.description }}
+              {{ badge.badge_description }}
             </div>
           </div>
         </div>
@@ -84,6 +88,15 @@
 
           {{ location }}
         </div>
+
+        <div class="ma-card-explore__category">
+          <span
+            v-for="category in data.categories.slice(0, 2)"
+            :key="category.id"
+          >
+            {{ category.name }}
+          </span>
+        </div>
       </div>
 
       <div class="ma-card-explore__body-bottom" :style="styleBodyBottom">
@@ -103,17 +116,14 @@
           </div>
         </div>
 
-        <!-- <div v-if="!data.cheapest_room" class="ma-card-explore__room-alert">
-          {{ t('room_empty') }}
-        </div> -->
       </div>
     </div>
 
-    <!-- <a
-      :href="exploreUrl"
+    <a
       :title="data.name"
       class="ma-card-explore__link"
-    /> -->
+      @click="handleRedirect"
+    />
   </div>
 </template>
 
@@ -124,8 +134,6 @@ import {
   Badge as IBadge,
   Destination as IDestination,
 } from "./type-card-explore";
-import { useI18n } from 'vue-i18n';
-import messages from './lang-card-explore';
 
 const props = defineProps({
   data: {
@@ -139,20 +147,16 @@ const props = defineProps({
   },
 });
 
-const { t } = useI18n({
-  messages,
-});
-
 const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
 
 // dynamic badges
 const dynamicBadges = computed(() =>
-  data.badges.filter(({ name }: IBadge) => name === "dynamic_badge")
+  data.badges.filter(({ badge_type }: IBadge) => badge_type === "default_badge")
 );
 
 // top badges
 const topBadges = computed(() =>
-  data.badges.filter(({ name }: IBadge) => name === "dynamic_badge_hover_top")
+  data.badges.filter(({ badge_type }: IBadge) => badge_type === "top_badge")
 );
 
 // price
@@ -179,24 +183,8 @@ const discount = computed<number>(() => {
 
 const digitGrouping = (num: number): String => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
-// hotel redirect url
-const getQueryParams = () => {
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-  return new URLSearchParams(params).toString();
-}
-
-// const exploreUrl = computed<string>(() => {
-//   const { id, slug, area } = data;
-//   if (!area) return '';
-
-//   const countryName = area.city.state.country.slug;
-//   const cityName = area.city.slug;
-//   const areaName = area.slug;
-//   const query = getQueryParams() ? `?${getQueryParams()}` : '';
-
-//   return `/explore/${countryName}/${cityName}/${areaName}/${slug}/${id}${query}`;
-// });
+const emit = defineEmits(['to']);
+const handleRedirect = () => (emit('to'));
 </script>
 
 <style lang="scss" scoped>
