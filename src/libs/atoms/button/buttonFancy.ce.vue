@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="btn-arrow">
+    <div class="btn-arrow" :class="{ 'is-small': small }">
       <img :src="ChevronRight" />
     </div>
   </a>
