@@ -1,0 +1,69 @@
+@use '@/styles/utils/functions';
+@use '@/styles/utils/colors';
+
+.btn-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: colors.$neutral-0;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  color: colors.$neutral-900;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  .btn-icon {
+    width: 3rem;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .btn-content {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .btn-content > div {
+    min-width: 12rem;
+  }
+
+  .btn-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: 100%;
+    min-width: 5rem;
+    min-height: 5.25rem;
+    background-color: #f9f9f9;
+
+    img {
+      width: 1.75rem;
+    }
+  }
+
+  &.btn-travel {
+    .btn-title {
+      color: colors.$primary;
+    }
+  }
+
+  &.btn-mall {
+    .btn-title {
+      color: colors.$secondary;
+    }
+  }
+
+  .btn-title {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+
+  .btn-subtitle {
+    display: block;
+    font-size: 12px;
+  }
+}
