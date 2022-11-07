@@ -54,8 +54,39 @@
 
     <div style="width: 1000px">
       <ma-i18n-host languange="id">
-        <ma-homepage-nav>
+        <ma-homepage-nav
+          title="Going on vacation or shopping?"
+          subtitle="Try all the fun at Mister Aladin"
+        >
+          <ma-button-fancy 
+            custom-class="btn-travel"
+            url="https://www.misteraladin.com/"
+          >
+            AladinTravel
+            <div slot="subtitle">Cheap Holidays</div>
+            <div slot="icon">
+              <img 
+                src="/homepage/icon-aladin-travel.svg"
+                alt="AladinTravel"
+                class="btn-icon"
+              >
+            </div>
+          </ma-button-fancy>
 
+          <ma-button-fancy 
+            custom-class="btn-mall"
+            url="https://aladinmall.misteraladin.com/"
+          >
+            AladinMall
+            <div slot="subtitle">Shop All You Want</div>
+            <div slot="icon">
+              <img 
+                src="/homepage/icon-aladin-mall.svg" 
+                alt="AladinTravel" 
+                class="btn-icon"
+              >
+            </div>
+          </ma-button-fancy>
         </ma-homepage-nav>
 
         <ma-card-section
