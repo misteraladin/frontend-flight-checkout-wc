@@ -5,5 +5,5 @@ import CardBrand from './card-brand.ce.vue';
 const cardBrand = defineCustomElement(CardBrand);
 
 export function register() {
-  customElements.define('ma-homepage-partners', cardBrand);
+  customElements.define('ma-card-brand', cardBrand);
 }
