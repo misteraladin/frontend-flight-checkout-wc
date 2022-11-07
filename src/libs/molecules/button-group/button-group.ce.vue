@@ -31,7 +31,7 @@ interface IOption {
 }
 
 const props = defineProps<Props>();
-const parsedData: IOption = JSON.parse(props.data);
+const parsedData: Array<IOption> = JSON.parse(props.data);
 
 const activeButton = ref(props.active);
 const classes = computed(() => {

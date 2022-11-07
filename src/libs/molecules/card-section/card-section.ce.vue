@@ -108,17 +108,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-
-  noimage: {
-    type: Boolean,
-    default: false,
-  }
 });
 
 const styles = computed<any>(() => {
   return {
     background: props.backgroundColor,
     width: props.fullBackground ? 'auto' : '23.75rem',
+    padding: props.image && '1.5rem',
+    height: props.image && '29rem',
   };
 });
 

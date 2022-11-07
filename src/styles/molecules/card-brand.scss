@@ -1,0 +1,40 @@
+@use "@/styles/utils/colors";
+
+.ma-card-brand {
+  min-width: 8rem;
+  width: 8rem;
+  border: 1px solid colors.$neutral-300;
+  border-radius: 1rem;
+  
+  a {
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .brand-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
+    height: 7rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    img {
+      height: auto;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .brand-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    padding: 0.5rem;
+    font-size: 12px;
+    line-height: 16px;
+    color: colors.$neutral-900;
+  }
+}

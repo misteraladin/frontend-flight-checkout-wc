@@ -1,0 +1,45 @@
+@use '@/styles/utils/functions';
+@use '@/styles/utils/colors';
+
+.ma-homepage-nav {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 0 auto 2rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background: colors.$primary-lightest;
+
+  h2 {
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  > div {
+    &:first-child {
+      width: 75%;
+    }
+
+    &:last-child {
+      width: 25%;
+      text-align: center;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .btn-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+}
