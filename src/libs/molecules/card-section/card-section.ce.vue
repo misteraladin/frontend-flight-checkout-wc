@@ -115,6 +115,7 @@ const styles = computed<any>(() => {
     background: props.backgroundColor,
     width: props.fullBackground ? 'auto' : '23.75rem',
     padding: props.image && '1.5rem',
+    height: props.image && '29rem',
   };
 });
 

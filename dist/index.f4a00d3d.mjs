@@ -62,7 +62,8 @@ const T = "/icons/bolt.svg", q = "/icons/time.svg", I = { class: "ma-card-sectio
     }), w = z(() => ({
       background: e.backgroundColor,
       width: e.fullBackground ? "auto" : "23.75rem",
-      padding: e.image && "1.5rem"
+      padding: e.image && "1.5rem",
+      height: e.image && "29rem"
     })), c = g(!1);
     p("onBannerToggle", () => c.value = !c.value);
     const l = g(), d = (n) => n < 10 ? `0${n}` : `${n}`, y = () => {
@@ -119,7 +120,7 @@ const T = "/icons/bolt.svg", q = "/icons/time.svg", I = { class: "ma-card-sectio
       ], 4)
     ]));
   }
-}), Q = `:root{--el-color-primary: $primary-1;color:#3d4151}.ma-card-section{width:100%}.ma-card-section__banner img{width:14.5rem;margin-right:1.5rem}.ma-card-section__banner.d-none{display:none}.ma-card-section__product{display:grid;grid-gap:1rem;grid-auto-flow:column;gap:1rem;z-index:10}.ma-card-section__header{display:flex;justify-content:space-between;align-items:center}.ma-card-section__header-link{display:flex;align-items:center}.ma-card-section__header-link a{font-weight:700;font-size:.875rem;text-transform:capitalize;color:#2f4095;text-decoration:none}.ma-card-section__header-link svg{width:1.5rem;height:1.5rem;fill:#2f4095}h1{font-weight:700;font-size:1rem;text-transform:capitalize;color:#3d4151}h1.big{font-size:24px}.ma-card-section__header-flashsale{display:flex;align-items:center}.ma-card-section__header-flashsale .flashsale{padding-right:1rem}.ma-card-section__header-flashsale .flashsale__countdown{display:flex;align-items:center}.ma-card-section__header-flashsale .flashsale__countdown-icon{font-size:1rem;color:#3d4151;margin-right:.5rem}.ma-card-section__header-flashsale .flashsale__countdown-text{font-weight:400;margin-right:.5rem}.ma-card-section__header-flashsale .flashsale__countdown-time{padding:.25rem .5rem;background-color:#fdd835;border-radius:50px;font-weight:700;text-align:center}.ma-card-section__body{height:29rem;display:flex;border-radius:24px;z-index:1;align-items:center}
+}), Q = `:root{--el-color-primary: $primary-1;color:#3d4151}.ma-card-section{width:100%}.ma-card-section__banner img{width:14.5rem;margin-right:1.5rem}.ma-card-section__banner.d-none{display:none}.ma-card-section__product{display:grid;grid-gap:1rem;grid-auto-flow:column;gap:1rem;z-index:10}.ma-card-section__header{display:flex;justify-content:space-between;align-items:center}.ma-card-section__header-link{display:flex;align-items:center}.ma-card-section__header-link a{font-weight:700;font-size:.875rem;text-transform:capitalize;color:#2f4095;text-decoration:none}.ma-card-section__header-link svg{width:1.5rem;height:1.5rem;fill:#2f4095}h1{font-weight:700;font-size:1rem;text-transform:capitalize;color:#3d4151}h1.big{font-size:24px}.ma-card-section__header-flashsale{display:flex;align-items:center}.ma-card-section__header-flashsale .flashsale{padding-right:1rem}.ma-card-section__header-flashsale .flashsale__countdown{display:flex;align-items:center}.ma-card-section__header-flashsale .flashsale__countdown-icon{font-size:1rem;color:#3d4151;margin-right:.5rem}.ma-card-section__header-flashsale .flashsale__countdown-text{font-weight:400;margin-right:.5rem}.ma-card-section__header-flashsale .flashsale__countdown-time{padding:.25rem .5rem;background-color:#fdd835;border-radius:50px;font-weight:700;text-align:center}.ma-card-section__body{display:flex;border-radius:24px;z-index:1;align-items:center}
 `, R = /* @__PURE__ */ M(P, [["styles", [Q]]]), U = D(R);
 function ee() {
   customElements.define("ma-card-section", U);

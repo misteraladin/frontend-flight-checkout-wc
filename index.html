@@ -201,6 +201,17 @@
           <ma-card-explore :data="JSON.stringify(store.data.cardExplore[6])"></ma-card-explore>
         </ma-card-section>
 
+        <ma-card-section
+          title="Terpopuler di AladinTravel"
+        >
+          <ma-card-brand :data="JSON.stringify(store.data.brands.data[0].contents[0].brands[0])"></ma-card-brand>
+          <ma-card-brand :data="JSON.stringify(store.data.brands.data[0].contents[0].brands[1])"></ma-card-brand>
+          <ma-card-brand :data="JSON.stringify(store.data.brands.data[0].contents[0].brands[2])"></ma-card-brand>
+          <ma-card-brand :data="JSON.stringify(store.data.brands.data[0].contents[0].brands[3])"></ma-card-brand>
+          <ma-card-brand :data="JSON.stringify(store.data.brands.data[0].contents[0].brands[4])"></ma-card-brand>
+          <ma-card-brand :data="JSON.stringify(store.data.brands.data[0].contents[0].brands[5])"></ma-card-brand>
+        </ma-card-section>
+        
         <div class="row-promo">
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[0])"></ma-card-promo>
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[1])"></ma-card-promo>

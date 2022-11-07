@@ -5,8 +5,11 @@
   width: 8rem;
   border: 1px solid colors.$neutral-300;
   border-radius: 1rem;
-  text-decoration: none;
-  text-align: center;
+  
+  a {
+    text-decoration: none;
+    text-align: center;
+  }
 
   .brand-image-wrapper {
     display: flex;

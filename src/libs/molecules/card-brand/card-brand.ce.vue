@@ -25,15 +25,17 @@ const brand: IBrand = reactive(props.data ? JSON.parse(props.data) : null);
 </script>
 
 <template>
-  <a :href="brand.url" class="brand-item">
-    <div class="brand-image-wrapper">
-      <img :src="brand.logo" :alt="brand.name" />
-    </div>
-
-    <div class="brand-name">
-      {{ brand.name }}
-    </div>
-  </a>
+  <div class="ma-card-brand">
+    <a :href="brand.url">
+      <div class="brand-image-wrapper">
+        <img :src="brand.logo" :alt="brand.name" />
+      </div>
+  
+      <div class="brand-name">
+        {{ brand.name }}
+      </div>
+    </a>
+  </div>
 </template>
 
 <style lang="scss">
