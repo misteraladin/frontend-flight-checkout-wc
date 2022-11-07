@@ -166,6 +166,12 @@
           <ma-card-explore :data="JSON.stringify(store.data.cardExplore[6])"></ma-card-explore>
         </ma-card-section>
 
+        <div>
+          <ma-dropdown
+          title="Product"
+          :data="JSON.stringify(store.data.menu)"></ma-dropdown>
+        </div>
+
         <div class="row-promo">
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[0])"></ma-card-promo>
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[1])"></ma-card-promo>
