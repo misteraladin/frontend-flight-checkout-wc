@@ -1,8 +1,8 @@
 <template>
   <div class="ma-carousel">
-    <ElCarousel trigger="click" :arrow="arrow || 'hover'" :interval="interval">
-      <ElCarouselItem v-for="(each, index) in carousel" :key="index" @click="handleClick">
-        <img :src="each.image_url" :alt="each.description" />
+    <ElCarousel trigger="click" :arrow="carouselArrow" :interval="props.interval">
+      <ElCarouselItem v-for="(item, index) in items" :key="index" @click="handleClick">
+        <img :src="item.image_url" :alt="item.description" />
       </ElCarouselItem>
     </ElCarousel>
   </div>
@@ -34,7 +34,9 @@ const props = defineProps({
   },
 });
 
-const carousel: Array<IRootObject> = props.data ? JSON.parse(props.data) : null;
+const items: Array<IRootObject> = props.data ? JSON.parse(props.data) : null;
+
+const carouselArrow: any = props.arrow;
 
 const emit = defineEmits(["click"]);
 const handleClick = (event: MouseEvent) => {
