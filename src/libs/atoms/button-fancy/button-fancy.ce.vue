@@ -7,7 +7,7 @@
     <div class="btn-content">
       <slot name="icon" />
 
-      <div>
+      <div div class="btn-text">
         <span class="btn-title"><slot /></span>
         <div class="btn-subtitle">
           <slot name="subtitle" />
