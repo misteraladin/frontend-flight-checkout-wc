@@ -1,6 +1,7 @@
 <template>
   <div class="ma-card-section">
     <div class="ma-card-section__header">
+<<<<<<< Updated upstream
       <div 
         class="ma-card-section__header-title" 
         :class="{ 'ma-card-section__header-flashsale': countdown }"
@@ -35,6 +36,15 @@
       >
         <ma-link :to="props.url" arrow>
           {{ t('see_all') }}
+=======
+      <div class="ma-card-section__header-title">
+        <component :is="componentType" :data="data" :t="t" />
+      </div>
+
+      <div class="ma-card-section__header-link">
+        <ma-link :to="data.url">
+          {{ t("see_all") }}
+>>>>>>> Stashed changes
         </ma-link>
       </div>
     </div>
@@ -96,7 +106,7 @@ const props = defineProps({
 
   type: {
     type: String,
-    default: 'default',
+    default: "default",
   },
 
   backgroundColor: {
@@ -108,14 +118,27 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+<<<<<<< Updated upstream
+=======
+
+  colorBackground: {
+    type: String,
+    default: "linear-gradient(245.81deg, #2F4295 -0.35%, #1B2D76 90.63%)",
+  },
+>>>>>>> Stashed changes
 });
 
 const styles = computed<any>(() => {
   return {
+<<<<<<< Updated upstream
     background: props.backgroundColor,
     width: props.fullBackground ? 'auto' : '23.75rem',
     padding: props.image && '1.5rem',
     height: props.image && '29rem',
+=======
+    background: props.colorBackground,
+    width: props.fullBackground ? "auto" : "23.75rem",
+>>>>>>> Stashed changes
   };
 });
 
