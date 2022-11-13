@@ -1,0 +1,232 @@
+@use '@/styles/utils/colors';
+
+
+.footer-top {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    padding-right: 10%;
+    padding-left: 8%;
+    gap: 2%;
+
+    //footer-contact
+    &__footer-contact {
+       
+        a {
+            text-decoration: none;
+            color: colors.$normal-2;
+            line-height: 24px;
+            font-weight: 500;
+        }
+
+        &__footer-personal-asistant {
+             
+            p {
+                color: colors.$normal-4;
+            }
+
+            &__content {             
+                display: grid;
+                grid-template-columns: 20% 80%;
+            }
+        }
+
+        &__footer-whatsapp {
+        display: grid;
+        grid-template-columns: (1, 1fr);
+
+        p {
+                color: colors.$normal-4;
+        }
+
+            &__whatsapp {
+                &__content {
+                    display: grid;
+                    grid-template-columns: 20% 80%;
+                }
+            }
+        }
+
+        &__footer-email {
+        display: grid;
+        grid-template-columns: (1, 1fr);
+
+        p {
+                color: colors.$normal-4;
+        }
+
+            &__email {
+                &__content {
+                    display: grid;
+                    grid-template-columns: 20% 80%;
+                }
+            }
+        }
+    }
+
+    //footer-about
+    &__footer-about{
+
+        a {
+            text-decoration: none;
+            color: colors.$normal-2;
+            line-height: 24px;
+            font-weight: 500;
+        }
+
+        &__press{
+            margin-top: 10px;
+        }
+        &__beourpartner{
+            margin-top: 10px;
+        }
+    }
+
+    //footer-products
+    &__footer-products{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 8px;
+        
+        a{
+            text-decoration: none;
+            color: colors.$normal-2;
+            font-weight: 500;
+        }
+    }
+
+    &__footer-others{
+
+        a {
+            text-decoration: none;
+            color: colors.$normal-2;
+            line-height: 24px;
+            font-weight: 500;
+        }
+
+        &__faq{
+            margin-top: 16px;
+        }
+
+        &__privacy-policy{
+            margin-top: 8px;
+        }
+
+        &__terms-condition{
+            margin-top: 8px;
+        }
+    }
+
+    //footer-social
+    &__footer-social{
+
+        a {
+            text-decoration: none;
+            color: colors.$normal-2;
+            font-weight: 500;
+        }
+        
+        &__facebook{
+            display: grid;
+            grid-template-columns: 40% 60%;
+            line-height: 24px;
+            
+            img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        &__instagram{
+            display: grid;
+            grid-template-columns: 40% 60%;
+            margin-top: 16px;
+
+            img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+         &__twitter{
+            display: grid;
+            grid-template-columns: 40% 60%;
+            margin-top: 16px;
+
+            img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+
+}
+
+.footer-bottom {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    padding-right: 10%;
+    padding-left: 9%;
+    gap: 14px;
+
+
+    &__footer-consumer{
+        
+        p {
+                font-weight: 600;
+                color: colors.$normal-2;
+        }
+
+        &__section {
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            gap: 8px;
+            font-size: 14px;
+            line-height: 24px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            margin-top: 10px;
+        }  
+    }
+
+    &__footer-payment{
+         p {
+                font-weight: 600;
+                color: colors.$normal-2;
+        }
+    }
+
+    &__footer-apps{
+
+       p {
+                font-weight: 600;
+                color: colors.$normal-2;
+        }
+
+        &__section {
+            display: flex;
+            gap: 8px;
+        }
+
+    }
+
+}
+
+
+.footer-copyright{
+    text-align: center;
+    margin-top: 32px;
+
+    .center{
+        font-weight: 600;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .footer-top {
+        gap: 10%;
+    }
+    .footer-bottom {
+        gap: 15%;
+    }
+}
