@@ -3,7 +3,11 @@
     <div class="flight-item__title">
       <h2>{{ title }}</h2>
 
-      <a class="btn-link" @click="$emit('showDetail')">
+      <a
+        v-if="hasDetailButton"
+        class="btn-link"
+        @click="$emit('showDetail')"
+      >
         {{ t('see_detail') }}
       </a>
     </div>
@@ -83,6 +87,11 @@ const props = defineProps({
   segment: {
     type: Object,
     required: true,
+  },
+
+  hasDetailButton: {
+    type: Boolean,
+    default: false,
   },
 
   t: {

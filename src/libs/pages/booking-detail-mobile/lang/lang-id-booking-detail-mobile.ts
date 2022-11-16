@@ -15,6 +15,7 @@ export default {
   let_continue: "Lanjutkan",
   continue: "Lanjut",
   check_again: "Cek Lagi",
+  close: "Tutup",
   order_process_title: "Eits, jangan kemana-mana!",
   order_process_text: "Pemesanan kamu sedang diproses. Janji, deh, gak akan lama. Cuma beberapa menit aja, kok.",
   order_confirmation_text: "Pastikan data kamu sudah benar sebelum melanjutkan",

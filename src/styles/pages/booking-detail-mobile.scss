@@ -103,6 +103,22 @@
   }
 }
 
+#modal-window-mobile {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: colors.$normal-white;
+  z-index: 1200;
+
+  .modal-window-mobile__body {
+    padding: 1rem;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+  }
+}
+
 #modal-base-mobile {
   position: fixed;
   left: 0px;

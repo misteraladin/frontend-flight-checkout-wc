@@ -8,6 +8,7 @@
       :title="t('departure')"
       :segment="departureSegment"
       :t="t"
+      has-detail-button
     />
 
     <FlightItem
@@ -37,6 +38,16 @@
     <Footer>
       {{ t("next") }}
     </Footer>
+
+    <!-- <ModalWindow>
+      <template v-slot:header>
+        {{ t("booking_details") }}
+      </template>
+
+      <template v-slot:footer>
+        {{ t("close") }}
+      </template>
+    </ModalWindow> -->
 
     <!-- <ModalBase>
       <template v-slot:image>
@@ -83,11 +94,12 @@
 </template>
 
 <script setup lang="ts">
-import Header from "./mobile-header.vue";
+import Header from "../common-mobile/mobile-header.vue";
 import FlightItem from "./booking-detail-flight-item-mobile.vue";
 import Passenger from "./booking-detail-passenger-mobile.vue"
-import BannerLogin from "./mobile-banner-login.vue";
-import Footer from "./mobile-footer.vue";
+import BannerLogin from "../common-mobile/mobile-banner-login.vue";
+import Footer from "../common-mobile/mobile-footer.vue";
+import ModalWindow from "../common-mobile/ModalWindow.vue";
 import ModalBase from "../common-mobile/ModalBase.vue";
 
 import {

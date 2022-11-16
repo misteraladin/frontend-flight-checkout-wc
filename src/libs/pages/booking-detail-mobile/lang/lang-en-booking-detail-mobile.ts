@@ -15,6 +15,7 @@ export default {
   let_continue: "Continue",
   continue: "Continue",
   check_again: "Check Again",
+  close: "Close",
   order_process_title: "Whoos, don't go anywhere!",
   order_process_text: "Your order is being processed. I promise, it won't be long. Just a few minutes, really.",
   order_confirmation_text: "Make sure your data is correct before continuing",
