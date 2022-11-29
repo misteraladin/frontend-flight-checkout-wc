@@ -121,7 +121,7 @@
               class="booking__coupon-input-form"
               v-model="coupon"
             ></ElInput>
-            <Button @click="onUseCoupon">GUNAKAN</Button>
+            <Button @click="onUseCoupon">{{ t('APPLY_COUPON') }}</Button>
           </div>
           <Coupon :t="t" v-else @add-coupon="onCoupon = true" />
           <Button type="button" variant="warning">{{ t('PAY_NOW') }}</Button>
@@ -136,6 +136,7 @@
 import { computed, reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import messages from './lang';
+import axios from 'axios';
 
 import { toIDR, toDate } from '../../../utils/index';
 
@@ -192,11 +193,15 @@ const toDateTime = (string: string) =>
 
 const onCoupon = ref(false);
 const coupon = ref('');
-const onUseCoupon = () => {
+const onUseCoupon = async () => {
   console.log(coupon.value);
+  const res = await axios.post('/payment/get_promo', {
+    code: coupon.value,
+  });
+  console.log(res.data);
 };
 
-console.log(countries);
+console.log(props);
 </script>
 
 <style lang="scss">

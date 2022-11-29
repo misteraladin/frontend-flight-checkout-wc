@@ -1,5 +1,10 @@
 <template>
-  <ElFormItem :label="label" class="ma-input-group" :prop="prop" :error="error">
+  <ElFormItem
+    :label="label"
+    class="ma-input-group"
+    :prop="prop"
+    :error="error || ''"
+  >
     <slot />
   </ElFormItem>
 </template>
@@ -12,10 +17,9 @@ interface Props {
   label: string;
   prop?: string;
   rules?: string;
-  error?: string;
+  error?: string | boolean;
 }
 const { label, prop, rules, error } = defineProps<Props>();
 
-console.log('prop', prop);
 const parsedRules = reactive(JSON.parse(rules ? rules : '{}'));
 </script>

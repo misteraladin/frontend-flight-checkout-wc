@@ -12,12 +12,19 @@
 @use 'utils/functions';
 @use 'utils/colors';
 
+@import 'utils/media.scss';
+
 .booking {
   display: grid;
   grid-template-columns: 8fr 4fr;
   max-width: functions.toRem(1200);
   margin: functions.toRem(48) auto;
   gap: functions.toRem(24);
+
+  @include media('<medium') {
+    display: flex;
+    flex-direction: column;
+  }
 
   &__passenger-header {
     font-weight: 600;
@@ -45,6 +52,10 @@
     grid-column-start: 1;
     grid-column-end: 3;
     color: colors.$normal-2;
+
+    @include media('<medium') {
+      display: none;
+    }
   }
 
   &__subtitle {
@@ -52,6 +63,10 @@
     font-size: functions.toRem(20);
     line-height: functions.toRem(32);
     color: colors.$normal-2;
+
+    @include media('<medium') {
+      display: none;
+    }
   }
 
   &__main {
@@ -64,6 +79,10 @@
     display: flex;
     flex-direction: column;
     gap: functions.toRem(24);
+
+    @include media('<medium') {
+      order: -1;
+    }
   }
 
   &__main-column-4 {

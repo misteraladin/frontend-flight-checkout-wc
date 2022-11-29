@@ -20,7 +20,6 @@
         >
           <Input
             type="text"
-            class="hello-there hello-all"
             name="first-name"
             v-model="v.firstName.$model"
           ></Input>
@@ -31,8 +30,7 @@
         >
           <Input
             type="text"
-            class="hello-there hello-all"
-            name="first-name"
+            name="middle-name"
             v-model="v.middleName.$model"
           ></Input>
         </InputGroup>
@@ -42,8 +40,7 @@
         >
           <Input
             type="text"
-            class="hello-there hello-all"
-            name="first-name"
+            name="last-name"
             v-model="v.lastName.$model"
           ></Input>
         </InputGroup>
@@ -89,7 +86,6 @@
                       alt=""
                       style="height: 16px; width: 24px"
                     />
-                    <!-- <span style="float: left">halo</span> -->
                     <span>{{ opt.CodeTelp }}</span>
                   </div>
                 </ElOption>
@@ -117,14 +113,20 @@
 import { computed, reactive } from 'vue';
 import { ComposerTranslation } from 'vue-i18n';
 import useVuelidate from '@vuelidate/core';
-import { helpers, required, minLength, maxLength } from '@vuelidate/validators';
+import {
+  helpers,
+  required,
+  minLength,
+  maxLength,
+  email,
+} from '@vuelidate/validators';
 import { CountryCode } from './types';
 
 import Card from '../../atoms/cards/card.vue';
 import Input from '../../atoms/inputs/input.vue';
 import Dropdown from '../../atoms/inputs/dropdown.vue';
 import InputGroup from '../../atoms/inputs/input-group.vue';
-import { ElForm, ElInput, ElOption } from 'element-plus';
+import { ElInput, ElOption } from 'element-plus';
 
 interface Props {
   t: ComposerTranslation;
@@ -137,30 +139,30 @@ interface Props {
     phoneCode: string;
     phoneNumber: string;
     email: string;
+    user?: {
+      Email: string;
+      FullName: string;
+      IsLogin: boolean;
+      MAToken: string;
+      MemberId: string;
+      PhoneCountry: string;
+      PhoneNumer: string;
+      PhoneOriginal: string;
+    };
   };
 }
 
 const { t, countries, model } = defineProps<Props>();
 
 const titleOptions = computed(() => [
-  { code: 'Mr', label: 'Tuan' },
-  { code: 'Mrs', label: 'Nyonya' },
-  { code: 'Ms', label: 'Nona' },
+  { code: 'Mr', label: t('PASSENGER.MR') },
+  { code: 'Mrs', label: t('PASSENGER.MRS') },
+  { code: 'Ms', label: t('PASSENGER.MS') },
 ]);
 
 const getSelectedPhoneCodeFlag = computed(() => {
   return countries.find((cty: CountryCode) => cty.CodeTelp === model.phoneCode);
 });
-
-// const contact = reactive({
-//   ContactTitle: 'Mr',
-//   contactFirstname: '',
-//   contactMiddlename: '',
-//   contactLastname: '',
-//   phoneCode: '62',
-//   PhoneNumber: '',
-//   ContactEmail: '',
-// });
 
 const vrules = computed(() => ({
   title: {
@@ -181,15 +183,13 @@ const vrules = computed(() => ({
   },
   phoneCode: {
     required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-    minLength: minLength(1),
   },
   phoneNumber: {
     required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-    minLength: minLength(1),
   },
   email: {
     required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-    minLength: minLength(1),
+    email,
   },
 }));
 

@@ -4,13 +4,7 @@
     <div class="booking__main-column-4">
       <InputGroup :label="t('FORM.TITLE')">
         <Dropdown
-          :options="
-            JSON.stringify([
-              { code: 'Mr', label: 'Tuan' },
-              { code: 'Mrs', label: 'Nyonya' },
-              { code: 'Ms', label: 'Nona' },
-            ])
-          "
+          :options="JSON.stringify(titleOptions)"
           v-model="v.title.$model"
           label="label"
           value="code"
@@ -43,69 +37,34 @@
         <Input type="text" name="last-name" v-model="v.lastName.$model"></Input>
       </InputGroup>
     </div>
-    <ul style="display: flex; flex-direction: column; gap: 8px">
-      <li
-        style="
-          font-family: 'Montserrat';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 12px;
-          line-height: 16px;
-          color: #757575;
-          margin-left: 16px;
-        "
-      >
-        Untuk WNI, nama dan NIK harus sama dengan yang terdaftar. Untuk WNA,
-        gunakan nama dan nomor yang tercantum di paspor. Untuk WNA , gunakan
-        nama dan nomor vang tercantum di paspor.
-      </li>
-      <li
-        style="
-          font-family: 'Montserrat';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 12px;
-          line-height: 16px;
-          color: #757575;
-          margin-left: 16px;
-        "
-      >
-        Jika kamu tidak memiliki "nama tengah" (contoh: Ari Wibowo), kosongkan
-        bagian nama tengah dan hanya isi nama depan (contoh: Ari) dan nama akhir
-        (contoh: Wibowo)
-      </li>
-      <li
-        style="
-          font-family: 'Montserrat';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 12px;
-          line-height: 16px;
-          color: #757575;
-          margin-left: 16px;
-        "
-      >
-        Jika kamu hanya memiliki satu nama (contoh: Kartini), harap mengosongkan
-        nama tengah dan mengisi nama belakang dengan nama depan (contoh: Kartini
-        Kartini).
-      </li>
-    </ul>
+
+    <ul class="booking__information" v-html="t('FORM.INFORMATION')"></ul>
+
     <div class="booking__main-column-2">
-      <InputGroup label="Kewarganegaraan">
+      <InputGroup
+        :label="t('FORM.NATIONALITY')"
+        :error="v.$dirty && v.nationality.$errors[0]?.$message"
+      >
         <Dropdown
           :options="JSON.stringify(countries)"
-          v-model="passenger.title"
+          v-model="v.nationality.$model"
           label="CountryName"
           value="CountryCode"
           style="min-width: unset !important"
         />
       </InputGroup>
-      <InputGroup label="Tanggal Lahir">
-        <Calendar />
+      <InputGroup
+        :label="t('FORM.DOB')"
+        :error="v.$dirty && v.dob.$errors[0]?.$message"
+      >
+        <Calendar v-model="v.dob.$model" :disabledDate="disabledDate" />
       </InputGroup>
     </div>
     <div class="booking__main-column-2">
-      <InputGroup label="Tipe Identitas">
+      <InputGroup
+        :label="t('FORM.IDTYPE')"
+        :error="v.$dirty && v.idType.$errors[0]?.$message"
+      >
         <Dropdown
           :options="
             JSON.stringify([
@@ -113,37 +72,58 @@
               { code: 'Passport', label: 'Passpor' },
             ])
           "
-          v-model="passenger.idType"
+          v-model="v.idType.$model"
           label="label"
           value="code"
         />
       </InputGroup>
-      <InputGroup label="Nomor NIK" v-if="passenger.idType === 'NIK'">
+      <InputGroup
+        :label="t('FORM.IDNO')"
+        v-if="v.idType.$model === 'NIK'"
+        :error="v.$dirty && v.idNo.$errors[0]?.$message"
+      >
         <Input
           type="text"
           name="first-name"
           placeholder="Nomor NIK minimal 16 karakter"
+          v-model="v.idNo.$model"
         ></Input>
       </InputGroup>
-      <InputGroup label="Tanggal Habis Berlaku" v-else>
-        <Calendar />
+      <div v-if="v.idType.$model !== 'NIK'"></div>
+      <InputGroup
+        :label="t('FORM.PASSNO')"
+        v-if="v.idType.$model !== 'NIK'"
+        :error="v.$dirty && v.idNo.$errors[0]?.$message"
+      >
+        <Input
+          type="text"
+          name="first-name"
+          placeholder="Min. 6 dan Maks. 10 karakter"
+          v-model="v.idNo.$model"
+        ></Input>
+      </InputGroup>
+      <InputGroup
+        label="Tanggal Habis Berlaku"
+        v-if="v.idType.$model !== 'NIK'"
+        :error="v.$dirty && v.idExpiry.$errors[0]?.$message"
+      >
+        <Calendar v-model="v.idExpiry.$model" />
       </InputGroup>
       <InputGroup
         label="Negara Yang Mengeluarkan"
-        v-if="passenger.idType !== 'NIK'"
+        v-if="v.idType.$model !== 'NIK'"
       >
         <Dropdown
           :options="JSON.stringify(countries)"
-          v-model="passenger.title"
+          v-model="v.idOrigin.$model"
           label="CountryName"
           value="CountryCode"
           style="min-width: unset !important"
         />
       </InputGroup>
-      <span class="passport-warning" v-if="passenger.idType !== 'NIK'"
-        >Perhatian: paspor berlaku minimal 6 bulan dari tanggal kedatangan di
-        destinasi tujuan.</span
-      >
+      <span class="passport-warning" v-if="v.idType.$model !== 'NIK'">{{
+        t('FORM.PASSPORT_NOTICE')
+      }}</span>
     </div>
   </div>
 </template>
@@ -165,9 +145,26 @@ interface Props {
   type: 'adult' | 'child' | 'infant';
   t: ComposerTranslation;
   countries: CountryCode[];
+  model: {
+    title: string;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    phoneCode: string;
+    phoneNumber: string;
+    email: string;
+    idType: string;
+    idNo: string;
+  };
 }
 
-const { i, type, t } = defineProps<Props>();
+const { i, type, t, model } = defineProps<Props>();
+
+const titleOptions = computed(() => [
+  { code: 'Mr', label: t('PASSENGER.MR') },
+  { code: 'Mrs', label: t('PASSENGER.MRS') },
+  { code: 'Ms', label: t('PASSENGER.MS') },
+]);
 
 const heading = computed(
   () =>
@@ -178,47 +175,75 @@ const heading = computed(
     }[type])
 );
 
-const passenger = reactive({
-  title: '',
-  firstName: '',
-  middleName: '',
-  lastName: '',
-  nationality: '',
-  dob: '',
-  idType: 'NIK',
-  idNo: '',
-  idExpiry: '',
-  idOrigin: '',
+const rules = computed(() => {
+  const baseRule: any = {
+    title: {},
+    firstName: {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+      minLength: helpers.withMessage(t('VALIDATION.NAME'), minLength(1)),
+      maxLength: helpers.withMessage(t('VALIDATION.NAME'), maxLength(50)),
+    },
+    middleName: {
+      maxLength: helpers.withMessage(t('VALIDATION.MIDDLENAME'), maxLength(50)),
+    },
+    lastName: {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+      minLength: helpers.withMessage(t('VALIDATION.NAME'), minLength(1)),
+      maxLength: helpers.withMessage(t('VALIDATION.NAME'), maxLength(50)),
+    },
+    nationality: {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+    },
+    dob: {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+    },
+    idType: {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+    },
+  };
+
+  if (model.idType !== 'NIK') {
+    baseRule.idOrigin = {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+    };
+    baseRule.idExpiry = {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+    };
+    baseRule.idNo = {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+      minLength: helpers.withMessage(t('VALIDATION.PASSPORT'), minLength(6)),
+      maxLength: helpers.withMessage(t('VALIDATION.PASSPORT'), maxLength(10)),
+    };
+  } else {
+    baseRule.idNo = {
+      required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+      minLength: helpers.withMessage(t('VALIDATION.NIK'), minLength(16)),
+      maxLength: helpers.withMessage(t('VALIDATION.NIK'), maxLength(16)),
+    };
+  }
+  return baseRule;
 });
 
-const rules = computed(() => ({
-  title: {},
-  firstName: {
-    required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-    minLength: helpers.withMessage(t('VALIDATION.NAME'), minLength(1)),
-    maxLength: helpers.withMessage(t('VALIDATION.NAME'), maxLength(50)),
-  },
-  middleName: {
-    maxLength: helpers.withMessage(t('VALIDATION.MIDDLENAME'), maxLength(50)),
-  },
-  lastName: {
-    required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-    minLength: helpers.withMessage(t('VALIDATION.NAME'), minLength(1)),
-    maxLength: helpers.withMessage(t('VALIDATION.NAME'), maxLength(50)),
-  },
-  nationality: {
-    required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-  },
-  dob: {
-    required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-  },
-  idType: {
-    required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-  },
-  idNo: {
-    required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-  },
-}));
+const v = useVuelidate(rules, model);
 
-const v = useVuelidate(rules, passenger);
+const disabledDate = (a: any) => {
+  const today = new Date();
+  if (type === 'adult') {
+    const mustBeTwelve = new Date();
+    mustBeTwelve.setFullYear(today.getFullYear() - 12);
+    return a > mustBeTwelve;
+  } else if (type === 'child') {
+    const beforeTwelve = new Date();
+    beforeTwelve.setFullYear(today.getFullYear() - 12);
+    const afterTwo = new Date();
+    afterTwo.setFullYear(today.getFullYear() - 2);
+    if (a < beforeTwelve) return true;
+    if (a > afterTwo) return true;
+  } else if (type === 'infant') {
+    const beforeTwo = new Date();
+    beforeTwo.setFullYear(today.getFullYear() - 2);
+    return a < beforeTwo;
+  }
+  return false;
+};
 </script>

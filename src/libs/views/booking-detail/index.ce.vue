@@ -4,7 +4,10 @@
 
     <div class="booking__main">
       <h3 class="booking__subtitle">{{ t('CONTACT_DETAILS') }}</h3>
-      <LoginBanner login-url="https://misteraladin.com"></LoginBanner>
+      <LoginBanner
+        login-url="https://misteraladin.com"
+        v-if="!user?.IsLogin"
+      ></LoginBanner>
       <ElForm
         ref="formRef"
         label-position="top"
@@ -15,25 +18,31 @@
           :t="t"
           :countries="parsedCountries"
           :model="bookingDetail.contact"
+          :user="user"
         />
 
         <Card>
           <template v-slot:header>
             <span>{{ t('PASSENGER_DETAILS') }}</span>
             <div>
-              <Switcher>{{ t('SAME_AS_CONTACT') }}</Switcher>
+              <Switcher @on-switch="onClickDuplicateContact">{{
+                t('SAME_AS_CONTACT')
+              }}</Switcher>
             </div>
           </template>
 
           <!-- adult mapping -->
-          <PassengerDetail
-            v-for="(_, i) in +parsedData.adult"
-            :key="i"
-            :i="i + 1"
-            type="adult"
-            :t="t"
-            :countries="parsedCountries"
-          />
+          <template v-if="bookingDetail.passengers.adult.length">
+            <PassengerDetail
+              v-for="(_, i) in +parsedData.adult"
+              :key="i"
+              :i="i + 1"
+              type="adult"
+              :t="t"
+              :countries="parsedCountries"
+              :model="bookingDetail.passengers.adult[i]"
+            />
+          </template>
 
           <!-- children mapping -->
 
@@ -44,6 +53,7 @@
             type="child"
             :t="t"
             :countries="parsedCountries"
+            :model="bookingDetail.passengers.child[i]"
           />
 
           <!-- infant mapping -->
@@ -55,17 +65,16 @@
             type="infant"
             :t="t"
             :countries="parsedCountries"
+            :model="bookingDetail.passengers.infant[i]"
           />
         </Card>
       </ElForm>
       <div class="booking__main-column-2-left">
         <p style="color: #dd2c00; font-size: 16px; font-weight: 500">
-          Perhatian: nama penumpang harus sama dengan paspor (penerbangan
-          internasional), atau KTP/SIM (penerbangan domestik). Data penumpang
-          tidak dapat diubah setelah halaman ini.
+          {{ t('ATTENTION') }}
         </p>
         <Button variant="warning" @click="onConfirmBooking">
-          Konfirmasi
+          {{ t('CONFIRM.BUTTON') }}
         </Button>
       </div>
     </div>
@@ -96,21 +105,39 @@
         </div>
       </Card>
     </div>
+    <ElDialog
+      v-model="isLoading"
+      :show-close="false"
+      width="40%"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
+        "
+      >
+        <img src="https://i.misteraladin.com/loader-mnc.gif" width="124" />
+        <p style="size: 20px; font-weight: 600">Eits, jangan kemana-mana!</p>
+        <p style="text-align: center">
+          Pemesanan kamu sedang diproses. Janji, deh, gak akan lama. Cuma
+          beberapa menit aja, kok.
+        </p>
+      </div>
+    </ElDialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { CountryCode } from './types';
-
 import Button from '../../atoms/button/button.vue';
 import LoginBanner from '../../components/login-banner/login-banner.vue';
 
-import { ElForm, ElInput, ElOption } from 'element-plus';
+import { Action, ElForm, ElMessageBox, ElDialog } from 'element-plus';
 import type { FormInstance } from 'element-plus';
 
-import Input from '../../atoms/inputs/input.vue';
-import Dropdown from '../../atoms/inputs/dropdown.vue';
-import InputGroup from '../../atoms/inputs/input-group.vue';
 import Switcher from '../../atoms/inputs/switcher.vue';
 
 import FlightCard from '../../atoms/cards/flight-card.vue';
@@ -120,19 +147,27 @@ import Card from '../../atoms/cards/card.vue';
 import PassengerDetail from './passenger-detail.vue';
 import ContactDetail from './contact-detail.vue';
 
-import { computed, HTMLAttributes, onMounted, reactive, ref } from 'vue';
+import { computed, HTMLAttributes, reactive, ref } from 'vue';
 import { toIDR } from '../../../utils';
 
 import useVuelidate from '@vuelidate/core';
-import { helpers, required, minLength, maxLength } from '@vuelidate/validators';
 
 import { useI18n } from 'vue-i18n';
 import messages from './lang';
+
+import axios from 'axios';
 
 interface Props extends HTMLAttributes {
   data: string;
   languange?: 'en' | 'id';
   countries: string;
+  keyid: string;
+  token: string;
+  isloggedin: any;
+  segment1: string;
+  segment2?: string;
+  confirmAsset: string;
+  numpass: string;
 }
 
 const props = defineProps<Props>();
@@ -149,22 +184,19 @@ const returnFlights = reactive(JSON.parse(parsedData.segment2));
 
 const parsedCountries = reactive(JSON.parse(props.countries));
 
+const user = reactive(JSON.parse(props.isloggedin));
+
 const total = computed(() => {
   if (!returnFlights) return departureFLights.FareDetail.Total;
   return departureFLights.FareDetail.Total + returnFlights.FareDetail.Total;
 });
-
-// console.log('departure', departureFLights);
-// console.log('return', returnFlights);
-console.log('data', parsedCountries);
-// console.log(props.languange);
 
 //form Object
 const formRef = ref<FormInstance>();
 // const showValidation = ref(false);
 const bookingDetail = reactive<any>({
   contact: {
-    title: 'Tuan',
+    title: 'Mr',
     firstName: '',
     middleName: '',
     lastName: '',
@@ -172,42 +204,368 @@ const bookingDetail = reactive<any>({
     phoneNumber: '',
     email: '',
   },
-  passengers: [],
+  passengers: {
+    adult: [],
+    child: [],
+    infant: [],
+  },
 });
 
-onMounted(() => {
-  for (
-    let i = 0;
-    i < +parsedData.adult + +parsedData.child + +parsedData.infant;
-    i++
-  ) {
-    bookingDetail.passengers.push({
-      title: 'Mr',
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      nationality: '',
-      dob: '',
-      idType: 'NIK',
-      idNo: '',
-      idExpiry: '',
-      idOrigin: '',
-    });
+if (user?.IsLogin) {
+  const loggedInName = user.FullName.split(' ');
+  bookingDetail.contact.firstName = loggedInName[0];
+  if (loggedInName.length > 1) {
+    bookingDetail.contact.lastName = loggedInName[loggedInName.length - 1];
   }
-});
+  if (loggedInName.length > 2) {
+    const [_, ...restOftheName] = loggedInName;
+    const [__, ...mName] = restOftheName.reverse();
+    bookingDetail.contact.middleName = mName.reverse().join(' ');
+  }
+  bookingDetail.contact.phoneCode = user.PhoneCountry;
+  bookingDetail.contact.phoneNumber = user.PhoneOriginal;
+  bookingDetail.contact.email = user.Email;
+}
+
+// onMounted(() => {
+for (let i = 0; i < +parsedData.adult; i++) {
+  bookingDetail.passengers.adult.push({
+    title: 'Mr',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    nationality: 'ID',
+    dob: '',
+    idType: 'NIK',
+    idNo: '',
+    idExpiry: '',
+    idOrigin: 'ID',
+  });
+}
+for (let i = 0; i < +parsedData.child; i++) {
+  bookingDetail.passengers.child.push({
+    title: 'Mr',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    nationality: 'ID',
+    dob: '',
+    idType: 'NIK',
+    idNo: '',
+    idExpiry: '',
+    idOrigin: 'ID',
+  });
+}
+for (let i = 0; i < +parsedData.infant; i++) {
+  bookingDetail.passengers.infant.push({
+    title: 'Mr',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    nationality: 'ID',
+    dob: '',
+    idType: 'NIK',
+    idNo: '',
+    idExpiry: '',
+    idOrigin: 'ID',
+  });
+}
+// });
+
+// console.log('bookingDetail', bookingDetail);
+
+const onClickDuplicateContact = (val: boolean) => {
+  if (val) {
+    if (bookingDetail.contact.firstName && bookingDetail.contact.lastName) {
+      bookingDetail.passengers.adult[0].title = bookingDetail.contact.title;
+      bookingDetail.passengers.adult[0].firstName =
+        bookingDetail.contact.firstName;
+      bookingDetail.passengers.adult[0].middleName =
+        bookingDetail.contact.middleName;
+      bookingDetail.passengers.adult[0].lastName =
+        bookingDetail.contact.lastName;
+    } else {
+      ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
+        confirmButtonText: 'OK',
+        customStyle: {
+          '--el-color-primary': '#323c9f',
+        },
+        confirmButtonClass: 'ma-confirm',
+        center: true,
+        showClose: false,
+        callback: (action: Action) => {},
+      });
+    }
+  } else {
+    bookingDetail.passengers.adult[0].title = 'Mr';
+    bookingDetail.passengers.adult[0].firstName = '';
+    bookingDetail.passengers.adult[0].middleName = '';
+    bookingDetail.passengers.adult[0].lastName = '';
+  }
+};
 
 const v = useVuelidate();
+const isLoading = ref(false);
 
 const onConfirmBooking = async () => {
-  // console.log(t('VALIDATION.NAME'));
-  // console.log(bookingDetail);
-  console.log(await v.value.$validate());
-  console.log(v.value);
-  console.log(bookingDetail);
-  // showValidation.value = true;
-  // await formRef.value!.validate((valid) => {
-  //   console.log(valid);
-  // });
+  const isValid = await v.value.$validate();
+  if (!isValid) return;
+  ElMessageBox.alert(
+    `
+  <div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
+    <img src="${props.confirmAsset}" width="124"/>
+    <p style="size: 20px; font-weight: 600;">Pastikan data kamu sudah benar sebelum melanjutkan</p>
+  </div>`,
+    {
+      dangerouslyUseHTMLString: true,
+      confirmButtonText: 'Lanjut',
+      cancelButtonText: 'Cek Lagi',
+      showCancelButton: true,
+      customStyle: {
+        '--el-color-primary': '#323c9f',
+      },
+      confirmButtonClass: 'ma-confirm',
+      cancelButtonClass: 'ma-cancel',
+      showClose: false,
+      callback: async (action: Action) => {
+        console.log(action);
+        if (action === 'confirm') {
+          isLoading.value = true;
+          const data: any = {
+            numPassengers: +JSON.parse(props.numpass),
+            FlightTypeDepart: departureFLights.FlightType,
+            FlightTypeReturn: returnFlights?.FlightType,
+            keyID: props.keyid,
+            Segment1: await JSON.parse(props.segment1),
+            Segment2: props.segment2 ? await JSON.parse(props.segment2) : null,
+
+            ContactTitle: bookingDetail.contact.title,
+            contactFirstname: bookingDetail.contact.firstName,
+            contactMiddlename: bookingDetail.contact.middleName,
+            contactLastname: bookingDetail.contact.lastName,
+            phoneCode: bookingDetail.contact.phoneCode,
+            PhoneNumber: bookingDetail.contact.phoneNumber,
+            ContactEmail: bookingDetail.contact.email,
+          };
+
+          for (let i = 1; i <= bookingDetail.passengers.adult.length; i++) {
+            data['Type' + i] = '1';
+            // data['Title' + i] = 'Mr';
+            data['Title' + i] = bookingDetail.passengers.adult[i - 1].title;
+            data['Firstname' + i] =
+              bookingDetail.passengers.adult[i - 1].firstName;
+            data['Middlename' + i] =
+              bookingDetail.passengers.adult[i - 1].middleName;
+            data['Lastname' + i] =
+              bookingDetail.passengers.adult[i - 1].lastName;
+            data['Nat' + i] = bookingDetail.passengers.adult[i - 1].idOrigin;
+            data['Day' + i] = new Date(
+              bookingDetail.passengers.adult[i - 1].dob
+            ).toLocaleDateString('id-ID', { day: '2-digit' });
+            data['Month' + i] = new Date(
+              bookingDetail.passengers.adult[i - 1].dob
+            ).toLocaleDateString('id-ID', { month: '2-digit' });
+            data['Years' + i] = new Date(
+              bookingDetail.passengers.adult[i - 1].dob
+            ).getFullYear();
+            data['IdentityType' + i] =
+              bookingDetail.passengers.adult[i - 1].idType;
+            data['IdentityNumber' + i] =
+              bookingDetail.passengers.adult[i - 1].idNo;
+
+            if (bookingDetail.passengers.adult[i - 1].idType !== 'NIK') {
+              data['PPDay' + i] = new Date(
+                bookingDetail.passengers.adult[i - 1].idExpiry
+              ).toLocaleDateString('id-ID', { day: '2-digit' });
+              data['PPMonth' + i] = new Date(
+                bookingDetail.passengers.adult[i - 1].idExpiry
+              ).toLocaleDateString('id-ID', { month: '2-digit' });
+              data['PPYear' + i] = new Date(
+                bookingDetail.passengers.adult[i - 1].idExpiry
+              ).getFullYear();
+              data['PPCOI' + i] =
+                bookingDetail.passengers.adult[i - 1].idOrigin;
+            }
+          }
+
+          for (let i = 1; i <= bookingDetail.passengers.child.length; i++) {
+            data['Type' + (i + +bookingDetail.passengers.adult.length)] = '2';
+            data['Title' + (i + +bookingDetail.passengers.adult.length)] =
+              bookingDetail.passengers.child[i - 1].title;
+            data['Firstname' + (i + +bookingDetail.passengers.adult.length)] =
+              bookingDetail.passengers.child[i - 1].firstName;
+            data['Middlename' + (i + +bookingDetail.passengers.adult.length)] =
+              bookingDetail.passengers.child[i - 1].middleName;
+            data['Lastname' + (i + +bookingDetail.passengers.adult.length)] =
+              bookingDetail.passengers.child[i - 1].lastName;
+            data['Nat' + (i + +bookingDetail.passengers.adult.length)] =
+              bookingDetail.passengers.child[i - 1].idOrigin;
+            data['Day' + (i + +bookingDetail.passengers.adult.length)] =
+              new Date(
+                bookingDetail.passengers.child[i - 1].dob
+              ).toLocaleDateString('id-ID', { day: '2-digit' });
+            data['Month' + (i + +bookingDetail.passengers.adult.length)] =
+              new Date(
+                bookingDetail.passengers.child[i - 1].dob
+              ).toLocaleDateString('id-ID', { month: '2-digit' });
+            data['Years' + (i + +bookingDetail.passengers.adult.length)] =
+              new Date(bookingDetail.passengers.child[i - 1].dob).getFullYear();
+            data[
+              'IdentityType' + (i + +bookingDetail.passengers.adult.length)
+            ] = bookingDetail.passengers.child[i - 1].idType;
+            data[
+              'IdentityNumber' + (i + +bookingDetail.passengers.adult.length)
+            ] = bookingDetail.passengers.child[i - 1].idNo;
+
+            if (bookingDetail.passengers.child[i - 1].idType !== 'NIK') {
+              data['PPDay' + (i + +bookingDetail.passengers.adult.length)] =
+                new Date(
+                  bookingDetail.passengers.child[i - 1].idExpiry
+                ).toLocaleDateString('id-ID', { day: '2-digit' });
+              data['PPMonth' + (i + +bookingDetail.passengers.adult.length)] =
+                new Date(
+                  bookingDetail.passengers.child[i - 1].idExpiry
+                ).toLocaleDateString('id-ID', { month: '2-digit' });
+              data['PPYear' + (i + +bookingDetail.passengers.adult.length)] =
+                new Date(
+                  bookingDetail.passengers.child[i - 1].idExpiry
+                ).getFullYear();
+              data['PPCOI' + (i + +bookingDetail.passengers.adult.length)] =
+                bookingDetail.passengers.child[i - 1].idOrigin;
+            }
+          }
+
+          for (let i = 1; i <= bookingDetail.passengers.infant.length; i++) {
+            data[
+              'Type' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = '3';
+            data[
+              'Title' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = bookingDetail.passengers.adult[i - 1].title;
+            data[
+              'Firstname' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = bookingDetail.passengers.adult[i - 1].firstName;
+            data[
+              'Middlename' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = bookingDetail.passengers.adult[i - 1].middleName;
+            data[
+              'Lastname' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = bookingDetail.passengers.adult[i - 1].lastName;
+            data[
+              'Nat' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = bookingDetail.passengers.adult[i - 1].idOrigin;
+            data[
+              'Day' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = new Date(
+              bookingDetail.passengers.adult[i - 1].dob
+            ).toLocaleDateString('id-ID', { day: '2-digit' });
+            data[
+              'Month' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = new Date(
+              bookingDetail.passengers.adult[i - 1].dob
+            ).toLocaleDateString('id-ID', { month: '2-digit' });
+            data[
+              'Years' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = new Date(
+              bookingDetail.passengers.adult[i - 1].dob
+            ).getFullYear();
+            data[
+              'IdentityType' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = bookingDetail.passengers.adult[i - 1].idType;
+            data[
+              'IdentityNumber' +
+                (i +
+                  +bookingDetail.passengers.adult.length +
+                  +bookingDetail.passengers.child.length)
+            ] = bookingDetail.passengers.adult[i - 1].idNo;
+
+            if (bookingDetail.passengers.infant[i - 1].idType !== 'NIK') {
+              data[
+                'PPDay' +
+                  (i +
+                    +bookingDetail.passengers.adult.length +
+                    +bookingDetail.passengers.child.length)
+              ] = new Date(
+                bookingDetail.passengers.infant[i - 1].idExpiry
+              ).toLocaleDateString('id-ID', { day: '2-digit' });
+              data[
+                'PPMonth' +
+                  (i +
+                    +bookingDetail.passengers.adult.length +
+                    +bookingDetail.passengers.child.length)
+              ] = new Date(
+                bookingDetail.passengers.infant[i - 1].idExpiry
+              ).toLocaleDateString('id-ID', { month: '2-digit' });
+              data[
+                'PPYear' +
+                  (i +
+                    +bookingDetail.passengers.adult.length +
+                    +bookingDetail.passengers.child.length)
+              ] = new Date(
+                bookingDetail.passengers.infant[i - 1].idExpiry
+              ).getFullYear();
+              data[
+                'PPCOI' +
+                  (i +
+                    +bookingDetail.passengers.adult.length +
+                    +bookingDetail.passengers.child.length)
+              ] = bookingDetail.passengers.infant[i - 1].idOrigin;
+            }
+          }
+
+          const response = await axios.post(
+            '/passengerDetails',
+            {
+              ...data,
+            },
+            {
+              headers: {
+                'X-CSRF-TOKEN': props.token,
+              },
+            }
+          );
+          console.log(response);
+          isLoading.value = false;
+          if (response.data.data.Message === 'OK') {
+            window.location.href =
+              'review_booking?ReservationCode=' + response.data.code;
+          }
+        }
+      },
+      center: true,
+    }
+  );
+  return;
 };
 </script>
 

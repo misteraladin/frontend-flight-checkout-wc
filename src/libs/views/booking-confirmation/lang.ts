@@ -21,6 +21,7 @@ export default {
     PAY_NOW: 'Pay Now',
     PTL: 'Payment Time Limit',
     ADD_COUPON: 'Add',
+    APPLY_COUPON: 'APPLY',
     AGREEMENT:
       'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',
   },
@@ -46,6 +47,7 @@ export default {
     PAY_NOW: 'Bayar Sekarang',
     PTL: 'Batas Waktu Pembayaran',
     ADD_COUPON: 'Tambah',
+    APPLY_COUPON: 'GUNAKAN',
     AGREEMENT:
       'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',
   },

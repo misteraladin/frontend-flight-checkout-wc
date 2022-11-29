@@ -148,3 +148,15 @@
 .country-flag {
   height: functions.toRem(16);
 }
+
+.passport-warning {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: functions.toRem(6);
+  font-weight: 500;
+  color: colors.$error-1;
+}
+
+.ma-confirm {
+  width: 2000px;
+}
