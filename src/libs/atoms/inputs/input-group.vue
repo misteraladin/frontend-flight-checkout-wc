@@ -3,7 +3,7 @@
     :label="label"
     class="ma-input-group"
     :prop="prop"
-    :error="error || ''"
+    :error="error ? error : ''"
   >
     <slot />
   </ElFormItem>
@@ -17,7 +17,7 @@ interface Props {
   label: string;
   prop?: string;
   rules?: string;
-  error?: string | boolean;
+  error?: string;
 }
 const { label, prop, rules, error } = defineProps<Props>();
 
