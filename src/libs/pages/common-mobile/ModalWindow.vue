@@ -6,7 +6,7 @@
           <button
             type="button"
             class="btn btn-header"
-            @click="$emit('close')"
+            @click="close"
           >
             <img
               src="/booking-mobile/close.svg"
@@ -23,7 +23,7 @@
       </div>
 
       <transition name="slide-up">
-        <Footer @click="$emit('close')">
+        <Footer v-if="$slots.footer" @click="close">
           <slot name="footer" />
         </Footer>
       </transition>
@@ -34,46 +34,22 @@
 <script setup lang="ts">
 import Header from "./mobile-header.vue";
 import Footer from "./mobile-footer.vue";
+import { onBeforeUnmount, onMounted } from "vue";
 
-</script>
+const emit = defineEmits(['close']);
 
-<!-- <script>
-export default {
-  props: {
-  // data() {
-  //   return {
-  //     show: false,
-  //   };
-  // },
+const close = () => {
+  emit('close');
+}
 
-  // created() {
-  //   setTimeout(() => {
-  //     this.show = !this.show;
-  //   }, 150);
-  // },
-
-  // mounted() {
-  //   document.addEventListener('keydown', this.triggerKey);
-  // },
-
-  // beforeDestroy() {
-  //   document.removeEventListener('keydown', this.triggerKey);
-  //   this.show = !this.show;
-  // },
-
-  // methods: {
-  //   closeModal() {
-  //     this.show = !this.show;
-
-  //     setTimeout(() => {
-  //       this.$emit('close');
-  //     }, 150);
-  //   },
-
-  //   triggerKey(event) {
-  //     if (event.keyCode !== 27) return;
-  //     this.closeModal();
-  //   },
-  // },
+onMounted(() => {
+  document.addEventListener('keydown', triggerKey);
+});
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', triggerKey);
+})
+const triggerKey = (event: any) => {
+  if (event.keyCode !== 27) return;
+  close();
 };
-</script> -->
+</script>

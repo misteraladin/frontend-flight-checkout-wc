@@ -12,6 +12,7 @@
     />
 
     <FlightItem
+      class="pt-0"
       :title="t('return')"
       :segment="returnSegment"
       :t="t"
@@ -22,20 +23,35 @@
     <section class="booking-detail__contact">
       <h2>{{ t('booking_details') }}</h2>
       <Passenger
+        type="contact"
+        :passenger="form.contact"
         :placeholder="t('enter_details')"
-        class="m-0 p-0"
+        :t="t"
       />
     </section>
 
-    <section class="booking-detail__traveler">
+    <section class="booking-detail__traveler pt-0">
       <h2>{{ t('traveler_details') }}</h2>
+      <div
+        v-for="(passengerTypes, keyTypes, indexTypes) in form.passengers"
+        :key="indexTypes"
+      >
+        <Passenger
+          v-for="(passenger, index) in passengerTypes"
+          :key="index"
+          :type="keyTypes"
+          :passenger="passenger"
+          :placeholder="t('enter_details')"
+          :t="t"
+        />
+      </div>
     </section>
 
     <section class="booking-detail__info">
       <p>{{ t('passenger_info') }}</p>
     </section>
 
-    <Footer>
+    <Footer @next="submit">
       {{ t("next") }}
     </Footer>
 
@@ -105,8 +121,9 @@ import ModalBase from "../common-mobile/ModalBase.vue";
 import {
   RootObject as IRootObject,
   Segment as ISegment,
+  Form as IForm,
 } from "./type-booking-detail-mobile";
-import { reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import { useI18n } from "vue-i18n"; // import i18n plugin
 import messages from "./lang"; // import dictionary
 
@@ -125,9 +142,74 @@ const props = defineProps({
 const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
 const departureSegment: ISegment = reactive(data.segment1 ? JSON.parse(data.segment1) : null);
 const returnSegment: ISegment = reactive(data.segment2 ? JSON.parse(data.segment2) : null);
+
+// Passenger
+const form: IForm = reactive({
+  contact: {
+    title: 'mr',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    phoneCode: '62',
+    phoneNumber: '',
+    email: '',
+  },
+  passengers: {
+    adult: [],
+    child: [],
+    infant: [],
+  },
+});
+// set passenger object structure
+const emptyPassenger = ((type: string) => {
+  const titlePassenger: any = {
+    adult: 'mr',
+    child: 'mstr',
+    infant: 'mstr',
+  };
+
+  return {
+    title: titlePassenger[type],
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    nationality: 'ID',
+    dob: '',
+    idType: 'NIK',
+    idNo: '',
+    idExpiry: '',
+    idOrigin: 'ID',
+  };
+});
+// examaple result ['adult', 'adult', 'child', 'infant']
+const passengerTypes = (() => ([
+  ...Array.from(Array(+data.adult), (() => 'adult')),
+  ...Array.from(Array(+data.child), (() => 'child')),
+  ...Array.from(Array(+data.infant), (() => 'infant')),
+]));
+const initialPassengers = () => {
+  const types = passengerTypes();
+
+  const passengers: any = {
+    adult: [],
+    child: [],
+    infant: [],
+  };
+  types.forEach((element) => {
+    passengers[element].push(emptyPassenger(element));
+  });
+
+  form.passengers = passengers;
+};
+onMounted(() => {
+  initialPassengers();
+});
+
+const submit = () => {
+  console.log('passenger: ', form);
+}
 </script>
 
 <style lang="scss">
 @use '@/styles/pages/booking-detail-mobile';
 </style>
-

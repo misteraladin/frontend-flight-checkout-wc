@@ -1,6 +1,6 @@
 <template>
   <div class="booking-detail__passenger">
-    <div class="booking-detail__passenger-empty">
+    <div class="booking-detail__passenger-empty" @click="isShowModal = true">
       <svg
         width="16"
         height="16"
@@ -18,22 +18,40 @@
         />
       </svg>
 
-      {{ props.placeholder }}
+      {{ placeholder }}
     </div>
+
+    <ModalPeek v-if="isShowModal" @close="isShowModal = false">
+      <PassengerForm
+        :type="type"
+        :passenger="passenger"
+        :t="t"
+      />
+
+      <template #footer>
+        <button class="btn btn-primary-outline" @click="isShowModal = false">
+          {{ t('cancel') }}
+        </button>
+
+        <button class="btn btn-primary">
+          {{ t('save') }}
+        </button>
+      </template>
+    </ModalPeek>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { ref } from "vue";
+import ModalPeek from "../common-mobile/ModalPeek.vue";
+import PassengerForm from "./passenger-form.vue"
 
-const props = defineProps({
-  placeholder: {
-    type: String,
-    required: true,
-  },
-})
-
-const {
-  placeholder: string
-} = reactive(props);
+interface Props {
+  type: string,
+  passenger: any,
+  placeholder: string;
+  t: any;
+}
+const { type, passenger, placeholder, t } = defineProps<Props>();
+const isShowModal = ref(false);
 </script>
