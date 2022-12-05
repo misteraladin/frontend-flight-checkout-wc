@@ -12,16 +12,12 @@
 
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { Prop, reactive } from "vue";
 
-const props = defineProps({
-  t: {
-    type: Object as any,
-    required: true,
-  },
-});
-
-const { t: any } = reactive(props);
+interface Props {
+  t: Function;
+}
+const { t } = defineProps<Props>();
 
 const redirecToLogin = () => {
   //
