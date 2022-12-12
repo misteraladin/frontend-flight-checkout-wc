@@ -1,9 +1,12 @@
 <template>
   <div class="flight-card-item">
     <div v-if="flight.TransitTime" class="flight-card-item__transit">
-      Transit {{ flight.TransitTime }} di {{ flight.OriginCityName }} ({{
-        flight.Origin
-      }})
+      {{ t('transit_for', {
+        time: flight.TransitTime,
+        city: flight.OriginCityName,
+        code: flight.Origin,
+      }) }}
+
     </div>
     <div class="flight-card-item__header">
       <img :src="flight.AirlineImageUrl" :alt="flight.AirlineName" />
@@ -13,7 +16,7 @@
       }}</span>
 
       <span class="flight-card-item__airline-class">
-        {{ flight.ClassCategory }} Subclass({{ flight.ClassCode }})
+        {{ flight.ClassCategory }} (Subclass {{ flight.ClassCode }})
       </span>
     </div>
     <div class="airline-timeline">
@@ -65,9 +68,10 @@ import { Flight } from './types';
 
 interface Props {
   flight: Flight;
+  t: Function;
 }
 
-const { flight } = defineProps<Props>();
+const { flight, t } = defineProps<Props>();
 
 const toDateMonth = (value: string) => {
   return new Date(value).toLocaleDateString('id-ID', {

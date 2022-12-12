@@ -1,7 +1,7 @@
 <template>
   <ElDatePicker
     :teleported="true"
-    placeholder="hh/bb/tt"
+    :placeholder="t('FORM.DATE_FORMAT')"
     size="large"
     style="--el-color-primary: #323c9f"
     class="ma-calendar"
@@ -23,17 +23,11 @@ import CalendarIcon from './calendar-icon.vue';
 interface Props {
   modelValue: string;
   disabledDate?: (a: any) => boolean;
+  t: Function,
 }
 
-const { modelValue } = defineProps<Props>();
+const { modelValue, t } = defineProps<Props>();
 const emit = defineEmits(['update:modelValue']);
-
-// const getParent = (node: HTMLElement) => {
-//   console.log(node);
-//   return node;
-// };
-
-// const darkTheme = createTheme([inputDark, datePickerDark]);
 
 const value = ref('');
 

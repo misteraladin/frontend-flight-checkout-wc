@@ -9,6 +9,7 @@
     v-for="flight in segment.Departure"
     :key="flight.SegmentSellKey"
     :flight="flight"
+    :t="t"
   />
 </template>
 
@@ -19,12 +20,14 @@ import { Segment } from './types';
 interface Props {
   segment: Segment;
   header: string;
+  locale: string;
+  t: Function;
 }
 
-const { segment, header } = defineProps<Props>();
+const { segment, header, locale, t } = defineProps<Props>();
 
 const toDateWithDay = (value: string) =>
-  new Date(value).toLocaleDateString('id-ID', {
+  new Date(value).toLocaleDateString(locale, {
     day: '2-digit',
     month: 'short',
     year: 'numeric',

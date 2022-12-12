@@ -23,7 +23,14 @@ export default {
     ADD_COUPON: 'Add',
     APPLY_COUPON: 'APPLY',
     AGREEMENT:
-      'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',
+      'By clicking "Pay Now", you have agreed to the Terms & Conditions, as well as the Privacy Policy',
+
+    Passport: 'Passport',
+    NIK: 'ID Card',
+    price_detail: 'Price Detail',
+    got_promo: 'Got Promo Code?',
+    input_promo_code: 'Input Promo Code',
+    transit_for: 'Transit for {time} in {city} ({code})',
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -50,5 +57,12 @@ export default {
     APPLY_COUPON: 'GUNAKAN',
     AGREEMENT:
       'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',
+
+    Passport: 'Paspor',
+    NIK: 'NIK',
+    price_detail: 'Detail Harga',
+    got_promo: 'Punya Kode Promo?',
+    input_promo_code: 'Masukkan kode promo',
+    transit_for: 'Transit selama {time} di {city} ({code})',
   },
 };

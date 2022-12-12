@@ -15,7 +15,7 @@
           </p>
           <div>
             <h5>{{ t('PAX.TELP') }}</h5>
-            <span>{{ reservationDetail.ReservationVendor.HomePhone }}</span>
+            <span>+{{ reservationDetail.ReservationVendor.MobilePhone }}</span>
           </div>
           <div>
             <h5>{{ t('PAX.EMAIL') }}</h5>
@@ -46,7 +46,7 @@
           </div>
           <div>
             <h5>{{ t('PAX.ID_TYPE') }}</h5>
-            <span>{{ pax.IdentityType }}</span>
+            <span>{{ t(pax.IdentityType) }}</span>
           </div>
           <div>
             <h5>{{ t('PAX.ID_NO') }}</h5>
@@ -89,14 +89,18 @@
         <FlightCard
           :segment="departureFLights.Segments"
           :header="t('DEPARTURE')"
+          :locale="locale"
+          :t="t"
         />
         <FlightCard
           :segment="returnFlights.Segments"
           :header="t('RETURN')"
+          :locale="locale"
+          :t="t"
           v-if="returnFlights"
         />
         <div class="booking__price-detail">
-          <h4 class="booking__price-detail_heading">Detail Harga</h4>
+          <h4 class="booking__price-detail_heading">{{ t('price_detail') }}</h4>
           <div>
             <span>Subtotal</span>
             <span
@@ -117,7 +121,7 @@
           </div>
           <div class="booking__coupon-input" v-if="onCoupon">
             <ElInput
-              placeholder="Masukkan kode promo"
+              :placeholder="t('input_promo_code')"
               class="booking__coupon-input-form"
               v-model="coupon"
             ></ElInput>

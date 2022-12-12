@@ -15,7 +15,7 @@
           fill="#323C9F"
         />
       </svg>
-      <span>Punya Kode Promo?</span>
+      <span>{{ t('got_promo') }}</span>
     </div>
     <svg
       width="354"

@@ -1,6 +1,6 @@
 <template>
   <div class="booking__main booking__passenger">
-    <h3 class="booking__passenger-header">{{ i }}. Penumpang {{ heading }}</h3>
+    <h3 class="booking__passenger-header">{{ i }}. {{ heading }}</h3>
     <div class="booking__main-column-4">
       <InputGroup :label="t('FORM.TITLE')">
         <Dropdown
@@ -32,7 +32,7 @@
       </InputGroup>
       <InputGroup
         :label="t('FORM.LAST')"
-        :error="v.$dirty && v.firstName.$errors[0]?.$message"
+        :error="v.$dirty && v.lastName.$errors[0]?.$message"
       >
         <Input type="text" name="last-name" v-model="v.lastName.$model"></Input>
       </InputGroup>
@@ -57,7 +57,11 @@
         :label="t('FORM.DOB')"
         :error="v.$dirty && v.dob.$errors[0]?.$message"
       >
-        <Calendar v-model="v.dob.$model" :disabledDate="disabledDate" />
+        <Calendar
+          v-model="v.dob.$model"
+          :t="t"
+          :disabledDate="disabledDate"
+        />
       </InputGroup>
     </div>
     <div class="booking__main-column-2">
@@ -68,8 +72,8 @@
         <Dropdown
           :options="
             JSON.stringify([
-              { code: 'NIK', label: 'NIK' },
-              { code: 'Passport', label: 'Passpor' },
+              { code: 'NIK', label: t('nik') },
+              { code: 'Passport', label: t('passport') },
             ])
           "
           v-model="v.idType.$model"
@@ -83,9 +87,9 @@
         :error="v.$dirty && v.idNo.$errors[0]?.$message"
       >
         <Input
-          type="text"
+          type="number"
           name="first-name"
-          placeholder="Nomor NIK minimal 16 karakter"
+          :placeholder="t('FORM.NIK_PLACEHOLDER')"
           v-model="v.idNo.$model"
         ></Input>
       </InputGroup>
@@ -98,19 +102,23 @@
         <Input
           type="text"
           name="first-name"
-          placeholder="Min. 6 dan Maks. 10 karakter"
+          :placeholder="t('FORM.PASSNO_PLACEHOLDER')"
           v-model="v.idNo.$model"
         ></Input>
       </InputGroup>
       <InputGroup
-        label="Tanggal Habis Berlaku"
+        :label="t('FORM.DOE')"
         v-if="v.idType.$model !== 'NIK'"
         :error="v.$dirty && v.idExpiry.$errors[0]?.$message"
       >
-        <Calendar v-model="v.idExpiry.$model" />
+        <Calendar
+          v-model="v.idExpiry.$model"
+          :t="t"
+          :disabledDate="disabledDatePassport"
+        />
       </InputGroup>
       <InputGroup
-        label="Negara Yang Mengeluarkan"
+        :label="t('FORM.COI')"
         v-if="v.idType.$model !== 'NIK'"
       >
         <Dropdown
@@ -169,9 +177,9 @@ const titleOptions = computed(() => [
 const heading = computed(
   () =>
     ({
-      adult: 'Dewasa',
-      child: 'Anak',
-      infant: 'Bayi',
+      adult: t('passenger_adult'),
+      child: t('passenger_child'),
+      infant: t('passenger_infant'),
     }[type])
 );
 
@@ -242,8 +250,17 @@ const disabledDate = (a: any) => {
   } else if (type === 'infant') {
     const beforeTwo = new Date();
     beforeTwo.setFullYear(today.getFullYear() - 2);
-    return a < beforeTwo;
+    const afterNow = new Date();
+    afterNow.setFullYear(today.getFullYear());
+    if (a < beforeTwo) return true;
+    if (a > afterNow) return true;
   }
   return false;
+};
+
+const disabledDatePassport = (a: any) => {
+  const today = new Date();
+  const after = new Date(today.setMonth(today.getMonth()+6));
+  return (a < after);
 };
 </script>
