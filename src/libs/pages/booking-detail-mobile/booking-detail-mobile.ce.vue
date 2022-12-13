@@ -8,7 +8,7 @@
       :title="t('departure')"
       :segment="departureSegment"
       :t="t"
-      has-detail-button
+      :has-detail-button="true"
     />
 
     <FlightItem
@@ -16,6 +16,7 @@
       :title="t('return')"
       :segment="returnSegment"
       :t="t"
+      :has-detail-button="false"
     />
 
     <BannerLogin :t="t" />
@@ -142,6 +143,10 @@ const props = defineProps({
 const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
 const departureSegment: ISegment = reactive(data.segment1 ? JSON.parse(data.segment1) : null);
 const returnSegment: ISegment = reactive(data.segment2 ? JSON.parse(data.segment2) : null);
+
+console.log('iqbal data: ', data);
+console.log('iqbal departureSegment: ', departureSegment);
+
 
 // Passenger
 const form: IForm = reactive({

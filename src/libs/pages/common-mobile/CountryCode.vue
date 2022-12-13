@@ -75,7 +75,7 @@ interface ICountry {
   flag: string | null;
 }
 interface Props {
-  countries: ICountry[];
+  countries: ICountry[] | any;
   value: ICountry | {};
   withCountryCode: boolean;
   t: Function;
