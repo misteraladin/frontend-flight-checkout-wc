@@ -15,7 +15,8 @@
           fill="#323C9F"
         />
       </svg>
-      <span>Punya Kode Promo?</span>
+      <span v-if="reservation.VoucherName"> {{ reservation.VoucherName }}</span>
+      <span v-else>Punya Kode Promo?</span>
     </div>
     <svg
       width="354"
@@ -33,16 +34,27 @@
       />
     </svg>
 
-    <span class="promo-code__add" @click="$emit('add-coupon')">{{
+    <span
+      class="promo-code__add"
+      @click="$emit('remove-coupon')"
+      v-if="reservation.VoucherName"
+      >{{ t('REMOVE_COUPON') }}</span
+    >
+    <span class="promo-code__add" @click="$emit('add-coupon')" v-else>{{
       t('ADD_COUPON')
     }}</span>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { ComposerTranslation } from 'vue-i18n';
+import { Reservation } from './types';
+
 interface Props {
-  t: any;
+  t: ComposerTranslation;
+  reservation: Reservation;
 }
 
-const { t } = defineProps<Props>();
+const { t, reservation } = defineProps<Props>();
+console.log('from coupon', reservation);
 </script>

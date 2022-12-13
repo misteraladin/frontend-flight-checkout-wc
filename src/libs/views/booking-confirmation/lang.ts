@@ -21,7 +21,12 @@ export default {
     PAY_NOW: 'Pay Now',
     PTL: 'Payment Time Limit',
     ADD_COUPON: 'Add',
+    REMOVE_COUPON: 'Delete',
     APPLY_COUPON: 'APPLY',
+    COUPON_RESPONSE: {
+      REMOVED: 'Promo code removed successfully',
+      APPLIED: 'Promo code successfully used',
+    },
     AGREEMENT:
       'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',
   },
@@ -47,7 +52,12 @@ export default {
     PAY_NOW: 'Bayar Sekarang',
     PTL: 'Batas Waktu Pembayaran',
     ADD_COUPON: 'Tambah',
+    REMOVE_COUPON: 'Hapus',
     APPLY_COUPON: 'GUNAKAN',
+    COUPON_RESPONSE: {
+      REMOVED: 'Kode berhasil dihapus',
+      APPLIED: 'Kode berhasil digunakan',
+    },
     AGREEMENT:
       'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',
   },

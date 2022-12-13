@@ -1,4 +1,11 @@
 <template>
+  <ElAlert
+    :title="alert.message"
+    :type="alert.type"
+    :closable="false"
+    center
+    v-if="alert.isOn"
+  ></ElAlert>
   <div class="booking">
     <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
     <div class="booking__main">
@@ -100,20 +107,16 @@
           <div>
             <span>Subtotal</span>
             <span
-              ><b>{{ toIDR(reservation.TotalResult) }}</b></span
+              ><b>{{ toIDR(reservation.TotalAfterDiscount) }}</b></span
             >
           </div>
           <div v-if="reservation.VoucherCode">
             <span>{{ t('PROMO_CODE') }} ({{ reservation.VoucherCode }})</span>
-            <span>{{
-              toIDR(+reservation.TotalAfterDiscount - +reservation.TotalResult)
-            }}</span>
+            <span>{{ '-' + toIDR(+reservation.Discount) }}</span>
           </div>
           <div class="booking__price-detail_total">
             <span>Total</span>
-            <span class="color-red">{{
-              toIDR(reservation.TotalAfterDiscount)
-            }}</span>
+            <span class="color-red">{{ toIDR(reservation.TotalResult) }}</span>
           </div>
           <div class="booking__coupon-input" v-if="onCoupon">
             <ElInput
@@ -123,17 +126,31 @@
             ></ElInput>
             <Button @click="onUseCoupon">{{ t('APPLY_COUPON') }}</Button>
           </div>
-          <Coupon :t="t" v-else @add-coupon="onCoupon = true" />
-          <Button type="button" variant="warning">{{ t('PAY_NOW') }}</Button>
+          <Coupon
+            :t="t"
+            v-else
+            @add-coupon="onCoupon = true"
+            @remove-coupon="onRemoveCoupon"
+            :reservation="reservation"
+          />
+          <Button type="button" variant="warning" @click="onPayBooking">{{
+            t('PAY_NOW')
+          }}</Button>
         </div>
       </Card>
       <span class="booking__agreement">{{ t('AGREEMENT') }}</span>
     </div>
+
+    <PaymentContainerVue
+      @cancel="paymentCancel"
+      :src="paymentIframe.url"
+      v-if="paymentIframe.show"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, onMounted, onUnmounted, reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import messages from './lang';
 import axios from 'axios';
@@ -145,8 +162,9 @@ import FlightCard from '../../atoms/cards/flight-card.vue';
 import Button from '../../atoms/button/button.vue';
 
 import Coupon from './coupon.vue';
+import PaymentContainerVue from '../../components/payment-container/payment-container.vue';
 
-import { ElInput } from 'element-plus';
+import { ElInput, ElAlert } from 'element-plus';
 
 import { Country, Reservation } from './types';
 
@@ -155,9 +173,17 @@ interface Props {
   reservation: string;
   countries: string;
   language?: string;
+  promocreate: string;
+  token: string;
+  promoCancel: string;
+  appToken: string;
+  paymentEndpoint: string;
+  paymentToken: string;
+  requestPayment: string;
 }
 
 const props = defineProps<Props>();
+console.log('props', props);
 
 const data = reactive(props.data ? JSON.parse(props.data) : null);
 
@@ -191,17 +217,109 @@ const toDateTime = (string: string) =>
     hour: '2-digit',
   });
 
+const alert = reactive<{
+  isOn: boolean;
+  type: 'success' | 'error';
+  message: string;
+}>({
+  isOn: false,
+  type: 'success',
+  message: '',
+});
+
 const onCoupon = ref(false);
 const coupon = ref('');
 const onUseCoupon = async () => {
   console.log(coupon.value);
-  const res = await axios.post('/payment/get_promo', {
+  const res = await axios.post(props.promocreate, {
     code: coupon.value,
+    ReservationCode: reservation.ReservationCode,
   });
   console.log(res.data);
+  if (res.data.status === 200) {
+    alert.type = 'success';
+    alert.message = t('COUPON_RESPONSE.APPLIED');
+    alert.isOn = true;
+    setTimeout(() => {
+      alert.isOn = false;
+      location.reload();
+    }, 5000);
+  } else {
+    alert.type = 'error';
+    alert.message = res.data.message;
+    alert.isOn = true;
+    onCoupon.value = false;
+
+    setTimeout(() => {
+      alert.isOn = false;
+    }, 5000);
+  }
 };
 
-console.log(props);
+const onRemoveCoupon = async () => {
+  const res = await axios.post(props.promoCancel, {
+    code: coupon.value,
+    ReservationCode: reservation.ReservationCode,
+  });
+
+  if (res.data.status === 200) {
+    alert.type = 'error';
+    alert.message = t('COUPON_RESPONSE.REMOVED');
+    alert.isOn = true;
+    setTimeout(() => {
+      alert.isOn = false;
+      location.reload();
+    }, 5000);
+  }
+};
+
+//payment function
+const paymentIframe = reactive({
+  url: '',
+  show: false,
+});
+
+const onPayBooking = async () => {
+  try {
+    const res = await axios.post(props.requestPayment, {
+      booking_no: reservation.ReservationCode,
+    });
+
+    paymentIframe.url = res.data.data.redirect_url;
+    paymentIframe.show = true;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const paymentCancel = () => {
+  console.log('payment canceled');
+};
+
+const listenEvent = (e: any) => {
+  const {
+    message,
+    redirect_url: redirectUrl,
+    payment_type: paymentType,
+  } = e.data;
+
+  if (message === 'payment-cancel') {
+    paymentIframe.show = false;
+  }
+
+  if (message === 'payment-complete') {
+    window.location.replace(redirectUrl);
+  }
+};
+
+onMounted(() => {
+  console.log('element is mounted');
+  window.addEventListener('message', listenEvent);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('message', listenEvent);
+});
 </script>
 
 <style lang="scss">

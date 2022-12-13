@@ -168,9 +168,12 @@ interface Props extends HTMLAttributes {
   segment2?: string;
   confirmAsset: string;
   numpass: string;
+  baseurl: string;
 }
 
 const props = defineProps<Props>();
+
+console.log(props);
 
 const { t } = useI18n({
   messages: messages,
@@ -544,7 +547,7 @@ const onConfirmBooking = async () => {
           }
 
           const response = await axios.post(
-            '/passengerDetails',
+            props.baseurl + '/passengerDetails',
             {
               ...data,
             },
