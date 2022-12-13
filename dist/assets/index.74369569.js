@@ -1,0 +1,1 @@
+const a=t=>t.toLocaleString("id-ID",{style:"currency",currency:"IDR",currencyDisplay:"code",maximumFractionDigits:0}),e=(t,o)=>new Date(t).toLocaleDateString(o,{day:"2-digit",month:"long",year:"numeric"}),n=t=>new Date(t).toLocaleDateString("id-ID",{day:"2-digit",month:"short"});export{a,e as b,n as t};
