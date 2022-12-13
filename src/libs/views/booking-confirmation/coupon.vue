@@ -16,7 +16,7 @@
         />
       </svg>
       <span v-if="reservation.VoucherName"> {{ reservation.VoucherName }}</span>
-      <span v-else>Punya Kode Promo?</span>
+      <span v-else>{{ t('got_promo') }}</span>
     </div>
     <svg
       width="354"

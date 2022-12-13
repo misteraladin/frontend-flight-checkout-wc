@@ -76,7 +76,7 @@
                 <ElOption
                   v-for="opt in countries"
                   :key="opt.CodeTelp"
-                  :label="opt.CodeTelp"
+                  :label="`+ ${opt.CodeTelp}`"
                   :value="opt.CodeTelp"
                 >
                   <div style="display: flex; gap: 10px; align-items: center">
@@ -86,7 +86,7 @@
                       alt=""
                       style="height: 16px; width: 24px"
                     />
-                    <span>{{ opt.CodeTelp }}</span>
+                    <span>+ {{ opt.CodeTelp }}</span>
                   </div>
                 </ElOption>
               </template>
@@ -186,10 +186,12 @@ const vrules = computed(() => ({
   },
   phoneNumber: {
     required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
+    minLength: helpers.withMessage(t('VALIDATION.PHONE_MIN'), minLength(9)),
+    maxLength: helpers.withMessage(t('VALIDATION.PHONE_MAX'), maxLength(13)),
   },
   email: {
     required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
-    email,
+    email: helpers.withMessage(t('VALIDATION.EMAIL'), email),
   },
 }));
 
