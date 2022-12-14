@@ -571,11 +571,15 @@ const onConfirmBooking = async () => {
             formData.append(key, data[key]);
           }
 
-          const response = await axios.post('/passengerDetails', formData, {
-            headers: {
-              'X-CSRF-TOKEN': props.token,
-            },
-          });
+          const response = await axios.post(
+            props.baseurl + '/passengerDetails',
+            formData,
+            {
+              headers: {
+                'X-CSRF-TOKEN': props.token,
+              },
+            }
+          );
           console.log(response);
           isLoading.value = false;
 
