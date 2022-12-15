@@ -213,6 +213,571 @@
   }
 }
 
+.modal-detail{
+   
+  .departure{
+    padding: 16px;
+
+    .title-departure{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #424242;
+    }
+
+    .airlines{
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 20% 80%;
+
+        .img-airline {
+          align-self: center;
+           img {
+              width: 36px;
+              height: 24px;
+           }
+        }
+
+        .name-airline {
+          div {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 24px;
+            color: #424242;
+          }
+          span {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
+            color: #9E9E9E;
+          }
+        }
+    }
+
+    .schedule{
+        display: grid;
+        grid-template-columns: 10% 90%;
+        margin-top: 16px;
+
+        .time-airport{
+
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 16px;
+
+            .takeoff{
+              display: grid;
+              grid-template-columns: 20% 80%;
+
+              .time-date{
+                  .time{
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 16px;
+                    color: #424242;
+                  }
+                  .date{
+                    margin-top: 4px;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: #9E9E9E;
+                  }
+              }
+
+              .airport{
+
+                .city{
+                  font-weight: 600;
+                  font-size: 14px;
+                  line-height: 16px;
+                  color: #424242;
+                }
+
+                .place{
+                  font-weight: 500;
+                  font-size: 12px;
+                  line-height: 16px;
+                  color: #9E9E9E;
+                }
+
+              }
+
+              
+           }
+
+           .estimation{
+              font-weight: 500;
+              font-size: 10px;
+              line-height: 16px;
+              color: #9E9E9E;
+           }
+
+           .landing{
+              display: grid;
+              grid-template-columns: 20% 80%;
+
+              .time-date {
+                  .time {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 16px;
+                    color: #424242;
+                  }
+              
+                  .date {
+                    margin-top: 4px;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: #9E9E9E;
+                  }
+                }
+              
+                .airport {
+              
+                  .city {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 16px;
+                    color: #424242;
+                  }
+              
+                  .place {
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: #9E9E9E;
+                  }
+              
+                }
+                
+           }
+          
+        }
+    }
+
+    .luggage{
+      margin-top: 16px;
+      display: flex;
+
+      .icon{
+         
+      }
+      .capacity{
+        margin-left: 7px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #424242;
+      }
+      
+    }
+
+
+  }
+
+    .return {
+      padding: 16px;
+  
+      .title-return {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #424242;
+      }
+  
+      .airlines {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 20% 80%;
+  
+        .img-airline {
+          align-self: center;
+
+          img {
+            width: 36px;
+            height: 24px;
+          }
+        }
+  
+        .name-airline {
+          div {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 24px;
+            color: #424242;
+          }
+  
+          span {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
+            color: #9E9E9E;
+          }
+        }
+      }
+  
+      .schedule {
+        display: grid;
+        grid-template-columns: 10% 90%;
+        margin-top: 16px;
+  
+        .time-airport {
+  
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 16px;
+  
+          .takeoff {
+            display: grid;
+            grid-template-columns: 20% 80%;
+  
+            .time-date {
+              .time {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 16px;
+                color: #424242;
+              }
+  
+              .date {
+                margin-top: 4px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                color: #9E9E9E;
+              }
+            }
+  
+            .airport {
+  
+              .city {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 16px;
+                color: #424242;
+              }
+  
+              .place {
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                color: #9E9E9E;
+              }
+  
+            }
+  
+  
+          }
+  
+          .estimation {
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 16px;
+            color: #9E9E9E;
+          }
+  
+          .landing {
+            display: grid;
+            grid-template-columns: 20% 80%;
+  
+            .time-date {
+              .time {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 16px;
+                color: #424242;
+              }
+  
+              .date {
+                margin-top: 4px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                color: #9E9E9E;
+              }
+            }
+  
+            .airport {
+  
+              .city {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 16px;
+                color: #424242;
+              }
+  
+              .place {
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                color: #9E9E9E;
+              }
+  
+            }
+  
+          }
+  
+        }
+      }
+  
+      .luggage {
+        margin-top: 16px;
+        display: flex;
+  
+  
+        .capacity {
+          margin-left: 7px;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          color: #424242;
+        }
+  
+      }
+  
+  
+  }
+
+  .transit{
+      margin-top: -10px;
+      padding: 16px;
+
+      .card{
+        text-align: center;
+         background: #EEF5FF;
+         border-radius: 4px;
+         padding: 8px;
+         font-weight: 500;
+         font-size: 10px;
+         line-height: 16px;
+         margin-bottom: 16px;
+      }
+
+            .airlines {
+              margin-top: 16px;
+              display: grid;
+              grid-template-columns: 20% 80%;
+      
+              .img-airline {
+                align-self: center;
+
+                img {
+                  width: 36px;
+                  height: 24px;
+                }
+              }
+      
+              .name-airline {
+                div {
+                  font-weight: 600;
+                  font-size: 14px;
+                  line-height: 24px;
+                  color: #424242;
+                }
+      
+                span {
+                  font-weight: 500;
+                  font-size: 12px;
+                  line-height: 16px;
+                  color: #9E9E9E;
+                }
+              }
+            }
+      
+            .schedule {
+              display: grid;
+              grid-template-columns: 10% 90%;
+              margin-top: 16px;
+      
+              .time-airport {
+      
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 16px;
+      
+                .takeoff {
+                  display: grid;
+                  grid-template-columns: 20% 80%;
+      
+                  .time-date {
+                    .time {
+                      font-weight: 600;
+                      font-size: 14px;
+                      line-height: 16px;
+                      color: #424242;
+                    }
+      
+                    .date {
+                      margin-top: 4px;
+                      font-weight: 500;
+                      font-size: 12px;
+                      line-height: 16px;
+                      color: #9E9E9E;
+                    }
+                  }
+      
+                  .airport {
+      
+                    .city {
+                      font-weight: 600;
+                      font-size: 14px;
+                      line-height: 16px;
+                      color: #424242;
+                    }
+      
+                    .place {
+                      font-weight: 500;
+                      font-size: 12px;
+                      line-height: 16px;
+                      color: #9E9E9E;
+                    }
+      
+                  }
+      
+      
+                }
+      
+                .estimation {
+                  font-weight: 500;
+                  font-size: 10px;
+                  line-height: 16px;
+                  color: #9E9E9E;
+                }
+      
+                .landing {
+                  display: grid;
+                  grid-template-columns: 20% 80%;
+      
+                  .time-date {
+                    .time {
+                      font-weight: 600;
+                      font-size: 14px;
+                      line-height: 16px;
+                      color: #424242;
+                    }
+      
+                    .date {
+                      margin-top: 4px;
+                      font-weight: 500;
+                      font-size: 12px;
+                      line-height: 16px;
+                      color: #9E9E9E;
+                    }
+                  }
+      
+                  .airport {
+      
+                    .city {
+                      font-weight: 600;
+                      font-size: 14px;
+                      line-height: 16px;
+                      color: #424242;
+                    }
+      
+                    .place {
+                      font-weight: 500;
+                      font-size: 12px;
+                      line-height: 16px;
+                      color: #9E9E9E;
+                    }
+      
+                  }
+      
+                }
+      
+              }
+            }
+
+            .luggage {
+              margin-top: 16px;
+              display: flex;
+  
+  
+            .capacity {
+              margin-left: 7px;
+              font-weight: 500;
+              font-size: 12px;
+              line-height: 16px;
+              color: #424242;
+           }
+  
+            }
+
+  }
+
+  .price-departure {
+    padding: 16px;
+
+    .title-price-departure{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: #424242;
+    }
+
+    .content{
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      color: #9E9E9E;
+      margin-top: 20px;
+    }
+
+  }
+
+  .price-return {
+      padding: 16px;
+      margin-top: -15px;
+  
+      .title-price-return {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #424242;
+      }
+  
+      .content {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #9E9E9E;
+        margin-top: 20px;
+      }
+  
+  }
+
+  .total {
+    margin-top: -15px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+
+    .title-total{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: #424242;
+    }
+
+    .price-total{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+       color: #DD2C00;
+    }
+
+  }
+  
+}
+
+
 #passenger-form {
   h3 {
     margin-bottom: 1rem;
@@ -271,6 +836,7 @@ section {
     font-weight: 600;
     font-size: 12px;
     color: colors.$primary-1;
+    cursor: pointer;
   }
 }
 
