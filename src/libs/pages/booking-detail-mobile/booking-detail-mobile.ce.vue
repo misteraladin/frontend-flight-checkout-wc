@@ -6,16 +6,16 @@
 
     <FlightItem
       :title="t('departure')"
-      :segment="departureSegment"
+      :segment="flightSegments[0]"
       :t="t"
       :has-detail-button="true"
-      @showDetail="showModalDetail = !showModalDetail"
+      @showDetail="showModalDetail = true"
     />
 
     <FlightItem
       class="pt-0"
       :title="t('return')"
-      :segment="returnSegment"
+      :segment="flightSegments[1]"
       :t="t"
       :has-detail-button="false"
     />
@@ -23,7 +23,7 @@
     <BannerLogin :t="t" />
 
     <section class="booking-detail__contact">
-      <h2>{{ t('booking_details') }}</h2>
+      <h2>{{ t("booking_details") }}</h2>
       <Passenger
         type="contact"
         :passenger="form.contact"
@@ -33,7 +33,7 @@
     </section>
 
     <section class="booking-detail__traveler pt-0">
-      <h2>{{ t('traveler_details') }}</h2>
+      <h2>{{ t("traveler_details") }}</h2>
       <div
         v-for="(passengerTypes, keyTypes, indexTypes) in form.passengers"
         :key="indexTypes"
@@ -50,264 +50,25 @@
     </section>
 
     <section class="booking-detail__info">
-      <p>{{ t('passenger_info') }}</p>
+      <p>{{ t("passenger_info") }}</p>
     </section>
 
     <Footer @next="submit">
       {{ t("next") }}
     </Footer>
 
-
-    <div v-if="showModalDetail" class="modal-detail">
-        <ModalWindow class="content-modal"  @close="showModalDetail = false">
-             
-            <template v-slot:header>
-                Detail Pemesanan
-            </template>
-            
-            <div class="departure">
-                <div class="title-departure">Keberangkatan</div>
-                <div class="airlines">
-                    <div class="img-airline">
-                        <img src="/modal-detail/garuda.svg" />
-                    </div>
-                    <div class="name-airline">
-                        <div>{{ dataDeparture.AirlineName }}</div>
-                        <span>Ekonomi (Subclass V)</span>
-                    </div>
-                </div>
-                <div class="schedule">
-                    <div class="icon">
-                        <img src="/modal-detail/estimat.svg" />
-                    </div>
-                    <div class="time-airport">
-                        <div class="takeoff">
-                            <div class="time-date">
-                                <div class="time">16:00</div>
-                                <div class="date">5 jul</div>
-                            </div>
-                            <div class="airport">
-                                <div class="city">Jakarta (CKG)</div>
-                                <span class="place">Soekarno-hatta Intl Airport</span>
-                            </div>
-                        </div>
-                        <div class="estimation">
-                            1j 30 m
-                        </div>
-                        <div class="landing">
-                             <div class="time-date">
-                                <div class="time">17:00</div>
-                                <div class="date">5 jul</div>
-                            </div>
-                            <div class="airport">
-                                <div class="city">Jakarta (CKG)</div>
-                                <span class="place">Soekarno-hatta Intl Airport</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="luggage">
-                    <div class="icon">
-                        <img src="/modal-detail/luggage.svg" />
-                    </div>
-                    <div class="capacity">
-                        Maks. bagasi terdaftar 20 Kg
-                    </div>
-                </div>
-            </div>
-            <div v-if="transit" class="transit">
-                <div class="card">
-                    Transit 1j 30m di Yogyakarta (YIA)
-                </div>
-                 <div class="airlines">
-                    <div class="img-airline">
-                        <img src="/modal-detail/garuda.svg" />
-                    </div>
-                    <div class="name-airline">
-                        <div>Garuda indonesia</div>
-                        <span>Ekonomi (Subclass V)</span>
-                    </div>
-                </div>
-                <div class="schedule">
-                    <div class="icon">
-                        <img src="/modal-detail/estimat.svg" />
-                    </div>
-                    <div class="time-airport">
-                        <div class="takeoff">
-                            <div class="time-date">
-                                <div class="time">16:00</div>
-                                <div class="date">5 jul</div>
-                            </div>
-                            <div class="airport">
-                                <div class="city">Jakarta (CKG)</div>
-                                <span class="place">Soekarno-hatta Intl Airport</span>
-                            </div>
-                        </div>
-                        <div class="estimation">
-                            1j 30 m
-                        </div>
-                        <div class="landing">
-                             <div class="time-date">
-                                <div class="time">17:00</div>
-                                <div class="date">5 jul</div>
-                            </div>
-                            <div class="airport">
-                                <div class="city">Jakarta (CKG)</div>
-                                <span class="place">Soekarno-hatta Intl Airport</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="luggage">
-                    <div class="icon">
-                        <img src="/modal-detail/luggage.svg" />
-                    </div>
-                    <div class="capacity">
-                        Maks. bagasi terdaftar 20 Kg
-                    </div>
-                </div>
-            </div>
-             <hr />
-            <div v-if="roundTrip "  class="return">
-                <div class="title-return">Kepulangan</div>
-                <div class="airlines">
-                    <div class="img-airline">
-                        <img src="/modal-detail/garuda.svg" />
-                    </div>
-                    <div class="name-airline">
-                        <div>Garuda indonesia</div>
-                        <span>Ekonomi (Subclass V)</span>
-                    </div>
-                </div>
-                <div class="schedule">
-                    <div class="icon">
-                        <img src="/modal-detail/estimat.svg" />
-                    </div>
-                    <div class="time-airport">
-                        <div class="takeoff">
-                            <div class="time-date">
-                                <div class="time">16:00</div>
-                                <div class="date">5 jul</div>
-                            </div>
-                            <div class="airport">
-                                <div class="city">Jakarta (CKG)</div>
-                                <span class="place">Soekarno-hatta Intl Airport</span>
-                            </div>
-                        </div>
-                        <div class="estimation">
-                            1j 30 m
-                        </div>
-                        <div class="landing">
-                             <div class="time-date">
-                                <div class="time">17:00</div>
-                                <div class="date">5 jul</div>
-                            </div>
-                            <div class="airport">
-                                <div class="city">Jakarta (CKG)</div>
-                                <span class="place">Soekarno-hatta Intl Airport</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="luggage">
-                    <div class="icon">
-                        <img src="/modal-detail/luggage.svg" />
-                    </div>
-                    <div class="capacity">
-                        Maks. bagasi terdaftar 20 Kg
-                    </div>
-                </div>
-            </div>             
-            <div v-if="transit" class="transit">
-                <div class="card">
-                    Transit 1j 30m di Yogyakarta (YIA)
-                </div>
-                 <div class="airlines">
-                    <div class="img-airline">
-                        <img src="/modal-detail/garuda.svg" />
-                    </div>
-                    <div class="name-airline">
-                        <div>Garuda indonesia</div>
-                        <span>Ekonomi (Subclass V)</span>
-                    </div>
-                </div>
-                <div class="schedule">
-                    <div class="icon">
-                        <img src="/modal-detail/estimat.svg" />
-                    </div>
-                    <div class="time-airport">
-                        <div class="takeoff">
-                            <div class="time-date">
-                                <div class="time">16:00</div>
-                                <div class="date">5 jul</div>
-                            </div>
-                            <div class="airport">
-                                <div class="city">Jakarta (CKG)</div>
-                                <span class="place">Soekarno-hatta Intl Airport</span>
-                            </div>
-                        </div>
-                        <div class="estimation">
-                            1j 30 m
-                        </div>
-                        <div class="landing">
-                             <div class="time-date">
-                                <div class="time">17:00</div>
-                                <div class="date">5 jul</div>
-                            </div>
-                            <div class="airport">
-                                <div class="city">Jakarta (CKG)</div>
-                                <span class="place">Soekarno-hatta Intl Airport</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="luggage">
-                    <div class="icon">
-                        <img src="/modal-detail/luggage.svg" />
-                    </div>
-                    <div class="capacity">
-                        Maks. bagasi terdaftar 20 Kg
-                    </div>
-                </div>
-            </div>
-             <div class="price-departure">
-                <div>
-                    <div class="title-price-departure">
-                    Harga Keberangkatan
-                    </div>
-                    <div class="content">
-                        <div>Base Fare - 2 Adult</div>
-                        <div>IDR 2.400.000</div>
-                    </div>
-                </div>
-                <hr />
-             </div>
-             <div v-if="roundTrip" class="price-return">
-                    <div class="title-price-return">
-                    Harga Kepulangan
-                    </div>
-                    <div class="content">
-                        <div>Base Fare - 2 Adult</div>
-                        <div>IDR 2.400.000</div>
-                    </div>
-                    <hr />
-             </div>
-              <div class="total">
-                    <div class="title-total">
-                        TOTAL
-                    </div>
-                    <div class="price-total">
-                        IDR 7.500.000
-                    </div>
-             </div>
-              <hr />
-
-
-            <template v-slot:footer>
-               Tutup
-            </template>
-        </ModalWindow>
-    </div>
+    <ModalWindow v-if="showModalDetail" @close="showModalDetail = false">
+      <template v-slot:header>
+        {{ t("booking_details") }}
+      </template>
+      <BookingDetailFlightDetailMobile
+        :flight-segments="flightSegments"
+        :t="t"
+      />
+      <template v-slot:footer>
+        {{ t("close") }}
+      </template>
+    </ModalWindow>
 
     <!-- <ModalWindow>
       <template v-slot:header>
@@ -366,27 +127,23 @@
 <script setup lang="ts">
 import Header from "../common-mobile/mobile-header.vue";
 import FlightItem from "./booking-detail-flight-item-mobile.vue";
-import Passenger from "./booking-detail-passenger-mobile.vue"
+import Passenger from "./booking-detail-passenger-mobile.vue";
 import BannerLogin from "../common-mobile/mobile-banner-login.vue";
 import Footer from "../common-mobile/mobile-footer.vue";
 import ModalWindow from "../common-mobile/ModalWindow.vue";
 import ModalBase from "../common-mobile/ModalBase.vue";
-import ModalDetail from "./booking-detail-modal-mobile.vue"
 
 import {
   RootObject as IRootObject,
   Segment as ISegment,
-  Departure as IDeparture,
   Form as IForm,
 } from "./type-booking-detail-mobile";
 import { onMounted, reactive, ref, computed } from "vue";
 import { useI18n } from "vue-i18n"; // import i18n plugin
 import messages from "./lang"; // import dictionary
-
-
+import BookingDetailFlightDetailMobile from "./booking-detail-flight-detail-mobile.vue";
 
 const showModalDetail = ref(false);
-
 
 // create i18n instance
 const { t } = useI18n({
@@ -401,27 +158,26 @@ const props = defineProps({
 });
 
 const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
-const departureSegment: ISegment = reactive(data.segment1 ? JSON.parse(data.segment1) : null);
-const returnSegment: ISegment = reactive(data.segment2 ? JSON.parse(data.segment2) : null);
+const flightSegments = computed<ISegment[]>(() => {
+  const departureSegment: ISegment = data.segment1 ? JSON.parse(data.segment1) : null;
+  const returnSegment: ISegment = data.segment2 ? JSON.parse(data.segment2) : null;
 
-console.log('iqbal data: ', data);
-console.log('iqbal departureSegment: ', departureSegment);
-
-const onCloseModal = () => {
-  showModalDetail = !showModalDetail;
-}
-
+  return [
+    departureSegment,
+    returnSegment,
+  ]
+});
 
 // Passenger
 const form: IForm = reactive({
   contact: {
-    title: 'mr',
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    phoneCode: '62',
-    phoneNumber: '',
-    email: '',
+    title: "mr",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    phoneCode: "62",
+    phoneNumber: "",
+    email: "",
   },
   passengers: {
     adult: [],
@@ -430,32 +186,32 @@ const form: IForm = reactive({
   },
 });
 // set passenger object structure
-const emptyPassenger = ((type: string) => {
+const emptyPassenger = (type: string) => {
   const titlePassenger: any = {
-    adult: 'mr',
-    child: 'mstr',
-    infant: 'mstr',
+    adult: "mr",
+    child: "mstr",
+    infant: "mstr",
   };
 
   return {
     title: titlePassenger[type],
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    nationality: 'ID',
-    dob: '',
-    idType: 'NIK',
-    idNo: '',
-    idExpiry: '',
-    idOrigin: 'ID',
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    nationality: "ID",
+    dob: "",
+    idType: "NIK",
+    idNo: "",
+    idExpiry: "",
+    idOrigin: "ID",
   };
-});
+};
 // examaple result ['adult', 'adult', 'child', 'infant']
-const passengerTypes = (() => ([
-  ...Array.from(Array(+data.adult), (() => 'adult')),
-  ...Array.from(Array(+data.child), (() => 'child')),
-  ...Array.from(Array(+data.infant), (() => 'infant')),
-]));
+const passengerTypes = () => [
+  ...Array.from(Array(+data.adult), () => "adult"),
+  ...Array.from(Array(+data.child), () => "child"),
+  ...Array.from(Array(+data.infant), () => "infant"),
+];
 const initialPassengers = () => {
   const types = passengerTypes();
 
@@ -471,27 +227,15 @@ const initialPassengers = () => {
   form.passengers = passengers;
 };
 
-//data departure
-const dataDeparture = computed<IDeparture>(() => departureSegment.Segments.Departure[0]);
-
-
-//if transit
-const transit = ref(true)
-
-//if round trip
-const roundTrip = ref(true)
-
-
-
 onMounted(() => {
   initialPassengers();
 });
 
 const submit = () => {
-  console.log('passenger: ', form);
-}
+  console.log("passenger: ", form);
+};
 </script>
 
 <style lang="scss">
-@use '@/styles/pages/booking-detail-mobile';
+@use "@/styles/pages/booking-detail-mobile";
 </style>

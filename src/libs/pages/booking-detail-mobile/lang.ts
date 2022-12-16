@@ -2,6 +2,9 @@ export default {
   en: {
     booking_details: "Booking Details",
     traveler_details: "Traveler Details",
+    transit_in: '{time} transit in {place} ({code})',
+    price_departure: 'Depature Price',
+    price_return: 'Return Price',
     next: "Next",
     want_to_save: "Want to save even more? Don't forget to log in.",
     login: "Login",
@@ -61,6 +64,9 @@ export default {
   id: {
     booking_details: "Detail Pemesanan",
     traveler_details: "Detail Penumpang",
+    transit_in: 'Transit {time} di {place} ({code})',
+    price_departure: 'Harga Keberangkatan',
+    price_return: 'Harga Kepulangan',
     next: "Selanjutnya",
     want_to_save: "Mau lebih hemat? Jangan lupa log in, ya.",
     login: "Login",
