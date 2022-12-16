@@ -6,7 +6,7 @@
           <button
             type="button"
             class="btn btn-header"
-            @click="close"
+            @click.self="close"
           >
             <img
               src="/booking-mobile/close.svg"
