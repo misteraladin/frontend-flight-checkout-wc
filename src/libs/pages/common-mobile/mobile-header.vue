@@ -16,7 +16,7 @@
       </slot>
     </div>
 
-    <div ref="appHeaderMiddle" class="header-middle">
+    <div class="header-middle">
       <slot />
     </div>
   </header>

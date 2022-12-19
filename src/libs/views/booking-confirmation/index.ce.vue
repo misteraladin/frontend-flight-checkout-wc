@@ -212,6 +212,8 @@ const { t } = useI18n({
   messages: messages,
 });
 
+// need to move to utils,
+// function was ready
 const toDateTime = (string: string) =>
   new Date(string).toLocaleDateString('es-CL', {
     day: '2-digit',

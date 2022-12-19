@@ -158,3 +158,38 @@ export interface Segment {
   FareDetailCode: string;
   Segments: Segments;
 }
+
+export interface Passenger {
+  title: string,
+  firstName: string,
+  middleName: string,
+  lastName: string,
+  nationality: string,
+  dob: string,
+  idType: string,
+  idNo: string,
+  idExpiry: string,
+  idOrigin: string,
+}
+
+export interface Contact {
+  title: string,
+  firstName: string,
+  middleName: string,
+  lastName: string,
+  phoneCode: string,
+  phoneNumber: string,
+  email: string,
+}
+
+
+interface Passengers {
+  adult: Passenger[],
+  child: Passenger[],
+  infant: Passenger[],
+}
+
+export interface Form {
+  contact: Contact
+  passengers: Passengers
+}

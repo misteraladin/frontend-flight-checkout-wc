@@ -3,7 +3,11 @@
     <div class="flight-item__title">
       <h2>{{ title }}</h2>
 
-      <a class="btn-link" @click="$emit('showDetail')">
+      <a
+        v-if="hasDetailButton"
+        class="btn-link"
+        @click="$emit('showDetail')"
+      >
         {{ t('see_detail') }}
       </a>
     </div>
@@ -74,25 +78,13 @@ import {
 import { toDateMonth } from '../../../utils';
 import { computed, reactive } from "vue";
 
-const props = defineProps({
-  title: {
-    type: String,
-    default: '',
-  },
-
-  segment: {
-    type: Object,
-    required: true,
-  },
-
-  t: {
-    type: Object,
-    required: true,
-  },
-});
-
-const segment = reactive<ISegment | any>(props.segment);
-const t: any = reactive(props.t);
+interface Props {
+  title: string;
+  segment: ISegment;
+  hasDetailButton: boolean;
+  t: Function;
+}
+const { title, segment, hasDetailButton, t } = defineProps<Props>();
 
 const segmentOrigin = computed<IDeparture>(() => segment.Segments.Departure[0]);
 const segmentDepart = computed<IDeparture>(() => segment.Segments.Departure[segment.Segments.Departure.length - 1]);
