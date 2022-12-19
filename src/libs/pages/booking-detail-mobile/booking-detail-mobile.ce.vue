@@ -52,8 +52,9 @@
       <p>{{ t('passenger_info') }}</p>
     </section>
 
-    <!-- <Footer @next="submit">
-    </Footer> -->
+    <Footer @next="submit">
+      {{ t("next") }}
+    </Footer>
 
     <!-- <ModalWindow>
       <template v-slot:header>
