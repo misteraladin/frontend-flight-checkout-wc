@@ -17,7 +17,7 @@
       </svg>
 
       <div class="ma-banner-login__content-description">
-        Mau lebih hemat? Jangan lupa log in, ya.
+        {{ t('want_to_save') }}
       </div>
     </div>
     <a :href="loginUrl">
@@ -26,11 +26,11 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-defineProps({
-  loginUrl: {
-    type: String,
-    default: '/login',
-  },
-});
+<script setup lang="ts">
+interface Props {
+  loginUrl: string;
+  t: Function;
+}
+
+const {loginUrl, t} = defineProps<Props>();
 </script>

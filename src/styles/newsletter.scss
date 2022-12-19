@@ -5,17 +5,23 @@
 
 .newsletter {
   background-color: colors.$primary-1;
-  color: colors.$white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  padding: functions.toRem(28) functions.toRem(120);
+  
 
-  span {
-    max-width: functions.toRem(600);
+  &-main {
+    max-width: functions.toRem(1200);
+    margin: 0 auto;
+    color: colors.$white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    padding: functions.toRem(28) 0;
+
+    span {
+      max-width: functions.toRem(600);
+    }
   }
 }
 

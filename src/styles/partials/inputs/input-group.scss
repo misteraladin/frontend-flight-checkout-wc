@@ -2,35 +2,44 @@
 @use '@/styles/utils/colors';
 
 .ma-input-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  //   width: 100%;
+  //   display: flex;
+  //   flex-direction: column;
 
-  & > label {
-    display: flex;
-    grid-area: label;
-    margin-bottom: functions.toRem(8) !important;
+  margin-bottom: 0 !important;
+
+  .el-form-item__label {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     color: #424242;
-    width: 100%;
-  }
-}
-
-.group {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #e0e0e0;
-  border-radius: functions.toRem(8);
-
-  & * {
-    border: none !important;
   }
 
-  &__prepend {
-    order: -1;
-    border-right: 1px solid #e0e0e0 !important;
-    width: min-content !important;
-  }
+  //   & > label {
+  //     display: flex;
+  //     grid-area: label;
+  //     margin-bottom: functions.toRem(8) !important;
+  //     font-weight: 500;
+  //     font-size: 16px;
+  //     line-height: 24px;
+  //     color: #424242;
+  //     width: 100%;
+  //   }
+  // }
+
+  // .group {
+  //   display: flex;
+  //   flex-direction: row;
+  //   border: 1px solid #e0e0e0;
+  //   border-radius: functions.toRem(8);
+
+  //   & * {
+  //     border: none !important;
+  //   }
+
+  //   &__prepend {
+  //     order: -1;
+  //     border-right: 1px solid #e0e0e0 !important;
+  //     width: min-content !important;
+  //   }
 }

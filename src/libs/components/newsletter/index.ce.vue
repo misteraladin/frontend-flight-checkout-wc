@@ -1,6 +1,7 @@
 <template>
   <div class="newsletter">
-    <span>
+    <div class="newsletter-main">
+      <span>
       Yuk, langganan newsletter kami untuk menjadi yang pertama mengetahui promo
       terbaru Mister Aladin!
     </span>
@@ -34,6 +35,7 @@
         <div class="bg-red">Berlangganan</div>
       </template>
     </ElInput>
+    </div>
   </div>
 </template>
 

@@ -30,18 +30,18 @@
     
     <div id="app"></div>
 
-    <!-- <ma-header></ma-header> -->
-    <!-- <ma-booking-detail :data="JSON.stringify(store.data)"></ma-booking-detail> -->
-
     <ma-i18n-host language="en">
-      <ma-booking-detail-mobile :data="JSON.stringify(store.data.flightDetail)">
-      </ma-booking-detail-mobile>
+      <!-- booking detail mobile -->
+      <!-- <ma-booking-detail-mobile
+        :data="JSON.stringify(store.data.flightDetail)">
+      </ma-booking-detail-mobile> -->
+
+      <!-- booking confirmation mobile -->
+      <ma-booking-confirmation-mobile
+        :data="JSON.stringify(store.data.flightConfirmationPassenger)"
+        :reservation="JSON.stringify(store.data.flightConfirmation)">
+      </ma-booking-confirmation-mobile>
     </ma-i18n-host>
-
-    <ma-booking-confirmation-mobile></ma-booking-confirmation-mobile>
-
-    
-    <!-- <script type="module" crossorigin src="./dist/assets/index.2b9dbb45.js"></script> -->
 
     <script>
       console.log('hello');
