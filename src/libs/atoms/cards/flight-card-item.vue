@@ -69,6 +69,8 @@ interface Props {
 
 const { flight } = defineProps<Props>();
 
+// need to move to utils,
+// function was ready
 const toDateMonth = (value: string) => {
   return new Date(value).toLocaleDateString('id-ID', {
     day: '2-digit',
