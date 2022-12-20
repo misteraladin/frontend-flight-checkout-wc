@@ -36,7 +36,7 @@
         </template>
         <div
           class="booking__main-column-2"
-          v-for="(pax, i) in reservationDetail.ReservationVendor.Pax"
+          v-for="(pax, i) in sortedPassengers(reservationDetail.ReservationVendor.Pax)"
         >
           <p class="span-2-column">
             {{ i + 1 }}. {{ pax.Title }}
@@ -160,6 +160,7 @@ import messages from './lang';
 import axios from 'axios';
 
 import { toIDR, toDate } from '../../../utils/index';
+import { sortedPassengers } from "../../../utils/flight"
 
 import Card from '../../atoms/cards/card.vue';
 import FlightCard from '../../atoms/cards/flight-card.vue';
