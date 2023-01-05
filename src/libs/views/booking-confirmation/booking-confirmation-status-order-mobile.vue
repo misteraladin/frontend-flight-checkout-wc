@@ -11,7 +11,7 @@
       }}</span>
     </div>
     <div class="limit">
-      <div class="title">{{ t('PTL') }}</div>
+      <div class="title">{{ t('time_limit') }}</div>
       <span class="content-limit">{{
         toDateTime(reservation.TimeLimitPayment)
       }}</span>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { RootObject as IReservation } from './type';
+import { RootObject as IReservation } from './types';
 import { toDateTime } from '../../../utils';
 
 interface Props {

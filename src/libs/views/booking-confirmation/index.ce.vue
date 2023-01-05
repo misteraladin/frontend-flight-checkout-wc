@@ -36,7 +36,9 @@
         </template>
         <div
           class="booking__main-column-2"
-          v-for="(pax, i) in sortedPassengers(reservationDetail.ReservationVendor.Pax)"
+          v-for="(pax, i) in sortedPassengers(
+            reservationDetail.ReservationVendor.Pax
+          )"
         >
           <p class="span-2-column">
             {{ i + 1 }}. {{ pax.Title }}
@@ -144,13 +146,42 @@
       </Card>
       <span class="booking__agreement">{{ t('AGREEMENT') }}</span>
     </div>
-
-    <PaymentContainerVue
-      @cancel="paymentCancel"
-      :src="paymentIframe.url"
-      v-if="paymentIframe.show"
-    />
   </div>
+  <div id="booking-confirmation-mobile">
+    <Header>
+      {{ t('CONFIRMATION') }}
+    </Header>
+    <StatusOrder :reservation="reservation" :t="t" />
+    <FlightItem
+      :title="t('DEPARTURE')"
+      :segment="departureFLights"
+      :t="t"
+      :has-detail-button="true"
+    />
+    <!-- @showDetail="showModalDetail = true" -->
+
+    <FlightItem
+      class="pt-0"
+      :title="t('RETURN')"
+      :segment="returnFlights"
+      :t="t"
+      :has-detail-button="false"
+      v-if="returnFlights"
+    />
+
+    <DetailPassanger
+      :title="t('PASSENGER_DETAILS')"
+      :passengers="reservation.ReservationDetail[0].ReservationVendor.Pax"
+      :highest-baggage="highestBaggage"
+    />
+
+    <Footer @next="onPayBooking">{{ t('PAY_NOW') }}</Footer>
+  </div>
+  <PaymentContainerVue
+    @cancel="paymentCancel"
+    :src="paymentIframe.url"
+    v-if="paymentIframe.show"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -160,7 +191,7 @@ import messages from './lang';
 import axios from 'axios';
 
 import { toIDR, toDate } from '../../../utils/index';
-import { sortedPassengers } from "../../../utils/flight"
+import { sortedPassengers } from '../../../utils/flight';
 
 import Card from '../../atoms/cards/card.vue';
 import FlightCard from '../../atoms/cards/flight-card.vue';
@@ -171,7 +202,13 @@ import PaymentContainerVue from '../../components/payment-container/payment-cont
 
 import { ElInput, ElAlert } from 'element-plus';
 
-import { Country, Reservation } from './types';
+import { Country, Departure, Reservation } from './types';
+
+import Header from '../common-mobile/mobile-header.vue';
+import StatusOrder from '../../pages/booking-confirmation-mobile/booking-confirmation-status-order-mobile.vue';
+import FlightItem from '../booking-detail/booking-detail-flight-item-mobile.vue';
+import DetailPassanger from '../../pages/booking-confirmation-mobile/booking-confirmation-detail-passanger-mobile.vue';
+import Footer from '../common-mobile/mobile-footer.vue';
 
 interface Props {
   data: any;
@@ -188,7 +225,6 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-console.log('props', props);
 
 const data = reactive(props.data ? JSON.parse(props.data) : null);
 
@@ -199,6 +235,25 @@ const reservation = reactive<Reservation>(
 const departureFLights = reactive(JSON.parse(data.segment1));
 
 const returnFlights = reactive(JSON.parse(data.segment2));
+// console.log('props', departureFLights, returnFlights);
+
+const highestBaggage = computed(() => {
+  const highest = Math.max(
+    ...departureFLights.Segments.Departure.map((el: Departure) =>
+      parseInt(el.Baggage)
+    ),
+    ...departureFLights.Segments.Return.map((el: Departure) =>
+      parseInt(el.Baggage)
+    ),
+    ...returnFlights.Segments.Departure.map((el: Departure) =>
+      parseInt(el.Baggage)
+    ),
+    ...returnFlights.Segments.Return.map((el: Departure) =>
+      parseInt(el.Baggage)
+    )
+  );
+  return highest;
+});
 
 const reservationDetail = reactive(reservation.ReservationDetail[0]);
 
@@ -331,4 +386,6 @@ onUnmounted(() => {
 
 <style lang="scss">
 @use '@/styles/booking-confirmation';
+@use '@/styles/pages/booking-confirmation-mobile';
+@use '@/styles/pages/booking-detail-mobile';
 </style>

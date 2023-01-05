@@ -1,7 +1,7 @@
 <template>
   <div id="booking-detail-mobile">
     <Header>
-      {{ t("booking_details") }}
+      {{ t('booking_details') }}
     </Header>
 
     <FlightItem
@@ -23,7 +23,7 @@
     <BannerLogin :t="t" />
 
     <section class="booking-detail__contact">
-      <h2>{{ t("booking_details") }}</h2>
+      <h2>{{ t('booking_details') }}</h2>
       <Passenger
         type="contact"
         :passenger="form.contact"
@@ -33,7 +33,7 @@
     </section>
 
     <section class="booking-detail__traveler pt-0">
-      <h2>{{ t("traveler_details") }}</h2>
+      <h2>{{ t('traveler_details') }}</h2>
       <div
         v-for="(passengerTypes, keyTypes, indexTypes) in form.passengers"
         :key="indexTypes"
@@ -50,23 +50,23 @@
     </section>
 
     <section class="booking-detail__info">
-      <p>{{ t("passenger_info") }}</p>
+      <p>{{ t('passenger_info') }}</p>
     </section>
 
     <Footer @next="submit">
-      {{ t("next") }}
+      {{ t('next') }}
     </Footer>
 
     <ModalWindow v-if="showModalDetail" @close="showModalDetail = false">
       <template v-slot:header>
-        {{ t("booking_details") }}
+        {{ t('booking_details') }}
       </template>
       <BookingDetailFlightDetailMobile
         :flight-segments="flightSegments"
         :t="t"
       />
       <template v-slot:footer>
-        {{ t("close") }}
+        {{ t('close') }}
       </template>
     </ModalWindow>
 
@@ -125,23 +125,23 @@
 </template>
 
 <script setup lang="ts">
-import Header from "../common-mobile/mobile-header.vue";
-import FlightItem from "./booking-detail-flight-item-mobile.vue";
-import Passenger from "./booking-detail-passenger-mobile.vue";
-import BannerLogin from "../common-mobile/mobile-banner-login.vue";
-import Footer from "../common-mobile/mobile-footer.vue";
-import ModalWindow from "../common-mobile/ModalWindow.vue";
-import ModalBase from "../common-mobile/ModalBase.vue";
+import Header from '../common-mobile/mobile-header.vue';
+import FlightItem from './booking-detail-flight-item-mobile.vue';
+import Passenger from './booking-detail-passenger-mobile.vue';
+import BannerLogin from '../common-mobile/mobile-banner-login.vue';
+import Footer from '../common-mobile/mobile-footer.vue';
+import ModalWindow from '../common-mobile/ModalWindow.vue';
+import ModalBase from '../common-mobile/ModalBase.vue';
 
 import {
   RootObject as IRootObject,
   Segment as ISegment,
   Form as IForm,
-} from "./type-booking-detail-mobile";
-import { onMounted, reactive, ref, computed } from "vue";
-import { useI18n } from "vue-i18n"; // import i18n plugin
-import messages from "./lang"; // import dictionary
-import BookingDetailFlightDetailMobile from "./booking-detail-flight-detail-mobile.vue";
+} from './type-booking-detail-mobile';
+import { onMounted, reactive, ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n'; // import i18n plugin
+import messages from './lang'; // import dictionary
+import BookingDetailFlightDetailMobile from './booking-detail-flight-detail-mobile.vue';
 
 const showModalDetail = ref(false);
 
@@ -159,25 +159,26 @@ const props = defineProps({
 
 const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
 const flightSegments = computed<ISegment[]>(() => {
-  const departureSegment: ISegment = data.segment1 ? JSON.parse(data.segment1) : null;
-  const returnSegment: ISegment = data.segment2 ? JSON.parse(data.segment2) : null;
+  const departureSegment: ISegment = data.segment1
+    ? JSON.parse(data.segment1)
+    : null;
+  const returnSegment: ISegment = data.segment2
+    ? JSON.parse(data.segment2)
+    : null;
 
-  return [
-    departureSegment,
-    returnSegment,
-  ]
+  return [departureSegment, returnSegment];
 });
 
 // Passenger
 const form: IForm = reactive({
   contact: {
-    title: "mr",
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    phoneCode: "62",
-    phoneNumber: "",
-    email: "",
+    title: 'mr',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    phoneCode: '62',
+    phoneNumber: '',
+    email: '',
   },
   passengers: {
     adult: [],
@@ -188,29 +189,29 @@ const form: IForm = reactive({
 // set passenger object structure
 const emptyPassenger = (type: string) => {
   const titlePassenger: any = {
-    adult: "mr",
-    child: "mstr",
-    infant: "mstr",
+    adult: 'mr',
+    child: 'mstr',
+    infant: 'mstr',
   };
 
   return {
     title: titlePassenger[type],
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    nationality: "ID",
-    dob: "",
-    idType: "NIK",
-    idNo: "",
-    idExpiry: "",
-    idOrigin: "ID",
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    nationality: 'ID',
+    dob: '',
+    idType: 'NIK',
+    idNo: '',
+    idExpiry: '',
+    idOrigin: 'ID',
   };
 };
 // examaple result ['adult', 'adult', 'child', 'infant']
 const passengerTypes = () => [
-  ...Array.from(Array(+data.adult), () => "adult"),
-  ...Array.from(Array(+data.child), () => "child"),
-  ...Array.from(Array(+data.infant), () => "infant"),
+  ...Array.from(Array(+data.adult), () => 'adult'),
+  ...Array.from(Array(+data.child), () => 'child'),
+  ...Array.from(Array(+data.infant), () => 'infant'),
 ];
 const initialPassengers = () => {
   const types = passengerTypes();
@@ -232,10 +233,10 @@ onMounted(() => {
 });
 
 const submit = () => {
-  console.log("passenger: ", form);
+  console.log('passenger: ', form);
 };
 </script>
 
 <style lang="scss">
-@use "@/styles/pages/booking-detail-mobile";
+@use '@/styles/pages/booking-detail-mobile';
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="booking">
+  <div class="booking" v-if="windowSize.width >= 768">
     <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
 
     <div class="booking__main">
@@ -134,6 +134,104 @@
       </div>
     </ElDialog>
   </div>
+  <div id="booking-detail-mobile" v-if="windowSize.width < 768">
+    <Header>
+      {{ t('CONTACT_DETAILS') }}
+    </Header>
+
+    <FlightItem
+      :title="t('departure')"
+      :segment="departureFLights"
+      :t="t"
+      :has-detail-button="true"
+      @showDetail="showModalDetail = true"
+    />
+
+    <FlightItem
+      class="pt-0"
+      :title="t('return')"
+      :segment="returnFlights"
+      :t="t"
+      :has-detail-button="false"
+      v-if="returnFlights"
+    />
+
+    <BannerLogin :t="t" />
+
+    <section class="booking-detail__contact">
+      <h2>{{ t('BOOKING_DETAILS') }}</h2>
+      <Passenger
+        type="contact"
+        :passenger="bookingDetail.contact"
+        :placeholder="t('enter_details')"
+        :t="t"
+      />
+    </section>
+
+    <section class="booking-detail__traveler pt-0">
+      <h2>{{ t('traveler_details') }}</h2>
+      <div
+        v-for="(
+          passengerTypes, keyTypes, indexTypes
+        ) in bookingDetail.passengers"
+        :key="indexTypes"
+      >
+        <Passenger
+          v-for="(passenger, index) in passengerTypes"
+          :key="index"
+          :type="keyTypes"
+          :passenger="passenger"
+          :placeholder="t(`passenger_${keyTypes}`) + ` ${index + 1}`"
+          :t="t"
+        />
+      </div>
+    </section>
+
+    <section class="booking-detail__info">
+      <p>{{ t('ATTENTION') }}</p>
+    </section>
+
+    <Footer @next="onConfirmBooking">
+      {{ t('next') }}
+    </Footer>
+
+    <ModalWindow v-if="showModalDetail" @close="showModalDetail = false">
+      <template v-slot:header>
+        {{ t('booking_details') }}
+      </template>
+      <div class="booking-detail__modal-flight">
+        <FlightCard
+          :segment="departureFLights.Segments"
+          :header="t('departure')"
+          :locale="locale"
+          :t="t"
+        />
+        <FlightCard
+          :segment="returnFlights.Segments"
+          :header="t('return')"
+          :locale="locale"
+          :t="t"
+          v-if="returnFlights"
+        />
+        <PriceCard
+          :heading="t('departure_price')"
+          :fare="departureFLights.FareDetail"
+        />
+        <PriceCard
+          :heading="t('return_price')"
+          :fare="returnFlights.FareDetail"
+          v-if="returnFlights"
+        />
+        <div class="booking__total">
+          <span>Total</span>
+          <span>{{ toIDR(total) }}</span>
+        </div>
+      </div>
+      <template v-slot:footer>
+        {{ t('close') }}
+      </template>
+    </ModalWindow>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -152,7 +250,23 @@ import Card from '../../atoms/cards/card.vue';
 import PassengerDetail from './passenger-detail.vue';
 import ContactDetail from './contact-detail.vue';
 
-import { computed, HTMLAttributes, reactive, ref } from 'vue';
+import {
+  computed,
+  HTMLAttributes,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+} from 'vue';
+
+import Header from '../common-mobile/mobile-header.vue';
+import BannerLogin from '../common-mobile/mobile-banner-login.vue';
+import FlightItem from './booking-detail-flight-item-mobile.vue';
+import Footer from '../common-mobile/mobile-footer.vue';
+import Passenger from './booking-detail-passenger-mobile.vue';
+import ModalWindow from '../common-mobile/ModalWindow.vue';
+import BookingDetailFlightDetailMobile from './booking-detail-flight-detail-mobile.vue';
+
 import { toIDR } from '../../../utils';
 
 import useVuelidate from '@vuelidate/core';
@@ -161,6 +275,12 @@ import { useI18n } from 'vue-i18n';
 import messages from './lang';
 
 import axios from 'axios';
+
+import {
+  RootObject as IRootObject,
+  Segment as ISegment,
+  Form as IForm,
+} from './types';
 
 interface Props extends HTMLAttributes {
   data: string;
@@ -177,8 +297,6 @@ interface Props extends HTMLAttributes {
 }
 
 const props = defineProps<Props>();
-
-console.log(props);
 
 const { t } = useI18n({
   messages: messages,
@@ -201,6 +319,26 @@ const locale = computed(() => (props.language === 'en' ? 'en-GB' : 'id-ID'));
 const total = computed(() => {
   if (!returnFlights) return departureFLights.FareDetail.Total;
   return departureFLights.FareDetail.Total + returnFlights.FareDetail.Total;
+});
+
+const windowSize = reactive({
+  width: 0,
+  height: 0,
+});
+
+const onResize = () => {
+  windowSize.width = window.innerWidth;
+  windowSize.height = window.innerHeight;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', onResize);
+  windowSize.width = window.innerWidth;
+  windowSize.height = window.innerHeight;
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', onResize);
 });
 
 //form Object
@@ -239,7 +377,6 @@ if (user?.IsLogin) {
   bookingDetail.contact.email = user.Email;
 }
 
-// onMounted(() => {
 for (let i = 0; i < +parsedData.adult; i++) {
   bookingDetail.passengers.adult.push({
     title: 'Mr',
@@ -282,9 +419,6 @@ for (let i = 0; i < +parsedData.infant; i++) {
     idOrigin: 'ID',
   });
 }
-// });
-
-// console.log('bookingDetail', bookingDetail);
 
 const onClickDuplicateContact = (val: boolean) => {
   if (val) {
@@ -320,7 +454,9 @@ const v = useVuelidate();
 const isLoading = ref(false);
 
 const onConfirmBooking = async () => {
+  // console.log(bookingDetail);
   const isValid = await v.value.$validate();
+  console.log(bookingDetail);
   if (!isValid) return;
   ElMessageBox.alert(
     `
@@ -632,8 +768,11 @@ const onConfirmBooking = async () => {
   );
   return;
 };
+
+const showModalDetail = ref(false);
 </script>
 
 <style lang="scss">
 @use '@/styles/booking-detail';
+@use '@/styles/pages/booking-detail-mobile';
 </style>

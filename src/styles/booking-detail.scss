@@ -19,6 +19,8 @@
 @use 'utils/functions';
 @use 'utils/colors';
 
+@import 'utils/media.scss';
+
 .mt-2 {
   margin-top: 10px;
 }
@@ -29,6 +31,10 @@
   max-width: functions.toRem(1200);
   margin: functions.toRem(48) auto;
   gap: functions.toRem(24);
+
+  @include media('<medium') {
+    display: none;
+  }
 
   &__passenger-header {
     font-weight: 600;

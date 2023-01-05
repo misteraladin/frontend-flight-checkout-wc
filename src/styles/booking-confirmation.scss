@@ -22,8 +22,7 @@
   gap: functions.toRem(24);
 
   @include media('<medium') {
-    display: flex;
-    flex-direction: column;
+    display: none;
   }
 
   &__passenger-header {
@@ -229,6 +228,16 @@
       margin-left: functions.toRem(-16);
       margin-top: functions.toRem(16);
     }
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__price-detail-mobile {
+    padding: functions.toRem(16);
+    padding-top: 0;
 
     > div {
       display: flex;

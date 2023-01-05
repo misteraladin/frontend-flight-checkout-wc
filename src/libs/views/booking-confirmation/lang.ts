@@ -36,6 +36,7 @@ export default {
     got_promo: 'Got Promo Code?',
     input_promo_code: 'Input Promo Code',
     transit_for: 'Transit for {time} in {city} ({code})',
+    CONFIRMATION: 'Confirmation',
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -74,5 +75,6 @@ export default {
     got_promo: 'Punya Kode Promo?',
     input_promo_code: 'Masukkan kode promo',
     transit_for: 'Transit selama {time} di {city} ({code})',
+    CONFIRMATION: 'Konfirmasi',
   },
 };
