@@ -30,9 +30,17 @@
         grid-gap: 1rem;
         grid-auto-rows: 1fr;
       }
+
+      .row-promo-4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        grid-auto-rows: 1fr;
+      }
       
       @media screen and (max-width: 480px) {
-        .row-promo {
+        .row-promo,
+        .row-promo-4 {
           grid-template-columns: 1fr;
         }
       }
@@ -222,6 +230,14 @@
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[6])"></ma-card-promo>
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[7])"></ma-card-promo>
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[8])"></ma-card-promo>
+        </div>
+
+        <div
+          title="Inspirasi Liburan"
+          class="row-promo-4"
+        >
+          <ma-card-blog :data="JSON.stringify(store.data.cardBlog[0])"></ma-card-blog>
+          <ma-card-blog :data="JSON.stringify(store.data.cardBlog[1])"></ma-card-blog>
         </div>
       </ma-i18n-host>
     </div>
