@@ -166,12 +166,12 @@ const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
 
 // dynamic badges
 const dynamicBadges = computed(() =>
-  data.badges.filter(({ name }: IBadge) => name === "dynamic_badge")
+  data.badges.length > 0 && data.badges.filter(({ name }: IBadge) => name === "dynamic_badge")
 );
 
 // top badges
 const topBadges = computed(() =>
-  data.badges.filter(({ name }: IBadge) => name === "dynamic_badge_hover_top")
+  data.badges.length > 0 && data.badges.filter(({ name }: IBadge) => name === "dynamic_badge_hover_top")
 );
 
 // price
@@ -179,7 +179,7 @@ const styleBodyBottom = computed<any>(() => ({
   justifyContent: data.cheapest_room ? 'space-between' : 'flex-end'
 }))
 
-const price: IRate = reactive(data.cheapest_room.rate);
+const price: IRate = reactive(data.cheapest_room && data.cheapest_room.rate);
 
 const discount = computed<number>(() => {
   const { gimmick, total } = price;
