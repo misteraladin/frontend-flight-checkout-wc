@@ -1,7 +1,7 @@
 <template>
   <div class="ma-card-hotel" :class="{ 'is-small': isSmall }">
     <div class="ma-card-hotel__header">
-      <div v-if="dynamicBadges.length" class="ma-card-hotel-badge">
+      <div v-if="dynamicBadges && dynamicBadges.length > 0" class="ma-card-hotel-badge">
         <img
           v-for="(badge, index) in dynamicBadges"
           :key="`${index}-${badge.name}`"
@@ -18,7 +18,7 @@
       <div v-if="data?.review?.score > 0" class="ma-card-hotel-rating">
         <span class="ma-card-hotel-rating-icon" :class="getRatingClasses(data?.review?.score)" />
         <span class="ma-card-hotel-rating-rate">{{ data?.review?.score }}</span>
-        <span class="ma-card-hotel-rating-label">{{ data?.review?.description }}</span> 
+        <span class="ma-card-hotel-rating-label">{{ data?.review?.description }}</span>
       </div>
 
       <div class="ma-card-hotel__thumbnail">
@@ -34,7 +34,7 @@
     <div class="ma-card-hotel__body">
       <div class="ma-card-hotel__body-top">
         <!-- top badge -->
-        <div v-if="topBadges.length" class="ma-card-hotel__top-badge-container">
+        <div v-if="topBadges && topBadges.length > 0" class="ma-card-hotel__top-badge-container">
           <div class="ma-popover"
             v-for="(badge, index) in topBadges"
             :key="`${index}-${badge.name}`"
