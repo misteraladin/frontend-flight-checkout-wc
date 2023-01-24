@@ -6,10 +6,7 @@
       </div>
 
       <div class="form-input__control" @click="isShowModal = true">
-        <input
-          type="text"
-          :value="currentOption?.label"
-        />
+        <input type="text" :value="currentOption?.label" />
 
         <svg
           width="12"
@@ -31,7 +28,7 @@
     </div> -->
 
     <ModalPeek
-      v-if="isShowModal"
+      v-model:show="isShowModal"
       class="form-select"
       @close="isShowModal = false"
     >
@@ -48,7 +45,7 @@
         {{ option.label }}
 
         <svg
-          v-if="(option.value === currentOption?.value)"
+          v-if="option.value === currentOption?.value"
           width="18"
           height="13"
           viewBox="0 0 18 13"
@@ -64,7 +61,7 @@
 
       <template #footer>
         <button class="btn btn-primary" @click="isShowModal = false">
-          {{ t("close") }}
+          {{ t('close') }}
         </button>
       </template>
     </ModalPeek>
@@ -72,8 +69,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import ModalPeek from "./ModalPeek.vue";
+import { onMounted, ref } from 'vue';
+import ModalPeek from './ModalPeek.vue';
 
 interface IOption {
   value: string;
@@ -85,7 +82,7 @@ interface Props {
   options: IOption[];
   t: Function;
 }
-const { title, value, options, t  } = defineProps<Props>();
+const { title, value, options, t } = defineProps<Props>();
 const currentOption = ref();
 const findSelectedOption = (payloadValue: string) => {
   return options.find((option: IOption) => option.value === payloadValue);
@@ -97,7 +94,7 @@ onMounted(() => {
 
 const isShowModal = ref(false);
 
-const emit = defineEmits(['input'])
+const emit = defineEmits(['input']);
 const selectOption = (option: IOption) => {
   currentOption.value = option;
 

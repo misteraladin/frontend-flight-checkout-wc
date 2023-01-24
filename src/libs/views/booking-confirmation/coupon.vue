@@ -15,7 +15,9 @@
           fill="#323C9F"
         />
       </svg>
-      <span v-if="reservation.VoucherName"> {{ reservation.VoucherName }}</span>
+      <span class="promo-applied" v-if="reservation.VoucherName">
+        {{ reservation.VoucherName }}</span
+      >
       <span v-else>{{ t('got_promo') }}</span>
     </div>
     <svg

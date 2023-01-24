@@ -139,16 +139,16 @@ interface Props {
     phoneCode: string;
     phoneNumber: string;
     email: string;
-    user?: {
-      Email: string;
-      FullName: string;
-      IsLogin: boolean;
-      MAToken: string;
-      MemberId: string;
-      PhoneCountry: string;
-      PhoneNumer: string;
-      PhoneOriginal: string;
-    };
+  };
+  user?: {
+    Email: string;
+    FullName: string;
+    IsLogin: boolean;
+    MAToken: string;
+    MemberId: string;
+    PhoneCountry: string;
+    PhoneNumer: string;
+    PhoneOriginal: string;
   };
 }
 
@@ -196,4 +196,6 @@ const vrules = computed(() => ({
 }));
 
 const v = useVuelidate(vrules, model);
+
+console.log(v.value);
 </script>

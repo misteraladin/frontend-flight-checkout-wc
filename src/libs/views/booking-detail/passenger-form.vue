@@ -4,17 +4,16 @@
 
     <FormSelect
       :title="t('title')"
-      :value="passenger.title"
+      v-model:value="validation.title.$model"
       :options="titleOption"
       :t="t"
-      @input="(val) => (passenger.title = val)"
     />
 
     <FormInput
       type="text"
       :title="t('first_name')"
-      :value="passenger.firstName"
-      @input="(val) => (passenger.firstName = val)"
+      v-model="validation.firstName.$model"
+      :error="validation.firstName.$errors[0]?.$message"
     >
       <template #info>
         <FormInputInfo type="Name" :t="t" />
@@ -24,15 +23,15 @@
     <FormInput
       type="text"
       :title="t('middle_name')"
-      :value="passenger.middleName"
-      @input="(val) => (passenger.middleName = val)"
+      v-model="validation.middleName.$model"
+      :error="validation.middleName.$errors[0]?.$message"
     />
 
     <FormInput
       type="text"
       :title="t('last_name')"
-      :value="passenger.lastName"
-      @input="(val) => (passenger.lastName = val)"
+      v-model="validation.lastName.$model"
+      :error="validation.lastName.$errors[0]?.$message"
     />
 
     <!-- contact -->
@@ -40,19 +39,19 @@
       v-if="type === 'contact'"
       type="email"
       :title="t('email')"
-      :value="passenger.email"
-      @input="(val) => (passenger.email = val)"
+      v-model="validation.email.$model"
+      :error="validation.email.$errors[0]?.$message"
     />
 
     <FormPhone
       v-if="type === 'contact'"
       :title="t('country_code')"
       :type="type"
-      :code="passenger.phoneCode"
-      :number="passenger.phoneNumber"
+      :code="validation.phoneCode.$model"
+      v-model:number="validation.phoneNumber.$model"
       :t="t"
-      @input="(val) => (passenger.phoneNumber = val)"
-      @select-country="(val) => (passenger.phoneCode = val)"
+      @select-country="(val) => (validation.phoneCode.$model = val)"
+      :error="validation.phoneCode.$errors[0]?.$message"
     />
 
     <!-- passenger -->
@@ -60,44 +59,45 @@
       v-if="type !== 'contact'"
       :title="t('citizenship')"
       :type="type"
-      :code="passenger.nationality"
+      :code="validation.nationality.$model"
       :t="t"
-      @select-country="(val) => (passenger.nationality = val)"
+      @select-country="(val) => (validation.nationality.$model = val)"
+      :error="validation.nationality.$errors[0]?.$message"
     />
 
     <!-- Adult -->
     <FormDate
       v-if="type === 'adult'"
       :title="t('date_of_birth')"
-      :value="passenger.dob"
-      @input="(val) => (passenger.phoneCode = val)"
+      v-model:value="validation.dob.$model"
+      :error="validation.dob.$errors[0]?.$message"
     />
 
     <!-- Child -->
     <FormDate
       v-if="type === 'child'"
       :title="t('date_of_birth')"
-      :value="passenger.dob"
+      v-model:value="validation.dob.$model"
       :info="t('passenger_child_info')"
-      @input="(val) => (passenger.phoneCode = val)"
+      :error="validation.dob.$errors[0]?.$message"
     />
 
     <!-- Infant -->
     <FormDate
       v-if="type === 'infant'"
       :title="t('date_of_birth')"
-      :value="passenger.dob"
+      v-model:value="validation.dob.$model"
       :info="t('passenger_infant_info')"
-      @input="(val) => (passenger.phoneCode = val)"
+      :error="validation.dob.$errors[0]?.$message"
     />
 
     <FormSelect
       v-if="type !== 'contact'"
       :title="t('indentity_type')"
-      :value="passenger.idType"
+      v-model:value="validation.idType.$model"
       :options="identityOptions"
       :t="t"
-      @input="(val) => (passenger.idType = val)"
+      :error="validation.idType.$errors[0]?.$message"
     />
 
     <!-- NIK -->
@@ -105,8 +105,9 @@
       v-if="passenger.idType === 'NIK'"
       type="number"
       :title="titleIdentity"
-      :value="passenger.idNo"
+      v-model="validation.idNo.$model"
       :info="t('identity_number_child')"
+      :error="validation.idNo.$errors[0]?.$message"
     />
 
     <!-- Passport -->
@@ -114,7 +115,8 @@
       v-if="passenger.idType === 'Passport'"
       type="number"
       :title="titleIdentity"
-      :value="passenger.idNo"
+      v-model="validation.idNo.$model"
+      :error="validation.idNo.$errors[0]?.$message"
     >
       <template #info>
         <FormInputInfo type="Passport" :t="t" />
@@ -123,17 +125,18 @@
     <FormDate
       v-if="passenger.idType === 'Passport'"
       :title="t('passport_expiration_date')"
-      :value="passenger.idExpiry"
+      v-model:value="validation.idExpiry.$model"
       :info="t('passport_expiration_info')"
-      @input="(val) => (passenger.idExpiry = val)"
+      :error="validation.idExpiry.$errors[0]?.$message"
     />
     <FormPhone
       v-if="passenger.idType === 'Passport'"
       :title="t('passport_issuing_country')"
       :type="type"
-      :code="passenger.idOrigin"
+      :code="validation.idOrigin.$model"
       :t="t"
-      @select-country="(val) => (passenger.idOrigin = val)"
+      @select-country="(val) => (validation.idOrigin.$model = val)"
+      :error="validation.idOrigin.$errors[0]?.$message"
     />
   </div>
 </template>
@@ -151,8 +154,9 @@ interface Props {
   type: string;
   passenger: IPassenger & IContact;
   t: any;
+  validation: any;
 }
-const { type, passenger, t } = defineProps<Props>();
+const { type, passenger, t, validation } = defineProps<Props>();
 
 const title = computed(() => {
   const titleGlossary: any = {

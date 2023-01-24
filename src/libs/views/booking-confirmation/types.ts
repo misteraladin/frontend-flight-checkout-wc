@@ -4,17 +4,6 @@ export interface Country {
   CountryName: string;
   Image: string;
 }
-
-export interface ReservationDetail {
-  BaseFare: 2496000;
-  Currency: 'IDR';
-  ReservationDetailId: 12036;
-  SupplierId: 1;
-  Tax: 1273960;
-  Total: 3769960;
-  ReservationVendor: any;
-}
-
 export interface Reservation {
   Bank: string;
   CancelDate: string;
@@ -399,31 +388,6 @@ export interface Segments {
   Return: any[];
 }
 
-export interface Segment {
-  GroupingId: string;
-  Airline: number;
-  FlightType: string;
-  FlightKey: string;
-  FareBreakdownsPerPax: number;
-  FarePerPax: number;
-  markupMarkdownPerPax: number;
-  Fare: number;
-  FareAfterDiscount: number;
-  JourneySellKey: string;
-  FareDetail: FareDetail;
-  Discount: number;
-  MarkupMarkdown: number;
-  FlightFare: number;
-  FlightTax: number;
-  ClassId: string;
-  FlightId: string;
-  ClassCode: string;
-  ClassCategory: string;
-  NextClass: any[];
-  FareDetailCode: string;
-  Segments: Segments;
-}
-
 export interface Passenger {
   title: string;
   firstName: string;
@@ -465,29 +429,4 @@ export interface Segments {
   TravelTimeReturn: string;
   Departure: Departure[];
   Return: any[];
-}
-
-export interface Segment {
-  GroupingId: string;
-  Airline: number;
-  FlightType: string;
-  FlightKey: string;
-  FareBreakdownsPerPax: number;
-  FarePerPax: number;
-  markupMarkdownPerPax: number;
-  Fare: number;
-  FareAfterDiscount: number;
-  JourneySellKey: string;
-  FareDetail: FareDetail;
-  Discount: number;
-  MarkupMarkdown: number;
-  FlightFare: number;
-  FlightTax: number;
-  ClassId: string;
-  FlightId: string;
-  ClassCode: string;
-  ClassCategory: string;
-  NextClass: any[];
-  FareDetailCode: string;
-  Segments: Segments;
 }

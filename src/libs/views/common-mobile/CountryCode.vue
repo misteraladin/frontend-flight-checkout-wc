@@ -1,7 +1,12 @@
 <template>
-  <ModalWindow @close="emit('close')">
+  <ModalWindow
+    :show="show"
+    @update:show="emit('update:show')"
+    @close="emit('close')"
+    :title="t('select_country')"
+  >
     <template #header>
-      {{ t("select_country") }}
+      {{ t('select_country') }}
     </template>
 
     <div class="form-country__input">
@@ -44,7 +49,7 @@
           </div>
 
           <svg
-            v-if="(country === value)"
+            v-if="country === value"
             width="18"
             height="13"
             viewBox="0 0 18 13"
@@ -63,15 +68,15 @@
 </template>
 
 <script setup lang="ts">
-import ModalWindow from "./ModalWindow.vue";
-import { computed, ref } from "vue";
+import ModalWindow from './ModalWindow.vue';
+import { computed, ref } from 'vue';
 
 interface ICountry {
   country_id: number;
-  country_code: string,
-  country_name: string,
-  currency_default: string,
-  calling_code: number | null,
+  country_code: string;
+  country_name: string;
+  currency_default: string;
+  calling_code: number | null;
   flag: string | null;
 }
 interface Props {
@@ -79,19 +84,23 @@ interface Props {
   value: ICountry | {};
   withCountryCode: boolean;
   t: Function;
+  show: boolean;
 }
-const { countries, value, withCountryCode, t } = defineProps<Props>();
+const { countries, value, withCountryCode, t, show } = defineProps<Props>();
 
-const query = ref("");
+const query = ref('');
 const filteredCountries = computed(() => {
   if (!query.value) return countries;
 
   return countries.filter((country: ICountry) => {
     const countryName = country.country_name.toLowerCase();
-    const callingCode = country.calling_code ? country.calling_code.toString() : '';
-    return countryName.includes(query.value) || callingCode.includes(query.value);
+    const callingCode = country.calling_code
+      ? country.calling_code.toString()
+      : '';
+    return (
+      countryName.includes(query.value) || callingCode.includes(query.value)
+    );
   });
 });
-
-const emit = defineEmits(['close', 'select']);
+const emit = defineEmits(['close', 'select', 'update:show']);
 </script>

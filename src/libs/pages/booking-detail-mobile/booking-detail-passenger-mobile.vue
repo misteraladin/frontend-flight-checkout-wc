@@ -21,12 +21,8 @@
       {{ placeholder }}
     </div>
 
-    <ModalPeek v-if="isShowModal" @close="isShowModal = false">
-      <PassengerForm
-        :type="type"
-        :passenger="passenger"
-        :t="t"
-      />
+    <ModalPeek v-model:show="isShowModal" @close="isShowModal = false">
+      <PassengerForm :type="type" :passenger="passenger" :t="t" />
 
       <template #footer>
         <button class="btn btn-primary-outline" @click="isShowModal = false">
@@ -42,13 +38,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import ModalPeek from "../common-mobile/ModalPeek.vue";
-import PassengerForm from "./passenger-form.vue"
+import { ref } from 'vue';
+import ModalPeek from '../common-mobile/ModalPeek.vue';
+import PassengerForm from './passenger-form.vue';
 
 interface Props {
-  type: string,
-  passenger: any,
+  type: string;
+  passenger: any;
   placeholder: string;
   t: any;
 }

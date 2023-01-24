@@ -9,7 +9,7 @@
   </div>
 
   <ModalPeek
-    v-if="isShowModal"
+    v-model:show="isShowModal"
     @close="isShowModal = false"
     class="modal-codepromo"
     placeholder="hh/bb/tt"
@@ -26,10 +26,10 @@
 </template>
 
 <script setup lang="ts">
-import ModalPeek from "../common-mobile/ModalPeek.vue";
-import FormInput from "../common-mobile/FormInput.vue";
+import ModalPeek from '../common-mobile/ModalPeek.vue';
+import FormInput from '../common-mobile/FormInput.vue';
 
-import { ref } from "vue";
+import { ref } from 'vue';
 
 const isShowModal = ref(false);
 

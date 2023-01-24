@@ -6,18 +6,13 @@
       </div>
 
       <div class="form-input__control">
-        <input
-          :type="type"
-          v-model="value"
-          @input="emit('input', value)"
-        />
+        <input :type="type" :value="modelValue" @input="onInput" />
 
-        <slot name="info">
-        </slot>
+        <slot name="info"> </slot>
       </div>
     </div>
 
-    <div  v-if="error" class="form__error">
+    <div v-if="error" class="form__error">
       {{ error }}
     </div>
 
@@ -28,23 +23,26 @@
 </template>
 
 <script setup lang="ts">
-
 enum Types {
-  "text",
-  "tel",
-  "number",
-  "email",
+  'text',
+  'tel',
+  'number',
+  'email',
 }
 
 interface Props {
   type: Types | any;
   title: string;
-  value: string;
+  modelValue: string;
   error?: string;
   info?: string;
 }
 
-const { type, title, value, error, info } = defineProps<Props>();
+const { type, title, modelValue, error, info } = defineProps<Props>();
 
-const emit = defineEmits(['input'])
+const emit = defineEmits(['update:modelValue']);
+
+const onInput = (event: Event) => {
+  emit('update:modelValue', (event.target as HTMLInputElement).value);
+};
 </script>

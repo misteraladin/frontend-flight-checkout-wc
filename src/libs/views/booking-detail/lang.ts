@@ -128,6 +128,10 @@ export default {
       'For child and infant passengers, enter the number shown on the Family Card.',
     select_country: 'Select Country',
     enter_country_name: 'Enter Country Name',
+    BOOKING_LOADING_TITLE: 'Sit tight!',
+    BOOKING_LODING_TEXT:
+      'Your booking is being processed. This won’t take long, we promise.',
+    CHANGE: 'Change',
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -259,5 +263,9 @@ export default {
       'Untuk penumpang anak dan bayi, masukkan nomor yang tertera di Kartu Keluarga.',
     select_country: 'Pilih Negara',
     enter_country_name: 'Ketik Nama Negara',
+    BOOKING_LOADING_TITLE: 'Eits, jangan ke mana-mana!',
+    BOOKING_LODING_TEXT:
+      'Pemesanan kamu sedang diproses. Janji, deh, gak akan lama. Cuma beberapa menit aja, kok.',
+    CHANGE: 'Ubah',
   },
 };

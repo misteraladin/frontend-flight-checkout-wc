@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { RootObject as IReservation } from './type';
+import { RootObject as IReservation } from './types';
 
 interface Props {
   reservation: IReservation;

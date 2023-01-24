@@ -22,7 +22,7 @@
           />
         </svg>
 
-        <input type="text" value="12 April 1996" />
+        <input type="text" :value="inputModel" :id="'dateinput' + title" />
 
         <svg
           width="22"
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div  v-if="error" class="form__error">
+    <div v-if="error" class="form__error">
       {{ error }}
     </div>
 
@@ -47,14 +47,29 @@
       {{ info }}
     </div>
   </div>
+  <Popup v-model:show="isShowModal" position="bottom">
+    <DatePicker
+      :min-date="new Date(-1)"
+      v-model="dateModel"
+      @confirm="onConfirmDate"
+      @cancel="onCancelDate"
+    />
+  </Popup>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref, watch } from 'vue';
+import { Popup, DatePicker } from 'vant';
+
+import { Locale } from 'vant';
+import enUS from 'vant/es/locale/lang/en-US';
+import idID from 'vant/es/locale/lang/id-ID';
+
+Locale.use('en-US', enUS);
 
 interface Props {
   title: string;
-  value: string;
+  value: any;
   error?: string;
   info?: string;
 }
@@ -62,5 +77,24 @@ const { title, value, error, info } = defineProps<Props>();
 
 const isShowModal = ref(false);
 
-const emit = defineEmits(['input']);
+const dateModel = ref<string[]>([]);
+
+const inputModel = ref('');
+
+const emit = defineEmits(['update:value']);
+
+const onConfirmDate = () => {
+  const text = [...dateModel.value].reverse().join('-');
+  inputModel.value = new Date(text).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+  });
+  emit('update:value', new Date(text));
+  isShowModal.value = false;
+};
+
+const onCancelDate = () => {
+  isShowModal.value = false;
+};
 </script>

@@ -81,8 +81,6 @@ interface Props {
 }
 const { title, segment, hasDetailButton, t } = defineProps<Props>();
 
-console.log(segment);
-
 const segmentOrigin = computed<IDeparture>(() => segment.Segments.Departure[0]);
 const segmentDepart = computed<IDeparture>(
   () => segment.Segments.Departure[segment.Segments.Departure.length - 1]

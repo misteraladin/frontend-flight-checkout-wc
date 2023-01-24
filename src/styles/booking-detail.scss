@@ -166,3 +166,45 @@
 .ma-confirm {
   width: 2000px;
 }
+
+.van-icon-cross:before {
+  font-family: vant-icon !important;
+}
+
+.ma-modal {
+  .van-action-sheet__header {
+    background-color: colors.$blue-500;
+    height: functions.toRem(56);
+    color: colors.$normal-white;
+    line-height: 54px;
+    font-size: functions.toRem(18);
+  }
+
+  .van-action-sheet__close {
+    right: unset;
+    left: 0;
+  }
+}
+
+.same-as-contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: colors.$normal-5;
+  }
+
+  .van-switch {
+    height: functions.toRem(20);
+    width: functions.toRem(40);
+  }
+
+  .van-switch__node {
+    height: functions.toRem(16);
+    width: functions.toRem(16);
+  }
+}

@@ -110,29 +110,6 @@
         </div>
       </Card>
     </div>
-    <ElDialog
-      v-model="isLoading"
-      :show-close="false"
-      width="40%"
-      :close-on-click-modal="false"
-      :close-on-press-escape="false"
-    >
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 24px;
-        "
-      >
-        <img src="https://i.misteraladin.com/loader-mnc.gif" width="124" />
-        <p style="size: 20px; font-weight: 600">Eits, jangan kemana-mana!</p>
-        <p style="text-align: center">
-          Pemesanan kamu sedang diproses. Janji, deh, gak akan lama. Cuma
-          beberapa menit aja, kok.
-        </p>
-      </div>
-    </ElDialog>
   </div>
   <div id="booking-detail-mobile" v-if="windowSize.width < 768">
     <Header>
@@ -160,16 +137,29 @@
 
     <section class="booking-detail__contact">
       <h2>{{ t('BOOKING_DETAILS') }}</h2>
-      <Passenger
+      <ContactDetailMobile
         type="contact"
         :passenger="bookingDetail.contact"
         :placeholder="t('enter_details')"
         :t="t"
       />
+      <!-- <Passenger
+        type="contact"
+        :passenger="bookingDetail.contact"
+        :placeholder="t('enter_details')"
+        :t="t"
+      /> -->
     </section>
 
     <section class="booking-detail__traveler pt-0">
       <h2>{{ t('traveler_details') }}</h2>
+      <div class="same-as-contact">
+        <span>{{ t('SAME_AS_CONTACT') }}</span>
+        <Switch
+          :model-value="isDuplicateContact"
+          @update:model-value="onUpdateIsDuplicateContact"
+        />
+      </div>
       <div
         v-for="(
           passengerTypes, keyTypes, indexTypes
@@ -179,10 +169,11 @@
         <Passenger
           v-for="(passenger, index) in passengerTypes"
           :key="index"
-          :type="keyTypes"
+          :type="(keyTypes as any as string)"
           :passenger="passenger"
-          :placeholder="t(`passenger_${keyTypes}`) + ` ${index + 1}`"
+          :placeholder="`${indexTypes! + 1}. ` +   t(`passenger_${keyTypes}`)"
           :t="t"
+          :height="windowSize.height"
         />
       </div>
     </section>
@@ -195,7 +186,11 @@
       {{ t('next') }}
     </Footer>
 
-    <ModalWindow v-if="showModalDetail" @close="showModalDetail = false">
+    <ModalWindow
+      v-model:show="showModalDetail"
+      @close="showModalDetail = false"
+      :title="t('booking_details')"
+    >
       <template v-slot:header>
         {{ t('booking_details') }}
       </template>
@@ -232,13 +227,41 @@
       </template>
     </ModalWindow>
   </div>
+  <Popup
+    v-model:show="isLoading"
+    :close-on-click-overlay="false"
+    round
+    :style="{
+      borderRadius: '8px',
+      width: 'calc(100vw - 16px * 2)',
+      maxWidth: '475px',
+    }"
+  >
+    <div
+      :style="{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '24px',
+        padding: '16px',
+      }"
+    >
+      <img src="https://i.misteraladin.com/loader-mnc.gif" width="124" />
+      <p style="size: 20px; font-weight: 600">
+        {{ t('BOOKING_LOADING_TITLE') }}
+      </p>
+      <p style="text-align: center">
+        {{ t('BOOKING_LODING_TEXT') }}
+      </p>
+    </div>
+  </Popup>
 </template>
 
 <script setup lang="ts">
 import Button from '../../atoms/button/button.vue';
 import LoginBanner from '../../components/login-banner/login-banner.vue';
 
-import { Action, ElForm, ElMessageBox, ElDialog } from 'element-plus';
+import { Action, ElForm, ElMessageBox } from 'element-plus';
 import type { FormInstance } from 'element-plus';
 
 import Switcher from '../../atoms/inputs/switcher.vue';
@@ -249,6 +272,7 @@ import Card from '../../atoms/cards/card.vue';
 
 import PassengerDetail from './passenger-detail.vue';
 import ContactDetail from './contact-detail.vue';
+import ContactDetailMobile from './contact-detail-mobile.vue';
 
 import {
   computed,
@@ -266,6 +290,8 @@ import Footer from '../common-mobile/mobile-footer.vue';
 import Passenger from './booking-detail-passenger-mobile.vue';
 import ModalWindow from '../common-mobile/ModalWindow.vue';
 import BookingDetailFlightDetailMobile from './booking-detail-flight-detail-mobile.vue';
+
+import { Switch, showDialog, Popup } from 'vant';
 
 import { toIDR } from '../../../utils';
 
@@ -420,6 +446,47 @@ for (let i = 0; i < +parsedData.infant; i++) {
   });
 }
 
+const isDuplicateContact = ref(false);
+
+const onUpdateIsDuplicateContact = (newValue: boolean) => {
+  if (newValue) {
+    if (bookingDetail.contact.firstName && bookingDetail.contact.lastName) {
+      bookingDetail.passengers.adult[0].title = bookingDetail.contact.title;
+      bookingDetail.passengers.adult[0].firstName =
+        bookingDetail.contact.firstName;
+      bookingDetail.passengers.adult[0].middleName =
+        bookingDetail.contact.middleName;
+      bookingDetail.passengers.adult[0].lastName =
+        bookingDetail.contact.lastName;
+      isDuplicateContact.value = newValue;
+    } else {
+      // ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
+      //   confirmButtonText: 'OK',
+      //   customStyle: {
+      //     '--el-color-primary': '#323c9f',
+      //   },
+      //   confirmButtonClass: 'ma-confirm',
+      //   center: true,
+      //   showClose: false,
+      //   callback: (action: Action) => {},
+      // });
+      showDialog({
+        message: t('ERROR.MATCH_NAME'),
+        confirmButtonText: 'OK',
+        theme: 'round-button',
+        className: 'ma-confirm-duplicate',
+      });
+    }
+  } else {
+    bookingDetail.passengers.adult[0].title = 'Mr';
+    bookingDetail.passengers.adult[0].firstName = '';
+    bookingDetail.passengers.adult[0].middleName = '';
+    bookingDetail.passengers.adult[0].lastName = '';
+
+    isDuplicateContact.value = newValue;
+  }
+};
+
 const onClickDuplicateContact = (val: boolean) => {
   if (val) {
     if (bookingDetail.contact.firstName && bookingDetail.contact.lastName) {
@@ -431,15 +498,21 @@ const onClickDuplicateContact = (val: boolean) => {
       bookingDetail.passengers.adult[0].lastName =
         bookingDetail.contact.lastName;
     } else {
-      ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
+      // ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
+      //   confirmButtonText: 'OK',
+      //   customStyle: {
+      //     '--el-color-primary': '#323c9f',
+      //   },
+      //   confirmButtonClass: 'ma-confirm',
+      //   center: true,
+      //   showClose: false,
+      //   callback: (action: Action) => {},
+      // });
+      showDialog({
+        message: t('ERROR.MATCH_NAME'),
         confirmButtonText: 'OK',
-        customStyle: {
-          '--el-color-primary': '#323c9f',
-        },
-        confirmButtonClass: 'ma-confirm',
-        center: true,
-        showClose: false,
-        callback: (action: Action) => {},
+        theme: 'round-button',
+        className: 'ma-confirm-duplicate',
       });
     }
   } else {
@@ -455,8 +528,9 @@ const isLoading = ref(false);
 
 const onConfirmBooking = async () => {
   // console.log(bookingDetail);
+
   const isValid = await v.value.$validate();
-  console.log(bookingDetail);
+  console.log(bookingDetail, v.value);
   if (!isValid) return;
   ElMessageBox.alert(
     `
@@ -474,6 +548,7 @@ const onConfirmBooking = async () => {
       },
       confirmButtonClass: 'ma-confirm',
       cancelButtonClass: 'ma-cancel',
+      customClass: 'ma-confirm-booking',
       showClose: false,
       callback: async (action: Action) => {
         if (action === 'confirm') {
@@ -735,29 +810,23 @@ const onConfirmBooking = async () => {
               </defs>
             </svg>`;
 
-            ElMessageBox.alert(
-              `<div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
-                ${errorAssets}
-                <p style="size: 20px; font-weight: 600;">${t(
-                  'order_cant_processed'
-                )}</p>
+            showDialog({
+              message: `<div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
+               ${errorAssets}
+               <p style="size: 20px; font-weight: 600;">${t(
+                 'order_cant_processed'
+               )}</p>
               </div>`,
-              {
-                dangerouslyUseHTMLString: true,
-                confirmButtonText: t('return_main_page'),
-                customStyle: {
-                  '--el-color-primary': '#323c9f',
-                },
-                confirmButtonClass: 'ma-confirm',
-                showClose: false,
-                center: true,
-                callback: (action: Action) => {
-                  if (action === 'confirm') {
-                    document.location.href = '/';
-                  }
-                },
-              }
-            );
+              confirmButtonText: t('return_main_page'),
+              theme: 'round-button',
+              className: 'ma-confirm-duplicate',
+              allowHtml: true,
+              beforeClose: (action: Action) => {
+                if (action === 'confirm') {
+                  document.location.href = '/';
+                }
+              },
+            });
 
             console.log(response.data.message);
           }
@@ -775,4 +844,5 @@ const showModalDetail = ref(false);
 <style lang="scss">
 @use '@/styles/booking-detail';
 @use '@/styles/pages/booking-detail-mobile';
+@import 'https://fastly.jsdelivr.net/npm/vant@4/lib/index.css';
 </style>

@@ -39,17 +39,13 @@
         </div>
 
         <div class="form-input__control">
-          <input
-            type="number"
-            v-model="number"
-            @input="emit('input', number?.toString())"
-          />
+          <input type="number" :value="number" @input="onPhoneNumberInput" />
         </div>
       </div>
 
-      <!-- <div class="form-input__error">
+      <div class="form__error">
         {{ error }}
-      </div> -->
+      </div>
     </div>
 
     <!-- Citizenship -->
@@ -59,11 +55,11 @@
           {{ title }}
         </div>
 
-        <div class="form-input__control" @click="isShowModal = true">
+        <div class="form-input__control" @click="onClickInput">
           <input
             type="text"
             :value="currentCountry?.country_name"
-            @input="emit('input', code)"
+            @input="onPhoneNumberInput"
           />
 
           <svg
@@ -83,7 +79,7 @@
     </div>
 
     <CountryCode
-      v-if="isShowModal"
+      v-model:show="isShowModal"
       :countries="countries"
       :value="currentCountry"
       :with-country-code="withCountryCode"
@@ -105,8 +101,9 @@ interface Props {
   code: string;
   number?: string;
   t: Function;
+  error: string;
 }
-const { title, type, code, number, t } = defineProps<Props>();
+const { title, type, code, number, t, error } = defineProps<Props>();
 
 const currentCountry = ref();
 const findSelectedCountry = (payloadCode: string) => {
@@ -136,7 +133,7 @@ const withCountryCode = computed(() => {
   return type === 'contact';
 });
 
-const emit = defineEmits(['select-country', 'input']);
+const emit = defineEmits(['select-country', 'update:number']);
 const selectCountry = (payload: any) => {
   currentCountry.value = payload;
   isShowModal.value = false;
@@ -144,5 +141,14 @@ const selectCountry = (payload: any) => {
   const code: string =
     type === 'contact' ? payload.calling_code.toString() : payload.country_code;
   emit('select-country', code);
+};
+
+const onPhoneNumberInput = (event: Event) => {
+  emit('update:number', (event.target as HTMLInputElement).value.toString());
+};
+
+const onClickInput = () => {
+  console.log('called');
+  isShowModal.value = true;
 };
 </script>

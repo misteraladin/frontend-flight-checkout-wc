@@ -49,9 +49,7 @@
             />
           </svg>
         </span>
-        <span class="text-luggage"
-          >Maks bagasi terdaftar {{ highestBaggage }} Kg</span
-        >
+        <span class="text-luggage">{{ highestBaggage }}</span>
       </div>
       <hr />
     </div>

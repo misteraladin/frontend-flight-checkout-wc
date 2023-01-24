@@ -1,11 +1,14 @@
 <template>
-  <ElAlert
-    :title="alert.message"
-    :type="alert.type"
-    :closable="false"
-    center
-    v-if="alert.isOn"
-  ></ElAlert>
+  <transition name="slide-down">
+    <ElAlert
+      :title="alert.message"
+      :type="alert.type"
+      :closable="false"
+      center
+      v-if="alert.isOn"
+      style="top: 0"
+    ></ElAlert>
+  </transition>
   <div class="booking">
     <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
     <div class="booking__main">
@@ -157,8 +160,8 @@
       :segment="departureFLights"
       :t="t"
       :has-detail-button="true"
+      @showDetail="showModalDetail = true"
     />
-    <!-- @showDetail="showModalDetail = true" -->
 
     <FlightItem
       class="pt-0"
@@ -175,7 +178,97 @@
       :highest-baggage="highestBaggage"
     />
 
+    <div class="promo-box">
+      <span class="title">{{ t('PROMO_CODE') }}</span>
+      <Coupon
+        :t="t"
+        @add-coupon="onCoupon = true"
+        @remove-coupon="onRemoveCoupon"
+        :reservation="reservation"
+      />
+    </div>
+
+    <div class="booking__price-detail-mobile">
+      <h4 class="booking__price-detail_heading">{{ t('price_detail') }}</h4>
+      <div>
+        <span>Subtotal</span>
+        <span
+          ><b>{{ toIDR(reservation.TotalAfterDiscount) }}</b></span
+        >
+      </div>
+      <div v-if="reservation.VoucherCode">
+        <span>{{ t('PROMO_CODE') }} ({{ reservation.VoucherCode }})</span>
+        <span>{{ '-' + toIDR(+reservation.Discount) }}</span>
+      </div>
+      <div class="booking__price-detail-mobile_total">
+        <span>Total</span>
+        <span class="color-red">{{ toIDR(reservation.TotalResult) }}</span>
+      </div>
+    </div>
+
     <Footer @next="onPayBooking">{{ t('PAY_NOW') }}</Footer>
+
+    <ModalPeek v-model:show="onCoupon" @close="onCoupon = false">
+      <div class="coupon-modal">
+        <h4>{{ t('PROMO_CODE') }}</h4>
+        <FormInput type="text" :title="t('PROMO_CODE')" v-model="coupon">
+          <!-- @input="(val) => (coupon = val)" -->
+          <template #info>
+            <FormInputInfo type="Name" :t="t" />
+          </template>
+        </FormInput>
+      </div>
+      <template #footer>
+        <button class="btn btn-primary-outline" @click="onCoupon = false">
+          {{ t('cancel') }}
+        </button>
+
+        <button class="btn btn-primary" @click="onUseCoupon">
+          {{ t('APPLY_COUPON') }}
+        </button>
+      </template>
+    </ModalPeek>
+
+    <ModalWindow
+      v-model:show="showModalDetail"
+      @close="showModalDetail = false"
+      :title="t('booking_details')"
+    >
+      <template v-slot:header>
+        {{ t('booking_details') }}
+      </template>
+      <div class="booking-detail__modal-flight">
+        <FlightCard
+          :segment="departureFLights.Segments"
+          :header="t('DEPARTURE')"
+          :locale="locale"
+          :t="t"
+        />
+        <FlightCard
+          :segment="returnFlights.Segments"
+          :header="t('RETURN')"
+          :locale="locale"
+          :t="t"
+          v-if="returnFlights"
+        />
+        <PriceCard
+          :heading="t('departure_price')"
+          :fare="departureFLights.FareDetail"
+        />
+        <PriceCard
+          :heading="t('return_price')"
+          :fare="returnFlights.FareDetail"
+          v-if="returnFlights"
+        />
+        <div class="booking__total">
+          <span>Total</span>
+          <span>{{ toIDR(total) }}</span>
+        </div>
+      </div>
+      <template v-slot:footer>
+        {{ t('close') }}
+      </template>
+    </ModalWindow>
   </div>
   <PaymentContainerVue
     @cancel="paymentCancel"
@@ -210,6 +303,12 @@ import FlightItem from '../booking-detail/booking-detail-flight-item-mobile.vue'
 import DetailPassanger from '../../pages/booking-confirmation-mobile/booking-confirmation-detail-passanger-mobile.vue';
 import Footer from '../common-mobile/mobile-footer.vue';
 
+import PriceCard from '../../atoms/cards/price-card.vue';
+import ModalWindow from '../common-mobile/ModalWindow.vue';
+
+import ModalPeek from '../common-mobile/ModalPeek.vue';
+import FormInput from '../common-mobile/FormInput.vue';
+
 interface Props {
   data: any;
   reservation: string;
@@ -238,21 +337,7 @@ const returnFlights = reactive(JSON.parse(data.segment2));
 // console.log('props', departureFLights, returnFlights);
 
 const highestBaggage = computed(() => {
-  const highest = Math.max(
-    ...departureFLights.Segments.Departure.map((el: Departure) =>
-      parseInt(el.Baggage)
-    ),
-    ...departureFLights.Segments.Return.map((el: Departure) =>
-      parseInt(el.Baggage)
-    ),
-    ...returnFlights.Segments.Departure.map((el: Departure) =>
-      parseInt(el.Baggage)
-    ),
-    ...returnFlights.Segments.Return.map((el: Departure) =>
-      parseInt(el.Baggage)
-    )
-  );
-  return highest;
+  return departureFLights.Segments.Departure[0].BaggageWording;
 });
 
 const reservationDetail = reactive(reservation.ReservationDetail[0]);
@@ -266,6 +351,11 @@ const getCountryName = (id: string) =>
 
 const { t } = useI18n({
   messages: messages,
+});
+
+const total = computed(() => {
+  if (!returnFlights) return departureFLights.FareDetail.Total;
+  return departureFLights.FareDetail.Total + returnFlights.FareDetail.Total;
 });
 
 // need to move to utils,
@@ -291,12 +381,20 @@ const alert = reactive<{
 
 const onCoupon = ref(false);
 const coupon = ref('');
+const couponData = reactive({
+  PriceAfterDiscount: 0,
+  PriceBeforeDiscount: 0,
+  PromoCode: '',
+  PromoDiscount: '',
+});
+
 const onUseCoupon = async () => {
-  console.log(coupon.value);
+  onCoupon.value = false;
   const res = await axios.post(props.promocreate, {
     code: coupon.value,
     ReservationCode: reservation.ReservationCode,
   });
+  coupon.value = '';
   console.log(res.data);
   if (res.data.status === 200) {
     alert.type = 'success';
@@ -374,6 +472,8 @@ const listenEvent = (e: any) => {
   }
 };
 
+const showModalDetail = ref(false);
+
 onMounted(() => {
   console.log('element is mounted');
   window.addEventListener('message', listenEvent);
@@ -388,4 +488,5 @@ onUnmounted(() => {
 @use '@/styles/booking-confirmation';
 @use '@/styles/pages/booking-confirmation-mobile';
 @use '@/styles/pages/booking-detail-mobile';
+@import 'https://fastly.jsdelivr.net/npm/vant@4/lib/index.css';
 </style>

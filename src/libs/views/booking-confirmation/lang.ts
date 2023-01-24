@@ -37,6 +37,10 @@ export default {
     input_promo_code: 'Input Promo Code',
     transit_for: 'Transit for {time} in {city} ({code})',
     CONFIRMATION: 'Confirmation',
+    see_detail: 'See Detail',
+    booking_details: 'Booking Details',
+    departure_price: 'Departure Price',
+    return_price: 'Return Price',
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -76,5 +80,9 @@ export default {
     input_promo_code: 'Masukkan kode promo',
     transit_for: 'Transit selama {time} di {city} ({code})',
     CONFIRMATION: 'Konfirmasi',
+    see_detail: 'Lihat Detail',
+    booking_details: 'Detail Pemesanan',
+    departure_price: 'Harga Keberangkatan',
+    return_price: 'Harga Kepulangan',
   },
 };
