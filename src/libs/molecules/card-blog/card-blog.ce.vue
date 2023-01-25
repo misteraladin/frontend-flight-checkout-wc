@@ -6,7 +6,7 @@
         {{ data.title }}
       </div>
       <div class="ma-card-blog__footer">
-        <div>{{ data.category }}</div>
+        <div class="ma-card-blog__badge">{{ data.category }}</div>
         <div>{{ data.date }}</div>
       </div>
     </div>
@@ -15,9 +15,6 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import {
-  RootObject as IRootObject
-} from "./type-card-blog";
 
 const props = defineProps({
   data: {
@@ -31,7 +28,20 @@ const props = defineProps({
   },
 });
 
-const data: IRootObject = reactive(props.data ? JSON.parse(props.data) : null);
+interface RootObject {
+  id: number;
+  slug: string;
+  date: string;
+  date_gmt: string;
+  link: string;
+  type: string;
+  title: string;
+  category: string;
+  media_details: any;
+  image: string;
+}
+
+const data: RootObject = reactive(props.data ? JSON.parse(props.data) : null);
 
 const emit = defineEmits(["to"]);
 const handleRedirect = () => emit("to");
