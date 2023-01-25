@@ -30,7 +30,7 @@
         grid-gap: 1rem;
         grid-auto-rows: 1fr;
       }
-      
+
       @media screen and (max-width: 480px) {
         .row-promo {
           grid-template-columns: 1fr;
@@ -45,7 +45,12 @@
 
       const store = reactive({
         count: 0,
-        data,
+        data: {
+          ...data,
+          selected: [
+            'flight',
+          ],
+        },
         inc() {
           this.count++;
         },
@@ -91,19 +96,19 @@
           :small="true"
         >
         </ma-button-group> -->
-        
+
         <ma-homepage-nav
           title="Going on vacation or shopping?"
           subtitle="Try all the fun at Mister Aladin"
         >
-          <ma-button-fancy 
+          <ma-button-fancy
             custom-class="btn-travel"
             url="https://www.misteraladin.com/"
           >
             AladinTravel
             <div slot="subtitle">Cheap Holidays</div>
             <div slot="icon">
-              <img 
+              <img
                 src="/homepage/icon-aladin-travel.svg"
                 alt="AladinTravel"
                 class="btn-icon"
@@ -111,16 +116,16 @@
             </div>
           </ma-button-fancy>
 
-          <ma-button-fancy 
+          <ma-button-fancy
             custom-class="btn-mall"
             url="https://aladinmall.misteraladin.com/"
           >
             AladinMall
             <div slot="subtitle">Shop All You Want</div>
             <div slot="icon">
-              <img 
-                src="/homepage/icon-aladin-mall.svg" 
-                alt="AladinTravel" 
+              <img
+                src="/homepage/icon-aladin-mall.svg"
+                alt="AladinTravel"
                 class="btn-icon"
               >
             </div>
@@ -188,7 +193,7 @@
           <ma-card-mall :data="JSON.stringify(store.data.cardMall[6])"></ma-card-mall>
         </ma-card-section>
 
-        <ma-card-section 
+        <ma-card-section
           title="Saatnya bertualang"
           url="https://staging.misteralad.in/aladintravel/aladinxplore"
         >
@@ -201,6 +206,16 @@
           <ma-card-explore :data="JSON.stringify(store.data.cardExplore[6])"></ma-card-explore>
         </ma-card-section>
 
+        <div>
+          <ma-multi-select
+            :value="JSON.stringify(store.data.selected)"
+            :options="JSON.stringify(store.data.menu)"
+            @change="handleMultipleSelect"
+          >
+            Semua Produk
+          </ma-multi-select>
+        </div>
+
         <ma-card-section
           title="Terpopuler di AladinTravel"
         >
@@ -211,7 +226,7 @@
           <ma-card-brand :data="JSON.stringify(store.data.brands.data[0].contents[0].brands[4])"></ma-card-brand>
           <ma-card-brand :data="JSON.stringify(store.data.brands.data[0].contents[0].brands[5])"></ma-card-brand>
         </ma-card-section>
-        
+
         <div class="row-promo">
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[0])"></ma-card-promo>
           <ma-card-promo :data="JSON.stringify(store.data.promos.data[1])"></ma-card-promo>
