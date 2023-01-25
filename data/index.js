@@ -4,6 +4,7 @@ import cardHotel from "./card-hotel.json";
 import cardMall from "./card-mall.json";
 import cardExplore from "./card-explore.json";
 import menu from "./menu.json";
+import cardBlog from "./card-blog.json";
 import promos from "./promos.json";
 
 export default {
@@ -13,5 +14,6 @@ export default {
   cardMall,
   cardExplore,
   menu,
+  cardBlog,
   promos,
 };
