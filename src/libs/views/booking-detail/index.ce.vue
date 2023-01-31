@@ -112,7 +112,7 @@
     </div>
   </div>
   <div id="booking-detail-mobile" v-if="windowSize.width < 768">
-    <Header>
+    <Header @back="onClickBack">
       {{ t('CONTACT_DETAILS') }}
     </Header>
 
@@ -133,7 +133,7 @@
       v-if="returnFlights"
     />
 
-    <BannerLogin :t="t" />
+    <BannerLogin :t="t" v-if="!user?.IsLogin" />
 
     <section class="booking-detail__contact">
       <h2>{{ t('BOOKING_DETAILS') }}</h2>
@@ -839,6 +839,10 @@ const onConfirmBooking = async () => {
 };
 
 const showModalDetail = ref(false);
+
+const onClickBack = () => {
+  window.history.back();
+};
 </script>
 
 <style lang="scss">

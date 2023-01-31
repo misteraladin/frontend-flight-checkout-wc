@@ -15,8 +15,8 @@
           fill="#323C9F"
         />
       </svg>
-      <span class="promo-applied" v-if="reservation.VoucherName">
-        {{ reservation.VoucherName }}</span
+      <span class="promo-applied" v-if="reservation.VoucherCode">
+        {{ reservation.VoucherCode }}</span
       >
       <span v-else>{{ t('got_promo') }}</span>
     </div>
@@ -39,7 +39,7 @@
     <span
       class="promo-code__add"
       @click="$emit('remove-coupon')"
-      v-if="reservation.VoucherName"
+      v-if="reservation.VoucherCode"
       >{{ t('REMOVE_COUPON') }}</span
     >
     <span class="promo-code__add" @click="$emit('add-coupon')" v-else>{{
@@ -58,5 +58,4 @@ interface Props {
 }
 
 const { t, reservation } = defineProps<Props>();
-console.log('from coupon', reservation);
 </script>

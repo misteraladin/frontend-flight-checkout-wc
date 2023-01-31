@@ -275,6 +275,18 @@
     :src="paymentIframe.url"
     v-if="paymentIframe.show"
   />
+  <Overlay :show="isLoadingCoupon" :lock-scroll="true" z-index="2000">
+    <div
+      :style="{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+      }"
+    >
+      <Loading type="spinner" size="50" />
+    </div>
+  </Overlay>
 </template>
 
 <script lang="ts" setup>
@@ -308,6 +320,8 @@ import ModalWindow from '../common-mobile/ModalWindow.vue';
 
 import ModalPeek from '../common-mobile/ModalPeek.vue';
 import FormInput from '../common-mobile/FormInput.vue';
+
+import { Overlay, Loading } from 'vant';
 
 interface Props {
   data: any;
@@ -381,6 +395,7 @@ const alert = reactive<{
 
 const onCoupon = ref(false);
 const coupon = ref('');
+const isLoadingCoupon = ref(false);
 const couponData = reactive({
   PriceAfterDiscount: 0,
   PriceBeforeDiscount: 0,
@@ -390,19 +405,28 @@ const couponData = reactive({
 
 const onUseCoupon = async () => {
   onCoupon.value = false;
+  isLoadingCoupon.value = true;
   const res = await axios.post(props.promocreate, {
     code: coupon.value,
     ReservationCode: reservation.ReservationCode,
   });
   coupon.value = '';
-  console.log(res.data);
+
+  isLoadingCoupon.value = false;
+
   if (res.data.status === 200) {
     alert.type = 'success';
     alert.message = t('COUPON_RESPONSE.APPLIED');
     alert.isOn = true;
+
+    couponData.PriceAfterDiscount = reservation.TotalResult;
+    reservation.VoucherCode = res.data.data_promo.PromoCode;
+    reservation.Discount = res.data.data_promo.PromoDiscount;
+    reservation.TotalResult = res.data.data_promo.PriceAfterDiscount;
+
     setTimeout(() => {
       alert.isOn = false;
-      location.reload();
+      // location.reload();
     }, 5000);
   } else {
     alert.type = 'error';
@@ -417,6 +441,7 @@ const onUseCoupon = async () => {
 };
 
 const onRemoveCoupon = async () => {
+  isLoadingCoupon.value = true;
   const res = await axios.post(props.promoCancel, {
     code: coupon.value,
     ReservationCode: reservation.ReservationCode,
@@ -428,7 +453,13 @@ const onRemoveCoupon = async () => {
     alert.isOn = true;
     setTimeout(() => {
       alert.isOn = false;
-      location.reload();
+      reservation.VoucherCode = '';
+      reservation.Discount = 0;
+      reservation.TotalResult =
+        couponData.PriceAfterDiscount || reservation.TotalAfterDiscount;
+
+      isLoadingCoupon.value = false;
+      // location.reload();
     }, 5000);
   }
 };

@@ -41,6 +41,8 @@ export default {
     booking_details: 'Booking Details',
     departure_price: 'Departure Price',
     return_price: 'Return Price',
+    cancel: 'Cancel',
+    close: 'Close',
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -65,7 +67,7 @@ export default {
     PTL: 'Batas Waktu Pembayaran',
     ADD_COUPON: 'Tambah',
     REMOVE_COUPON: 'Hapus',
-    APPLY_COUPON: 'GUNAKAN',
+    APPLY_COUPON: 'Gunakan',
     COUPON_RESPONSE: {
       REMOVED: 'Kode berhasil dihapus',
       APPLIED: 'Kode berhasil digunakan',
@@ -84,5 +86,7 @@ export default {
     booking_details: 'Detail Pemesanan',
     departure_price: 'Harga Keberangkatan',
     return_price: 'Harga Kepulangan',
+    cancel: 'Batal',
+    close: 'Tutup',
   },
 };
