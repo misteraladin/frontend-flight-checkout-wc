@@ -6,7 +6,12 @@
       </div>
 
       <div class="form-input__control">
-        <input :type="type" :value="modelValue" @input="onInput" />
+        <input
+          :type="type"
+          :value="modelValue"
+          @input="onInput"
+          :placeholder="placeholderText"
+        />
 
         <slot name="info"> </slot>
       </div>
@@ -36,9 +41,11 @@ interface Props {
   modelValue: string;
   error?: string;
   info?: string;
+  placeholderText?: string;
 }
 
-const { type, title, modelValue, error, info } = defineProps<Props>();
+const { type, title, modelValue, error, info, placeholderText } =
+  defineProps<Props>();
 
 const emit = defineEmits(['update:modelValue']);
 

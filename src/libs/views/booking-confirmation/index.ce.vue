@@ -19,7 +19,7 @@
         </template>
         <div class="booking__main-column-2">
           <p class="span-2-column">
-            1. {{ reservationDetail.ReservationVendor.Title }}
+            1. {{ t(`TITLE.${reservationDetail.ReservationVendor.Title}`) }}
             {{ reservationDetail.ReservationVendor.FirstName }}
             {{ reservationDetail.ReservationVendor.LastName }}
           </p>
@@ -44,7 +44,7 @@
           )"
         >
           <p class="span-2-column">
-            {{ i + 1 }}. {{ pax.Title }}
+            {{ i + 1 }}. {{ t(`TITLE.${pax.Title}`) }}
             {{ pax.FirstName }}
             {{ pax.LastName }}
           </p>
@@ -211,7 +211,12 @@
     <ModalPeek v-model:show="onCoupon" @close="onCoupon = false">
       <div class="coupon-modal">
         <h4>{{ t('PROMO_CODE') }}</h4>
-        <FormInput type="text" :title="t('PROMO_CODE')" v-model="coupon">
+        <FormInput
+          type="text"
+          :title="t('PROMO_CODE')"
+          v-model="coupon"
+          :placeholder-text="t('input_promo_code')"
+        >
           <!-- @input="(val) => (coupon = val)" -->
           <template #info>
             <FormInputInfo type="Name" :t="t" />
@@ -405,6 +410,18 @@ const couponData = reactive({
 
 const onUseCoupon = async () => {
   onCoupon.value = false;
+
+  if (!coupon.value) {
+    alert.type = 'error';
+    alert.message = t('PROMO_REQUIRED');
+    alert.isOn = true;
+
+    return setTimeout(() => {
+      alert.isOn = false;
+      // location.reload();
+    }, 5000);
+  }
+
   isLoadingCoupon.value = true;
   const res = await axios.post(props.promocreate, {
     code: coupon.value,
@@ -450,15 +467,15 @@ const onRemoveCoupon = async () => {
   if (res.data.status === 200) {
     alert.type = 'error';
     alert.message = t('COUPON_RESPONSE.REMOVED');
+    isLoadingCoupon.value = false;
+    reservation.VoucherCode = '';
+    reservation.Discount = 0;
+    reservation.TotalResult =
+      couponData.PriceAfterDiscount || reservation.TotalAfterDiscount;
     alert.isOn = true;
     setTimeout(() => {
       alert.isOn = false;
-      reservation.VoucherCode = '';
-      reservation.Discount = 0;
-      reservation.TotalResult =
-        couponData.PriceAfterDiscount || reservation.TotalAfterDiscount;
 
-      isLoadingCoupon.value = false;
       // location.reload();
     }, 5000);
   }

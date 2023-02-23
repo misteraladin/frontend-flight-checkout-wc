@@ -49,7 +49,8 @@
   </div>
   <Popup v-model:show="isShowModal" position="bottom">
     <DatePicker
-      :min-date="new Date(-1)"
+      :min-date="disabledDate.maxDate"
+      :max-date="disabledDate.minDate"
       v-model="dateModel"
       @confirm="onConfirmDate"
       @cancel="onCancelDate"
@@ -72,8 +73,13 @@ interface Props {
   value: any;
   error?: string;
   info?: string;
+  dateValidity?: {
+    minDate: string;
+    maxDate: string;
+  };
+  type?: 'adult' | 'child' | 'infant';
 }
-const { title, value, error, info } = defineProps<Props>();
+const { title, value, error, info, dateValidity, type } = defineProps<Props>();
 
 const isShowModal = ref(false);
 
@@ -82,6 +88,47 @@ const dateModel = ref<string[]>([]);
 const inputModel = ref('');
 
 const emit = defineEmits(['update:value']);
+
+const disabledDate = computed(() => {
+  if (!dateValidity)
+    return {
+      minDate: undefined,
+      maxDate: undefined,
+    };
+  const minDate = new Date(dateValidity.minDate);
+  const maxDate = new Date(dateValidity.maxDate);
+
+  if (type === 'adult') {
+    const mustBeTwelve = new Date(dateValidity.minDate);
+    mustBeTwelve.setFullYear(minDate.getFullYear() - 12);
+    return {
+      minDate: mustBeTwelve,
+      maxDate: new Date(-1),
+    };
+  } else if (type === 'child') {
+    const beforeTwelve = new Date(dateValidity.minDate);
+    beforeTwelve.setFullYear(minDate.getFullYear() - 12);
+    const afterTwo = new Date(dateValidity.maxDate);
+    afterTwo.setFullYear(maxDate.getFullYear() - 2);
+    return {
+      minDate: beforeTwelve,
+      maxDate: afterTwo,
+    };
+  } else if (type === 'infant') {
+    const beforeTwo = new Date(dateValidity.minDate);
+    beforeTwo.setFullYear(minDate.getFullYear() - 2);
+    const afterNow = new Date(dateValidity.maxDate);
+    afterNow.setDate(maxDate.getDate() - 6);
+    return {
+      minDate: beforeTwo,
+      maxDate: afterNow,
+    };
+  }
+  return {
+    minDate: undefined,
+    maxDate: undefined,
+  };
+});
 
 const onConfirmDate = () => {
   const text = [...dateModel.value].reverse().join('-');

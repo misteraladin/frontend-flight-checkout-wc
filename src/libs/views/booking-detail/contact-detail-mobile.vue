@@ -2,7 +2,7 @@
   <div class="booking-detail__passenger">
     <div class="booking-detail__passenger-empty" @click="isShowModal = true">
       <template v-if="type === 'contact'">
-        <template v-if="v.$error || !v.$dirty">
+        <template v-if="v.$error || !v.$dirty || !isLoggedIn">
           <svg
             width="16"
             height="16"
@@ -73,7 +73,7 @@
         </template>
       </template>
       <template v-else>
-        <template v-if="v.$error || !v.$dirty">
+        <template v-if="v.$error || !v.$dirty || !isLoggedIn">
           <svg
             width="16"
             height="16"
@@ -242,8 +242,10 @@ interface Props {
   placeholder: string;
   t: ComposerTranslation;
   height?: number;
+  isLoggedIn: boolean;
 }
-const { type, passenger, placeholder, t, height } = defineProps<Props>();
+const { type, passenger, placeholder, t, height, isLoggedIn } =
+  defineProps<Props>();
 const isShowModal = ref(false);
 
 const title = computed(() => {

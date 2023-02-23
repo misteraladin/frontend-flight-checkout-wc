@@ -5,7 +5,7 @@
     <div class="booking__main">
       <h3 class="booking__subtitle">{{ t('CONTACT_DETAILS') }}</h3>
       <LoginBanner
-        login-url="https://misteraladin.com"
+        :login-url="loginUrl"
         :t="t"
         v-if="!user?.IsLogin"
       ></LoginBanner>
@@ -42,6 +42,7 @@
               :t="t"
               :countries="parsedCountries"
               :model="bookingDetail.passengers.adult[i]"
+              :date-validity="paxDateValidity"
             />
           </template>
 
@@ -55,6 +56,7 @@
             :t="t"
             :countries="parsedCountries"
             :model="bookingDetail.passengers.child[i]"
+            :date-validity="paxDateValidity"
           />
 
           <!-- infant mapping -->
@@ -67,6 +69,7 @@
             :t="t"
             :countries="parsedCountries"
             :model="bookingDetail.passengers.infant[i]"
+            :date-validity="paxDateValidity"
           />
         </Card>
       </ElForm>
@@ -133,7 +136,7 @@
       v-if="returnFlights"
     />
 
-    <BannerLogin :t="t" v-if="!user?.IsLogin" />
+    <BannerLogin :t="t" v-if="!user?.IsLogin" :login-url="loginUrl" />
 
     <section class="booking-detail__contact">
       <h2>{{ t('BOOKING_DETAILS') }}</h2>
@@ -142,13 +145,8 @@
         :passenger="bookingDetail.contact"
         :placeholder="t('enter_details')"
         :t="t"
+        :isLoggedIn="user?.IsLogin || false"
       />
-      <!-- <Passenger
-        type="contact"
-        :passenger="bookingDetail.contact"
-        :placeholder="t('enter_details')"
-        :t="t"
-      /> -->
     </section>
 
     <section class="booking-detail__traveler pt-0">
@@ -174,6 +172,7 @@
           :placeholder="`${indexTypes! + 1}. ` +   t(`passenger_${keyTypes}`)"
           :t="t"
           :height="windowSize.height"
+          :date-validity="paxDateValidity"
         />
       </div>
     </section>
@@ -289,7 +288,6 @@ import FlightItem from './booking-detail-flight-item-mobile.vue';
 import Footer from '../common-mobile/mobile-footer.vue';
 import Passenger from './booking-detail-passenger-mobile.vue';
 import ModalWindow from '../common-mobile/ModalWindow.vue';
-import BookingDetailFlightDetailMobile from './booking-detail-flight-detail-mobile.vue';
 
 import { Switch, showDialog, Popup } from 'vant';
 
@@ -320,6 +318,7 @@ interface Props extends HTMLAttributes {
   confirmAsset: string;
   numpass: string;
   baseurl: string;
+  maUrl: string;
 }
 
 const props = defineProps<Props>();
@@ -327,6 +326,8 @@ const props = defineProps<Props>();
 const { t } = useI18n({
   messages: messages,
 });
+
+const loginUrl = props.maUrl + '/login?ref=' + location.href;
 
 const parsedData = reactive(props.data ? JSON.parse(props.data) : null);
 
@@ -366,6 +367,22 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', onResize);
 });
+
+const paxDateValidity = computed(() => {
+  if (returnFlights) {
+    return {
+      minDate: returnFlights.Segments.Departure[0].ArriveDate,
+      maxDate: departureFLights.Segments.Departure[0].DepartDate,
+    };
+  } else {
+    return {
+      minDate: departureFLights.Segments.Departure[0].DepartDate,
+      maxDate: departureFLights.Segments.Departure[0].DepartDate,
+    };
+  }
+});
+
+console.log(paxDateValidity.value);
 
 //form Object
 const formRef = ref<FormInstance>();
@@ -530,18 +547,17 @@ const onConfirmBooking = async () => {
   // console.log(bookingDetail);
 
   const isValid = await v.value.$validate();
-  console.log(bookingDetail, v.value);
   if (!isValid) return;
   ElMessageBox.alert(
     `
   <div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
     <img src="${props.confirmAsset}" width="124"/>
-    <p style="size: 20px; font-weight: 600;">Pastikan data kamu sudah benar sebelum melanjutkan</p>
+    <p style="size: 20px; font-weight: 600;">${t('POPUP_CONFIRM.MESSAGE')}</p>
   </div>`,
     {
       dangerouslyUseHTMLString: true,
-      confirmButtonText: 'Lanjut',
-      cancelButtonText: 'Cek Lagi',
+      confirmButtonText: t('POPUP_CONFIRM.BUTTON_CONFIRM'),
+      cancelButtonText: t('POPUP_CONFIRM.BUTTON_CANCEL'),
       showCancelButton: true,
       customStyle: {
         '--el-color-primary': '#323c9f',

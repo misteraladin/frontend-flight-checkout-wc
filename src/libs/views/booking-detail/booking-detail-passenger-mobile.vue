@@ -146,6 +146,7 @@
         :passenger="passenger"
         :t="t"
         :validation="v"
+        :date-validity="dateValidity"
       />
 
       <template #footer>
@@ -181,8 +182,13 @@ interface Props {
   placeholder: string;
   t: any;
   height?: number;
+  dateValidity: {
+    minDate: string;
+    maxDate: string;
+  };
 }
-const { type, passenger, placeholder, t, height } = defineProps<Props>();
+const { type, passenger, placeholder, t, height, dateValidity } =
+  defineProps<Props>();
 const isShowModal = ref(false);
 
 const vrules = computed(() => {

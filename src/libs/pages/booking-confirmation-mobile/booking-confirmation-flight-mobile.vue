@@ -55,5 +55,4 @@ const origin = computed((): IDeparture => segments.Departure[0]);
 const destination = computed(
   (): IDeparture => segments.Departure[segments.Departure.length - 1]
 );
-console.log(segments);
 </script>

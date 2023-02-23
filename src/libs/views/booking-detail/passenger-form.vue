@@ -71,6 +71,8 @@
       :title="t('date_of_birth')"
       v-model:value="validation.dob.$model"
       :error="validation.dob.$errors[0]?.$message"
+      :date-validity="dateValidity"
+      type="adult"
     />
 
     <!-- Child -->
@@ -80,6 +82,8 @@
       v-model:value="validation.dob.$model"
       :info="t('passenger_child_info')"
       :error="validation.dob.$errors[0]?.$message"
+      :date-validity="dateValidity"
+      type="child"
     />
 
     <!-- Infant -->
@@ -89,6 +93,8 @@
       v-model:value="validation.dob.$model"
       :info="t('passenger_infant_info')"
       :error="validation.dob.$errors[0]?.$message"
+      :date-validity="dateValidity"
+      type="infant"
     />
 
     <FormSelect
@@ -155,8 +161,12 @@ interface Props {
   passenger: IPassenger & IContact;
   t: any;
   validation: any;
+  dateValidity: {
+    minDate: string;
+    maxDate: string;
+  };
 }
-const { type, passenger, t, validation } = defineProps<Props>();
+const { type, passenger, t, validation, dateValidity } = defineProps<Props>();
 
 const title = computed(() => {
   const titleGlossary: any = {
@@ -175,8 +185,8 @@ const titleOption = computed(() => {
     { value: 'Ms', label: t('ms') },
   ];
   const child = [
-    { value: 'mr', label: t('mr') },
-    { value: 'ms', label: t('ms') },
+    { value: 'Mr', label: t('mr') },
+    { value: 'Ms', label: t('ms') },
   ];
   const titleOptionGlossary: any = {
     contact: adult, // contact

@@ -43,6 +43,12 @@ export default {
     return_price: 'Return Price',
     cancel: 'Cancel',
     close: 'Close',
+    TITLE: {
+      Mr: 'Mr.',
+      Mrs: 'Mrs.',
+      Ms: 'Ms.',
+    },
+    PROMO_REQUIRED: 'Please input promo code first',
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -88,5 +94,11 @@ export default {
     return_price: 'Harga Kepulangan',
     cancel: 'Batal',
     close: 'Tutup',
+    TITLE: {
+      Tn: 'Tuan',
+      Ny: 'Nyonya',
+      Nn: 'Nona',
+    },
+    PROMO_REQUIRED: 'Masukkan kode promo terlebih dahulu',
   },
 };

@@ -57,11 +57,7 @@
         :label="t('FORM.DOB')"
         :error="v.$dirty && v.dob.$errors[0]?.$message"
       >
-        <Calendar
-          v-model="v.dob.$model"
-          :t="t"
-          :disabledDate="disabledDate"
-        />
+        <Calendar v-model="v.dob.$model" :t="t" :disabledDate="disabledDate" />
       </InputGroup>
     </div>
     <div class="booking__main-column-2">
@@ -117,10 +113,7 @@
           :disabledDate="disabledDatePassport"
         />
       </InputGroup>
-      <InputGroup
-        :label="t('FORM.COI')"
-        v-if="v.idType.$model !== 'NIK'"
-      >
+      <InputGroup :label="t('FORM.COI')" v-if="v.idType.$model !== 'NIK'">
         <Dropdown
           :options="JSON.stringify(countries)"
           v-model="v.idOrigin.$model"
@@ -164,15 +157,32 @@ interface Props {
     idType: string;
     idNo: string;
   };
+  dateValidity: {
+    minDate: string;
+    maxDate: string;
+  };
 }
 
-const { i, type, t, model } = defineProps<Props>();
+const { i, type, t, model, dateValidity } = defineProps<Props>();
 
-const titleOptions = computed(() => [
-  { code: 'Mr', label: t('PASSENGER.MR') },
-  { code: 'Mrs', label: t('PASSENGER.MRS') },
-  { code: 'Ms', label: t('PASSENGER.MS') },
-]);
+const titleOptions = computed(() => {
+  const adult = [
+    { code: 'Mr', label: t('PASSENGER.MR') },
+    { code: 'Mrs', label: t('PASSENGER.MRS') },
+    { code: 'Ms', label: t('PASSENGER.MS') },
+  ];
+  const child = [
+    { code: 'Mr', label: t('PASSENGER.MR') },
+    { code: 'Ms', label: t('PASSENGER.MS') },
+  ];
+  const titleOptionGlossary: any = {
+    adult, // passenger adult
+    child, // passenger child
+    infant: child, // passenger infant
+  };
+
+  return titleOptionGlossary[type];
+});
 
 const heading = computed(
   () =>
@@ -235,23 +245,25 @@ const rules = computed(() => {
 const v = useVuelidate(rules, model);
 
 const disabledDate = (a: any) => {
-  const today = new Date();
+  const minDate = new Date(dateValidity.minDate);
+  const maxDate = new Date(dateValidity.maxDate);
+
   if (type === 'adult') {
-    const mustBeTwelve = new Date();
-    mustBeTwelve.setFullYear(today.getFullYear() - 12);
+    const mustBeTwelve = new Date(dateValidity.minDate);
+    mustBeTwelve.setFullYear(minDate.getFullYear() - 12);
     return a > mustBeTwelve;
   } else if (type === 'child') {
-    const beforeTwelve = new Date();
-    beforeTwelve.setFullYear(today.getFullYear() - 12);
-    const afterTwo = new Date();
-    afterTwo.setFullYear(today.getFullYear() - 2);
+    const beforeTwelve = new Date(dateValidity.minDate);
+    beforeTwelve.setFullYear(minDate.getFullYear() - 12);
+    const afterTwo = new Date(dateValidity.maxDate);
+    afterTwo.setFullYear(maxDate.getFullYear() - 2);
     if (a < beforeTwelve) return true;
     if (a > afterTwo) return true;
   } else if (type === 'infant') {
-    const beforeTwo = new Date();
-    beforeTwo.setFullYear(today.getFullYear() - 2);
-    const afterNow = new Date();
-    afterNow.setFullYear(today.getFullYear());
+    const beforeTwo = new Date(dateValidity.minDate);
+    beforeTwo.setFullYear(minDate.getFullYear() - 2);
+    const afterNow = new Date(dateValidity.maxDate);
+    afterNow.setDate(maxDate.getDate() - 6);
     if (a < beforeTwo) return true;
     if (a > afterNow) return true;
   }
@@ -260,7 +272,7 @@ const disabledDate = (a: any) => {
 
 const disabledDatePassport = (a: any) => {
   const today = new Date();
-  const after = new Date(today.setMonth(today.getMonth()+6));
-  return (a < after);
+  const after = new Date(today.setMonth(today.getMonth() + 6));
+  return a < after;
 };
 </script>

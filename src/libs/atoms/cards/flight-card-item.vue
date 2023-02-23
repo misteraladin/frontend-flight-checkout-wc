@@ -1,12 +1,13 @@
 <template>
   <div class="flight-card-item">
     <div v-if="flight.TransitTime" class="flight-card-item__transit">
-      {{ t('transit_for', {
-        time: flight.TransitTime,
-        city: flight.OriginCityName,
-        code: flight.Origin,
-      }) }}
-
+      {{
+        t('transit_for', {
+          time: flight.TransitTime,
+          city: flight.OriginCityName,
+          code: flight.Origin,
+        })
+      }}
     </div>
     <div class="flight-card-item__header">
       <img :src="flight.AirlineImageUrl" :alt="flight.AirlineName" />

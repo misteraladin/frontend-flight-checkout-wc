@@ -90,7 +90,7 @@ export default {
     order_process_text:
       "Your order is being processed. I promise, it won't be long. Just a few minutes, really.",
     order_confirmation_text: 'Make sure your data is correct before continuing',
-    customer_data: 'Customer Data',
+    customer_data: 'Contact Details',
     passenger_data: 'Passenger Data',
     adult: 'Adult',
     child: 'Child',
@@ -99,11 +99,11 @@ export default {
     mrs: 'Mrs.',
     ms: 'Ms.',
     mstr: 'Mstr.',
-    save: 'Save',
+    save: 'Confirm',
     cancel: 'Cancel',
     name_instruction_title: 'Name Writing Instructions',
     name_instruction_desc:
-      '<ul> <li> <b>For Indonesian Citizens</b>, name and NIK must be the same as registered. For foreigners, use the name and number listed on the passport. <b>For foreigners</b>, use the name and number listed on the passport. </li> <li> If you do not have a "middle name" <b>(example: Ari Wibowo)</b>, leave the middle name blank and only fill in the first name <b>(example: Ari)</b> and last name <b>(example: Wibowo)</b> </li> <li> If you only have one name <b>(example: Kartini)</b>, please leave middle name blank and fill last name with first name <b>(example: Kartini Kartini)</b>. </li> </ul>',
+      '<ul> <li> <b>For Indonesians</b>, name and ID number must exactly match your ID card. <b>For foreigners</b>, name and number must exactly match your passport. </li> <li> If you don\'t have a "middle name" <b>(example: Ari Wibowo)</b>, please only fill out your first name <b>(example: Ari)</b> and last name <b>(example: Wibowo)</b> </li> <li> If you only have "first name" <b>(example: Kartini)</b>, please fill out both first and last names with the same name <b>(example: Kartini Kartini)</b>. </li> </ul>',
     understand: 'Understand',
     passport_info: 'Hubungi Personal Assistant jika kamu belum memiliki paspor',
     title: 'Title',
@@ -113,12 +113,12 @@ export default {
     email: 'Email',
     country_code: 'Country Code',
     phone_number: 'Phone Number',
-    citizenship: 'Citizenship',
+    citizenship: 'Nationality',
     date_of_birth: 'Date of birth',
     indentity_type: 'Identity Type',
-    identity_number: 'Identity Number',
+    identity_number: 'ID Card Number',
     passport_number: 'Passport Number',
-    passport_expiration_date: 'Expiration Date',
+    passport_expiration_date: 'Date of Expiry',
     passport_expiration_info:
       'Important: passport valid for at least 6 months from the date of arrival at the destination.',
     passport_issuing_country: 'Issuing Country',
@@ -132,6 +132,11 @@ export default {
     BOOKING_LODING_TEXT:
       'Your booking is being processed. This won’t take long, we promise.',
     CHANGE: 'Change',
+    POPUP_CONFIRM: {
+      MESSAGE: 'Please make sure your data is accurate before continuing.',
+      BUTTON_CANCEL: 'Check Again',
+      BUTTON_CONFIRM: 'Continue',
+    },
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -224,7 +229,7 @@ export default {
       'Pemesanan kamu sedang diproses. Janji, deh, gak akan lama. Cuma beberapa menit aja, kok.',
     order_confirmation_text:
       'Pastikan data kamu sudah benar sebelum melanjutkan',
-    customer_data: 'Data Pemesan',
+    customer_data: 'Detail Pemesan',
     passenger_data: 'Data Penumpang',
     adult: 'Dewasa',
     child: 'Anak',
@@ -250,9 +255,9 @@ export default {
     phone_number: 'Nomor Telepon',
     citizenship: 'Kewarganegaraan',
     date_of_birth: 'Tanggal Lahir',
-    indentity_type: 'Identity Type',
-    identity_number: 'No. Identitas',
-    passport_number: 'No. Paspor',
+    indentity_type: 'Tipe Identitas',
+    identity_number: 'Nomor NIK',
+    passport_number: 'Nomor Paspor',
     passport_expiration_date: 'Tanggal Habis Berlaku',
     passport_expiration_info:
       'Penting: paspor berlaku minimal 6 bulan dari tanggal kedatangan di destinasi tujuan.',
@@ -267,5 +272,10 @@ export default {
     BOOKING_LODING_TEXT:
       'Pemesanan kamu sedang diproses. Janji, deh, gak akan lama. Cuma beberapa menit aja, kok.',
     CHANGE: 'Ubah',
+    POPUP_CONFIRM: {
+      MESSAGE: 'Pastikan data kamu sudah benar sebelum melanjutkan.',
+      BUTTON_CANCEL: 'Cek Lagi',
+      BUTTON_CONFIRM: 'Lanjut',
+    },
   },
 };

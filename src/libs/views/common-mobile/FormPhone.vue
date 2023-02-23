@@ -148,7 +148,6 @@ const onPhoneNumberInput = (event: Event) => {
 };
 
 const onClickInput = () => {
-  console.log('called');
   isShowModal.value = true;
 };
 </script>

@@ -196,6 +196,4 @@ const vrules = computed(() => ({
 }));
 
 const v = useVuelidate(vrules, model);
-
-console.log(v.value);
 </script>
