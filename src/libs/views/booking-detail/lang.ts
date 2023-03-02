@@ -238,7 +238,7 @@ export default {
     mrs: 'Nyonya',
     ms: 'Nona',
     mstr: 'Tuan',
-    save: 'Simpan',
+    save: 'Konfirmasi',
     cancel: 'Batal',
     name_instruction_title: 'Instruksi Penulisan Nama',
     name_instruction_desc:

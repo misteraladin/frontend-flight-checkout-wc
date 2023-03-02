@@ -131,9 +131,17 @@
             <ElInput
               :placeholder="t('input_promo_code')"
               class="booking__coupon-input-form"
+              :style="{ height: '48px' }"
               v-model="coupon"
             ></ElInput>
-            <Button @click="onUseCoupon">{{ t('APPLY_COUPON') }}</Button>
+            <Button
+              :style="{
+                width: 'unset !important',
+                marginTop: 'unset !important',
+              }"
+              @click="onUseCoupon"
+              >{{ t('APPLY_COUPON') }}</Button
+            >
           </div>
           <Coupon
             :t="t"
@@ -352,6 +360,10 @@ const reservation = reactive<Reservation>(
 
 const departureFLights = reactive(JSON.parse(data.segment1));
 
+console.log(
+  reservation.ReservationDetail[0].ReservationVendor,
+  departureFLights.Segments
+);
 const returnFlights = reactive(JSON.parse(data.segment2));
 // console.log('props', departureFLights, returnFlights);
 

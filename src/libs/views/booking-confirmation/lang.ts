@@ -75,8 +75,8 @@ export default {
     REMOVE_COUPON: 'Hapus',
     APPLY_COUPON: 'Gunakan',
     COUPON_RESPONSE: {
-      REMOVED: 'Kode berhasil dihapus',
-      APPLIED: 'Kode berhasil digunakan',
+      REMOVED: 'Kode Promo berhasil dihapus',
+      APPLIED: 'Kode Promo berhasil digunakan',
     },
     AGREEMENT:
       'Dengan klik "Bayar Sekarang", kamu telah menyetujui Syarat & Ketentuan, serta Kebijakan Privasi.',

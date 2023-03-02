@@ -54,13 +54,15 @@
       v-model="dateModel"
       @confirm="onConfirmDate"
       @cancel="onCancelDate"
+      :columns-type="['day', 'month', 'year']"
+      :formatter="formatter"
     />
   </Popup>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import { Popup, DatePicker } from 'vant';
+import { Popup, DatePicker, PickerOption } from 'vant';
 
 import { Locale } from 'vant';
 import enUS from 'vant/es/locale/lang/en-US';
@@ -89,6 +91,27 @@ const inputModel = ref('');
 
 const emit = defineEmits(['update:value']);
 
+const formatter = (type: string, option: PickerOption) => {
+  const month: { [key: string]: string } = {
+    '01': 'Jan',
+    '02': 'Feb',
+    '03': 'Mar',
+    '04': 'Apr',
+    '05': 'May',
+    '06': 'Jun',
+    '07': 'Jul',
+    '08': 'Aug',
+    '09': 'Sep',
+    '10': 'Oct',
+    '11': 'Nov',
+    '12': 'Dec',
+  };
+  if (type === 'month') {
+    option.text = month[option.text as string];
+  }
+  return option;
+};
+
 const disabledDate = computed(() => {
   if (!dateValidity)
     return {
@@ -101,6 +124,7 @@ const disabledDate = computed(() => {
   if (type === 'adult') {
     const mustBeTwelve = new Date(dateValidity.minDate);
     mustBeTwelve.setFullYear(minDate.getFullYear() - 12);
+
     return {
       minDate: mustBeTwelve,
       maxDate: new Date(-1),
@@ -110,18 +134,19 @@ const disabledDate = computed(() => {
     beforeTwelve.setFullYear(minDate.getFullYear() - 12);
     const afterTwo = new Date(dateValidity.maxDate);
     afterTwo.setFullYear(maxDate.getFullYear() - 2);
+
     return {
-      minDate: beforeTwelve,
-      maxDate: afterTwo,
+      minDate: afterTwo,
+      maxDate: beforeTwelve,
     };
   } else if (type === 'infant') {
     const beforeTwo = new Date(dateValidity.minDate);
     beforeTwo.setFullYear(minDate.getFullYear() - 2);
     const afterNow = new Date(dateValidity.maxDate);
-    afterNow.setDate(maxDate.getDate() - 6);
+    afterNow.setDate(maxDate.getDate() - 7);
     return {
-      minDate: beforeTwo,
-      maxDate: afterNow,
+      minDate: afterNow,
+      maxDate: beforeTwo,
     };
   }
   return {

@@ -263,12 +263,33 @@ const disabledDate = (a: any) => {
     const beforeTwo = new Date(dateValidity.minDate);
     beforeTwo.setFullYear(minDate.getFullYear() - 2);
     const afterNow = new Date(dateValidity.maxDate);
-    afterNow.setDate(maxDate.getDate() - 6);
+    afterNow.setDate(maxDate.getDate() - 7);
     if (a < beforeTwo) return true;
     if (a > afterNow) return true;
   }
   return false;
 };
+
+// const disabledDate = (a: any) => {
+//   const minDate = new Date(dateValidity.minDate);
+//   const maxDate = new Date(dateValidity.maxDate);
+
+//   if (type === 'adult') {
+//     return a.getFullYear() - 12 < minDate.getFullYear();
+//   } else if (type === 'child') {
+//     return (
+//       a.getFullYear() - 12 < minDate.getFullYear() ||
+//       a.getFullYear() - 2 > maxDate.getFullYear()
+//     );
+//   } else if (type === 'infant') {
+//     return (
+//       a.getFullYear() - 2 < minDate.getFullYear() ||
+//       (a.getFullYear() > maxDate.getFullYear() &&
+//         a.getDate() - 7 > maxDate.getDate())
+//     );
+//   }
+//   return false;
+// };
 
 const disabledDatePassport = (a: any) => {
   const today = new Date();
