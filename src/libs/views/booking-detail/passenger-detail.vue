@@ -61,7 +61,7 @@
       </InputGroup>
     </div>
     <div class="booking__main-column-2">
-      <InputGroup
+      <!-- <InputGroup
         :label="t('FORM.IDTYPE')"
         :error="v.$dirty && v.idType.$errors[0]?.$message"
       >
@@ -76,7 +76,7 @@
           label="label"
           value="code"
         />
-      </InputGroup>
+      </InputGroup> -->
       <InputGroup
         :label="t('FORM.IDNO')"
         v-if="v.idType.$model === 'NIK'"
@@ -89,7 +89,7 @@
           v-model="v.idNo.$model"
         ></Input>
       </InputGroup>
-      <div v-if="v.idType.$model !== 'NIK'"></div>
+      <!-- <div v-if="v.idType.$model !== 'NIK'"></div> -->
       <InputGroup
         :label="t('FORM.PASSNO')"
         v-if="v.idType.$model !== 'NIK'"

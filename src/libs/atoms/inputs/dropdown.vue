@@ -43,7 +43,6 @@ const parsedOptions = reactive(JSON.parse(options));
 
 const computedValue = computed({
   get() {
-    console.log(modelValue);
     return modelValue;
   },
   set(val) {

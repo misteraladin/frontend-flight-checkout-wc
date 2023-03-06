@@ -98,7 +98,7 @@
           :t="t"
           v-if="returnFlights"
         />
-        <PriceCard
+        <!-- <PriceCard
           :heading="t('departure_price')"
           :fare="departureFLights.FareDetail"
         />
@@ -106,7 +106,7 @@
           :heading="t('return_price')"
           :fare="returnFlights.FareDetail"
           v-if="returnFlights"
-        />
+        /> -->
         <div class="booking__total">
           <span>Total</span>
           <span>{{ toIDR(total) }}</span>
@@ -207,7 +207,7 @@
           :t="t"
           v-if="returnFlights"
         />
-        <PriceCard
+        <!-- <PriceCard
           :heading="t('departure_price')"
           :fare="departureFLights.FareDetail"
         />
@@ -215,7 +215,7 @@
           :heading="t('return_price')"
           :fare="returnFlights.FareDetail"
           v-if="returnFlights"
-        />
+        /> -->
         <div class="booking__total">
           <span>Total</span>
           <span>{{ toIDR(total) }}</span>
@@ -343,9 +343,12 @@ const user = reactive(JSON.parse(props.isloggedin));
 
 const locale = computed(() => (props.language === 'en' ? 'en-GB' : 'id-ID'));
 
+console.log(departureFLights);
+
 const total = computed(() => {
-  if (!returnFlights) return departureFLights.FareDetail.Total;
-  return departureFLights.FareDetail.Total + returnFlights.FareDetail.Total;
+  // return '100';
+  if (!returnFlights) return departureFLights.Fare;
+  return departureFLights.Fare + returnFlights.Fare;
 });
 
 const windowSize = reactive({
@@ -381,8 +384,6 @@ const paxDateValidity = computed(() => {
     };
   }
 });
-
-console.log(paxDateValidity.value);
 
 //form Object
 const formRef = ref<FormInstance>();
@@ -428,7 +429,7 @@ for (let i = 0; i < +parsedData.adult; i++) {
     lastName: '',
     nationality: 'ID',
     dob: '',
-    idType: 'NIK',
+    idType: 'Passport',
     idNo: '',
     idExpiry: '',
     idOrigin: 'ID',
@@ -442,7 +443,7 @@ for (let i = 0; i < +parsedData.child; i++) {
     lastName: '',
     nationality: 'ID',
     dob: '',
-    idType: 'NIK',
+    idType: 'Passport',
     idNo: '',
     idExpiry: '',
     idOrigin: 'ID',
@@ -456,7 +457,7 @@ for (let i = 0; i < +parsedData.infant; i++) {
     lastName: '',
     nationality: 'ID',
     dob: '',
-    idType: 'NIK',
+    idType: 'Passport',
     idNo: '',
     idExpiry: '',
     idOrigin: 'ID',
@@ -611,8 +612,7 @@ const onConfirmBooking = async () => {
             ).getFullYear();
             data['IdentityType' + i] =
               bookingDetail.passengers.adult[i - 1].idType;
-            data['IdentityNumber' + i] =
-              bookingDetail.passengers.adult[i - 1].idNo;
+            data['PPNumber' + i] = bookingDetail.passengers.adult[i - 1].idNo;
 
             if (bookingDetail.passengers.adult[i - 1].idType !== 'NIK') {
               data['PPDay' + i] = new Date(
@@ -624,7 +624,7 @@ const onConfirmBooking = async () => {
               data['PPYear' + i] = new Date(
                 bookingDetail.passengers.adult[i - 1].idExpiry
               ).getFullYear();
-              data['PPCOI' + i] =
+              data['PPIssued' + i] =
                 bookingDetail.passengers.adult[i - 1].idOrigin;
             }
 
@@ -657,9 +657,8 @@ const onConfirmBooking = async () => {
             data[
               'IdentityType' + (i + +bookingDetail.passengers.adult.length)
             ] = bookingDetail.passengers.child[i - 1].idType;
-            data[
-              'IdentityNumber' + (i + +bookingDetail.passengers.adult.length)
-            ] = bookingDetail.passengers.child[i - 1].idNo;
+            data['PPNumber' + (i + +bookingDetail.passengers.adult.length)] =
+              bookingDetail.passengers.child[i - 1].idNo;
 
             if (bookingDetail.passengers.child[i - 1].idType !== 'NIK') {
               data['PPDay' + (i + +bookingDetail.passengers.adult.length)] =
@@ -674,7 +673,7 @@ const onConfirmBooking = async () => {
                 new Date(
                   bookingDetail.passengers.child[i - 1].idExpiry
                 ).getFullYear();
-              data['PPCOI' + (i + +bookingDetail.passengers.adult.length)] =
+              data['PPIssued' + (i + +bookingDetail.passengers.adult.length)] =
                 bookingDetail.passengers.child[i - 1].idOrigin;
             }
 
@@ -750,7 +749,7 @@ const onConfirmBooking = async () => {
                   +bookingDetail.passengers.child.length)
             ] = bookingDetail.passengers.infant[i - 1].idType;
             data[
-              'IdentityNumber' +
+              'PPNumber' +
                 (i +
                   +bookingDetail.passengers.adult.length +
                   +bookingDetail.passengers.child.length)
@@ -782,7 +781,7 @@ const onConfirmBooking = async () => {
                 bookingDetail.passengers.infant[i - 1].idExpiry
               ).getFullYear();
               data[
-                'PPCOI' +
+                'PPIssued' +
                   (i +
                     +bookingDetail.passengers.adult.length +
                     +bookingDetail.passengers.child.length)
@@ -799,7 +798,7 @@ const onConfirmBooking = async () => {
           }
 
           const response = await axios.post(
-            props.baseurl + '/passengerDetails',
+            props.baseurl + '/passengerDetailsInternational',
             formData,
             {
               headers: {
@@ -807,7 +806,6 @@ const onConfirmBooking = async () => {
               },
             }
           );
-          console.log(response);
           isLoading.value = false;
 
           if (response.data.data.Message === 'OK') {

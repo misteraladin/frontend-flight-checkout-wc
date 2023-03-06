@@ -97,14 +97,14 @@
       type="infant"
     />
 
-    <FormSelect
+    <!-- <FormSelect
       v-if="type !== 'contact'"
       :title="t('indentity_type')"
       v-model:value="validation.idType.$model"
       :options="identityOptions"
       :t="t"
       :error="validation.idType.$errors[0]?.$message"
-    />
+    /> -->
 
     <!-- NIK -->
     <FormInput

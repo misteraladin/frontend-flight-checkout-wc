@@ -295,8 +295,6 @@ const { type, passenger, placeholder, t, height, isLoggedIn } =
   defineProps<Props>();
 const isShowModal = ref(false);
 
-console.log('is logged in', isLoggedIn);
-
 const title = computed(() => {
   const titleGlossary: any = {
     contact: t('customer_data'),

@@ -58,22 +58,22 @@
           </div>
           <div>
             <h5>{{ t('PAX.ID_TYPE') }}</h5>
-            <span>{{ t(pax.IdentityType) }}</span>
+            <span>{{ t('Passport') }}</span>
           </div>
           <div>
             <h5>{{ t('PAX.ID_NO') }}</h5>
-            <span>{{ pax.IdentityNumber }}</span>
+            <span>{{ pax.Passport.Number }}</span>
           </div>
-          <template v-if="pax.IdentityType !== 'NIK'">
-            <div>
-              <h5>{{ t('PAX.ID_EXPIRY') }}</h5>
-              <span>{{ toDate(pax.Passport.Expire, locale) }}</span>
-            </div>
-            <div>
-              <h5>{{ t('PAX.ID_COI') }}</h5>
-              <span>{{ getCountryName(pax.Passport.OriginCountry) }}</span>
-            </div>
-          </template>
+          <!-- <template v-if="pax.IdentityType !== 'NIK'"> -->
+          <div>
+            <h5>{{ t('PAX.ID_COI') }}</h5>
+            <span>{{ getCountryName(pax.Passport.OriginCountry) }}</span>
+          </div>
+          <div>
+            <h5>{{ t('PAX.ID_EXPIRY') }}</h5>
+            <span>{{ toDate(pax.Passport.Expire, locale) }}</span>
+          </div>
+          <!-- </template> -->
         </div>
       </Card>
     </div>
@@ -225,7 +225,6 @@
           v-model="coupon"
           :placeholder-text="t('input_promo_code')"
         >
-          <!-- @input="(val) => (coupon = val)" -->
           <template #info>
             <FormInputInfo type="Name" :t="t" />
           </template>
@@ -264,7 +263,7 @@
           :t="t"
           v-if="returnFlights"
         />
-        <PriceCard
+        <!-- <PriceCard
           :heading="t('departure_price')"
           :fare="departureFLights.FareDetail"
         />
@@ -272,7 +271,7 @@
           :heading="t('return_price')"
           :fare="returnFlights.FareDetail"
           v-if="returnFlights"
-        />
+        /> -->
         <div class="booking__total">
           <span>Total</span>
           <span>{{ toIDR(total) }}</span>
@@ -360,10 +359,6 @@ const reservation = reactive<Reservation>(
 
 const departureFLights = reactive(JSON.parse(data.segment1));
 
-console.log(
-  reservation.ReservationDetail[0].ReservationVendor,
-  departureFLights.Segments
-);
 const returnFlights = reactive(JSON.parse(data.segment2));
 // console.log('props', departureFLights, returnFlights);
 
@@ -385,8 +380,8 @@ const { t } = useI18n({
 });
 
 const total = computed(() => {
-  if (!returnFlights) return departureFLights.FareDetail.Total;
-  return departureFLights.FareDetail.Total + returnFlights.FareDetail.Total;
+  if (!returnFlights) return departureFLights.Fare;
+  return departureFLights.Fare + returnFlights.Fare;
 });
 
 // need to move to utils,
@@ -504,7 +499,6 @@ const onPayBooking = async () => {
     const res = await axios.post(props.requestPayment, {
       booking_no: reservation.ReservationCode,
     });
-
     paymentIframe.url = res.data.data.redirect_url;
     paymentIframe.show = true;
   } catch (error) {
@@ -535,7 +529,6 @@ const listenEvent = (e: any) => {
 const showModalDetail = ref(false);
 
 onMounted(() => {
-  console.log('element is mounted');
   window.addEventListener('message', listenEvent);
 });
 

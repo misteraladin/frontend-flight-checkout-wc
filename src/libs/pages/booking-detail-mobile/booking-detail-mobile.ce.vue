@@ -232,9 +232,7 @@ onMounted(() => {
   initialPassengers();
 });
 
-const submit = () => {
-  console.log('passenger: ', form);
-};
+const submit = () => {};
 </script>
 
 <style lang="scss">
