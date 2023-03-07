@@ -55,6 +55,7 @@
           v-model="v.phoneNumber.$model"
           :class="['ma-input']"
           style="--el-color-primary: #323c9f"
+          placeholder="812 3456 7890"
         >
           <template #prepend>
             <Dropdown

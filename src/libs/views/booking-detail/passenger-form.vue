@@ -119,7 +119,7 @@
     <!-- Passport -->
     <FormInput
       v-if="passenger.idType === 'Passport'"
-      type="number"
+      type="text"
       :title="titleIdentity"
       v-model="validation.idNo.$model"
       :error="validation.idNo.$errors[0]?.$message"
@@ -134,6 +134,7 @@
       v-model:value="validation.idExpiry.$model"
       :info="t('passport_expiration_info')"
       :error="validation.idExpiry.$errors[0]?.$message"
+      :date-validity="{ minDate: dateArrival!, maxDate: null }"
     />
     <FormPhone
       v-if="passenger.idType === 'Passport'"
@@ -165,6 +166,7 @@ interface Props {
     minDate: string;
     maxDate: string;
   };
+  dateArrival?: string;
 }
 const { type, passenger, t, validation, dateValidity } = defineProps<Props>();
 
@@ -185,7 +187,7 @@ const titleOption = computed(() => {
     { value: 'Ms', label: t('ms') },
   ];
   const child = [
-    { value: 'Mr', label: t('mr') },
+    { value: 'Mstr', label: t('PASSENGER.MSTR') },
     { value: 'Ms', label: t('ms') },
   ];
   const titleOptionGlossary: any = {

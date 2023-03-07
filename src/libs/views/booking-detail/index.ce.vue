@@ -26,9 +26,13 @@
           <template v-slot:header>
             <span>{{ t('PASSENGER_DETAILS') }}</span>
             <div>
-              <Switcher @on-switch="onClickDuplicateContact">{{
-                t('SAME_AS_CONTACT')
-              }}</Switcher>
+              <div class="ma-switcher-2">
+                <span>{{ t('SAME_AS_CONTACT') }}</span>
+                <Switch
+                  :model-value="isDuplicateContact"
+                  @update:model-value="onUpdateIsDuplicateContact"
+                />
+              </div>
             </div>
           </template>
 
@@ -43,6 +47,7 @@
               :countries="parsedCountries"
               :model="bookingDetail.passengers.adult[i]"
               :date-validity="paxDateValidity"
+              :date-arrival="dateArrival"
             />
           </template>
 
@@ -57,6 +62,7 @@
             :countries="parsedCountries"
             :model="bookingDetail.passengers.child[i]"
             :date-validity="paxDateValidity"
+            :date-arrival="dateArrival"
           />
 
           <!-- infant mapping -->
@@ -70,6 +76,7 @@
             :countries="parsedCountries"
             :model="bookingDetail.passengers.infant[i]"
             :date-validity="paxDateValidity"
+            :date-arrival="dateArrival"
           />
         </Card>
       </ElForm>
@@ -173,6 +180,7 @@
           :t="t"
           :height="windowSize.height"
           :date-validity="paxDateValidity"
+          :date-arrival="dateArrival"
         />
       </div>
     </section>
@@ -382,7 +390,10 @@ const paxDateValidity = computed(() => {
   }
 });
 
-console.log(paxDateValidity.value);
+const dateArrival = computed(() => {
+  if (!returnFlights) return departureFLights.Segments.Departure[0].ArriveDate;
+  return returnFlights.Segments.Departure[0].ArriveDate;
+});
 
 //form Object
 const formRef = ref<FormInstance>();
@@ -436,7 +447,7 @@ for (let i = 0; i < +parsedData.adult; i++) {
 }
 for (let i = 0; i < +parsedData.child; i++) {
   bookingDetail.passengers.child.push({
-    title: 'Mr',
+    title: 'Mstr',
     firstName: '',
     middleName: '',
     lastName: '',
@@ -450,7 +461,7 @@ for (let i = 0; i < +parsedData.child; i++) {
 }
 for (let i = 0; i < +parsedData.infant; i++) {
   bookingDetail.passengers.infant.push({
-    title: 'Mr',
+    title: 'Mstr',
     firstName: '',
     middleName: '',
     lastName: '',

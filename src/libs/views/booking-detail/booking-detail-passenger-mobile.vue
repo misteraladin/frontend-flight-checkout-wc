@@ -147,6 +147,7 @@
         :t="t"
         :validation="v"
         :date-validity="dateValidity"
+        :date-arrival="dateArrival"
       />
 
       <template #footer>
@@ -174,6 +175,7 @@ import {
   minLength,
   maxLength,
   email,
+  alphaNum,
 } from '@vuelidate/validators';
 
 interface Props {
@@ -186,6 +188,7 @@ interface Props {
     minDate: string;
     maxDate: string;
   };
+  dateArrival?: string;
 }
 const { type, passenger, placeholder, t, height, dateValidity } =
   defineProps<Props>();
@@ -270,6 +273,7 @@ const vrules = computed(() => {
         required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
         minLength: helpers.withMessage(t('VALIDATION.PASSPORT'), minLength(6)),
         maxLength: helpers.withMessage(t('VALIDATION.PASSPORT'), maxLength(10)),
+        alphaNum: helpers.withMessage(t('VALIDATION.ALPHANUM'), alphaNum),
       };
     } else {
       baseRule.idNo = {

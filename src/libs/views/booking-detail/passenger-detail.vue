@@ -56,6 +56,7 @@
       <InputGroup
         :label="t('FORM.DOB')"
         :error="v.$dirty && v.dob.$errors[0]?.$message"
+        :info="type === 'adult' ? '' : t(`PAX_DOB_INFO.${type}`)"
       >
         <Calendar v-model="v.dob.$model" :t="t" :disabledDate="disabledDate" />
       </InputGroup>
@@ -126,6 +127,14 @@
         t('FORM.PASSPORT_NOTICE')
       }}</span>
     </div>
+    <span
+      v-if="type !== 'adult' && v.idType.$model === 'NIK'"
+      :style="{
+        fontSize: '12px',
+        fontWeight: '500' as any,
+      }"
+      >{{ t('PAX_ID_INFO') }}
+    </span>
   </div>
 </template>
 
@@ -161,9 +170,10 @@ interface Props {
     minDate: string;
     maxDate: string;
   };
+  dateArrival: string;
 }
 
-const { i, type, t, model, dateValidity } = defineProps<Props>();
+const { i, type, t, model, dateValidity, dateArrival } = defineProps<Props>();
 
 const titleOptions = computed(() => {
   const adult = [
@@ -172,7 +182,7 @@ const titleOptions = computed(() => {
     { code: 'Ms', label: t('PASSENGER.MS') },
   ];
   const child = [
-    { code: 'Mr', label: t('PASSENGER.MR') },
+    { code: 'Mstr', label: t('PASSENGER.MSTR') },
     { code: 'Ms', label: t('PASSENGER.MS') },
   ];
   const titleOptionGlossary: any = {
@@ -292,7 +302,7 @@ const disabledDate = (a: any) => {
 // };
 
 const disabledDatePassport = (a: any) => {
-  const today = new Date();
+  const today = new Date(dateArrival);
   const after = new Date(today.setMonth(today.getMonth() + 6));
   return a < after;
 };

@@ -30,6 +30,7 @@ export default {
       MR: 'Mr.',
       MRS: 'Mrs.',
       MS: 'Ms.',
+      MSTR: 'Mstr.',
     },
     SAME_AS_CONTACT: 'Same as contact',
     VALIDATION: {
@@ -41,6 +42,7 @@ export default {
       EMAIL: 'Please enter a valid email address',
       NIK: 'Enter 16 numeric characters.',
       PASSPORT: 'Enter minimum 6 or maximum 10 alphanumeric characters.',
+      ALPHANUM: 'Must be alphanumeric',
     },
     CONFIRM: {
       BEFORE_POST: 'Pastikan data kamu sudah benar sebelum melanjutkan',
@@ -137,6 +139,12 @@ export default {
       BUTTON_CANCEL: 'Check Again',
       BUTTON_CONFIRM: 'Continue',
     },
+    PAX_ID_INFO:
+      'For children and infants, please enter the numbers stated on your Family Card.',
+    PAX_DOB_INFO: {
+      child: 'Child Passenger (2 - 12 years)',
+      infant: 'Infant Passenger (< 2 years)',
+    },
   },
   id: {
     BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
@@ -169,6 +177,7 @@ export default {
       MR: 'Tuan',
       MRS: 'Nyonya',
       MS: 'Nona',
+      MSTR: 'Tuan',
     },
     SAME_AS_CONTACT: 'Sama seperti pemesan',
     VALIDATION: {
@@ -180,6 +189,7 @@ export default {
       EMAIL: 'Format email kamu salah',
       NIK: 'Masukkan 16 karakter numerik.',
       PASSPORT: 'Masukkan minimal 6 atau maksimal 10 karakter alfanumerik.',
+      ALPHANUM: 'Wajib alfanumerik',
     },
     CONFIRM: {
       BEFORE_POST: 'Pastikan data kamu sudah benar sebelum melanjutkan',
@@ -276,6 +286,12 @@ export default {
       MESSAGE: 'Pastikan data kamu sudah benar sebelum melanjutkan.',
       BUTTON_CANCEL: 'Cek Lagi',
       BUTTON_CONFIRM: 'Lanjut',
+    },
+    PAX_ID_INFO:
+      'Untuk penumpang anak dan bayi, masukkan nomor yang tertera di Kartu Keluarga.',
+    PAX_DOB_INFO: {
+      child: 'Penumpang Anak (2 - 12 tahun)',
+      infant: 'Penumpang Bayi (< 2 tahun)',
     },
   },
 };
