@@ -47,6 +47,7 @@ export default {
       Mr: 'Mr.',
       Mrs: 'Mrs.',
       Ms: 'Ms.',
+      Mstr: 'Mstr.',
     },
     PROMO_REQUIRED: 'Please input promo code first',
   },

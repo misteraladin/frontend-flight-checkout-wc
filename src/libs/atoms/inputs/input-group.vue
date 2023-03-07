@@ -6,6 +6,11 @@
     :error="error ? error : ''"
   >
     <slot />
+    <slot name="error" v-if="info && !error"
+      ><span style="font-size: 12px; font-weight: 500; color: #424242">{{
+        info
+      }}</span></slot
+    >
   </ElFormItem>
 </template>
 
@@ -18,8 +23,9 @@ interface Props {
   prop?: string;
   rules?: string;
   error?: string;
+  info?: string;
 }
-const { label, prop, rules, error } = defineProps<Props>();
+const { label, prop, rules, error, info } = defineProps<Props>();
 
 const parsedRules = reactive(JSON.parse(rules ? rules : '{}'));
 </script>

@@ -77,7 +77,7 @@ interface Props {
   info?: string;
   dateValidity?: {
     minDate: string;
-    maxDate: string;
+    maxDate: string | null | undefined;
   };
   type?: 'adult' | 'child' | 'infant';
 }
@@ -118,6 +118,16 @@ const disabledDate = computed(() => {
       minDate: undefined,
       maxDate: undefined,
     };
+
+  if (!dateValidity.maxDate) {
+    const before = new Date(dateValidity.minDate);
+    before.setMonth(before.getMonth() + 6);
+    before.setDate(before.getDate() + 1);
+    return {
+      minDate: undefined,
+      maxDate: new Date(before),
+    };
+  }
   const minDate = new Date(dateValidity.minDate);
   const maxDate = new Date(dateValidity.maxDate);
 
