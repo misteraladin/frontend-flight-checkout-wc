@@ -363,7 +363,7 @@ const returnFlights = reactive(JSON.parse(data.segment2));
 // console.log('props', departureFLights, returnFlights);
 
 const highestBaggage = computed(() => {
-  return departureFLights.Segments.Departure[0].BaggageWording;
+  return departureFLights.Segments.Departure[0].Baggage;
 });
 
 const reservationDetail = reactive(reservation.ReservationDetail[0]);
