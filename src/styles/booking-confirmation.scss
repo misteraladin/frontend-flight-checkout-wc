@@ -412,6 +412,7 @@
     max-height: unset;
     width: 100%;
     inset: 0;
+    border-radius: unset;
   }
 }
 
@@ -461,4 +462,8 @@
     font-size: functions.toRem(16);
     font-weight: 600;
   }
+}
+
+.no-scroll-please {
+  overflow: hidden;
 }

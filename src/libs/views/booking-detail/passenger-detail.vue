@@ -149,6 +149,7 @@ import { computed, reactive } from 'vue';
 import { CountryCode } from './types';
 import useVuelidate from '@vuelidate/core';
 import { ComposerTranslation } from 'vue-i18n';
+import { alphaNum } from '@vuelidate/validators';
 
 interface Props {
   i: number;
@@ -241,6 +242,7 @@ const rules = computed(() => {
       required: helpers.withMessage(t('VALIDATION.REQUIRED'), required),
       minLength: helpers.withMessage(t('VALIDATION.PASSPORT'), minLength(6)),
       maxLength: helpers.withMessage(t('VALIDATION.PASSPORT'), maxLength(10)),
+      alphaNum: helpers.withMessage(t('VALIDATION.ALPHANUM'), alphaNum),
     };
   } else {
     baseRule.idNo = {
@@ -303,7 +305,7 @@ const disabledDate = (a: any) => {
 
 const disabledDatePassport = (a: any) => {
   const today = new Date(dateArrival);
-  const after = new Date(today.setMonth(today.getMonth() + 6));
+  const after = new Date(today.setMonth(today.getMonth() + 5));
   return a < after;
 };
 </script>

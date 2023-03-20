@@ -68,8 +68,6 @@ import { Locale } from 'vant';
 import enUS from 'vant/es/locale/lang/en-US';
 import idID from 'vant/es/locale/lang/id-ID';
 
-Locale.use('en-US', enUS);
-
 interface Props {
   title: string;
   value: any;
@@ -80,8 +78,15 @@ interface Props {
     maxDate: string | null | undefined;
   };
   type?: 'adult' | 'child' | 'infant';
+  locale?: string;
 }
-const { title, value, error, info, dateValidity, type } = defineProps<Props>();
+const { title, value, error, info, dateValidity, type, locale } =
+  defineProps<Props>();
+
+Locale.use(
+  locale === 'en-GB' ? 'en-Us' : 'id-ID',
+  locale === 'en-GB' ? enUS : idID
+);
 
 const isShowModal = ref(false);
 
@@ -121,7 +126,7 @@ const disabledDate = computed(() => {
 
   if (!dateValidity.maxDate) {
     const before = new Date(dateValidity.minDate);
-    before.setMonth(before.getMonth() + 6);
+    before.setMonth(before.getMonth() + 5);
     before.setDate(before.getDate() + 1);
     return {
       minDate: undefined,
@@ -167,7 +172,7 @@ const disabledDate = computed(() => {
 
 const onConfirmDate = () => {
   const text = [...dateModel.value].reverse().join('-');
-  inputModel.value = new Date(text).toLocaleDateString('en-GB', {
+  inputModel.value = new Date(text).toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: '2-digit',
