@@ -1,111 +1,112 @@
 <template>
-  <div class="booking" v-if="windowSize.width >= 768">
-    <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
+  <ElConfigProvider :locale="configLocale">
+    <div class="booking" v-if="windowSize.width >= 768">
+      <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
 
-    <div class="booking__main">
-      <h3 class="booking__subtitle">{{ t('CONTACT_DETAILS') }}</h3>
-      <LoginBanner
-        :login-url="loginUrl"
-        :t="t"
-        v-if="!user?.IsLogin"
-      ></LoginBanner>
-      <ElForm
-        ref="formRef"
-        label-position="top"
-        class="booking__main"
-        :hide-required-asterisk="true"
-      >
-        <ContactDetail
+      <div class="booking__main">
+        <h3 class="booking__subtitle">{{ t('CONTACT_DETAILS') }}</h3>
+        <LoginBanner
+          :login-url="loginUrl"
           :t="t"
-          :countries="parsedCountries"
-          :model="bookingDetail.contact"
-          :user="user"
-        />
+          v-if="!user?.IsLogin"
+        ></LoginBanner>
+        <ElForm
+          ref="formRef"
+          label-position="top"
+          class="booking__main"
+          :hide-required-asterisk="true"
+        >
+          <ContactDetail
+            :t="t"
+            :countries="parsedCountries"
+            :model="bookingDetail.contact"
+            :user="user"
+          />
 
-        <Card>
-          <template v-slot:header>
-            <span>{{ t('PASSENGER_DETAILS') }}</span>
-            <div>
-              <div class="ma-switcher-2">
-                <span>{{ t('SAME_AS_CONTACT') }}</span>
-                <Switch
-                  :model-value="isDuplicateContact"
-                  @update:model-value="onUpdateIsDuplicateContact"
-                />
+          <Card>
+            <template v-slot:header>
+              <span>{{ t('PASSENGER_DETAILS') }}</span>
+              <div>
+                <div class="ma-switcher-2">
+                  <span>{{ t('SAME_AS_CONTACT') }}</span>
+                  <Switch
+                    :model-value="isDuplicateContact"
+                    @update:model-value="onUpdateIsDuplicateContact"
+                  />
+                </div>
               </div>
-            </div>
-          </template>
+            </template>
 
-          <!-- adult mapping -->
-          <template v-if="bookingDetail.passengers.adult.length">
+            <!-- adult mapping -->
+            <template v-if="bookingDetail.passengers.adult.length">
+              <PassengerDetail
+                v-for="(_, i) in +parsedData.adult"
+                :key="i"
+                :i="i + 1"
+                type="adult"
+                :t="t"
+                :countries="parsedCountries"
+                :model="bookingDetail.passengers.adult[i]"
+                :date-validity="paxDateValidity"
+                :date-arrival="dateArrival"
+              />
+            </template>
+
+            <!-- children mapping -->
+
             <PassengerDetail
-              v-for="(_, i) in +parsedData.adult"
+              v-for="(_, i) in +parsedData.child"
               :key="i"
-              :i="i + 1"
-              type="adult"
+              :i="i + +parsedData.adult + 1"
+              type="child"
               :t="t"
               :countries="parsedCountries"
-              :model="bookingDetail.passengers.adult[i]"
+              :model="bookingDetail.passengers.child[i]"
               :date-validity="paxDateValidity"
               :date-arrival="dateArrival"
             />
-          </template>
 
-          <!-- children mapping -->
+            <!-- infant mapping -->
 
-          <PassengerDetail
-            v-for="(_, i) in +parsedData.child"
-            :key="i"
-            :i="i + +parsedData.adult + 1"
-            type="child"
-            :t="t"
-            :countries="parsedCountries"
-            :model="bookingDetail.passengers.child[i]"
-            :date-validity="paxDateValidity"
-            :date-arrival="dateArrival"
-          />
-
-          <!-- infant mapping -->
-
-          <PassengerDetail
-            v-for="(_, i) in +parsedData.infant"
-            :key="i"
-            :i="i + +parsedData.adult + +parsedData.child + 1"
-            type="infant"
-            :t="t"
-            :countries="parsedCountries"
-            :model="bookingDetail.passengers.infant[i]"
-            :date-validity="paxDateValidity"
-            :date-arrival="dateArrival"
-          />
-        </Card>
-      </ElForm>
-      <div class="booking__main-column-2-left">
-        <p style="color: #dd2c00; font-size: 16px; font-weight: 500">
-          {{ t('ATTENTION') }}
-        </p>
-        <Button variant="warning" @click="onConfirmBooking">
-          {{ t('CONFIRM.BUTTON') }}
-        </Button>
+            <PassengerDetail
+              v-for="(_, i) in +parsedData.infant"
+              :key="i"
+              :i="i + +parsedData.adult + +parsedData.child + 1"
+              type="infant"
+              :t="t"
+              :countries="parsedCountries"
+              :model="bookingDetail.passengers.infant[i]"
+              :date-validity="paxDateValidity"
+              :date-arrival="dateArrival"
+            />
+          </Card>
+        </ElForm>
+        <div class="booking__main-column-2-left">
+          <p style="color: #dd2c00; font-size: 16px; font-weight: 500">
+            {{ t('ATTENTION') }}
+          </p>
+          <Button variant="warning" @click="onConfirmBooking">
+            {{ t('CONFIRM.BUTTON') }}
+          </Button>
+        </div>
       </div>
-    </div>
-    <div class="booking__sidebar">
-      <h3 class="booking__subtitle">{{ t('BOOKING_DETAILS') }}</h3>
-      <Card alternate class="booking__timeline">
-        <FlightCard
-          :segment="departureFLights.Segments"
-          :header="t('departure')"
-          :locale="locale"
-          :t="t"
-        />
-        <FlightCard
-          :segment="returnFlights.Segments"
-          :header="t('return')"
-          :locale="locale"
-          :t="t"
-          v-if="returnFlights"
-        />
-        <!-- <PriceCard
+      <div class="booking__sidebar">
+        <h3 class="booking__subtitle">{{ t('BOOKING_DETAILS') }}</h3>
+        <Card alternate class="booking__timeline">
+          <FlightCard
+            :segment="departureFLights.Segments"
+            :header="t('departure')"
+            :locale="locale"
+            :t="t"
+          />
+          <FlightCard
+            :segment="returnFlights.Segments"
+            :header="t('return')"
+            :locale="locale"
+            :t="t"
+            v-if="returnFlights"
+          />
+          <!-- <PriceCard
           :heading="t('departure_price')"
           :fare="departureFLights.FareDetail"
         />
@@ -114,13 +115,14 @@
           :fare="returnFlights.FareDetail"
           v-if="returnFlights"
         /> -->
-        <div class="booking__total">
-          <span>Total</span>
-          <span>{{ toIDR(total) }}</span>
-        </div>
-      </Card>
+          <div class="booking__total">
+            <span>Total</span>
+            <span>{{ toIDR(total) }}</span>
+          </div>
+        </Card>
+      </div>
     </div>
-  </div>
+  </ElConfigProvider>
   <div id="booking-detail-mobile" v-if="windowSize.width < 768">
     <Header @back="onClickBack">
       {{ t('CONTACT_DETAILS') }}
@@ -181,6 +183,7 @@
           :height="windowSize.height"
           :date-validity="paxDateValidity"
           :date-arrival="dateArrival"
+          :locale="locale"
         />
       </div>
     </section>
@@ -268,10 +271,12 @@
 import Button from '../../atoms/button/button.vue';
 import LoginBanner from '../../components/login-banner/login-banner.vue';
 
-import { Action, ElForm, ElMessageBox } from 'element-plus';
+import { Action, ElForm, ElMessageBox, ElConfigProvider } from 'element-plus';
 import type { FormInstance } from 'element-plus';
-
-import Switcher from '../../atoms/inputs/switcher.vue';
+//@ts-ignore
+import id from 'element-plus/dist/locale/id.mjs';
+//@ts-ignore
+import en from 'element-plus/dist/locale/en.mjs';
 
 import FlightCard from '../../atoms/cards/flight-card.vue';
 import PriceCard from '../../atoms/cards/price-card.vue';
@@ -351,7 +356,7 @@ const user = reactive(JSON.parse(props.isloggedin));
 
 const locale = computed(() => (props.language === 'en' ? 'en-GB' : 'id-ID'));
 
-console.log(departureFLights);
+const configLocale = computed(() => (locale.value === 'id-ID' ? id : en));
 
 const total = computed(() => {
   // return '100';

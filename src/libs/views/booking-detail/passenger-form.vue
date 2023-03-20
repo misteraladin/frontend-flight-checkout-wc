@@ -73,6 +73,7 @@
       :error="validation.dob.$errors[0]?.$message"
       :date-validity="dateValidity"
       type="adult"
+      :locale="locale"
     />
 
     <!-- Child -->
@@ -84,6 +85,7 @@
       :error="validation.dob.$errors[0]?.$message"
       :date-validity="dateValidity"
       type="child"
+      :locale="locale"
     />
 
     <!-- Infant -->
@@ -95,6 +97,7 @@
       :error="validation.dob.$errors[0]?.$message"
       :date-validity="dateValidity"
       type="infant"
+      :locale="locale"
     />
 
     <!-- <FormSelect
@@ -135,6 +138,7 @@
       :info="t('passport_expiration_info')"
       :error="validation.idExpiry.$errors[0]?.$message"
       :date-validity="{ minDate: dateArrival!, maxDate: null }"
+      :locale="locale"
     />
     <FormPhone
       v-if="passenger.idType === 'Passport'"
@@ -167,8 +171,10 @@ interface Props {
     maxDate: string;
   };
   dateArrival?: string;
+  locale: string;
 }
-const { type, passenger, t, validation, dateValidity } = defineProps<Props>();
+const { type, passenger, t, validation, dateValidity, locale } =
+  defineProps<Props>();
 
 const title = computed(() => {
   const titleGlossary: any = {

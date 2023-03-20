@@ -13,11 +13,19 @@ interface Props {
   src: string;
 }
 
-const emit = defineEmits(['cancel', 'complete']);
+const emit = defineEmits(['cancel', 'complete', 'update:modelValue']);
 
 const props = defineProps<Props>();
 
 const endpoint = ref('https://pay.misteraladin.com');
+
+onMounted(() => {
+  document.body.classList.add('no-scroll-please');
+});
+
+onUnmounted(() => {
+  document.body.classList.remove('no-scroll-please');
+});
 
 // const listenEvent = (e: any) => {
 //   if (e.origin !== 'http://flight-dom.test') return;

@@ -148,6 +148,7 @@
         :validation="v"
         :date-validity="dateValidity"
         :date-arrival="dateArrival"
+        :locale="locale"
       />
 
       <template #footer>
@@ -189,8 +190,9 @@ interface Props {
     maxDate: string;
   };
   dateArrival?: string;
+  locale: string;
 }
-const { type, passenger, placeholder, t, height, dateValidity } =
+const { type, passenger, placeholder, t, height, dateValidity, locale } =
   defineProps<Props>();
 const isShowModal = ref(false);
 

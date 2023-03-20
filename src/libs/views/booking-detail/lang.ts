@@ -1,6 +1,6 @@
 export default {
   en: {
-    BOOKING_DETAIL_HEADING: 'Flight Domestic Booking',
+    BOOKING_DETAIL_HEADING: 'Flight International Booking',
     CONTACT_DETAILS: 'Contact Details',
     BOOKING_DETAILS: 'Booking Details',
     PASSENGER_DETAILS: 'Passenger Details',
@@ -147,7 +147,7 @@ export default {
     },
   },
   id: {
-    BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Domestik',
+    BOOKING_DETAIL_HEADING: 'Pemesanan Pesawat Internasional',
     CONTACT_DETAILS: 'Detail Pemesan',
     BOOKING_DETAILS: 'Detail Pemesanan',
     PASSENGER_DETAILS: 'Detail Penumpang',
