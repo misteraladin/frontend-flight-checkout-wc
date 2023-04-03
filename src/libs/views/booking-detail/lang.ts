@@ -123,7 +123,7 @@ export default {
     passport_expiration_date: 'Date of Expiry',
     passport_expiration_info:
       'Important: passport valid for at least 6 months from the date of arrival at the destination.',
-    passport_issuing_country: 'Issuing Country',
+    passport_issuing_country: 'Country of Issue',
     passenger_child_info: 'Child Passengers (2 - 12 years old)',
     passenger_infant_info: 'Infant Passengers (< 2 years)',
     identity_number_child:
