@@ -65,7 +65,7 @@
                 />
               </svg>
 
-              <span :style="v.$error && { color: '#dd2c00' }">Ubah</span>
+              <span :style="v.$error && { color: '#dd2c00' }">{{t('CHANGE')}}</span>
             </div>
           </div>
         </template>
@@ -129,7 +129,7 @@
                 />
               </svg>
 
-              <span :style="v.$error && { color: '#dd2c00' }">Ubah</span>
+              <span :style="v.$error && { color: '#dd2c00' }">{{ t('CHANGE') }}</span>
             </div>
           </div>
         </template>

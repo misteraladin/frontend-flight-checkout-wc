@@ -126,7 +126,7 @@ const disabledDate = computed(() => {
 
   if (!dateValidity.maxDate) {
     const before = new Date(dateValidity.minDate);
-    before.setMonth(before.getMonth() + 5);
+    before.setMonth(before.getMonth() + 6);
     before.setDate(before.getDate() + 1);
     return {
       minDate: undefined,

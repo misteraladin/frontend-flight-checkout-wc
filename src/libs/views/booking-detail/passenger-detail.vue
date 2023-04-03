@@ -305,7 +305,7 @@ const disabledDate = (a: any) => {
 
 const disabledDatePassport = (a: any) => {
   const today = new Date(dateArrival);
-  const after = new Date(today.setMonth(today.getMonth() + 5));
+  const after = new Date(today.setMonth(today.getMonth() + 6));
   return a < after;
 };
 </script>

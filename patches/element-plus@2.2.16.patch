@@ -1,0 +1,52 @@
+diff --git a/dist/locale/id.js b/dist/locale/id.js
+index bf13ec13d9b707af4772f66aaffd7b3a8b8d310b..22bb689ef2cfbba9af27fd829fc1674be8789814 100644
+--- a/dist/locale/id.js
++++ b/dist/locale/id.js
+@@ -29,7 +29,7 @@
+         nextYear: "Tahun Selanjutnya",
+         prevMonth: "Bulan Sebelumnya",
+         nextMonth: "Bulan Selanjutnya",
+-        year: "Tahun",
++        year: "",
+         month1: "Januari",
+         month2: "Februari",
+         month3: "Maret",
+diff --git a/dist/locale/id.mjs b/dist/locale/id.mjs
+index 9f0e8d82c2c05ed12d2e3ff9687c896c1cc3f428..5eb09ccf1a19091af214a9c709baab28dd6d585d 100644
+--- a/dist/locale/id.mjs
++++ b/dist/locale/id.mjs
+@@ -23,7 +23,7 @@ var id = {
+       nextYear: "Tahun Selanjutnya",
+       prevMonth: "Bulan Sebelumnya",
+       nextMonth: "Bulan Selanjutnya",
+-      year: "Tahun",
++      year: "",
+       month1: "Januari",
+       month2: "Februari",
+       month3: "Maret",
+diff --git a/es/locale/lang/id.mjs b/es/locale/lang/id.mjs
+index f277d6880d9d4b30d2c29de38153b51cd4852a2f..49528e238d2c622aeaddc4fe84fe3a98dc46953e 100644
+--- a/es/locale/lang/id.mjs
++++ b/es/locale/lang/id.mjs
+@@ -21,7 +21,7 @@ var id = {
+       nextYear: "Tahun Selanjutnya",
+       prevMonth: "Bulan Sebelumnya",
+       nextMonth: "Bulan Selanjutnya",
+-      year: "Tahun",
++      year: "",
+       month1: "Januari",
+       month2: "Februari",
+       month3: "Maret",
+diff --git a/lib/locale/lang/id.js b/lib/locale/lang/id.js
+index 8654db7b3fe0818ae693552792cdf656aa9205fd..24692f95070589022fa120c9207ad57fdceae748 100644
+--- a/lib/locale/lang/id.js
++++ b/lib/locale/lang/id.js
+@@ -25,7 +25,7 @@ var id = {
+       nextYear: "Tahun Selanjutnya",
+       prevMonth: "Bulan Sebelumnya",
+       nextMonth: "Bulan Selanjutnya",
+-      year: "Tahun",
++      year: "",
+       month1: "Januari",
+       month2: "Februari",
+       month3: "Maret",
