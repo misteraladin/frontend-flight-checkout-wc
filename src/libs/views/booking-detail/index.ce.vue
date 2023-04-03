@@ -115,10 +115,10 @@
           :fare="returnFlights.FareDetail"
           v-if="returnFlights"
         /> -->
-          <div class="booking__total">
+          <!-- <div class="booking__total">
             <span>Total</span>
             <span>{{ toIDR(total) }}</span>
-          </div>
+          </div> -->
         </Card>
       </div>
     </div>
@@ -227,10 +227,10 @@
           :fare="returnFlights.FareDetail"
           v-if="returnFlights"
         /> -->
-        <div class="booking__total">
+        <!-- <div class="booking__total">
           <span>Total</span>
           <span>{{ toIDR(total) }}</span>
-        </div>
+        </div> -->
       </div>
       <template v-slot:footer>
         {{ t('close') }}

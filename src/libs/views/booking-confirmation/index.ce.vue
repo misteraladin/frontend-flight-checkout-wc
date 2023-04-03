@@ -19,9 +19,9 @@
         </template>
         <div class="booking__main-column-2">
           <p class="span-2-column">
-            1. {{ t(`TITLE.${reservationDetail.ReservationVendor.Title}`) }}
-            {{ reservationDetail.ReservationVendor.FirstName }}
-            {{ reservationDetail.ReservationVendor.LastName }}
+            1. {{reservationDetail.ReservationVendor.Title}}
+            {{ reservationDetail.ReservationVendor.FirstName.split('').map((x,i) => i === 0 ? x.toUpperCase() : x.toLowerCase()).join('') }}
+            {{ reservationDetail.ReservationVendor.LastName.split('').map((x,i) => i === 0 ? x.toUpperCase() : x.toLowerCase()).join('') }}
           </p>
           <div>
             <h5>{{ t('PAX.TELP') }}</h5>
@@ -43,10 +43,10 @@
             reservationDetail.ReservationVendor.Pax
           )"
         >
-          <p class="span-2-column">
-            {{ i + 1 }}. {{ t(`TITLE.${pax.Title}`) }}
-            {{ pax.FirstName }}
-            {{ pax.LastName }}
+          <p class="span-2-column" style="text-transform: capitalize;">
+            {{ i + 1 }}. {{ pax.Title }}
+            {{ pax.FirstName.split('').map((x,i) => i === 0 ? x.toUpperCase() : x.toLowerCase()).join('') }}
+            {{ pax.LastName.split('').map((x,i) => i === 0 ? x.toUpperCase() : x.toLowerCase()).join('') }}
           </p>
           <div>
             <h5>{{ t('PAX.DOB') }}</h5>

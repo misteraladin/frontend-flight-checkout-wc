@@ -10,8 +10,8 @@
         <span class="number">{{ index + 1 }}. </span>
         <span class="name-passanger">
           {{ passenger.Title }}
-          {{ passenger.FirstName }}
-          {{ passenger.LastName }}
+          {{ passenger.FirstName.split('').map((x,i) => i === 0 ? x.toUpperCase() : x.toLowerCase()).join('') }}
+          {{ passenger.LastName.split('').map((x,i) => i === 0 ? x.toUpperCase() : x.toLowerCase()).join('') }}
         </span>
       </div>
       <div class="luggage">
