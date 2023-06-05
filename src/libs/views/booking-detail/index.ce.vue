@@ -1,210 +1,87 @@
 <template>
-  <ElConfigProvider :locale="configLocale">
-    <div class="booking" v-if="windowSize.width >= 768">
-      <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
+  <div class="booking">
+    <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
 
-      <div class="booking__main">
-        <h3 class="booking__subtitle">{{ t('CONTACT_DETAILS') }}</h3>
-        <LoginBanner
-          :login-url="loginUrl"
+    <div class="booking__main">
+      <h3 class="booking__subtitle">{{ t('CONTACT_DETAILS') }}</h3>
+      <LoginBanner
+        login-url="https://misteraladin.com"
+        :t="t"
+        v-if="!user?.IsLogin"
+      ></LoginBanner>
+      <ElForm
+        ref="formRef"
+        label-position="top"
+        class="booking__main"
+        :hide-required-asterisk="true"
+      >
+        <ContactDetail
           :t="t"
-          v-if="!user?.IsLogin"
-        ></LoginBanner>
-        <ElForm
-          ref="formRef"
-          label-position="top"
-          class="booking__main"
-          :hide-required-asterisk="true"
-        >
-          <ContactDetail
+          :countries="parsedCountries"
+          :model="bookingDetail.contact"
+          :user="user"
+        />
+
+        <Card>
+          <template v-slot:header>
+            <span>{{ t('PASSENGER_DETAILS') }}</span>
+            <div>
+              <Switcher @on-switch="onClickDuplicateContact">{{
+                t('SAME_AS_CONTACT')
+              }}</Switcher>
+            </div>
+          </template>
+
+          <!-- adult mapping -->
+          <template v-if="bookingDetail.passengers.adult.length">
+            <PassengerDetail
+              v-for="(_, i) in +parsedData.adult"
+              :key="i"
+              :i="i + 1"
+              type="adult"
+              :t="t"
+              :countries="parsedCountries"
+              :model="bookingDetail.passengers.adult[i]"
+            />
+          </template>
+
+          <!-- children mapping -->
+
+          <PassengerDetail
+            v-for="(_, i) in +parsedData.child"
+            :key="i"
+            :i="i + +parsedData.adult + 1"
+            type="child"
             :t="t"
             :countries="parsedCountries"
-            :model="bookingDetail.contact"
-            :user="user"
+            :model="bookingDetail.passengers.child[i]"
           />
 
-          <Card>
-            <template v-slot:header>
-              <span>{{ t('PASSENGER_DETAILS') }}</span>
-              <div>
-                <div class="ma-switcher-2">
-                  <span>{{ t('SAME_AS_CONTACT') }}</span>
-                  <Switch
-                    :model-value="isDuplicateContact"
-                    @update:model-value="onUpdateIsDuplicateContact"
-                  />
-                </div>
-              </div>
-            </template>
+          <!-- infant mapping -->
 
-            <!-- adult mapping -->
-            <template v-if="bookingDetail.passengers.adult.length">
-              <PassengerDetail
-                v-for="(_, i) in +parsedData.adult"
-                :key="i"
-                :i="i + 1"
-                type="adult"
-                :t="t"
-                :countries="parsedCountries"
-                :model="bookingDetail.passengers.adult[i]"
-                :date-validity="paxDateValidity"
-                :date-arrival="dateArrival"
-              />
-            </template>
-
-            <!-- children mapping -->
-
-            <PassengerDetail
-              v-for="(_, i) in +parsedData.child"
-              :key="i"
-              :i="i + +parsedData.adult + 1"
-              type="child"
-              :t="t"
-              :countries="parsedCountries"
-              :model="bookingDetail.passengers.child[i]"
-              :date-validity="paxDateValidity"
-              :date-arrival="dateArrival"
-            />
-
-            <!-- infant mapping -->
-
-            <PassengerDetail
-              v-for="(_, i) in +parsedData.infant"
-              :key="i"
-              :i="i + +parsedData.adult + +parsedData.child + 1"
-              type="infant"
-              :t="t"
-              :countries="parsedCountries"
-              :model="bookingDetail.passengers.infant[i]"
-              :date-validity="paxDateValidity"
-              :date-arrival="dateArrival"
-            />
-          </Card>
-        </ElForm>
-        <div class="booking__main-column-2-left">
-          <p style="color: #dd2c00; font-size: 16px; font-weight: 500">
-            {{ t('ATTENTION') }}
-          </p>
-          <Button variant="warning" @click="onConfirmBooking">
-            {{ t('CONFIRM.BUTTON') }}
-          </Button>
-        </div>
-      </div>
-      <div class="booking__sidebar">
-        <h3 class="booking__subtitle">{{ t('BOOKING_DETAILS') }}</h3>
-        <Card alternate class="booking__timeline">
-          <FlightCard
-            :segment="departureFLights.Segments"
-            :header="t('departure')"
-            :locale="locale"
+          <PassengerDetail
+            v-for="(_, i) in +parsedData.infant"
+            :key="i"
+            :i="i + +parsedData.adult + +parsedData.child + 1"
+            type="infant"
             :t="t"
+            :countries="parsedCountries"
+            :model="bookingDetail.passengers.infant[i]"
           />
-          <FlightCard
-            :segment="returnFlights.Segments"
-            :header="t('return')"
-            :locale="locale"
-            :t="t"
-            v-if="returnFlights"
-          />
-          <!-- <PriceCard
-          :heading="t('departure_price')"
-          :fare="departureFLights.FareDetail"
-        />
-        <PriceCard
-          :heading="t('return_price')"
-          :fare="returnFlights.FareDetail"
-          v-if="returnFlights"
-        /> -->
-          <!-- <div class="booking__total">
-            <span>Total</span>
-            <span>{{ toIDR(total) }}</span>
-          </div> -->
         </Card>
+      </ElForm>
+      <div class="booking__main-column-2-left">
+        <p style="color: #dd2c00; font-size: 16px; font-weight: 500">
+          {{ t('ATTENTION') }}
+        </p>
+        <Button variant="warning" @click="onConfirmBooking">
+          {{ t('CONFIRM.BUTTON') }}
+        </Button>
       </div>
     </div>
-  </ElConfigProvider>
-  <div id="booking-detail-mobile" v-if="windowSize.width < 768">
-    <Header @back="onClickBack">
-      {{ t('CONTACT_DETAILS') }}
-    </Header>
-
-    <FlightItem
-      :title="t('departure')"
-      :segment="departureFLights"
-      :t="t"
-      :has-detail-button="true"
-      @showDetail="showModalDetail = true"
-    />
-
-    <FlightItem
-      class="pt-0"
-      :title="t('return')"
-      :segment="returnFlights"
-      :t="t"
-      :has-detail-button="false"
-      v-if="returnFlights"
-    />
-
-    <BannerLogin :t="t" v-if="!user?.IsLogin" :login-url="loginUrl" />
-
-    <section class="booking-detail__contact">
-      <h2>{{ t('BOOKING_DETAILS') }}</h2>
-      <ContactDetailMobile
-        type="contact"
-        :passenger="bookingDetail.contact"
-        :placeholder="t('enter_details')"
-        :t="t"
-        :isLoggedIn="user?.IsLogin || false"
-      />
-    </section>
-
-    <section class="booking-detail__traveler pt-0">
-      <h2>{{ t('traveler_details') }}</h2>
-      <div class="same-as-contact">
-        <span>{{ t('SAME_AS_CONTACT') }}</span>
-        <Switch
-          :model-value="isDuplicateContact"
-          @update:model-value="onUpdateIsDuplicateContact"
-        />
-      </div>
-      <div
-        v-for="(
-          passengerTypes, keyTypes, indexTypes
-        ) in bookingDetail.passengers"
-        :key="indexTypes"
-      >
-        <Passenger
-          v-for="(passenger, index) in passengerTypes"
-          :key="index"
-          :type="(keyTypes as any as string)"
-          :passenger="passenger"
-          :placeholder="`${indexTypes! + 1}. ` +   t(`passenger_${keyTypes}`)"
-          :t="t"
-          :height="windowSize.height"
-          :date-validity="paxDateValidity"
-          :date-arrival="dateArrival"
-          :locale="locale"
-        />
-      </div>
-    </section>
-
-    <section class="booking-detail__info">
-      <p>{{ t('ATTENTION') }}</p>
-    </section>
-
-    <Footer @next="onConfirmBooking">
-      {{ t('next') }}
-    </Footer>
-
-    <ModalWindow
-      v-model:show="showModalDetail"
-      @close="showModalDetail = false"
-      :title="t('booking_details')"
-    >
-      <template v-slot:header>
-        {{ t('booking_details') }}
-      </template>
-      <div class="booking-detail__modal-flight">
+    <div class="booking__sidebar">
+      <h3 class="booking__subtitle">{{ t('BOOKING_DETAILS') }}</h3>
+      <Card alternate class="booking__timeline">
         <FlightCard
           :segment="departureFLights.Segments"
           :header="t('departure')"
@@ -218,65 +95,55 @@
           :t="t"
           v-if="returnFlights"
         />
-        <!-- <PriceCard
+        <PriceCard
           :heading="t('departure_price')"
           :fare="departureFLights.FareDetail"
         />
         <PriceCard
+          v-if="returnFlights"
           :heading="t('return_price')"
           :fare="returnFlights.FareDetail"
-          v-if="returnFlights"
-        /> -->
-        <!-- <div class="booking__total">
+        />
+        <div class="booking__total">
           <span>Total</span>
           <span>{{ toIDR(total) }}</span>
-        </div> -->
-      </div>
-      <template v-slot:footer>
-        {{ t('close') }}
-      </template>
-    </ModalWindow>
-  </div>
-  <Popup
-    v-model:show="isLoading"
-    :close-on-click-overlay="false"
-    round
-    :style="{
-      borderRadius: '8px',
-      width: 'calc(100vw - 16px * 2)',
-      maxWidth: '475px',
-    }"
-  >
-    <div
-      :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '24px',
-        padding: '16px',
-      }"
-    >
-      <img src="https://i.misteraladin.com/loader-mnc.gif" width="124" />
-      <p style="size: 20px; font-weight: 600">
-        {{ t('BOOKING_LOADING_TITLE') }}
-      </p>
-      <p style="text-align: center">
-        {{ t('BOOKING_LODING_TEXT') }}
-      </p>
+        </div>
+      </Card>
     </div>
-  </Popup>
+    <ElDialog
+      v-model="isLoading"
+      :show-close="false"
+      width="40%"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
+        "
+      >
+        <img src="https://i.misteraladin.com/loader-mnc.gif" width="124" />
+        <p style="size: 20px; font-weight: 600">Eits, jangan kemana-mana!</p>
+        <p style="text-align: center">
+          Pemesanan kamu sedang diproses. Janji, deh, gak akan lama. Cuma
+          beberapa menit aja, kok.
+        </p>
+      </div>
+    </ElDialog>
+  </div>
 </template>
 
 <script setup lang="ts">
 import Button from '../../atoms/button/button.vue';
 import LoginBanner from '../../components/login-banner/login-banner.vue';
 
-import { Action, ElForm, ElMessageBox, ElConfigProvider } from 'element-plus';
+import { Action, ElForm, ElMessageBox, ElDialog } from 'element-plus';
 import type { FormInstance } from 'element-plus';
-//@ts-ignore
-import id from 'element-plus/dist/locale/id.mjs';
-//@ts-ignore
-import en from 'element-plus/dist/locale/en.mjs';
+
+import Switcher from '../../atoms/inputs/switcher.vue';
 
 import FlightCard from '../../atoms/cards/flight-card.vue';
 import PriceCard from '../../atoms/cards/price-card.vue';
@@ -284,26 +151,8 @@ import Card from '../../atoms/cards/card.vue';
 
 import PassengerDetail from './passenger-detail.vue';
 import ContactDetail from './contact-detail.vue';
-import ContactDetailMobile from './contact-detail-mobile.vue';
 
-import {
-  computed,
-  HTMLAttributes,
-  onMounted,
-  onUnmounted,
-  reactive,
-  ref,
-} from 'vue';
-
-import Header from '../common-mobile/mobile-header.vue';
-import BannerLogin from '../common-mobile/mobile-banner-login.vue';
-import FlightItem from './booking-detail-flight-item-mobile.vue';
-import Footer from '../common-mobile/mobile-footer.vue';
-import Passenger from './booking-detail-passenger-mobile.vue';
-import ModalWindow from '../common-mobile/ModalWindow.vue';
-
-import { Switch, showDialog, Popup } from 'vant';
-
+import { computed, HTMLAttributes, reactive, ref } from 'vue';
 import { toIDR } from '../../../utils';
 
 import useVuelidate from '@vuelidate/core';
@@ -312,12 +161,6 @@ import { useI18n } from 'vue-i18n';
 import messages from './lang';
 
 import axios from 'axios';
-
-import {
-  RootObject as IRootObject,
-  Segment as ISegment,
-  Form as IForm,
-} from './types';
 
 interface Props extends HTMLAttributes {
   data: string;
@@ -331,7 +174,6 @@ interface Props extends HTMLAttributes {
   confirmAsset: string;
   numpass: string;
   baseurl: string;
-  maUrl: string;
 }
 
 const props = defineProps<Props>();
@@ -340,8 +182,6 @@ const { t } = useI18n({
   messages: messages,
 });
 
-const loginUrl = props.maUrl + '/login?ref=' + location.href;
-
 const parsedData = reactive(props.data ? JSON.parse(props.data) : null);
 
 const departureFLights = reactive(JSON.parse(parsedData.segment1));
@@ -349,58 +189,16 @@ const departureFLights = reactive(JSON.parse(parsedData.segment1));
 const returnFlights = reactive(
   parsedData.segment2 ? JSON.parse(parsedData.segment2) : null
 );
-
+console.log('departureFLights.FareDetail: ', departureFLights.FareDetail);
 const parsedCountries = reactive(JSON.parse(props.countries));
 
 const user = reactive(JSON.parse(props.isloggedin));
 
 const locale = computed(() => (props.language === 'en' ? 'en-GB' : 'id-ID'));
 
-const configLocale = computed(() => (locale.value === 'id-ID' ? id : en));
-
 const total = computed(() => {
-  // return '100';
-  if (!returnFlights) return departureFLights.Fare;
-  return departureFLights.Fare + returnFlights.Fare;
-});
-
-const windowSize = reactive({
-  width: 0,
-  height: 0,
-});
-
-const onResize = () => {
-  windowSize.width = window.innerWidth;
-  windowSize.height = window.innerHeight;
-};
-
-onMounted(() => {
-  window.addEventListener('resize', onResize);
-  windowSize.width = window.innerWidth;
-  windowSize.height = window.innerHeight;
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', onResize);
-});
-
-const paxDateValidity = computed(() => {
-  if (returnFlights) {
-    return {
-      minDate: returnFlights.Segments.Departure[0].ArriveDate,
-      maxDate: departureFLights.Segments.Departure[0].DepartDate,
-    };
-  } else {
-    return {
-      minDate: departureFLights.Segments.Departure[0].DepartDate,
-      maxDate: departureFLights.Segments.Departure[0].DepartDate,
-    };
-  }
-});
-
-const dateArrival = computed(() => {
-  if (!returnFlights) return departureFLights.Segments.Departure[0].ArriveDate;
-  return returnFlights.Segments.Departure[0].ArriveDate;
+  if (!returnFlights) return departureFLights.FareDetail.Total;
+  return departureFLights.FareDetail.Total + returnFlights.FareDetail.Total;
 });
 
 //form Object
@@ -439,6 +237,7 @@ if (user?.IsLogin) {
   bookingDetail.contact.email = user.Email;
 }
 
+// onMounted(() => {
 for (let i = 0; i < +parsedData.adult; i++) {
   bookingDetail.passengers.adult.push({
     title: 'Mr',
@@ -447,7 +246,7 @@ for (let i = 0; i < +parsedData.adult; i++) {
     lastName: '',
     nationality: 'ID',
     dob: '',
-    idType: 'Passport',
+    idType: 'NIK',
     idNo: '',
     idExpiry: '',
     idOrigin: 'ID',
@@ -455,13 +254,13 @@ for (let i = 0; i < +parsedData.adult; i++) {
 }
 for (let i = 0; i < +parsedData.child; i++) {
   bookingDetail.passengers.child.push({
-    title: 'Mstr',
+    title: 'Mr',
     firstName: '',
     middleName: '',
     lastName: '',
     nationality: 'ID',
     dob: '',
-    idType: 'Passport',
+    idType: 'NIK',
     idNo: '',
     idExpiry: '',
     idOrigin: 'ID',
@@ -469,59 +268,21 @@ for (let i = 0; i < +parsedData.child; i++) {
 }
 for (let i = 0; i < +parsedData.infant; i++) {
   bookingDetail.passengers.infant.push({
-    title: 'Mstr',
+    title: 'Mr',
     firstName: '',
     middleName: '',
     lastName: '',
     nationality: 'ID',
     dob: '',
-    idType: 'Passport',
+    idType: 'NIK',
     idNo: '',
     idExpiry: '',
     idOrigin: 'ID',
   });
 }
+// });
 
-const isDuplicateContact = ref(false);
-
-const onUpdateIsDuplicateContact = (newValue: boolean) => {
-  if (newValue) {
-    if (bookingDetail.contact.firstName && bookingDetail.contact.lastName) {
-      bookingDetail.passengers.adult[0].title = bookingDetail.contact.title;
-      bookingDetail.passengers.adult[0].firstName =
-        bookingDetail.contact.firstName;
-      bookingDetail.passengers.adult[0].middleName =
-        bookingDetail.contact.middleName;
-      bookingDetail.passengers.adult[0].lastName =
-        bookingDetail.contact.lastName;
-      isDuplicateContact.value = newValue;
-    } else {
-      // ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
-      //   confirmButtonText: 'OK',
-      //   customStyle: {
-      //     '--el-color-primary': '#323c9f',
-      //   },
-      //   confirmButtonClass: 'ma-confirm',
-      //   center: true,
-      //   showClose: false,
-      //   callback: (action: Action) => {},
-      // });
-      showDialog({
-        message: t('ERROR.MATCH_NAME'),
-        confirmButtonText: 'OK',
-        theme: 'round-button',
-        className: 'ma-confirm-duplicate',
-      });
-    }
-  } else {
-    bookingDetail.passengers.adult[0].title = 'Mr';
-    bookingDetail.passengers.adult[0].firstName = '';
-    bookingDetail.passengers.adult[0].middleName = '';
-    bookingDetail.passengers.adult[0].lastName = '';
-
-    isDuplicateContact.value = newValue;
-  }
-};
+// console.log('bookingDetail', bookingDetail);
 
 const onClickDuplicateContact = (val: boolean) => {
   if (val) {
@@ -534,21 +295,15 @@ const onClickDuplicateContact = (val: boolean) => {
       bookingDetail.passengers.adult[0].lastName =
         bookingDetail.contact.lastName;
     } else {
-      // ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
-      //   confirmButtonText: 'OK',
-      //   customStyle: {
-      //     '--el-color-primary': '#323c9f',
-      //   },
-      //   confirmButtonClass: 'ma-confirm',
-      //   center: true,
-      //   showClose: false,
-      //   callback: (action: Action) => {},
-      // });
-      showDialog({
-        message: t('ERROR.MATCH_NAME'),
+      ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
         confirmButtonText: 'OK',
-        theme: 'round-button',
-        className: 'ma-confirm-duplicate',
+        customStyle: {
+          '--el-color-primary': '#323c9f',
+        },
+        confirmButtonClass: 'ma-confirm',
+        center: true,
+        showClose: false,
+        callback: (action: Action) => {},
       });
     }
   } else {
@@ -563,27 +318,24 @@ const v = useVuelidate();
 const isLoading = ref(false);
 
 const onConfirmBooking = async () => {
-  // console.log(bookingDetail);
-
   const isValid = await v.value.$validate();
   if (!isValid) return;
   ElMessageBox.alert(
     `
   <div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
     <img src="${props.confirmAsset}" width="124"/>
-    <p style="size: 20px; font-weight: 600;">${t('POPUP_CONFIRM.MESSAGE')}</p>
+    <p style="size: 20px; font-weight: 600;">Pastikan data kamu sudah benar sebelum melanjutkan</p>
   </div>`,
     {
       dangerouslyUseHTMLString: true,
-      confirmButtonText: t('POPUP_CONFIRM.BUTTON_CONFIRM'),
-      cancelButtonText: t('POPUP_CONFIRM.BUTTON_CANCEL'),
+      confirmButtonText: 'Lanjut',
+      cancelButtonText: 'Cek Lagi',
       showCancelButton: true,
       customStyle: {
         '--el-color-primary': '#323c9f',
       },
       confirmButtonClass: 'ma-confirm',
       cancelButtonClass: 'ma-cancel',
-      customClass: 'ma-confirm-booking',
       showClose: false,
       callback: async (action: Action) => {
         if (action === 'confirm') {
@@ -630,7 +382,8 @@ const onConfirmBooking = async () => {
             ).getFullYear();
             data['IdentityType' + i] =
               bookingDetail.passengers.adult[i - 1].idType;
-            data['PPNumber' + i] = bookingDetail.passengers.adult[i - 1].idNo;
+            data['IdentityNumber' + i] =
+              bookingDetail.passengers.adult[i - 1].idNo;
 
             if (bookingDetail.passengers.adult[i - 1].idType !== 'NIK') {
               data['PPDay' + i] = new Date(
@@ -642,7 +395,7 @@ const onConfirmBooking = async () => {
               data['PPYear' + i] = new Date(
                 bookingDetail.passengers.adult[i - 1].idExpiry
               ).getFullYear();
-              data['PPIssued' + i] =
+              data['PPCOI' + i] =
                 bookingDetail.passengers.adult[i - 1].idOrigin;
             }
 
@@ -675,8 +428,9 @@ const onConfirmBooking = async () => {
             data[
               'IdentityType' + (i + +bookingDetail.passengers.adult.length)
             ] = bookingDetail.passengers.child[i - 1].idType;
-            data['PPNumber' + (i + +bookingDetail.passengers.adult.length)] =
-              bookingDetail.passengers.child[i - 1].idNo;
+            data[
+              'IdentityNumber' + (i + +bookingDetail.passengers.adult.length)
+            ] = bookingDetail.passengers.child[i - 1].idNo;
 
             if (bookingDetail.passengers.child[i - 1].idType !== 'NIK') {
               data['PPDay' + (i + +bookingDetail.passengers.adult.length)] =
@@ -691,7 +445,7 @@ const onConfirmBooking = async () => {
                 new Date(
                   bookingDetail.passengers.child[i - 1].idExpiry
                 ).getFullYear();
-              data['PPIssued' + (i + +bookingDetail.passengers.adult.length)] =
+              data['PPCOI' + (i + +bookingDetail.passengers.adult.length)] =
                 bookingDetail.passengers.child[i - 1].idOrigin;
             }
 
@@ -767,7 +521,7 @@ const onConfirmBooking = async () => {
                   +bookingDetail.passengers.child.length)
             ] = bookingDetail.passengers.infant[i - 1].idType;
             data[
-              'PPNumber' +
+              'IdentityNumber' +
                 (i +
                   +bookingDetail.passengers.adult.length +
                   +bookingDetail.passengers.child.length)
@@ -799,7 +553,7 @@ const onConfirmBooking = async () => {
                 bookingDetail.passengers.infant[i - 1].idExpiry
               ).getFullYear();
               data[
-                'PPIssued' +
+                'PPCOI' +
                   (i +
                     +bookingDetail.passengers.adult.length +
                     +bookingDetail.passengers.child.length)
@@ -816,7 +570,7 @@ const onConfirmBooking = async () => {
           }
 
           const response = await axios.post(
-            props.baseurl + '/passengerDetailsInternational',
+            props.baseurl + '/passengerDetails',
             formData,
             {
               headers: {
@@ -824,6 +578,7 @@ const onConfirmBooking = async () => {
               },
             }
           );
+          console.log(response);
           isLoading.value = false;
 
           if (response.data.data.Message === 'OK') {
@@ -842,23 +597,29 @@ const onConfirmBooking = async () => {
               </defs>
             </svg>`;
 
-            showDialog({
-              message: `<div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
-               ${errorAssets}
-               <p style="size: 20px; font-weight: 600;">${t(
-                 'order_cant_processed'
-               )}</p>
+            ElMessageBox.alert(
+              `<div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
+                ${errorAssets}
+                <p style="size: 20px; font-weight: 600;">${t(
+                  'order_cant_processed'
+                )}</p>
               </div>`,
-              confirmButtonText: t('return_main_page'),
-              theme: 'round-button',
-              className: 'ma-confirm-duplicate',
-              allowHtml: true,
-              beforeClose: (action: Action) => {
-                if (action === 'confirm') {
-                  document.location.href = '/';
-                }
-              },
-            });
+              {
+                dangerouslyUseHTMLString: true,
+                confirmButtonText: t('return_main_page'),
+                customStyle: {
+                  '--el-color-primary': '#323c9f',
+                },
+                confirmButtonClass: 'ma-confirm',
+                showClose: false,
+                center: true,
+                callback: (action: Action) => {
+                  if (action === 'confirm') {
+                    document.location.href = '/';
+                  }
+                },
+              }
+            );
 
             console.log(response.data.message);
           }
@@ -869,16 +630,8 @@ const onConfirmBooking = async () => {
   );
   return;
 };
-
-const showModalDetail = ref(false);
-
-const onClickBack = () => {
-  window.history.back();
-};
 </script>
 
 <style lang="scss">
 @use '@/styles/booking-detail';
-@use '@/styles/pages/booking-detail-mobile';
-@import 'https://fastly.jsdelivr.net/npm/vant@4/lib/index.css';
 </style>

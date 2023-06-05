@@ -257,24 +257,24 @@ const rules = computed(() => {
 const v = useVuelidate(rules, model);
 
 const disabledDate = (a: any) => {
-  const minDate = new Date(dateValidity.minDate);
-  const maxDate = new Date(dateValidity.maxDate);
+  const minDate = new Date(dateValidity?.minDate);
+  const maxDate = new Date(dateValidity?.maxDate);
 
   if (type === 'adult') {
-    const mustBeTwelve = new Date(dateValidity.minDate);
+    const mustBeTwelve = new Date(dateValidity?.minDate);
     mustBeTwelve.setFullYear(minDate.getFullYear() - 12);
     return a > mustBeTwelve;
   } else if (type === 'child') {
-    const beforeTwelve = new Date(dateValidity.minDate);
+    const beforeTwelve = new Date(dateValidity?.minDate);
     beforeTwelve.setFullYear(minDate.getFullYear() - 12);
-    const afterTwo = new Date(dateValidity.maxDate);
+    const afterTwo = new Date(dateValidity?.maxDate);
     afterTwo.setFullYear(maxDate.getFullYear() - 2);
     if (a < beforeTwelve) return true;
     if (a > afterTwo) return true;
   } else if (type === 'infant') {
-    const beforeTwo = new Date(dateValidity.minDate);
+    const beforeTwo = new Date(dateValidity?.minDate);
     beforeTwo.setFullYear(minDate.getFullYear() - 2);
-    const afterNow = new Date(dateValidity.maxDate);
+    const afterNow = new Date(dateValidity?.maxDate);
     afterNow.setDate(maxDate.getDate() - 7);
     if (a < beforeTwo) return true;
     if (a > afterNow) return true;
