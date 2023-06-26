@@ -157,7 +157,7 @@ export default {
       MIDDLE: 'Nama Tengah',
       LAST: 'Nama Belakang',
       INFORMATION:
-        '<li>Untuk WNI, nama dan NIK harus sama dengan yang terdaftar. Untuk WNA, gunakan nama dan nomor yang tercantum di paspor. Untuk WNA , gunakan nama dan nomor vang tercantum di paspor.</li> <li>Jika kamu tidak memiliki "nama tengah" (contoh: Ari Wibowo), kosongkan bagian nama tengah dan hanya isi nama depan (contoh: Ari) dan nama akhir (contoh: Wibowo)</li> <li>Jika kamu hanya memiliki satu nama (contoh: Kartini), harap mengosongkan nama tengah dan mengisi nama belakang dengan nama depan (contoh: Kartini Kartini).</li>',
+      '<li>Untuk WNI, nama dan NIK harus sama dengan yang terdaftar. Untuk WNA, gunakan nama dan nomor yang tercantum di paspor. </li> <li>Jika kamu tidak memiliki "nama tengah" (contoh: Ari Wibowo), kosongkan bagian nama tengah dan hanya isi nama depan (contoh: Ari) dan nama akhir (contoh: Wibowo)</li> <li>Jika kamu hanya memiliki satu nama (contoh: Kartini), harap mengosongkan nama tengah dan mengisi nama belakang dengan nama depan (contoh: Kartini Kartini).</li>',
       EMAIL: 'Email',
       TELP: 'Nomor Telepon',
       NATIONALITY: 'Kewarganegaraan',
