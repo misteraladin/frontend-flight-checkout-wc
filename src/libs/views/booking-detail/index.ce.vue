@@ -361,7 +361,7 @@ const configLocale = computed(() => (locale.value === 'id-ID' ? id : en));
 const total = computed(() => {
   // return '100';
   if (!returnFlights) return departureFLights.FareDetail.Total;
-  return departureFLights.Fare + returnFlights.Fare;
+  return departureFLights.FareDetail.Total + returnFlights.FareDetail.Total;
 });
 
 const windowSize = reactive({
