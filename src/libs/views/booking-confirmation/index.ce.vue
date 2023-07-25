@@ -159,7 +159,7 @@
     </div>
   </div>
   <div id="booking-confirmation-mobile">
-    <Header>
+    <Header @back="onClickBack">
       {{ t('CONFIRMATION') }}
     </Header>
     <StatusOrder :reservation="reservation" :t="t" />
@@ -349,6 +349,10 @@ interface Props {
   paymentToken: string;
   requestPayment: string;
 }
+
+const onClickBack = () => {
+  window.history.back();
+};
 
 const props = defineProps<Props>();
 
