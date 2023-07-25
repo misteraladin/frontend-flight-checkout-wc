@@ -70,7 +70,7 @@ export default {
     departure_price: 'Departure Price',
     return_price: 'Return Price',
     booking_details: 'Booking Details',
-    traveler_details: 'Traveler Details',
+    traveler_details: 'Passenger Details',
     transit_in: '{time} transit in {place} ({code})',
     price_departure: 'Depature Price',
     price_return: 'Return Price',
