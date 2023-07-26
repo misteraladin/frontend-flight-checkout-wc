@@ -70,7 +70,7 @@ export default {
     departure_price: 'Departure Price',
     return_price: 'Return Price',
     booking_details: 'Booking Details',
-    traveler_details: 'Traveler Details',
+    traveler_details: 'Passenger Details',
     transit_in: '{time} transit in {place} ({code})',
     price_departure: 'Depature Price',
     price_return: 'Return Price',
@@ -107,7 +107,7 @@ export default {
     name_instruction_desc:
       '<ul> <li> <b>For Indonesians</b>, name and ID number must exactly match your ID card. <b>For foreigners</b>, name and number must exactly match your passport. </li> <li> If you don\'t have a "middle name" <b>(example: Ari Wibowo)</b>, please only fill out your first name <b>(example: Ari)</b> and last name <b>(example: Wibowo)</b> </li> <li> If you only have "first name" <b>(example: Kartini)</b>, please fill out both first and last names with the same name <b>(example: Kartini Kartini)</b>. </li> </ul>',
     understand: 'Understand',
-    passport_info: 'Hubungi Personal Assistant jika kamu belum memiliki paspor',
+    passport_info: "Contact the Personal Assistant if you don't have a passport yet",
     title: 'Title',
     first_name: 'First Name',
     middle_name: 'Middle Name',
@@ -252,10 +252,10 @@ export default {
     cancel: 'Batal',
     name_instruction_title: 'Instruksi Penulisan Nama',
     name_instruction_desc:
-      '<ul> <li> <b>Untuk WNI</b>, nama dan NIK harus sama dengan yang terdaftar. Untuk WNA, gunakan nama dan nomor yang tercantum di paspor. <b>Untuk WNA</b>, gunakan nama dan nomor vang tercantum di paspor. </li> <li> Jika kamu tidak memiliki "nama tengah" <b>(contoh: Ari Wibowo)</b>, kosongkan bagian nama tengah dan hanya isi nama depan <b>(contoh: Ari)</b> dan nama akhir <b>(contoh: Wibowo)</b> </li> <li> Jika kamu hanya memiliki satu nama <b>(contoh: Kartini)</b>, harap kosongkan nama tengah dan mengisi nama belakang dengan nama depan <b>(contoh: Kartini Kartini)</b>. </li> </ul>',
+      '<ul> <li> <b>Untuk WNI</b>, nama dan NIK harus sama dengan yang terdaftar. <b>Untuk WNA</b>, gunakan nama dan nomor yang tercantum di paspor. </li> <li> Jika kamu tidak memiliki "nama tengah" <b>(contoh: Ari Wibowo)</b>, kosongkan bagian nama tengah dan hanya isi nama depan <b>(contoh: Ari)</b> dan nama akhir <b>(contoh: Wibowo)</b> </li> <li> Jika kamu hanya memiliki satu nama <b>(contoh: Kartini)</b>, harap kosongkan nama tengah dan mengisi nama belakang dengan nama depan <b>(contoh: Kartini Kartini)</b>. </li> </ul>',
     understand: 'Mengerti',
     passport_info:
-      "Contact the Personal Assistant if you don't have a passport yet",
+      "Hubungi Personal Assistant jika kamu belum memiliki paspor",
     title: 'Title',
     first_name: 'Nama Depan',
     middle_name: 'Nama Tengah',
