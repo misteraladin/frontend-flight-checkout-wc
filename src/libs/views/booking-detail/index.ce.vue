@@ -385,17 +385,12 @@ onUnmounted(() => {
 });
 
 const paxDateValidity = computed(() => {
-  if (returnFlights) {
-    return {
-      minDate: returnFlights.Segments.Departure[0].ArriveDate,
-      maxDate: departureFLights.Segments.Departure[0].DepartDate,
-    };
-  } else {
-    return {
-      minDate: departureFLights.Segments.Departure[0].DepartDate,
-      maxDate: departureFLights.Segments.Departure[0].DepartDate,
-    };
-  }
+  var d = new Date(departureFLights.Segments.Departure[0].DepartDate);
+  const minDate = d.setDate(d.getDate() - 1);
+  return {
+    minDate,
+    maxDate: departureFLights.Segments.Departure[0].DepartDate,
+  };
 });
 
 const dateArrival = computed(() => {
