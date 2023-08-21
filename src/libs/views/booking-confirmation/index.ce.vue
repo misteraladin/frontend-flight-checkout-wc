@@ -159,7 +159,7 @@
     </div>
   </div>
   <div id="booking-confirmation-mobile">
-    <Header>
+    <Header @back="onClickBack">
       {{ t('CONFIRMATION') }}
     </Header>
     <StatusOrder :reservation="reservation" :t="t" />
@@ -535,6 +535,10 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('message', listenEvent);
 });
+
+const onClickBack = () => {
+  window.history.back();
+};
 </script>
 
 <style lang="scss">
