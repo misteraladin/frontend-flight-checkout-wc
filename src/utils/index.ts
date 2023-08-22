@@ -27,3 +27,14 @@ export const toDateTime = (string: string) =>
     minute: '2-digit',
     hour: '2-digit',
   });
+
+export const dateFormat = (inputDate:any) =>{
+  const date = new Date(inputDate);
+  const padTo2Digits = (num:any)=> num.toString().padStart(2, '0');
+
+  return [
+    date.getFullYear(),
+    padTo2Digits(date.getMonth() + 1),
+    padTo2Digits(date.getDate()),
+  ].join('-');
+}
