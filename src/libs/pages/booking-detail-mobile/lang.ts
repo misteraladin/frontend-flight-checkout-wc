@@ -97,7 +97,7 @@ export default {
     save: "Simpan",
     cancel: "Batal",
     name_instruction_title: "Instruksi Penulisan Nama",
-    name_instruction_desc: '<ul> <li> <b>Untuk WNI</b>, nama dan NIK harus sama dengan yang terdaftar. Untuk WNA, gunakan nama dan nomor yang tercantum di paspor. <b>Untuk WNA</b>, gunakan nama dan nomor vang tercantum di paspor. </li> <li> Jika kamu tidak memiliki "nama tengah" <b>(contoh: Ari Wibowo)</b>, kosongkan bagian nama tengah dan hanya isi nama depan <b>(contoh: Ari)</b> dan nama akhir <b>(contoh: Wibowo)</b> </li> <li> Jika kamu hanya memiliki satu nama <b>(contoh: Kartini)</b>, harap kosongkan nama tengah dan mengisi nama belakang dengan nama depan <b>(contoh: Kartini Kartini)</b>. </li> </ul>',
+    name_instruction_desc: '<ul> <li> <b>Untuk WNI</b>, nama dan NIK harus sama dengan yang terdaftar. Untuk WNA, gunakan nama dan nomor yang tercantum di paspor. </li> <li> Jika kamu tidak memiliki "nama tengah" <b>(contoh: Ari Wibowo)</b>, kosongkan bagian nama tengah dan hanya isi nama depan <b>(contoh: Ari)</b> dan nama akhir <b>(contoh: Wibowo)</b> </li> <li> Jika kamu hanya memiliki satu nama <b>(contoh: Kartini)</b>, harap kosongkan nama tengah dan mengisi nama belakang dengan nama depan <b>(contoh: Kartini Kartini)</b>. </li> </ul>',
     understand: "Mengerti",
     passport_info: "Contact the Personal Assistant if you don't have a passport yet",
     title: "Title",
