@@ -304,7 +304,7 @@ import ModalWindow from '../common-mobile/ModalWindow.vue';
 
 import { Switch, showDialog, Popup } from 'vant';
 
-import { toIDR } from '../../../utils';
+import { toIDR, dateFormat } from '../../../utils';
 
 import useVuelidate from '@vuelidate/core';
 
@@ -384,17 +384,13 @@ onUnmounted(() => {
 });
 
 const paxDateValidity = computed(() => {
-  if (returnFlights) {
+  var d = new Date(departureFLights.Segments.Departure[0].DepartDate);
+  const lastDate = d.setDate(d.getDate() - 1);
+
     return {
-      minDate: returnFlights.Segments.Departure[0].ArriveDate,
+      minDate: dateFormat(lastDate),
       maxDate: departureFLights.Segments.Departure[0].DepartDate,
     };
-  } else {
-    return {
-      minDate: departureFLights.Segments.Departure[0].DepartDate,
-      maxDate: departureFLights.Segments.Departure[0].DepartDate,
-    };
-  }
 });
 
 const dateArrival = computed(() => {
