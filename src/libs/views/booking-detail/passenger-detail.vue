@@ -172,9 +172,10 @@ interface Props {
     maxDate: string;
   };
   dateArrival: string;
+  hasReturnTrip: Boolean;
 }
 
-const { i, type, t, model, dateValidity, dateArrival } = defineProps<Props>();
+const { i, type, t, model, dateValidity, dateArrival, hasReturnTrip } = defineProps<Props>();
 
 const titleOptions = computed(() => {
   const adult = [
@@ -263,16 +264,18 @@ const disabledDate = (a: any) => {
   if (type === 'adult') {
     const mustBeTwelve = new Date(dateValidity.minDate);
     mustBeTwelve.setFullYear(minDate.getFullYear() - 12);
+    mustBeTwelve.setDate(minDate.getDate() - 1);
     return a > mustBeTwelve;
   } else if (type === 'child') {
-    const beforeTwelve = new Date(dateValidity.minDate);
+    const beforeTwelve = hasReturnTrip ? new Date(dateArrival) : new Date(dateValidity.minDate);
     beforeTwelve.setFullYear(minDate.getFullYear() - 12);
     const afterTwo = new Date(dateValidity.maxDate);
     afterTwo.setFullYear(maxDate.getFullYear() - 2);
+    beforeTwelve.setDate(beforeTwelve.getDate() - 1 );
     if (a < beforeTwelve) return true;
     if (a > afterTwo) return true;
   } else if (type === 'infant') {
-    const beforeTwo = new Date(dateValidity.minDate);
+    const beforeTwo = hasReturnTrip ? new Date(dateArrival) : new Date(dateValidity.minDate);
     beforeTwo.setFullYear(minDate.getFullYear() - 2);
     const afterNow = new Date(dateValidity.maxDate);
     afterNow.setDate(maxDate.getDate() - 7);
