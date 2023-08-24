@@ -48,6 +48,7 @@
                 :countries="parsedCountries"
                 :model="bookingDetail.passengers.adult[i]"
                 :date-validity="paxDateValidity"
+                :has-return-trip="itHasReturnTrip"
                 :date-arrival="dateArrival"
               />
             </template>
@@ -63,6 +64,7 @@
               :countries="parsedCountries"
               :model="bookingDetail.passengers.child[i]"
               :date-validity="paxDateValidity"
+              :has-return-trip="itHasReturnTrip"
               :date-arrival="dateArrival"
             />
 
@@ -77,6 +79,7 @@
               :countries="parsedCountries"
               :model="bookingDetail.passengers.infant[i]"
               :date-validity="paxDateValidity"
+              :has-return-trip="itHasReturnTrip"
               :date-arrival="dateArrival"
             />
           </Card>
@@ -182,6 +185,7 @@
           :t="t"
           :height="windowSize.height"
           :date-validity="paxDateValidity"
+          :has-return-trip="itHasReturnTrip"
           :date-arrival="dateArrival"
           :locale="locale"
         />
@@ -304,7 +308,7 @@ import ModalWindow from '../common-mobile/ModalWindow.vue';
 
 import { Switch, showDialog, Popup } from 'vant';
 
-import { toIDR, dateFormat } from '../../../utils';
+import { toIDR } from '../../../utils';
 
 import useVuelidate from '@vuelidate/core';
 
@@ -385,14 +389,13 @@ onUnmounted(() => {
 });
 
 const paxDateValidity = computed(() => {
-
-  var d = new Date(departureFLights.Segments.Departure[0].DepartDate);
-  const lastDate = d.setDate(d.getDate() - 1);
   return {
-    minDate:dateFormat(lastDate),
+    minDate: departureFLights.Segments.Departure[0].DepartDate,
     maxDate: departureFLights.Segments.Departure[0].DepartDate,
   };
 });
+
+const itHasReturnTrip = computed(() => { return returnFlights? true : false })
 
 const dateArrival = computed(() => {
   if (!returnFlights) return departureFLights.Segments.Departure[0].ArriveDate;
