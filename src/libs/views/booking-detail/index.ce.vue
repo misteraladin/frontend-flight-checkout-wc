@@ -174,8 +174,6 @@
         :key="indexTypes"
       >
         <Passenger
-          :is-show-modal="isShowModal[indexTypes]"
-          @setModal="(val)=>handleModal(indexTypes, val)"
           v-for="(passenger, index) in passengerTypes"
           :key="index"
           :type="(keyTypes as any as string)"
@@ -480,12 +478,8 @@ for (let i = 0; i < +parsedData.infant; i++) {
 }
 
 const isDuplicateContact = ref(false);
-const isShowModal = ref<any[]>([]);
-const handleModal=(key:any, val:boolean)=>{
-  isShowModal.value[key] = val
-}
 
-const onUpdateIsDuplicateContact =  (newValue: boolean) => {
+const onUpdateIsDuplicateContact = (newValue: boolean) => {
   if (newValue) {
     if (bookingDetail.contact.firstName && bookingDetail.contact.lastName) {
       bookingDetail.passengers.adult[0].title = bookingDetail.contact.title;
@@ -496,11 +490,6 @@ const onUpdateIsDuplicateContact =  (newValue: boolean) => {
       bookingDetail.passengers.adult[0].lastName =
         bookingDetail.contact.lastName;
       isDuplicateContact.value = newValue;
-
-      if(windowSize.width < 768){
-        isShowModal.value[0] = true
-      }
-
     } else {
       // ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
       //   confirmButtonText: 'OK',
