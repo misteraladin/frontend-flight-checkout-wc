@@ -1,6 +1,6 @@
 <template>
   <div class="booking-detail__passenger">
-    <div class="booking-detail__passenger-empty" @click="isShowModal = true">
+    <div class="booking-detail__passenger-empty" @click="togleModal(true)">
       <template v-if="type === 'contact'">
         <template v-if="v.$error || !v.$dirty">
           <svg
@@ -138,7 +138,7 @@
 
     <ModalPeek
       v-model:show="isShowModal"
-      @close="isShowModal = false"
+      @close="togleModal(false)"
       :customStyle="height ? { maxHeight: `${height - 56}px` } : {}"
     >
       <PassengerForm
@@ -152,7 +152,7 @@
       />
 
       <template #footer>
-        <button class="btn btn-primary-outline" @click="isShowModal = false">
+        <button class="btn btn-primary-outline" @click="togleModal(false)">
           {{ t('cancel') }}
         </button>
 
@@ -191,10 +191,10 @@ interface Props {
   };
   dateArrival?: string;
   locale: string;
+  isShowModal: boolean;
 }
-const { type, passenger, placeholder, t, height, dateValidity, locale } =
+const { type, passenger, placeholder, t, height, dateValidity, locale, isShowModal } =
   defineProps<Props>();
-const isShowModal = ref(false);
 
 const vrules = computed(() => {
   if (type === 'contact') {
@@ -290,10 +290,15 @@ const vrules = computed(() => {
 
 const v = useVuelidate(vrules, passenger);
 
+const emit = defineEmits(['setModal']);
 const onSave = async () => {
   const isValid = await v.value.$validate();
   if (isValid) {
-    isShowModal.value = false;
+    emit('setModal', false)
   }
 };
+
+const togleModal= ( value: Boolean)=>{
+  emit('setModal', value)
+}
 </script>
