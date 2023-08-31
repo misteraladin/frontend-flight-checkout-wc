@@ -179,6 +179,7 @@
         <Passenger
           v-for="(passenger, index) in passengerTypes"
           :key="index"
+          ref="passengerRefs"
           :type="(keyTypes as any as string)"
           :passenger="passenger"
           :placeholder="`${indexTypes! + 1}. ` +   t(`passenger_${keyTypes}`)"
@@ -482,6 +483,7 @@ for (let i = 0; i < +parsedData.infant; i++) {
 }
 
 const isDuplicateContact = ref(false);
+const passengerRefs = ref<any[]>([]);
 
 const onUpdateIsDuplicateContact = (newValue: boolean) => {
   if (newValue) {
@@ -494,6 +496,11 @@ const onUpdateIsDuplicateContact = (newValue: boolean) => {
       bookingDetail.passengers.adult[0].lastName =
         bookingDetail.contact.lastName;
       isDuplicateContact.value = newValue;
+
+      if( passengerRefs.value[0]){
+        passengerRefs.value[0].togleModal();
+      }
+
     } else {
       // ElMessageBox.alert(t('ERROR.MATCH_NAME'), {
       //   confirmButtonText: 'OK',

@@ -296,4 +296,11 @@ const onSave = async () => {
     isShowModal.value = false;
   }
 };
+
+const togleModal = () =>{
+  isShowModal.value = !isShowModal.value
+}
+defineExpose({
+  togleModal
+})
 </script>
