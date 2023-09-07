@@ -109,7 +109,7 @@
             :t="t"
             v-if="returnFlights"
           />
-          <PriceCard
+          <!-- <PriceCard
             :heading="t('departure_price')"
             :fare="departureFLights.FareDetail"
           />
@@ -121,7 +121,7 @@
           <div class="booking__total">
             <span>Total</span>
             <span>{{ toIDR(total) }}</span>
-          </div>
+          </div> -->
         </Card>
       </div>
     </div>
@@ -223,7 +223,7 @@
           :t="t"
           v-if="returnFlights"
         />
-        <PriceCard
+        <!-- <PriceCard
           :heading="t('departure_price')"
           :fare="departureFLights.FareDetail"
         />
@@ -235,7 +235,7 @@
         <div class="booking__total">
           <span>Total</span>
           <span>{{ toIDR(total) }}</span>
-        </div>
+        </div> -->
       </div>
       <template v-slot:footer>
         {{ t('close') }}
