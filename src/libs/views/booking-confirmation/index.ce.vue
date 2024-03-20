@@ -505,8 +505,18 @@ const paymentIframe = reactive({
 
 const onPayBooking = async () => {
   try {
+    const  getCookie=(n:any)=> {
+      let a = `; ${document.cookie}`.match(`;\\s*${n}=([^;]+)`);
+      return a ? a[1] : undefined;
+    }
+
+    const click_id = getCookie('click_id');
+    const offer_id = getCookie('offer_id');
+
     const res = await axios.post(props.requestPayment, {
       booking_no: reservation.ReservationCode,
+      click_id,
+      offer_id
     });
 
     paymentIframe.url = res.data.data.redirect_url;
