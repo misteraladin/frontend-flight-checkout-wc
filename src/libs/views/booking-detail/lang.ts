@@ -63,6 +63,8 @@ export default {
     order_cant_processed:
       'Order cannot be processed Sorry! There was a problem in processing your order. Please select an airline or other available date.',
     return_main_page: 'Return to Main Page',
+    return_search_page: 'Return to Search Page',
+    curning_fee_message:"We're Sorry \n You have already made a booking with the same details twice. To proceed with your booking, please contact our Personal Travel Assistant at: \n \n +62 811 956 900 \n cs&#64;misteraladin.com \n \n We're here to assist you with your travel needs!",
     transit_for: 'Transit for {time} in {city} ({code})',
 
     departure: 'Departure',
@@ -207,9 +209,10 @@ export default {
     passenger_infant: 'Penumpang Bayi',
     nik: 'NIK',
     passport: 'Paspor',
-    order_cant_processed:
-      'Pemesanan tidak dapat diproses Mohon maaf! Ada kendala dalam pemrosesan pemesanan kamu. Silakan pilih maskapai atau tanggal lainnya yang tersedia.',
+    order_cant_processed:'Pemesanan tidak dapat diproses Mohon maaf! Ada kendala dalam pemrosesan pemesanan kamu. Silakan pilih maskapai atau tanggal lainnya yang tersedia.',
     return_main_page: 'Kembali ke Halaman Utama',
+    return_search_page: 'Kembali ke Halaman Pencarian',
+    curning_fee_message:'Mohon Maaf \n Kamu sudah melakukan pemesanan dengan detail yang sama sebanyak 2 kali. Untuk melanjutkan proses booking, silakan hubungi Personal Travel Assistant kami melalui: \n \n +62 811 956 900 \n cs&#64;misteraladin.com \n \n Kami siap membantu kebutuhan perjalananmu!',
     transit_for: 'Transit selama {time} di {city} ({code})',
     departure: 'Keberangkatan',
     return: 'Kepulangan',
