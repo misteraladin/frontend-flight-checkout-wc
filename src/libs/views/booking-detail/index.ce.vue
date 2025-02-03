@@ -2,7 +2,7 @@
   <ElConfigProvider :locale="configLocale">
     <div class="booking" v-if="windowSize.width >= 768">
       <h1 class="booking__title">{{ t('BOOKING_DETAIL_HEADING') }}</h1>
-
+<!-- {{ parsedData }} -->
       <div class="booking__main">
         <h3 class="booking__subtitle">{{ t('CONTACT_DETAILS') }}</h3>
         <LoginBanner
@@ -836,6 +836,30 @@ const onConfirmBooking = async () => {
             window.location.href =
               'review_booking?ReservationCode=' + response.data.code;
           } else {
+            let redirectUrl = '/';
+            let confirmMessage = `${t('order_cant_processed')}`;
+            let confirmButtonText = `${t('return_main_page')}`;
+            const message = response?.data?.data?.Message || "";
+
+            if(message.includes("CHURNING_FEE_VALIDATION_ERR")){
+              const dataParam = {
+                type: parsedData.trip,
+                origin: parsedData.origin,
+                destination: parsedData.destination,
+                departDate: parsedData.departDate,
+                returnDate: parsedData.returnDate,
+                cabinClass: departureFLights.Segments.Departure[0].ClassCategory,
+                adult: parsedData.adult,
+                child: parsedData.child,
+                infant: parsedData.infant
+              };
+              let urlParameters = Object.entries(dataParam).map(e => e.join('=')).join('&');
+              redirectUrl = `/search_international?${urlParameters}`
+
+              confirmMessage = `${t('curning_fee_message')}`;
+              confirmButtonText = `${t('return_search_page')}`;
+            }
+
             const errorAssets = `<svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_4895_2304)">
                 <path d="M57.7526 27.1747C58.5337 26.3937 58.5337 25.1273 57.7526 24.3463L56.821 23.4147C56.04 22.6337 54.7737 22.6337 53.9926 23.4147L40.5002 36.9072L27.0077 23.4147C26.2267 22.6337 24.9603 22.6337 24.1793 23.4147L23.2477 24.3463C22.4667 25.1273 22.4667 26.3937 23.2477 27.1747L36.7402 40.6672L23.2477 54.1596C22.4667 54.9407 22.4667 56.207 23.2477 56.988L24.1793 57.9196C24.9603 58.7007 26.2267 58.7007 27.0077 57.9196L40.5002 44.4272L53.9926 57.9196C54.7737 58.7007 56.04 58.7007 56.821 57.9196L57.7526 56.988C58.5337 56.207 58.5337 54.9407 57.7526 54.1596L44.2602 40.6672L57.7526 27.1747Z" fill="#C62828" />
@@ -849,24 +873,17 @@ const onConfirmBooking = async () => {
             </svg>`;
 
             showDialog({
-              message: `<div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
-               ${errorAssets}
-               <p style="size: 20px; font-weight: 600;">${t(
-                 'order_cant_processed'
-               )}</p>
-              </div>`,
-              confirmButtonText: t('return_main_page'),
+              message: `<div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">${errorAssets} <p style="size: 20px; font-weight: 600;">${confirmMessage}</p> </div>`,
+              confirmButtonText: confirmButtonText,
               theme: 'round-button',
               className: 'ma-confirm-duplicate',
               allowHtml: true,
               beforeClose: (action: Action) => {
                 if (action === 'confirm') {
-                  document.location.href = '/';
+                  document.location.href = redirectUrl;
                 }
               },
             });
-
-            console.log(response.data.message);
           }
         }
       },
