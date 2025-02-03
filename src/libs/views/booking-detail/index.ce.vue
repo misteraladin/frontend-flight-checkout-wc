@@ -837,9 +837,21 @@ const onConfirmBooking = async () => {
               'review_booking?ReservationCode=' + response.data.code;
           } else {
             let redirectUrl = '/';
-            let confirmMessage = `${t('order_cant_processed')}`;
+            let confirmMessage = ` <p style="size: 20px; font-weight: 600;">${t('order_cant_processed')}</p>`;
             let confirmButtonText = `${t('return_main_page')}`;
             const message = response?.data?.data?.Message || "";
+            let errorAssets = `<svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_4895_2304)">
+                <path d="M57.7526 27.1747C58.5337 26.3937 58.5337 25.1273 57.7526 24.3463L56.821 23.4147C56.04 22.6337 54.7737 22.6337 53.9926 23.4147L40.5002 36.9072L27.0077 23.4147C26.2267 22.6337 24.9603 22.6337 24.1793 23.4147L23.2477 24.3463C22.4667 25.1273 22.4667 26.3937 23.2477 27.1747L36.7402 40.6672L23.2477 54.1596C22.4667 54.9407 22.4667 56.207 23.2477 56.988L24.1793 57.9196C24.9603 58.7007 26.2267 58.7007 27.0077 57.9196L40.5002 44.4272L53.9926 57.9196C54.7737 58.7007 56.04 58.7007 56.821 57.9196L57.7526 56.988C58.5337 56.207 58.5337 54.9407 57.7526 54.1596L44.2602 40.6672L57.7526 27.1747Z" fill="#C62828" />
+              </g>
+              <rect x="2.5" y="2.66699" width="76" height="76" rx="38" stroke="#C62828" stroke-width="4" />
+              <defs>
+                <clipPath id="clip0_4895_2304">
+                  <rect x="8.5" y="8.66699" width="64" height="64" rx="32" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>`;
+
 
             if(message.includes("CHURNING_FEE_VALIDATION_ERR")){
               const dataParam = {
@@ -856,24 +868,18 @@ const onConfirmBooking = async () => {
               let urlParameters = Object.entries(dataParam).map(e => e.join('=')).join('&');
               redirectUrl = `/search_international?${urlParameters}`
 
-              confirmMessage = `${t('curning_fee_message')}`;
+              errorAssets = `<svg width="81" height="80" viewBox="0 0 81 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M37.4069 8.99053C38.8079 6.6555 42.1921 6.6555 43.5931 8.99052L78.7285 67.5495C80.171 69.9537 78.4392 73.0125 75.6354 73.0125H5.36461C2.56082 73.0125 0.829004 69.9537 2.27154 67.5495L37.4069 8.99053Z" fill="#EEF5FF" stroke="#BBD3F9" stroke-width="2.5"/>
+                <path d="M37.1762 26.9048H43.9154L42.777 50.2148H38.269L37.1762 26.9048ZM40.5458 62.1188C39.4833 62.1188 38.6029 61.7536 37.9047 61.023C37.2065 60.2593 36.8574 59.3296 36.8574 58.2338C36.8574 57.138 37.2065 56.2249 37.9047 55.4944C38.6029 54.7639 39.4833 54.3986 40.5458 54.3986C41.5779 54.3986 42.4279 54.7639 43.0958 55.4944C43.794 56.2249 44.1431 57.138 44.1431 58.2338C44.1431 59.3296 43.794 60.2593 43.0958 61.023C42.4279 61.7536 41.5779 62.1188 40.5458 62.1188Z" fill="#BBD3F9"/>
+              </svg>`;
+              
+
+              confirmMessage = `<div style="text-align:left;"> ${t('curning_fee_message')}</div>`;
               confirmButtonText = `${t('return_search_page')}`;
             }
 
-            const errorAssets = `<svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_4895_2304)">
-                <path d="M57.7526 27.1747C58.5337 26.3937 58.5337 25.1273 57.7526 24.3463L56.821 23.4147C56.04 22.6337 54.7737 22.6337 53.9926 23.4147L40.5002 36.9072L27.0077 23.4147C26.2267 22.6337 24.9603 22.6337 24.1793 23.4147L23.2477 24.3463C22.4667 25.1273 22.4667 26.3937 23.2477 27.1747L36.7402 40.6672L23.2477 54.1596C22.4667 54.9407 22.4667 56.207 23.2477 56.988L24.1793 57.9196C24.9603 58.7007 26.2267 58.7007 27.0077 57.9196L40.5002 44.4272L53.9926 57.9196C54.7737 58.7007 56.04 58.7007 56.821 57.9196L57.7526 56.988C58.5337 56.207 58.5337 54.9407 57.7526 54.1596L44.2602 40.6672L57.7526 27.1747Z" fill="#C62828" />
-              </g>
-              <rect x="2.5" y="2.66699" width="76" height="76" rx="38" stroke="#C62828" stroke-width="4" />
-              <defs>
-                <clipPath id="clip0_4895_2304">
-                  <rect x="8.5" y="8.66699" width="64" height="64" rx="32" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>`;
-
             showDialog({
-              message: `<div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">${errorAssets} <p style="size: 20px; font-weight: 600;">${confirmMessage}</p> </div>`,
+              message: `<div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">${errorAssets} ${confirmMessage} </div>`,
               confirmButtonText: confirmButtonText,
               theme: 'round-button',
               className: 'ma-confirm-duplicate',
