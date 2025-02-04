@@ -866,7 +866,7 @@ const onConfirmBooking = async () => {
                 infant: parsedData.infant
               };
               let urlParameters = Object.entries(dataParam).map(e => e.join('=')).join('&');
-              redirectUrl = `/search_international?${urlParameters}`
+              redirectUrl = `search_international?${urlParameters}`
 
               errorAssets = `<svg width="81" height="80" viewBox="0 0 81 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M37.4069 8.99053C38.8079 6.6555 42.1921 6.6555 43.5931 8.99052L78.7285 67.5495C80.171 69.9537 78.4392 73.0125 75.6354 73.0125H5.36461C2.56082 73.0125 0.829004 69.9537 2.27154 67.5495L37.4069 8.99053Z" fill="#EEF5FF" stroke="#BBD3F9" stroke-width="2.5"/>
