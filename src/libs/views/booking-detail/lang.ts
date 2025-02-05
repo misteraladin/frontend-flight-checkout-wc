@@ -64,7 +64,7 @@ export default {
       'Order cannot be processed Sorry! There was a problem in processing your order. Please select an airline or other available date.',
     return_main_page: 'Return to Main Page',
     return_search_page: 'Close',
-    curning_fee_message:"<div style='text-align:center; font-weight: 600; font-size:24px'>We're Sorry</div> \n You have already made a booking with the same details twice. To proceed with your booking, please contact our Personal Travel Assistant at: \n <li style='font-weight:600'>+62 811 956 900</li><li style='font-weight:600'>cs&#64;misteraladin.com</li>\n We're here to assist you with your travel needs!",
+    curning_fee_message:"<div style='text-align:center; font-weight: 600; font-size:24px'>We're Sorry</div> \n \n You have already made a booking with the same details twice. \n To proceed with your booking, please contact our Personal Travel Assistant at: \n <li style='font-weight:600'>+62 811 956 900</li><li style='font-weight:600'>cs&#64;misteraladin.com</li>\n We're here to assist you with your travel needs!",
     transit_for: 'Transit for {time} in {city} ({code})',
 
     departure: 'Departure',
